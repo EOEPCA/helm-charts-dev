@@ -1,0 +1,30 @@
+name: Publish Charts
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pandoc/latex
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install mustache (to update the date)
+        run:  apk add ruby && gem install mustache
+      - name: creates output
+        run:  sh ./build.sh
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          source-directory: 'charts'
+          destination-github-username: "$GITHUB_ACTOR"
+          destination-repository-name: 'helm-charts'
+          user-email: "$GITHUB_ACTOR@users.noreply.github.com"
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+          target-branch: test
+      - name: Test get variable exported by helm-charts
+        run: echo $DESTINATION_CLONED_DIRECTORY
