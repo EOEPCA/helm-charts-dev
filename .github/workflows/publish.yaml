@@ -13,7 +13,7 @@ jobs:
       with:
         personal_token: "${{ secrets.GITHUB_TOKEN }}"
         src_path: /charts
-        dst_path: /charts
+        dst_path: /
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
         dst_branch: test
