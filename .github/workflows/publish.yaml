@@ -11,7 +11,7 @@ jobs:
     - name: Copycat
       uses: andstor/copycat-action@v3
       with:
-        personal_token: "${{ secrets.GITHUB_TOKEN }}"
+        personal_token: ${{ secrets.PUSH_TOKEN }}
         src_path: /charts
         dst_path: /
         dst_owner: EOEPCA
