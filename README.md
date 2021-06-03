@@ -19,12 +19,12 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">EOEPCA Helm Charts Repository</h3>
+  <h3 align="center">EOEPCA Helm Charts Development Repository</h3>
 
   <p align="center">
-    EOEPCA Reference Implementation - Helm Charts Repository
+    EOEPCA Reference Implementation - Helm Charts Development Repository
     <br />
-    <a href="https://eoepca.github.io/helm-charts/"><strong>Repository Index »</strong></a>
+    <a href="https://eoepca.github.io/helm-charts-dev/"><strong>Repository Index »</strong></a>
     <br />
     <a href="https://github.com/EOEPCA/helm-charts">View Demo</a>
     ·
@@ -52,7 +52,7 @@
 
 To use the eoepca helm chart repository, just add the repo update it an install packages as usual
 ```
-$ helm repo add eoepca https://eoepca.github.io/helm-charts/
+$ helm repo add eoepca https://eoepca.github.io/helm-charts-dev/
 $ helm repo update
 $ helm install test eoepca/cheese
 ```
