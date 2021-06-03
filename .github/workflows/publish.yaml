@@ -12,8 +12,8 @@ jobs:
       uses: andstor/copycat-action@v3
       with:
         personal_token: ${{ secrets.PUSH_TOKEN }}
-        src_path: /charts
-        dst_path: /
+        src_path: /charts/*
+        dst_path: /charts/
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
         dst_branch: test
