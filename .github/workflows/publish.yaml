@@ -19,7 +19,7 @@ jobs:
           API_TOKEN_GITHUB: "${{ secrets.GITHUB_TOKEN }}"
         with:
           source-directory: 'charts'
-          destination-github-username: "$GITHUB_ACTOR"
+          destination-github-username: 'EOEPCA'
           destination-repository-name: 'helm-charts'
           user-email: "$GITHUB_ACTOR@users.noreply.github.com"
           commit-message: See ORIGIN_COMMIT from $GITHUB_REF
