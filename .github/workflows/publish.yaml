@@ -18,5 +18,5 @@ jobs:
         dst_repo_name: helm-charts
         dst_branch: test
         src_branch: main
-        commit_message: Commit triggered by ${{ GITHUB_SHA }} on helm-charts-dev
+        commit_message: Commit triggered by "$GITHUB_SHA" on helm-charts-dev
 
