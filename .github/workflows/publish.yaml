@@ -12,13 +12,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: main
+      - name: Create extra folder
+        run: |
+          mkdir output
+          mv charts/ output/          
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          source-directory: 'charts'
+          source-directory: 'output'
           destination-github-username: 'EOEPCA'
           destination-repository-name: 'helm-charts'
           user-email: "$GITHUB_ACTOR@users.noreply.github.com"
