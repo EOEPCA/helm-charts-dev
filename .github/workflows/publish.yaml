@@ -18,6 +18,6 @@ jobs:
         dst_repo_name: helm-charts
         dst_branch: test
         src_branch: main
-        username: "$GITHUB_ACTOR"
-        email: "$GITHUB_ACTOR@users.noreply.github.com"
+        clean: true
+        commit_message: "Commit triggerd by $GITHUB_SHA on helm-charts-dev"
 
