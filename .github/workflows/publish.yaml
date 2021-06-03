@@ -12,12 +12,11 @@ jobs:
       uses: andstor/copycat-action@v3
       with:
         personal_token: ${{ secrets.PUSH_TOKEN }}
-        src_path: /charts/*
-        dst_path: /charts/
+        src_path: /charts
+        dst_path: /
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
         dst_branch: test
         src_branch: main
-        clean: true
         commit_message: "Commit triggerd by $GITHUB_SHA on helm-charts-dev"
 
