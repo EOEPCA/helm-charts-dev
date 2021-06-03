@@ -16,7 +16,7 @@ jobs:
         dst_path: /
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
-        dst_branch: test
+        dst_branch: main
         src_branch: main
-        commit_message: Commit triggered by "$GITHUB_SHA" on helm-charts-dev
+        commit_message: Commit triggered by a change on the main branch of helm-charts-dev
 
