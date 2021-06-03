@@ -5,28 +5,19 @@ on:
     branches:
       - main
 jobs:
-  build:
+  copy:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: main
-      - name: Create extra folder
-        run: |
-          mkdir output
-          mv charts/ output/          
-      - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: "${{ secrets.GITHUB_TOKEN }}"
-        with:
-          source-directory: 'output'
-          destination-github-username: 'EOEPCA'
-          destination-repository-name: 'helm-charts'
-          user-email: "$GITHUB_ACTOR@users.noreply.github.com"
-          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-          target-branch: test
-      - name: Test get variable exported by helm-charts
-        run: echo $DESTINATION_CLONED_DIRECTORY
+    - name: Copycat
+      uses: andstor/copycat-action@v3
+      with:
+        personal_token: "${{ secrets.GITHUB_TOKEN }}"
+        src_path: /charts
+        dst_path: /charts
+        dst_owner: EOEPCA
+        dst_repo_name: helm-charts
+        dst_branch: test
+        src_branch: main
+        username: "$GITHUB_ACTOR"
+        email: "$GITHUB_ACTOR@users.noreply.github.com"
+
