@@ -52,16 +52,16 @@
 
 To use the eoepca helm chart repository, just add the repo update it an install packages as usual
 ```
-$ helm repo add eoepca https://eoepca.github.io/helm-charts-dev/
+$ helm repo add eoepca-dev https://eoepca.github.io/helm-charts-dev/
 $ helm repo update
-$ helm install test eoepca/cheese
+$ helm install test eoepca-dev/cheese
 ```
 
 ## Development process
 This helm chart repository is used following the example at https://helm.sh/docs/topics/chart_repository/#github-pages-example it uses the chart releaser (cr) https://helm.sh/docs/howto/chart_releaser_action/ in a github action to create the packages and update the repository index automatically.
 When a a change is detected in one of the charts at charts/ folder it creates a new package and add it to the index, this means that every time a change is made, the version needs to be increased.
 
-###Steps to develop
+### Steps to develop
 - Point your test enviroment to https://eoepca.github.io/helm-charts-dev/
 - Create your own branch to introduce new changes
 - Increase the version of the package
