@@ -77,15 +77,15 @@ entries:
     version: 0.2.2
   jupyter:
   - apiVersion: v2
-    appVersion: 0.2.0
-    created: "2021-05-28T14:04:21.154017527Z"
+    appVersion: 0.3.2
+    created: "2021-06-08T11:13:50.311052103Z"
     description: Jupyter demo
-    digest: 63bb1c645e1be8179c194457834394e0619d20a3ede254c5e1704360ec80c3f1
+    digest: 8d35cb9e5a72f42de04dd30503c940be5b0393fed6be1b373d7ed69c83a0c634
     name: jupyter
     type: application
     urls:
-    - https://github.com/EOEPCA/helm-charts/releases/download/jupyter-0.1.3/jupyter-0.1.3.tgz
-    version: 0.1.3
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyter-0.1.9/jupyter-0.1.9.tgz
+    version: 0.1.9
   - apiVersion: v2
     appVersion: 0.3.1
     created: "2021-06-08T10:37:41.064516005Z"
@@ -96,6 +96,16 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyter-0.1.8/jupyter-0.1.8.tgz
     version: 0.1.8
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2021-05-28T14:04:21.154017527Z"
+    description: Jupyter demo
+    digest: 63bb1c645e1be8179c194457834394e0619d20a3ede254c5e1704360ec80c3f1
+    name: jupyter
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts/releases/download/jupyter-0.1.3/jupyter-0.1.3.tgz
+    version: 0.1.3
   license-manager:
   - apiVersion: v1
     appVersion: "1"
@@ -237,4 +247,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-06-08T10:37:41.064520505Z"
+generated: "2021-06-08T11:13:50.311173704Z"
