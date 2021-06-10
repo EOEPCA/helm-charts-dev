@@ -35,22 +35,22 @@ spec:
     path: /kubedata/proc
     type: DirectoryOrCreate
 {{ end }}
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: eoepca-proc-pvc
-#   namespace: proc
-#   labels:
-#     eoepca-type: proc
-# spec:
-#   storageClassName: {{ .Values.domain.proc.storageClass }}
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 3Gi
-#   selector:
-#     matchLabels:
-#       eoepca-type: proc
-# {{ end }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: eoepca-proc-pvc
+  namespace: proc
+  labels:
+    eoepca-type: proc
+spec:
+  storageClassName: {{ .Values.domain.proc.storageClass }}
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+  selector:
+    matchLabels:
+      eoepca-type: proc
+{{ end }}
