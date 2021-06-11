@@ -8,9 +8,6 @@ image:
   tag: 4.1.1_03
   pullPolicy: Always
 
-# VolumeClaim values
-volumeClaim:
-  storage: 50M
 falsure: "'false'"
 #ConfigMap values
 gluuLdapUrl: opendj:1636
@@ -69,6 +66,7 @@ readinessProbe:
 # VolumeClaim values
 volumeClaim:
   name: um-login-service-oxauth-pvc
+  storage: 50M
 
 #VolumeMounts
 volumeMounts:
