@@ -48,7 +48,7 @@ requests:
 
 image: 
   statefulSetReplicas: 1
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   image: eoepca/um-pep-engine:v1.0-RC
 persistence: 
   accessModes: ReadWriteMany
