@@ -8,6 +8,9 @@ image:
   tag: 4.1.1_03
   pullPolicy: Always
 
+# VolumeClaim values
+volumeClaim:
+  storage: 50M
 falsure: "'false'"
 #ConfigMap values
 gluuLdapUrl: opendj:1636
@@ -15,9 +18,10 @@ gluuMaxRamFraction: 1
 
 #Resources for the deployment
 requests:
-  memory: 128Mi
+  cpu: 200m
+  memory: 900Mi
 limits:
-  memory: 128Mi
+  memory: 1.2Gi
 persistence:
   size: 100M
   pvcSize: 3Gi
@@ -42,10 +46,6 @@ persistence:
   oxtrustConfv: "'false'"
   cacheType: GLUU_CACHE_TYPE
   cacheTypev: "NATIVE_PERSISTENCE"
-  clientID: LP_CLIENT_ID
-  clientIDv: "59f1fed27153f631bc08"
-  clientSecret: LP_CLIENT_SECRET
-  clientSecretv: "640baffac0948454c48de2505726f53d11adc8a6"
 #hostAliases
 nginxIp: 10.0.2.15
 
@@ -55,18 +55,17 @@ ports:
 
 # livenessProbe
 livenessProbe:
-  initialDelaySeconds: 600
-  periodSeconds: 90
+  initialDelaySeconds: 100
+  periodSeconds: 60
 
 # readinessProbe
 readinessProbe:
-  initialDelaySeconds: 600
-  periodSeconds: 90
+  initialDelaySeconds: 100
+  periodSeconds: 60
 
 # VolumeClaim values
 volumeClaim:
   name: um-login-service-oxauth-pvc
-  storage: 50M
 
 #VolumeMounts
 volumeMounts:
