@@ -14,7 +14,6 @@ ldapPass: admin_Abcd1234#
 email: eoepca@deimos-space.com
 orgName: Deimos Space S.L.U.
 gluuConfAdapter: kubernetes
-ldapType: opendj
 redisPass: aaaa
 pdpEp: /pdp
 

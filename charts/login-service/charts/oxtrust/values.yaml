@@ -20,10 +20,6 @@ service:
   type: ClusterIP
   port: 80
 
-# PVC storage
-volumeClaim:
-  storage: 10M
-
 #resources: 
 limits:
   memory: 600Mi
@@ -53,6 +49,7 @@ clusterIp: None
 # VolumeClaim values
 volumeClaim:
   name: um-login-service-oxtrust-pvc
+  storage: 10M
 
 volumeMounts:
   logs:
