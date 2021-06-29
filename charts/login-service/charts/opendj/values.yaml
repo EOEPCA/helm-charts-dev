@@ -56,6 +56,7 @@ persistence:
   clientIDv: "59f1fed27153f631bc08"
   clientSecret: LP_CLIENT_SECRET
   clientSecretv: "640baffac0948454c48de2505726f53d11adc8a6"
+  pdpEp: /pdp
 #COIH Provider values needs to be configured after deployment for security issues
   coihClientID: COIH_CLIENT_ID
   coihClientIDv: ""
