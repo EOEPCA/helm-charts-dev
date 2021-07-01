@@ -13,3 +13,6 @@ spec:
     protocol: TCP
   selector:
     app: jupyter
+  {{- if .Values.elbIp }}
+  type: NodePort
+  {{- end }}
