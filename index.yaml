@@ -26,6 +26,16 @@ entries:
     version: 0.1.0
   cheese:
   - apiVersion: v2
+    appVersion: 0.2.9
+    created: "2021-07-01T10:27:00.410814186Z"
+    description: Cheese web pages used for testing ingress
+    digest: cb35a5d4f9b7a100cb99bd74eb40befd0f30c4db52c2c05276f701c5949baf33
+    name: cheese
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/cheese-0.2.9/cheese-0.2.9.tgz
+    version: 0.2.9
+  - apiVersion: v2
     appVersion: 0.2.8
     created: "2021-06-10T08:05:48.095735526Z"
     description: Cheese web pages used for testing ingress
@@ -574,4 +584,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-06-29T15:20:29.435161209Z"
+generated: "2021-07-01T10:27:00.41091529Z"
