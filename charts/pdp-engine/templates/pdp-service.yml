@@ -14,3 +14,6 @@ spec:
     {{- end }}
   selector:
     app: {{ .Values.global.pdp }}
+  {{- if .Values.elbIp }}
+  type: NodePort
+  {{- end }}
