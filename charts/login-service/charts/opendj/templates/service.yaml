@@ -15,6 +15,3 @@ spec:
   clusterIP: None
   selector:
     app: {{ .Values.global.serviceName }} #{{ template "login-service.fullname" . }}-service
-  {{- if .Values.elbIp }}
-  type: NodePort
-  {{- end }}
