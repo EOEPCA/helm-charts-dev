@@ -13,7 +13,7 @@ jobs:
       with:
         personal_token: ${{ secrets.PUSH_TOKEN }}
         src_path: /charts/.
-        dst_path: /
+        dst_path: /charts
         clean: true
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
