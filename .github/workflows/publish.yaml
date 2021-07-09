@@ -12,11 +12,12 @@ jobs:
       uses: andstor/copycat-action@v3
       with:
         personal_token: ${{ secrets.PUSH_TOKEN }}
-        src_path: /charts
+        src_path: /charts/.
         dst_path: /
+        clean: true
         dst_owner: EOEPCA
         dst_repo_name: helm-charts
-        dst_branch: main
+        dst_branch: test-delete
         src_branch: main
         commit_message: Commit triggered by a change on the main branch of helm-charts-dev
 
