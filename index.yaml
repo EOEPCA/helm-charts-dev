@@ -628,6 +628,16 @@ entries:
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 2.6.0
+    created: "2021-07-14T14:34:54.173965761Z"
+    description: A Helm chart for Resource Catalogue
+    digest: 5498fea6f2e1f04ca59a9a60ef61069ba961d028d03413ae82a3e36daaf7993c
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-0.9.2/rm-resource-catalogue-0.9.2.tgz
+    version: 0.9.2
+  - apiVersion: v2
+    appVersion: 2.6.0
     created: "2021-07-14T13:15:06.630032997Z"
     description: A Helm chart for Resource Catalogue
     digest: 06bd9af6158fc3688a8ce16b48d270c65a19a121028799c4b7885738516c0b04
@@ -871,4 +881,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-07-14T13:15:06.877002072Z"
+generated: "2021-07-14T14:34:54.174166274Z"
