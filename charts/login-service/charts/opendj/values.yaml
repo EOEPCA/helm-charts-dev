@@ -29,6 +29,7 @@ opendj:
   add: opendj
   repLdap: "'false'"
 persistence:
+  enabled: true
   size: 100M
   pvcSize: 3Gi
   name: persistence
