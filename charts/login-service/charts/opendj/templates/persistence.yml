@@ -11,8 +11,8 @@ spec:
       restartPolicy: {{ .Values.persistence.restartPolicy }}
       containers:
       - name: {{ .Values.persistence.name }}-init-container
-        imagePullPolicy: {{ .Values.persistence.imagePullPolicy }}
-        image: {{ .Values.persistence.image }}
+        image: {{ tpl .Values.persistence.image.repository $ }}:{{ tpl .Values.persistence.image.tag $ | default .Chart.AppVersion }}
+        imagePullPolicy: {{ tpl .Values.persistence.image.pullPolicy $ }}
         env:
         - name: {{ .Values.persistence.configAdapter }}
           value: {{ .Values.persistence.adapter }}
