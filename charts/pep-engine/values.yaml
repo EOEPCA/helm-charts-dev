@@ -61,6 +61,11 @@ persistence:
 # e.g. PEP for ADES vs PEP for Catalogue etc.
 context: generic
 
+# Add TLS certs.
+# Empty value for `clusterIssuer` disables
+certManager:
+  clusterIssuer: ""
+
 # VolumeClaim values
 volumeClaim:
   name: um-pep-engine-pvc
