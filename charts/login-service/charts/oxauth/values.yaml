@@ -12,7 +12,6 @@ falsure: "'false'"
 #ConfigMap values
 gluuLdapUrl: opendj:1636
 gluuMaxRamFraction: 1
-gluuMaxRamPercentage: 95.0
 
 #Resources for the deployment
 requests:
