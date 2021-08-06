@@ -9,6 +9,7 @@ global:
   proxyServicePort: 5566
   resourcesServicePort: 5576
   nginxIp: 10.0.2.15
+  clusterDomain: svc.cluster.local
 
 ports:
   proxy-pep:
@@ -35,8 +36,9 @@ configMap:
 
 resourceServer:
   name: myservice
-  # port: 80
-  # url: http://myservice
+  port: 80
+  # resourceServer.url is derived from the name and port, but can be overriden here
+  # url: http://<name>:<port>/
 
 readinessProbe:
   initialDelaySeconds: 1

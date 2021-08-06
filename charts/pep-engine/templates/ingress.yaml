@@ -59,7 +59,7 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
       location /authcheck {
         internal;
-        set $pep_address {{ .Values.global.pep }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.global.proxyServicePort }};
+        set $pep_address {{ .Values.global.pep }}.{{ .Release.Namespace }}.{{ .Values.global.clusterDomain }}:{{ .Values.global.proxyServicePort }};
         proxy_pass http://$pep_address/authorize;
         proxy_pass_request_body off;
         proxy_set_header Content-Length "";
