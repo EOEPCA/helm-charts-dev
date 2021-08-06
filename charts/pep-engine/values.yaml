@@ -25,7 +25,6 @@ configMap:
   sslCerts: "'false'"
   useThreads: "'true'"
   debugMode: "'true'"
-  resourceServer: http://ades/
   umaValidation: "'true'"
   limitUses: 1
   pdpPort: 5567
@@ -33,6 +32,11 @@ configMap:
   verifySignature: "'false'"
   defaultResourcePath: /data/default-resources.json
   workingMode: "FULL"
+
+resourceServer:
+  name: myservice
+  # port: 80
+  # url: http://myservice
 
 readinessProbe:
   initialDelaySeconds: 1
