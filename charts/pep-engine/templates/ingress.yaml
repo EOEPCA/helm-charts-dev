@@ -44,7 +44,7 @@ spec:
           serviceName: {{ .Values.global.pep }}
           servicePort: {{ .Values.global.resourcesServicePort }}
 ---
-{{- if eq .Values.configMap.workingMode "PARTIAL" }}
+{{- if and (eq .Values.configMap.workingMode "PARTIAL") (.Values.nginxIntegration.enabled) }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

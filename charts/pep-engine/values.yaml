@@ -40,6 +40,10 @@ resourceServer:
   # resourceServer.url is derived from the name and port, but can be overriden here
   # url: http://<name>:<port>/
 
+nginxIntegration:
+  # Flag to create ingress with config for nginx auth_request
+  enabled: false
+
 readinessProbe:
   initialDelaySeconds: 1
   periodSeconds: 90
