@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: eoepca/uma-user-agent
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -39,6 +39,24 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+
+# OIDC/UMA Client credentials
+client:
+  id: ""
+  secret: ""
+
+# Timeout (as client) for http requests
+httpTimeout: 10
+
+logging:
+  # One of: trace, debug, info, warn, error, fatal
+  level: "info"
+
+# URL for the 'auth_request' endpoint of the PEP
+pepUrl: "http://pep/"
+
+# Name of the cookie that will carry the User ID Token
+userIdCookieName: "auth_user_id"
 
 ingress:
   enabled: false
