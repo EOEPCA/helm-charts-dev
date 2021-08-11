@@ -35,19 +35,19 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: CLIENT_ID
-              value: {{ .Values.client.id }}
+              value: {{ .Values.client.id | quote }}
             - name: CLIENT_SECRET
-              value: {{ .Values.client.secret }}
+              value: {{ .Values.client.secret | quote }}
             - name: HTTP_TIMEOUT
-              value: {{ .Values.httpTimeout }}
+              value: {{ .Values.httpTimeout | quote }}
             - name: LOG_LEVEL
-              value: {{ .Values.logging.level }}
+              value: {{ .Values.logging.level | quote }}
             - name: PEP_URL
-              value: {{ .Values.pepUrl }}
+              value: {{ .Values.pepUrl | quote }}
             - name: PORT
-              value: {{ .Values.service.port }}
+              value: {{ .Values.service.port | quote }}
             - name: USER_ID_COOKIE_NAME
-              value: {{ .Values.userIdCookieName }}
+              value: {{ .Values.userIdCookieName | quote }}
           ports:
             - name: http
               containerPort: 80
