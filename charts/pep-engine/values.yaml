@@ -1,4 +1,4 @@
-# Default values for login-service.
+# Default values for pep-engine.
 
 global:
   namespace: default
@@ -43,6 +43,8 @@ resourceServer:
 nginxIntegration:
   # Flag to create ingress with config for nginx auth_request
   enabled: false
+  # First part of the hostname - global.domain will be appended
+  hostname: ""
 
 readinessProbe:
   initialDelaySeconds: 1

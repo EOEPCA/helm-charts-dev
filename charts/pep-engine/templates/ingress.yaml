@@ -45,10 +45,12 @@ spec:
           servicePort: {{ .Values.global.resourcesServicePort }}
 ---
 {{- if and (eq .Values.configMap.workingMode "PARTIAL") (.Values.nginxIntegration.enabled) }}
+{{- $defaultHostname := default (include "pep-engine.fullname" .) .Values.context }}
+{{- $hostname := default $defaultHostname .Values.nginxIntegration.hostname }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Values.context }}
+  name: {{ $hostname }}
   annotations:
     {{- if .Values.certManager.clusterIssuer }}
     cert-manager.io/cluster-issuer: {{ .Values.certManager.clusterIssuer }}
@@ -68,7 +70,7 @@ metadata:
       }
 spec:
   rules:
-  - host: {{ printf "%s.%s" .Values.context .Values.global.domain | quote }}
+  - host: {{ printf "%s.%s" $hostname .Values.global.domain | quote }}
     http:
       paths:
       - path: /
@@ -78,7 +80,7 @@ spec:
   {{- if .Values.certManager.clusterIssuer }}
   tls:
     - hosts:
-        - {{ printf "%s.%s" .Values.context .Values.global.domain | quote }}
-      secretName: {{ printf "%s-tls" .Values.context | quote }}
+        - {{ printf "%s.%s" $hostname .Values.global.domain | quote }}
+      secretName: {{ printf "%s-tls" $hostname | quote }}
   {{- end }}
 {{- end }}
