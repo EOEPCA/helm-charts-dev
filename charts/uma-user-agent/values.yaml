@@ -46,10 +46,6 @@ service:
   type: ClusterIP
   port: 80
 
-# The context is used to distinguish between instances
-# E.g. protecting ADES vs protecting Catalogue etc.
-context: myservice
-
 resourceServer:
   name: myservice
   port: 80
@@ -59,6 +55,8 @@ resourceServer:
 nginxIntegration:
   # Flag to create ingress with config for nginx auth_request
   enabled: false
+  # First part of the hostname - system.dnsDomain will be appended
+  hostname: ""
 
 # OIDC/UMA Client credentials
 client:

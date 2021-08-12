@@ -1,4 +1,5 @@
 {{- if .Values.nginxIntegration.enabled }}
+{{- $hostname := default (include "uma-user-agent.fullname" .) .Values.nginxIntegration.hostname }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -22,7 +23,7 @@ metadata:
       }
 spec:
   rules:
-  - host: {{ printf "%s.%s" .Values.context .Values.system.dnsDomain | quote }}
+  - host: {{ printf "%s.%s" $hostname .Values.system.dnsDomain | quote }}
     http:
       paths:
       - path: /
@@ -32,7 +33,7 @@ spec:
   {{- if .Values.certManager.clusterIssuer }}
   tls:
     - hosts:
-        - {{ printf "%s.%s" .Values.context .Values.system.dnsDomain | quote }}
-      secretName: {{ printf "%s-tls" .Values.context | quote }}
+        - {{ printf "%s.%s" $hostname .Values.system.dnsDomain | quote }}
+      secretName: {{ printf "%s-tls" $hostname | quote }}
   {{- end }}
 {{- end }}
