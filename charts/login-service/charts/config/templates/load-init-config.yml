@@ -26,9 +26,8 @@ spec:
           requests:
             memory: {{ .Values.requests.memory }}
             cpu: {{ .Values.requests.cpu }}
-          limits:
-            memory: {{ .Values.limits.memory }}
-            cpu: {{ .Values.limits.cpu }}
+          # limits:
+          #   memory: {{ .Values.limits.memory }}
         volumeMounts:
           - mountPath: /opt/config-init/db/
             subPath: config-init/db
