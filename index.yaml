@@ -1085,6 +1085,16 @@ entries:
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 2.6.0
+    created: "2021-08-16T11:47:38.321973774Z"
+    description: A Helm chart for Resource Catalogue
+    digest: 102cf6580140b89811e592ae9cd3a4a11951dd4978430f3aa6a157cb3b853068
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-0.9.4/rm-resource-catalogue-0.9.4.tgz
+    version: 0.9.4
+  - apiVersion: v2
+    appVersion: 2.6.0
     created: "2021-07-19T08:31:30.441666753Z"
     description: A Helm chart for Resource Catalogue
     digest: 298aa1416e9aef18aaa58e1326b3e1d978f0f89fcf1b08743431c86c61d08001
@@ -1304,6 +1314,16 @@ entries:
     version: 0.1.4
   uma-user-agent:
   - apiVersion: v2
+    appVersion: 0.0.4
+    created: "2021-08-16T11:47:38.563154628Z"
+    description: A Helm chart for Kubernetes
+    digest: 829dfa4733b97cb198d45c44cd53f494812fb0d0479ec9d76b9f1282292b89cc
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-0.0.8/uma-user-agent-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
     appVersion: 0.0.3
     created: "2021-08-16T10:57:48.127685749Z"
     description: A Helm chart for Kubernetes
@@ -1482,4 +1502,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-08-16T10:57:48.128104652Z"
+generated: "2021-08-16T11:47:38.563608414Z"
