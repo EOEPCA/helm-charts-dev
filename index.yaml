@@ -795,6 +795,18 @@ entries:
   pep-engine:
   - apiVersion: v1
     appVersion: task415_3
+    created: "2021-08-20T13:24:39.419992435Z"
+    description: A Helm chart for PEP Engine
+    digest: bde87b3c282a03e7a27e87781ef243b307c10062e2c0f266c6007b4bc97b0a32
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-0.9.20/pep-engine-0.9.20.tgz
+    version: 0.9.20
+  - apiVersion: v1
+    appVersion: task415_3
     created: "2021-08-12T15:32:08.679935109Z"
     description: A Helm chart for PEP Engine
     digest: 2a7827bcdfb34d54df85f0df7fc87af5515173ac3312ff5a4148f61a79d2b68c
@@ -1082,6 +1094,21 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/pricing-engine-0.1.0/pricing-engine-0.1.0.tgz
     version: 0.1.0
+  resource-guard:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-08-20T13:24:39.606483127Z"
+    dependencies:
+    - name: pep-engine
+      repository: file://../pep-engine/
+      version: 0.9.20
+    description: A Helm chart for Kubernetes
+    digest: d5c17c16afe4a9321e5340280b3212d01ec8e87f653d86ef4922341cadf2e01a
+    name: resource-guard
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-guard-0.0.1/resource-guard-0.0.1.tgz
+    version: 0.0.1
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 2.6.0
@@ -1332,6 +1359,16 @@ entries:
   uma-user-agent:
   - apiVersion: v2
     appVersion: 0.0.7
+    created: "2021-08-20T13:24:39.801142258Z"
+    description: A Helm chart for Kubernetes
+    digest: 6e28fc5641b3f3a86bcaea213cded02b8a784cfebe61da9ffc1be1902621cee2
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-0.0.13/uma-user-agent-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
+    appVersion: 0.0.7
     created: "2021-08-17T16:04:44.110704497Z"
     description: A Helm chart for Kubernetes
     digest: 042b5362407f7de5c48acc66f45c193c1d662afa5c72d5697f27bb24b91a227c
@@ -1559,4 +1596,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-08-17T16:04:44.111223098Z"
+generated: "2021-08-20T13:24:39.802022062Z"
