@@ -1,0 +1,40 @@
+global:
+  pep: dummy-service-pep
+  domain: test.demo.eoepca.org
+  nginxIp: 185.52.195.19
+  resourceServer:
+    name: dummy-service
+    # port: 80
+    # url: http://dummy-service/
+
+pep-engine:
+  context: dummy-service
+  configMap:
+    workingMode: PARTIAL
+  nginxIntegration:
+    enabled: true
+    hostname: dummy-service-auth
+  # image:
+  #   pullPolicy: Always
+  certManager:
+    clusterIssuer: letsencrypt
+  volumeClaim:
+    name: dummy-service-pep-pvc
+    create: false
+
+uma-user-agent:
+  # nameOverride: dummy-service-agent
+  fullnameOverride: dummy-service-agent
+  # image:
+  #   tag: latest
+  #   pullPolicy: Always
+  pepUrl: "http://dummy-service-pep:5566/authorize"
+  nginxIntegration:
+    enabled: true
+    hostname: dummy-service
+  client:
+    credentialsSecretName: ""
+  logging:
+    level: "debug"
+  certManager:
+    clusterIssuer: letsencrypt
