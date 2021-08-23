@@ -175,6 +175,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/cheese-0.2.2/cheese-0.2.2.tgz
     version: 0.2.2
+  django-portal:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-08-23T14:23:00.127397916Z"
+    description: A Helm chart for Kubernetes
+    digest: de2566fdbcd5d37cbac33b9fd3c68497e7d26897d6dc9eb9ded1b66abcc55b9d
+    name: django-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/django-portal-0.1.0/django-portal-0.1.0.tgz
+    version: 0.1.0
   dummy:
   - apiVersion: v2
     appVersion: 0.9.2
@@ -1752,4 +1763,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-08-23T13:35:34.896820954Z"
+generated: "2021-08-23T14:23:00.128067441Z"
