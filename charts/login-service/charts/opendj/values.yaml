@@ -62,9 +62,9 @@ persistence:
   pdpEp: /pdp
 #COIH Provider values needs to be configured after deployment for security issues
   coihClientID: COIH_CLIENT_ID
-  coihClientIDv: ""
+  coihClientIDv: "1234"
   coihClientSecret: COIH_CLIENT_SECRET
-  coihClientSecretv: ""
+  coihClientSecretv: "1234"
 #container specific values declared here
 tcpSocket:
   port: 1636
