@@ -334,6 +334,18 @@ entries:
   login-service:
   - apiVersion: v1
     appVersion: 0.9.0
+    created: "2021-08-25T09:19:53.465373363Z"
+    description: A Helm chart for Login Service
+    digest: d00ee1a2cd9dc24dfce86ed8ff7a9bf235699b27d9c5db3fb3bf9166d51ae642
+    maintainers:
+    - name: eoepca
+    name: login-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/login-service-0.9.34/login-service-0.9.34.tgz
+    version: 0.9.34
+  - apiVersion: v1
+    appVersion: 0.9.0
     created: "2021-08-24T13:41:00.058976633Z"
     description: A Helm chart for Login Service
     digest: 2a9b7e27fb634569b772a456be17994624ad4507731852ae46e2eba476a65edb
@@ -1797,4 +1809,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-08-24T13:41:00.059733443Z"
+generated: "2021-08-25T09:19:53.466097905Z"
