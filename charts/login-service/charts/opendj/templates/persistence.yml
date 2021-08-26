@@ -38,4 +38,6 @@ spec:
           value: {{ .Values.persistence.coihClientIDv | quote }}
         - name: {{ .Values.persistence.coihClientSecret }}
           value: {{ .Values.persistence.coihClientSecretv | quote }}
+        - name: PDP_EP
+          value: {{ .Values.persistence.pdpEp }}
 {{ end }}

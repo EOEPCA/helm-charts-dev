@@ -7,7 +7,7 @@ gluuOxtrustConfigGeneration: true
 gluuCacheType: NATIVE_PERSISTENCE
 gluuCertAltName: opendj
 # gluuRedisEnabled will determin if GLUU_REDIS_URL and GLUU_REDIS_TYPE if they will be used.
-gluuRedisEnabled: false
+gluuRedisEnabled: true
 gluuRedisCacheType: REDIS
 gluuRedisUrl: redis:6379
 gluuRedisType: STANDALONE
@@ -22,7 +22,7 @@ fullnameOverride: ""
 # values declaration
 statefulSetReplicas: 1
 imagePullPolicy: Always
-image: gluufederation/wrends:4.1.1_01
+image: gluufederation/wrends:4.1.1_02
 opendj:
   configAdapter: kubernetes
   metadataName: opendj-init-cm
