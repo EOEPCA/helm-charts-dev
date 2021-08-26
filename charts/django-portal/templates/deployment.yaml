@@ -18,6 +18,9 @@ spec:
       - name: portal
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        envFrom:
+        - configMapRef:
+            name: portal-cm
         ports:
         - name: http-portal
           containerPort: 80

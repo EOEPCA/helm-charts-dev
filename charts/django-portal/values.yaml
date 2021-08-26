@@ -78,3 +78,11 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+configmap:
+  django_secret: "this_should_be_a_sealed_secret"
+  client_id: "this_should_be_a_sealed_secret"
+  client_secret: "this_should_be_a_sealed_secret"
+  use_basic_auth: True
+  sign_algo: 'RS256'
+  token_id_cookie: "auth_user_id"
