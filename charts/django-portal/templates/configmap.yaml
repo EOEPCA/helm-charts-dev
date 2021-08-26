@@ -14,5 +14,5 @@ data:
   OIDC_OP_USER_ENDPOINT: "https://portal.{{ .Values.hostname }}/oxauth/restv1/userinfo"
   OIDC_OP_JWKS_ENDPOINT: "https://portal.{{ .Values.hostname }}/oxauth/restv1/jwks"
 
-  OIDC_TOKEN_USE_BASIC_AUTH: {{ .Values.configmap.use_basic_auth }}
+  OIDC_TOKEN_USE_BASIC_AUTH: {{ .Values.configmap.use_basic_auth | quote }}
   TOKEN_ID_COOKIE: {{ .Values.configmap.token_id_cookie }}
