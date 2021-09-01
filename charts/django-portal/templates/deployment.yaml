@@ -21,6 +21,8 @@ spec:
         envFrom:
         - configMapRef:
             name: portal-cm
+        - secretRef:
+            name: django-secrets
         ports:
         - name: http-portal
           containerPort: 80
