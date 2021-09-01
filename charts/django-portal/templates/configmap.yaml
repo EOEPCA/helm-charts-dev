@@ -3,10 +3,6 @@ kind: ConfigMap
 metadata:
   name: portal-cm
 data:
-  DJANGO_SECRET: {{ .Values.configmap.django_secret }}
-
-  OIDC_RP_CLIENT_ID: {{ .Values.configmap.client_id }}
-  OIDC_RP_CLIENT_SECRET: {{ .Values.configmap.client_secret }}
   OIDC_RP_SIGN_ALGO: {{ .Values.configmap.sign_algo }}
 
   OIDC_OP_AUTHORIZATION_ENDPOINT: "https://portal.{{ .Values.hostname }}/oxauth/restv1/authorize"
