@@ -13,4 +13,4 @@ data:
   OIDC_TOKEN_USE_BASIC_AUTH: {{ .Values.configmap.use_basic_auth | quote }}
   TOKEN_ID_COOKIE: {{ .Values.configmap.token_id_cookie }}
   USER_PREFIX: {{ .Values.configmap.user_prefix }}
-  HOSTNAME: "{{ .Values.hostname }}"
+  HOSTNAME: {{ .Values.hostname }}
