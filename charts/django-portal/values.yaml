@@ -86,3 +86,5 @@ configmap:
   use_basic_auth: "true"
   sign_algo: 'RS256'
   token_id_cookie: "auth_user_id"
+  user_prefix: "test-user"
+  
