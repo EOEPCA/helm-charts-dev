@@ -1018,6 +1018,18 @@ entries:
   pep-engine:
   - apiVersion: v1
     appVersion: task415_3
+    created: "2021-09-13T09:22:46.680514886Z"
+    description: A Helm chart for PEP Engine
+    digest: 73b7a448f1d69c3d57af7ec6407d3cff60f2e6f8f70b2dc468baa969b1ca2247
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-0.9.24/pep-engine-0.9.24.tgz
+    version: 0.9.24
+  - apiVersion: v1
+    appVersion: task415_3
     created: "2021-09-13T09:20:33.916648072Z"
     description: A Helm chart for PEP Engine
     digest: 4fc9b5f2052070b16906ee235a3624aa2d1e0fa289db360a6ce656f6e2e950bc
@@ -2044,4 +2056,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-09-13T09:20:33.918548385Z"
+generated: "2021-09-13T09:22:46.681412102Z"
