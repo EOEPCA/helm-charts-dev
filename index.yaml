@@ -1845,6 +1845,16 @@ entries:
     version: 0.1.4
   uma-user-agent:
   - apiVersion: v2
+    appVersion: 0.0.14
+    created: "2021-09-16T10:48:15.410295231Z"
+    description: A Helm chart for Kubernetes
+    digest: febcd0ad6b7d7f447e2d285f5b16b4a6ce1a9b6ae9cba29c7986f85b1bb6e594
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-0.0.24/uma-user-agent-0.0.24.tgz
+    version: 0.0.24
+  - apiVersion: v2
     appVersion: 0.0.13
     created: "2021-09-16T10:26:03.316989234Z"
     description: A Helm chart for Kubernetes
@@ -2183,4 +2193,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-09-16T10:29:25.318574948Z"
+generated: "2021-09-16T10:48:15.411575819Z"
