@@ -17,11 +17,9 @@ You can install the chart with the release name `pdp` in `default` namespace.
 
 ```console
 $ helm install pdp charts/pdp-engine
-...
 ```
 
 > Note - If you do not specify a name, helm will select a name for you.
-
 
 ### Installed Components
 
@@ -42,7 +40,7 @@ NAME                                    DESIRED   CURRENT   READY   AGE
 replicaset.apps/pdp-engine-7dcb846c9f   1         1         1       2d20h
 ```
 
-## Connecting to the ADES
+## Connecting to the PDP
 
 1. Follow the documentation of the PDP Repository in GitHub: [Wiki Policy-Decision-Point](https://github.com/EOEPCA/um-pdp-engine/wiki).
 
@@ -53,7 +51,7 @@ The configuration parameters in this section control the  endpoints for poicy re
 | Parameter                               | Description                                                                                    | Default                          |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------- |
 | global.namespace                    | Name where the pdp instance is going to install in the cluster  | `default`                              |
-| global.domain                            | Name for the sso_url UMA Compliant | `demoexample.gluu.org`                        |
+| global.domain                            | Name for the sso_url UMA Compliant | `myplatform.eoepca.org`                        |
 | global.pdp             | Generic name for all pdp components in installation | `pdp-engine` |
 | global.prefix            | Value to correct ingress redirect prior to URL above | `/`        |
 | global.host  | IP where the PDP will launch its components, within a cluster the ip will be generated dynamically and local to the cluster | `0.0.0.0`  |
@@ -62,6 +60,7 @@ The configuration parameters in this section control the  endpoints for poicy re
 | global.ingressPath | Value to correct ingress redirect. It will add the path specified at the end of the domain name and prior to the endpoints.                                                       | `10Gi`                   |
 | configMap.check_ssl_certs       | Checks if the server is running and delivers a valid certificate                             | `false`                  |
 | configMap.debug_mode       | Boolean for deploy with verbose logs                             | `true`                  |
+
 ## Ports
 
 The PDP exposes the service using both http and https ports.
