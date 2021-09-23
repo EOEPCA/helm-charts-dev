@@ -62,42 +62,87 @@ job.batch/id4eo-persistence-init-ss   1/1           11m        164m
 The values can be edited in each sub-chart or on most generic at the parent level.
 The configuration parameters in this section control the base domain and most general configuration for every sub-chart.
 
-| Parameter                               | Description                                                                                    | Default                          |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------- |
-| global.namespace                    | Name where the pdp instance is going to install in the cluster  | `default`                              |
-| global.serviceName                    | Name for the main OpenDJ service  | `opendj`                              |
-| global.nginxIp | IP for the nginx ingress controller                                                        | `10.0.2.15`  
-| global.oxAuthServiceName                    | Name for the main OxAuth service  | `oxauth`                              |
-| global.persistenceServiceName                    | Name for the main persistence Job service  | `persistence`                              |
-| global.oxTrustServiceName                    | Name for the main OxTrust service  | `oxtrust`                              |
-| global.domain                            | Name for the sso_url UMA Compliant | `myplatform.eoepca.org`                        |
-| global.gluuLdapUrl                    | URL where the LDAP backend is running  | `opendj:1636`                              |
-| global.gluuMaxRamFraction             | Number of fractions of RAM, where 1 is the 100% of the requested RAM | `1` |
-| global.configAdapterName            | Name for the k8s config adapter | `kubernetes`        |
-| global.configSecretAdapter            | Name for the k8s secret adapter | `kubernetes`        |
-| global.provisioner  | Clustering provisioner name | `k8s.io/minikube-hostpath`  |
+
+| Global                                                                                                                                                                      |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| Parameter                        | Description                                                                                           | Default                          |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| namespace                        | Name of the namespace where the login service instance is going to install in the cluster             | `default`                        |
+| nginxIp                          | IP for the nginx ingress controller                                                                   | `10.0.2.15`                      |  
+| serviceName                      | Name for the main OpenDJ service                                                                      | `opendj`                         |
+| oxAuthServiceName                | Name for the main OxAuth service                                                                      | `oxauth`                         |
+| persistenceServiceName           | Name for the main persistence Job service                                                             | `persistence`                    |
+| oxTrustServiceName               | Name for the main OxTrust service                                                                     | `oxtrust`                        |
+| domain                           | Name for the sso_url UMA Compliant                                                                    | `myplatform.eoepca.org`          |
+| gluuLdapUrl                      | URL where the LDAP backend is running                                                                 | `opendj:1636`                    |
+| gluuMaxRamFraction               | Number of fractions of RAM, where 1 is the 100% of the requested RAM                                  | `1`                              |
+| configAdapterName                | Name for the k8s config adapter                                                                       | `kubernetes`                     |
+| configSecretAdapter              | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
+| provisioner                      | Clustering provisioner name                                                                           | `k8s.io/minikube-hostpath`       |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+
 
 
 ## Config
 
 For the Config Job the main configuration will focus on certificate signatures and base LDAP customization.
+This will be the first instance to complete, the rest of the deployments will be waiting for the config-job to finish ingesting data in the volume and then consume it.
+
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Config                                                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter                        | Description                                                                                           | Default                          |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| enabled                          | Boolean value to enable or not the chart installation                                                 | `true`                           |
+| domain                           | Name for the sso_url UMA Compliant                                                                    | `myplatform.eoepca.org`          |  
+| ldapType                         | Value for specifying the LDAP controller                                                              | `opendj`                         |
+| countryCode                      | Code for the country desired (This will apply to the certificate generation)                          | `ES`                             |
+| state                            | Name for the state desired (This will apply to the certificate generation)                            | `Madrid`                         |
+| city                             | Name for the city desired (This will apply to the certificate generation)                             | `Tres Cantos`                    |
+| email                            | E-Mail of the organization (This will apply to the certificate generation)                            | `eoepca@deimos-space.com`        |
+| orgName                          | Name of the organization (This will apply to the certificate generation)                              | `Deimos Space S.L.U.`            |
+| adminPass                        | Password for the administrator user                                                                   | `defaultPWD`                     |
+| ldapPass                         | Password for the root LDAP operations                                                                 | `defaultPWD`                     |
+| redisPass                        | Password for the redis backend instance                                                               | `aaaa`                           |
+| gluuConfAdapter                  | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+
+This Job has its own resource requests specified in the limits and requests same as the persistence details:
 
   ```yaml
-  enabled: true
-  domain: myplatform.eoepca.org
-  ldapType: opendj
-  countryCode: ES
-  state: Madrid
-  city: Tres Cantos
-  adminPass: <pwd>
-  ldapPass: <pwd>
-  email: eoepca@deimos-space.com
-  orgName: Deimos Space S.L.U.
-  gluuConfAdapter: kubernetes
-  redisPass: <pwd>
+  limits:
+    cpu: 600m
+    memory: 800Mi
+  requests:
+    cpu: 100m
+    memory: 500Mi
+
+  persistence:
+    size: 1Gi
+    accessModes: ReadWriteOnce
+    storageClassName: ""
   ```
 
 ## OpenDJ
+
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| OpenDJ                                                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter                        | Description                                                                                           | Default                          |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| enabled                          | Boolean value to enable or not the chart installation                                                 | `true`                           |
+| domain                           | Name for the sso_url UMA Compliant                                                                    | `myplatform.eoepca.org`          |  
+| ldapType                         | Value for specifying the LDAP controller                                                              | `opendj`                         |
+| countryCode                      | Code for the country desired (This will apply to the certificate generation)                          | `ES`                             |
+| state                            | Name for the state desired (This will apply to the certificate generation)                            | `Madrid`                         |
+| city                             | Name for the city desired (This will apply to the certificate generation)                             | `Tres Cantos`                    |
+| email                            | E-Mail of the organization (This will apply to the certificate generation)                            | `eoepca@deimos-space.com`        |
+| orgName                          | Name of the organization (This will apply to the certificate generation)                              | `Deimos Space S.L.U.`            |
+| adminPass                        | Password for the administrator user                                                                   | `defaultPWD`                     |
+| ldapPass                         | Password for the root LDAP operations                                                                 | `defaultPWD`                     |
+| redisPass                        | Password for the redis backend instance                                                               | `aaaa`                           |
+| gluuConfAdapter                  | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 
   ```yaml
   enabled: true
