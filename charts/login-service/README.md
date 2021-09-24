@@ -229,33 +229,64 @@ The base configuration for jetty support needs some mount path for the volume to
 
   ```yaml
   volumeMounts:
-  logs:
-    mountPath: /opt/gluu/jetty/oxauth/logs
-    subPath: oxauth/logs
-  ext:
-    mountPath: /opt/gluu/jetty/oxauth/lib/ext
-    subPath: oxauth/lib/ext
-  static:
-    mountPath: /opt/gluu/jetty/oxauth/custom/static
-    subPath: oxauth/custom/static
-  pages:
-    mountPath: /opt/gluu/jetty/oxauth/custom/pages
-    subPath: oxauth/custom/pages
+    logs:
+      mountPath: /opt/gluu/jetty/oxauth/logs
+      subPath: oxauth/logs
+    ext:
+      mountPath: /opt/gluu/jetty/oxauth/lib/ext
+      subPath: oxauth/lib/ext
+    static:
+      mountPath: /opt/gluu/jetty/oxauth/custom/static
+      subPath: oxauth/custom/static
+    pages:
+      mountPath: /opt/gluu/jetty/oxauth/custom/pages
+      subPath: oxauth/custom/pages
   ```
 
-  ## OxTrust
+## OxTrust
+
+### Parent
+
+The OxTrust deployment will have all configuration derived from the LDAP service same as OxAuth, by default the image used belongs to Gluu organization under the name and tag `gluufederation/oxtrust:4.1.1_02`. The generic values for the parent will contain:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| enabled                          | Boolean value to enable the OxTrust installation.                                                      | `true`                           |
+| dynamicStorage                   | Boolean value to enable the dynamic location of storage.                                               | `100M`                           |
+
+### Child
+
+For further customization the child values will have in addition the following variables:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| replicaCount                     | Boolean value to control the number of replicas of the deployment.                                     | `1`                              |
+| gluuOxauthBackend                | URL and port for the oxauth service internally.                                                        | `oxauth:8080`                    |
+| containerPort                    | Port number where the OxAuth service will be running.                                                  | `8080`                           |
+| gluuMaxRamFraction               | Number of fractions of RAM, where 1 is the 100% of the requested RAM.                                  | `1`                              |
+| service.port                     | Port number where the service will run.                                                                | `80`                             |
+
+The base configuration for jetty support needs some mount path for the volume to create and populate following the schema:
 
   ```yaml
-  oxtrust:
-  enabled: true
-  dynamicStorage: true
-  volumeClaim:
-    name: um-login-service-pvc
+  volumeMounts:
+    logs:
+      mountPath: /opt/gluu/jetty/identity/logs
+      subPath: oxtrust/logs
+    ext:
+      mountPath: /opt/gluu/jetty/identity/lib/ext
+      subPath: oxtrust/lib/ext
+    static:
+      mountPath: /opt/gluu/jetty/identity/custom/static
+      subPath: oxtrust/custom/static
+    pages:
+      mountPath: /opt/gluu/jetty/identity/custom/pages
+      subPath: oxtrust/custom/pages
   ```
 
-  ## Nginx
+## Nginx
 
-  The Nginx controller can be used as Ingress for load balancing, currently will use the tls-certificates and specify the domain name for the Login Service.
+The Nginx controller can be used as Ingress for load balancing, currently will use the tls-certificates and specify the domain name for the Login Service. It uses an external image to manage tls with Gluu under the name and tag repository `kungus/gluu-tls-initializer:stable`
 
   ```yaml
   nginx:
