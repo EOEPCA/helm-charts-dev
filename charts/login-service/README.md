@@ -55,7 +55,7 @@ job.batch/id4eo-persistence-init-ss   1/1           11m        164m
 
 ## Connecting to the Login Service
 
-1. Follow the documentation of the Login-Service Repository in GitHub: [Wiki Login Service](https://github.com/EOEPCA/um-login-service/wiki).
+Follow the documentation of the Login-Service Repository in GitHub: [Wiki Login Service](https://github.com/EOEPCA/um-login-service/wiki).
 
 ## Values
 
@@ -171,29 +171,29 @@ This chart has the task of raising two types of deployments, the OpenDJ and the 
 | -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
 | enabled                          | Boolean value to enable the persistence ingestion.                                                     | `true`                           |
 | size                             | Initial size for the basic load of configuration.                                                      | `100M`                           |
-| pvcSize                          | Desired size of the Persistent Volume.                                                                 | `3Gi`                            |  
-| name                             | Name of the chart deployment.                                                                          | `persistence`|
-| accessModes                      | Access type for the PVC.                                                                               | `ReadWriteMany`|
-| type                             | Type of PVC deployment.                                                                                | `DirectoryOrCreate`|
-| dbStorageSize                    | Database storage capacity.                                                                             | `3Gi`|
-| statefulSetReplicas              | Number of replicas of the Stateful Set.                                                                | `1`|
-| restartPolicy                    | Policy for restarting the image.                                                                       | `Never`|
-| configAdapter                    | Name of the config adapter.                                                                            | `GLUU_CONFIG_ADAPTER`
-| adapter                          | The config backend adapter.                                                                            | `kubernetes`
-| secretAdapter                    | Name for the secret adapter.                                                                           | `GLUU_SECRET_ADAPTER`
-| passport                         | Name for the variable that enables the use of passport.                                                | `GLUU_PASSPORT_ENABLED`
-| passportv                        | Value that enables the use of passport.                                                                | `true`
-| ldapUrl                          | Name for the LDAP URL variable.                                                                        | `GLUU_LDAP_URL`
-| ldapUrlv                         | The LDAP database's IP address or hostname.                                                            | `opendj:1636`
-| persistenceType                  | Name for the persistence backend.                                                                      | `GLUU_PERSISTENCE_TYPE`
-| persistenceTypev                 | Persistence backend being used (one of ldap, couchbase, or hybrid; default to ldap)                    | `ldap`
-| oxtrustConf                      | Name of the OxTrust configuration variable.                                                            | `GLUU_OXTRUST_CONFIG_GENERATION`
-| oxtrustConfv                     | Whether to generate oxShibboleth configuration or not (default to true)                                | `false`
-| clientID                         | Name of the LDAP client ID variable.                                                                   | `LP_CLIENT_ID`
-| clientIDv                        | LDAP Client ID value.                                                                                  | `1234567890`
-| clientSecret                     | Name of the LDAP client Secret variable.                                                               | `LP_CLIENT_SECRET`
-| clientSecretv                    | LDAP Client Secret value.                                                                              | `0987654321`
-| pdpEp                            | Endponit for the PDP Ingress path.                                                                     | `/pdp`
+| pvcSize                          | Desired size of the Persistent Volume.                                                                 | `3Gi`                            |
+| name                             | Name of the chart deployment.                                                                          | `persistence`                    |
+| accessModes                      | Access type for the PVC.                                                                               | `ReadWriteMany`                  |
+| type                             | Type of PVC deployment.                                                                                | `DirectoryOrCreate`              |
+| dbStorageSize                    | Database storage capacity.                                                                             | `3Gi`                            |
+| statefulSetReplicas              | Number of replicas of the Stateful Set.                                                                | `1`                              |
+| restartPolicy                    | Policy for restarting the image.                                                                       | `Never`                          |
+| configAdapter                    | Name of the config adapter.                                                                            | `GLUU_CONFIG_ADAPTER`            |
+| adapter                          | The config backend adapter.                                                                            | `kubernetes`                     |
+| secretAdapter                    | Name for the secret adapter.                                                                           | `GLUU_SECRET_ADAPTER`            |
+| passport                         | Name for the variable that enables the use of passport.                                                | `GLUU_PASSPORT_ENABLED`          |
+| passportv                        | Value that enables the use of passport.                                                                | `true`                           |
+| ldapUrl                          | Name for the LDAP URL variable.                                                                        | `GLUU_LDAP_URL`                  |
+| ldapUrlv                         | The LDAP database's IP address or hostname.                                                            | `opendj:1636`                    |
+| persistenceType                  | Name for the persistence backend.                                                                      | `GLUU_PERSISTENCE_TYPE`          |
+| persistenceTypev                 | Persistence backend being used (one of ldap, couchbase, or hybrid; default to ldap)                    | `ldap`                           |
+| oxtrustConf                      | Name of the OxTrust configuration variable.                                                            | `GLUU_OXTRUST_CONFIG_GENERATION` |
+| oxtrustConfv                     | Whether to generate oxShibboleth configuration or not (default to true)                                | `false`                          |
+| clientID                         | Name of the LDAP client ID variable.                                                                   | `LP_CLIENT_ID`                   |
+| clientIDv                        | LDAP Client ID value.                                                                                  | `1234567890`                     |
+| clientSecret                     | Name of the LDAP client Secret variable.                                                               | `LP_CLIENT_SECRET`               |
+| clientSecretv                    | LDAP Client Secret value.                                                                              | `0987654321`                     |
+| pdpEp                            | Endponit for the PDP Ingress path.                                                                     | `/pdp`                           |
 
 
 COIH Provider values needs to be configured after deployment for security issues, as all values are passed throught the ConfigMap as env variables, the name of those env vars need to be specified:
@@ -206,12 +206,41 @@ COIH Provider values needs to be configured after deployment for security issues
   ```
 ## OxAuth
 
+### Parent
+
+The OxAuth deployment will have all configuration derived from the LDAP service, by default the image used belongs to Gluu organization under the name and tag `gluufederation/oxauth:4.1.1_03`. The generic values for the parent will contain:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| enabled                          | Boolean value to enable the OxAuth installation.                                                       | `true`                           |
+| dynamicStorage                   | Boolean value to enable the dynamic location of storage.                                               | `100M`                           |
+
+### Child
+
+For further customization the child values will have in addition the following variables:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| replicaCount                     | Boolean value to control the number of replicas of the deployment.                                     | `1`                              |
+| falsure                          | Boolean value to interact with the `GLUU_SYNC_CASA_MANIFESTS` variable.                                | `true`                           |
+| ports.containerPort              | Port number where the service will run.                                                                | `8080`                           |
+
+The base configuration for jetty support needs some mount path for the volume to create and populate following the schema:
+
   ```yaml
-  oxauth:
-  enabled: true
-  dynamicStorage: true
-  volumeClaim:
-    name: um-login-service-pvc
+  volumeMounts:
+  logs:
+    mountPath: /opt/gluu/jetty/oxauth/logs
+    subPath: oxauth/logs
+  ext:
+    mountPath: /opt/gluu/jetty/oxauth/lib/ext
+    subPath: oxauth/lib/ext
+  static:
+    mountPath: /opt/gluu/jetty/oxauth/custom/static
+    subPath: oxauth/custom/static
+  pages:
+    mountPath: /opt/gluu/jetty/oxauth/custom/pages
+    subPath: oxauth/custom/pages
   ```
 
   ## OxTrust
