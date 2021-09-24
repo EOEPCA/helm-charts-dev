@@ -62,9 +62,10 @@ job.batch/id4eo-persistence-init-ss   1/1           11m        164m
 The values can be edited in each sub-chart or on most generic at the parent level.
 The configuration parameters in this section control the base domain and most general configuration for every sub-chart.
 
+## Global
 
-| Global                                                                                                                                                                      |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+The global section will apply the values overwriting the defined in the global section of the subcharts values.
+
 | Parameter                        | Description                                                                                           | Default                          |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 | namespace                        | Name of the namespace where the login service instance is going to install in the cluster             | `default`                        |
@@ -79,18 +80,14 @@ The configuration parameters in this section control the base domain and most ge
 | configAdapterName                | Name for the k8s config adapter                                                                       | `kubernetes`                     |
 | configSecretAdapter              | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
 | provisioner                      | Clustering provisioner name                                                                           | `k8s.io/minikube-hostpath`       |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 
 
 
 ## Config
 
-For the Config Job the main configuration will focus on certificate signatures and base LDAP customization.
+For the Config Job the main configuration will focus on certificate signatures and base LDAP customization. The image used is from gluuFederation `gluufederation/config-init:4.1.1_02`.
 This will be the first instance to complete, the rest of the deployments will be waiting for the config-job to finish ingesting data in the volume and then consume it.
-
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Config                                                                                                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+                                                                                                                                                                     |
 | Parameter                        | Description                                                                                           | Default                          |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 | enabled                          | Boolean value to enable or not the chart installation                                                 | `true`                           |
@@ -105,7 +102,6 @@ This will be the first instance to complete, the rest of the deployments will be
 | ldapPass                         | Password for the root LDAP operations                                                                 | `defaultPWD`                     |
 | redisPass                        | Password for the redis backend instance                                                               | `aaaa`                           |
 | gluuConfAdapter                  | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 
 This Job has its own resource requests specified in the limits and requests same as the persistence details:
 
@@ -125,24 +121,18 @@ This Job has its own resource requests specified in the limits and requests same
 
 ## OpenDJ
 
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OpenDJ                                                                                                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+OpenDJ StatefulSet will set up the LDAP backend of the Login Service and wait for the Persistence Job to ingest the data into the database. The image used is from GluuFederation `gluufederation/wrends:4.1.1_01`. The expected behavior is to start listening in some ports and after the persistence is finish complete the installation by starting the LDAP service.
+The basic configuration can be done in the values of the parent chart, but for more specific customization the child chart has its own values.
+
+### Parent
+
 | Parameter                        | Description                                                                                           | Default                          |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
 | enabled                          | Boolean value to enable or not the chart installation                                                 | `true`                           |
-| domain                           | Name for the sso_url UMA Compliant                                                                    | `myplatform.eoepca.org`          |  
-| ldapType                         | Value for specifying the LDAP controller                                                              | `opendj`                         |
-| countryCode                      | Code for the country desired (This will apply to the certificate generation)                          | `ES`                             |
-| state                            | Name for the state desired (This will apply to the certificate generation)                            | `Madrid`                         |
-| city                             | Name for the city desired (This will apply to the certificate generation)                             | `Tres Cantos`                    |
-| email                            | E-Mail of the organization (This will apply to the certificate generation)                            | `eoepca@deimos-space.com`        |
-| orgName                          | Name of the organization (This will apply to the certificate generation)                              | `Deimos Space S.L.U.`            |
-| adminPass                        | Password for the administrator user                                                                   | `defaultPWD`                     |
-| ldapPass                         | Password for the root LDAP operations                                                                 | `defaultPWD`                     |
-| redisPass                        | Password for the redis backend instance                                                               | `aaaa`                           |
-| gluuConfAdapter                  | Name for the k8s secret adapter                                                                       | `kubernetes`                     |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------- |
+| gluuCacheType                    | Name for the sso_url UMA Compliant                                                                    | `myplatform.eoepca.org`          |  
+| gluuRedisEnabled                 | Value for specifying the LDAP controller                                                              | `opendj`                         |
+
+At the parent definition, the image for the login-persistence can be specified:
 
   ```yaml
   enabled: true
@@ -158,7 +148,63 @@ This Job has its own resource requests specified in the limits and requests same
       tag: "v0.9.0"
   ```
 
-  ## OxAuth
+### Child
+
+At the child level the main configuration variables for the OpenDJ are the following:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| gluuLdapInit                     | Boolean value to enable the LDAP instance.                                                             | `true`                           |
+| gluuLdapInitHost                 | Host name for where the LDAP instance is going to be found.                                            | `localhost`                      |  
+| gluuLdapInitPort                 | Port where the LDAP is going to expose the service.                                                    | `1636`                           |
+| gluuOxtrustConfigGeneration      | Boolean to decide whether or not apply OxTrust configuration backend.                                  | `true`                           |
+| gluuCacheType                    | Options REDIS or NATIVE_PERSISTENCE. If REDIS is used gluuRedisEnabled config has to be set to true    | `NATIVE_PERSISTENCE`             |
+| gluuCertAltName                  | Name for the delegation of the certificate creation.                                                   | `opendj`                         |
+| gluuRedisEnabled                 | Will determin if GLUU_REDIS_URL and GLUU_REDIS_TYPE if they will be used.                              | `false`                          |
+| gluuRedisCacheType               | Default cache tipe for REDIS, no other option allowed.                                                 | `REDIS`                          |
+| gluuRedisUrl                     | Redis url with port. Used when Redis is deployed for Cache                                             | `redis:6379`                     |
+| gluuRedisType                    | Type of Redis deployed. ("SHARDED", "STANDALONE", "CLUSTER", or "SENTINEL")                            | `STANDALONE`                     |
+
+This chart has the task of raising two types of deployments, the OpenDJ and the Persistence Job. The customization of the Job is done at the same level of variables as that of the OpenDJ, these being the following values ​​to configure:
+
+| Parameter                        | Description                                                                                            | Default                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| enabled                          | Boolean value to enable the persistence ingestion.                                                     | `true`                           |
+| size                             | Initial size for the basic load of configuration.                                                      | `100M`                           |
+| pvcSize                          | Desired size of the Persistent Volume.                                                                 | `3Gi`                            |  
+| name                             | Name of the chart deployment.                                                                          | `persistence`|
+| accessModes                      | Access type for the PVC.                                                                               | `ReadWriteMany`|
+| type                             | Type of PVC deployment.                                                                                | `DirectoryOrCreate`|
+| dbStorageSize                    | Database storage capacity.                                                                             | `3Gi`|
+| statefulSetReplicas              | Number of replicas of the Stateful Set.                                                                | `1`|
+| restartPolicy                    | Policy for restarting the image.                                                                       | `Never`|
+| configAdapter                    | Name of the config adapter.                                                                            | `GLUU_CONFIG_ADAPTER`
+| adapter                          | The config backend adapter.                                                                            | `kubernetes`
+| secretAdapter                    | Name for the secret adapter.                                                                           | `GLUU_SECRET_ADAPTER`
+| passport                         | Name for the variable that enables the use of passport.                                                | `GLUU_PASSPORT_ENABLED`
+| passportv                        | Value that enables the use of passport.                                                                | `true`
+| ldapUrl                          | Name for the LDAP URL variable.                                                                        | `GLUU_LDAP_URL`
+| ldapUrlv                         | The LDAP database's IP address or hostname.                                                            | `opendj:1636`
+| persistenceType                  | Name for the persistence backend.                                                                      | `GLUU_PERSISTENCE_TYPE`
+| persistenceTypev                 | Persistence backend being used (one of ldap, couchbase, or hybrid; default to ldap)                    | `ldap`
+| oxtrustConf                      | Name of the OxTrust configuration variable.                                                            | `GLUU_OXTRUST_CONFIG_GENERATION`
+| oxtrustConfv                     | Whether to generate oxShibboleth configuration or not (default to true)                                | `false`
+| clientID                         | Name of the LDAP client ID variable.                                                                   | `LP_CLIENT_ID`
+| clientIDv                        | LDAP Client ID value.                                                                                  | `1234567890`
+| clientSecret                     | Name of the LDAP client Secret variable.                                                               | `LP_CLIENT_SECRET`
+| clientSecretv                    | LDAP Client Secret value.                                                                              | `0987654321`
+| pdpEp                            | Endponit for the PDP Ingress path.                                                                     | `/pdp`
+
+
+COIH Provider values needs to be configured after deployment for security issues, as all values are passed throught the ConfigMap as env variables, the name of those env vars need to be specified:
+
+  ```yaml
+  coihClientID: COIH_CLIENT_ID
+  coihClientIDv: "1234"
+  coihClientSecret: COIH_CLIENT_SECRET
+  coihClientSecretv: "1234"
+  ```
+## OxAuth
 
   ```yaml
   oxauth:
