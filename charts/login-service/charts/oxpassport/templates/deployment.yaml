@@ -36,3 +36,7 @@ spec:
                 name: {{ template "oxpassport.fullname" . }}-cm
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.pullSecret }}
+      {{- end }}

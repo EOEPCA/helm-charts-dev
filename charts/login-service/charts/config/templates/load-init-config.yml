@@ -40,4 +40,8 @@ spec:
         command: ["/bin/sh", "-c"]
         args: ["tini -g -- /app/scripts/entrypoint.sh load && /usr/bin/python /scripts/tls_generator.py"]
       restartPolicy: Never
+      {{- if .Values.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.pullSecret }}
+      {{- end }}
           

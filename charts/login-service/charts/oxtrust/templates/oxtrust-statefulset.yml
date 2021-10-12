@@ -58,3 +58,7 @@ spec:
       - ip: {{ .Values.global.nginxIp }}
         hostnames:
         - {{ .Values.global.domain }}
+      {{- if .Values.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.pullSecret }}
+      {{- end }}
