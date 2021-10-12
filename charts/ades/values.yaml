@@ -10,7 +10,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
   proxyRepository: eoepca/kubectl-proxy
-  proxyTag: "0.9.0"
+  proxyTag: "0.9.7"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -97,10 +97,10 @@ workflowExecutor:
     cwl: ""
 
   stagein:
-    cwl: ""
+    cwl: "charts/ades/files/cwl/stagein/terradue_stars_t2_latest.cwl"
 
   stageout:
-    cwl: ""
+    cwl: "charts/ades/files/cwl/stageout/terradue_stars_latest.cwl"
 
   rulez:
     cwl: ""
@@ -152,3 +152,10 @@ persistence:
   procServicesAccessMode: ReadWriteOnce
   procServicesSize: 5Gi
 
+# installs longhorn storageClass using ades-longhorn chart
+ades-longhorn:
+  enabled: false
+  persistence:
+    defaultClassReplicaCount: 1
+ #defaultSettings:
+ #  systemManagedComponentsNodeSelector: "longhorn:yes"
