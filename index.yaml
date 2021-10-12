@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   ades:
   - apiVersion: v2
+    appVersion: 0.9.7
+    created: "2021-10-12T09:45:27.505982564Z"
+    description: A Helm chart for the ADES
+    digest: 4e70648a6a958c073096854748aed30a21d9b1798adfb1b78f76c26fdeabdd01
+    name: ades
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/ades-0.9.7/ades-0.9.7.tgz
+    version: 0.9.7
+  - apiVersion: v2
     appVersion: 0.9.6
     created: "2021-08-05T13:38:12.008342676Z"
     description: A Helm chart for the ADES
@@ -2949,4 +2959,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-10-11T09:12:05.153657612Z"
+generated: "2021-10-12T09:45:27.507176771Z"
