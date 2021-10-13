@@ -57,3 +57,7 @@ spec:
           - mountPath: /flag
             subPath: opendj/flag
             name: vol-userman
+      {{- if .Values.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.pullSecret }}
+      {{- end }}
