@@ -80,7 +80,7 @@ pep-engine:
 
   nginxIntegration:
     # Flag to create ingress with config for nginx auth_request
-    # Not relevant for 'workingMode' `PARTIAL`
+    # Not relevant for 'workingMode' `FULL`
     # Should not be needed in the case the PEP is used in combination with
     # a `uma-user-agent` which takes responsibility for the nginx integration
     enabled: false
