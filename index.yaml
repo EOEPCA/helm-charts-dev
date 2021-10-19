@@ -1665,6 +1665,23 @@ entries:
     version: 0.1.0
   resource-guard:
   - apiVersion: v2
+    appVersion: u0.0.37:p0.9.34
+    created: "2021-10-19T13:19:16.522659059Z"
+    dependencies:
+    - name: pep-engine
+      repository: https://eoepca.github.io/helm-charts/
+      version: 0.9.34
+    - name: uma-user-agent
+      repository: https://eoepca.github.io/helm-charts/
+      version: 0.0.37
+    description: A Helm chart for Kubernetes
+    digest: 5264e4d452b6679104ac2491080a280dc98393c69744001a89a69dbc5386eaf6
+    name: resource-guard
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-guard-0.0.34/resource-guard-0.0.34.tgz
+    version: 0.0.34
+  - apiVersion: v2
     appVersion: u0.0.37:p0.9.31
     created: "2021-10-18T16:34:18.654168007Z"
     dependencies:
@@ -3105,4 +3122,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-10-19T13:06:07.018115647Z"
+generated: "2021-10-19T13:19:16.525705734Z"
