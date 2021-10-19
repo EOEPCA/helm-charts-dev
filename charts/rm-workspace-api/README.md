@@ -1,4 +1,4 @@
-# Helm chart for Resource Catalogue service
+# Helm chart for the Workspace API
 
 ## Prerequisites
 
