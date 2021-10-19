@@ -73,3 +73,5 @@ The configuration parameters in this section control the resource catalogue conf
 | s3Endpoint                        | The S3 Endpoint for the users bucket | `https://cf2.cloudferro.com:8080`                              |
 | s3Region                        | The S3 Region for the users bucket | `RegionOne`                              |
 | workspaceDomain                        | The base domain for new Workspaces | `develop.eoepca.org`                              |
+| umaClientId                        | The UMA Client ID | `client-id`                             |
+| umaClientSecret                        | The UMA Client Secret | `client-secret`                             |

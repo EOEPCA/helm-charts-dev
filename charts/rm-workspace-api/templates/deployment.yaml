@@ -77,6 +77,10 @@ spec:
               value: "{{ .Values.s3Region }}"
             - name: WORKSPACE_DOMAIN
               value: "{{ .Values.workspaceDomain }}"
+            - name: UMA_CLIENT_ID
+              value: "{{ .Values.umaClientId }}"
+            - name: UMA_CLIENT_SECRET
+              value: "{{ .Values.umaClientSecret }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
