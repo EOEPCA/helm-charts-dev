@@ -81,6 +81,12 @@ spec:
               value: "{{ .Values.umaClientId }}"
             - name: UMA_CLIENT_SECRET
               value: "{{ .Values.umaClientSecret }}"
+            - name: HARBOR_URL
+              value: "{{ .Values.harborUrl }}"
+            - name: HARBOR_ADMIN_USERNAME
+              value: "{{ .Values.harborUsername }}"
+            - name: HARBOR_ADMIN_PASSWORD
+              value: "{{ .Values.harborPassword }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
