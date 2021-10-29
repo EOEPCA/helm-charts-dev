@@ -124,7 +124,7 @@ oxauth:
   volumeClaim:
     name: um-login-service-pvc
   # repository gluufederation/oxauth:4.1.1_03
-  image: :
+  image:
     repository: {{ .Values.global.images.oxauth.repository }}
     tag: {{ .Values.global.images.oxauth.tag }}
     pullPolicy: {{ .Values.global.images.oxauth.pullPolicy }}
@@ -143,7 +143,7 @@ oxtrust:
 
   volumeClaim:
     name: um-login-service-pvc
-  image: :
+  image:
     repository: {{ .Values.global.images.oxtrust.repository }}
     tag: {{ .Values.global.images.oxtrust.tag }}
     pullPolicy: {{ .Values.global.images.oxtrust.pullPolicy }}
