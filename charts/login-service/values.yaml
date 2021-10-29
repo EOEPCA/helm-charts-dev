@@ -93,7 +93,6 @@ opendj:
   gluuCacheType: NATIVE_PERSISTENCE
   # options true/false : must be enabled if cache type is REDIS
   gluuRedisEnabled: false
-  imagePullPolicy: {{ .Values.global.images.opendj.pullPolicy }}
   volumeClaim:
     name: um-login-service-pvc
   persistence:
