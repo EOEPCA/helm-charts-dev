@@ -122,12 +122,6 @@ oxauth:
   dynamicStorage: true
   volumeClaim:
     name: um-login-service-pvc
-  # repository gluufederation/oxauth:4.1.1_03
-  image:
-    repository: {{ .Values.global.images.oxauth.repository }}
-    tag: {{ .Values.global.images.oxauth.tag }}
-    pullPolicy: {{ .Values.global.images.oxauth.pullPolicy }}
-
   livenessProbe:
     initialDelaySeconds: 100
     periodSeconds: 60
@@ -142,10 +136,6 @@ oxtrust:
 
   volumeClaim:
     name: um-login-service-pvc
-  image:
-    repository: {{ .Values.global.images.oxtrust.repository }}
-    tag: {{ .Values.global.images.oxtrust.tag }}
-    pullPolicy: {{ .Values.global.images.oxtrust.pullPolicy }}
   livenessProbe:
     initialDelaySeconds: 100
     periodSeconds: 60
