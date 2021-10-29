@@ -1,6 +1,6 @@
 # Default values for oxtrust.
 # Declare variables to be passed into your templates.
-
+enabled: true
 replicaCount: 1
 gluuMaxRamFraction: 1
 

@@ -19,14 +19,30 @@ global:
   fsType: ext4
 
   images:
-    persistence:
-      repository: eoepca/um-login-persistence
-      pullPolicy: IfNotPresent
-      tag: "v0.9.0"
+    config:
+      repository: gluufederation/config-init
+      tag: 4.1.1_02
+    opendj:
+      repository: gluufederation/wrends
+      pullPolicy: Always
+      tag: 4.1.1_01
     passport:
       repository: eoepca/um-login-passport
       pullPolicy: IfNotPresent
       tag: "v0.1.1"
+    persistence:
+      repository: eoepca/um-login-persistence
+      pullPolicy: IfNotPresent
+      tag: "v0.9.0"
+    oxauth:
+      repository: oxauth
+      pullPolicy: Always
+      tag: 4.1.1_03
+    oxtrust:
+      repository: oxtrust
+      tag: 4.1.1_02
+      pullPolicy: Always
+      
   
 persistence: 
   accessModes: ReadWriteMany
@@ -56,6 +72,8 @@ config:
   orgName: Deimos Space S.L.U.
   gluuConfAdapter: kubernetes
   redisPass: aaaa
+
+  image: {{ .Values.global.images.config.repository }}:{{ .Values.global.images.config.tag }}
   # <<<---------------------- SKIPPED THIS IN THE DOCUMENTATION -------->>>
   # StorageClass values
   # values used to define the StorageClass template
@@ -78,6 +96,10 @@ opendj:
   gluuCacheType: NATIVE_PERSISTENCE
   # options true/false : must be enabled if cache type is REDIS
   gluuRedisEnabled: false
+
+  imagePullPolicy: {{ .Values.global.images.opendj.pullPolicy }}
+  image: {{ .Values.global.images.opendj.repository }}:{{ .Values.global.images.opendj.tag }}
+
   volumeClaim:
     name: um-login-service-pvc
   persistence:
@@ -86,6 +108,14 @@ opendj:
       repository: "{{ .Values.global.images.persistence.repository }}"
       pullPolicy: "{{ .Values.global.images.persistence.pullPolicy }}"
       tag: "{{ .Values.global.images.persistence.tag }}"
+    coihClientIDv: "1234"
+    coihClientSecretv: "1234"
+  readinessProbe:
+    initialDelaySeconds: 150
+    periodSeconds: 90
+  livenessProbe:
+    initialDelaySeconds: 150
+    periodSeconds: 90
 
 oxpassport:
   enabled: true  
@@ -99,12 +129,36 @@ oxauth:
   dynamicStorage: true
   volumeClaim:
     name: um-login-service-pvc
+  # repository gluufederation/oxauth:4.1.1_03
+  image: :
+    repository: {{ .Values.global.images.oxauth.repository }}
+    tag: {{ .Values.global.images.oxauth.tag }}
+    pullPolicy: {{ .Values.global.images.oxauth.pullPolicy }}
+
+  livenessProbe:
+    initialDelaySeconds: 100
+    periodSeconds: 60
+  readinessProbe:
+    initialDelaySeconds: 100
+    periodSeconds: 60
 
 oxtrust:
   enabled: true
   dynamicStorage: true
+  gluuMaxRamFraction: 1
+
   volumeClaim:
     name: um-login-service-pvc
+  image: :
+    repository: {{ .Values.global.images.oxtrust.repository }}
+    tag: {{ .Values.global.images.oxtrust.tag }}
+    pullPolicy: {{ .Values.global.images.oxtrust.pullPolicy }}
+  livenessProbe:
+    initialDelaySeconds: 100
+    periodSeconds: 60
+  readinessProbe:
+    initialDelaySeconds: 100
+    periodSeconds: 60
 
 nginx:
   enabled: true
