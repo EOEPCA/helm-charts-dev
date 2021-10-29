@@ -22,7 +22,7 @@ fullnameOverride: ""
 # values declaration
 statefulSetReplicas: 1
 imagePullPolicy: Always
-image: gluufederation/wrends:4.1.1_01
+image: {{ .Values.global.images.opendj.repository }}:{{ .Values.global.images.opendj.tag }}
 opendj:
   configAdapter: kubernetes
   metadataName: opendj-init-cm

@@ -72,8 +72,6 @@ config:
   orgName: Deimos Space S.L.U.
   gluuConfAdapter: kubernetes
   redisPass: aaaa
-
-  image: {{ .Values.global.images.config.repository }}:{{ .Values.global.images.config.tag }}
   # <<<---------------------- SKIPPED THIS IN THE DOCUMENTATION -------->>>
   # StorageClass values
   # values used to define the StorageClass template
@@ -89,17 +87,13 @@ config:
   azureStorageKind: Shared
   volumeClaim:
     name: um-login-service-pvc
-
 opendj:
   enabled: true
   # options REDIS/NATIVE_PERSISTENCE
   gluuCacheType: NATIVE_PERSISTENCE
   # options true/false : must be enabled if cache type is REDIS
   gluuRedisEnabled: false
-
   imagePullPolicy: {{ .Values.global.images.opendj.pullPolicy }}
-  image: {{ .Values.global.images.opendj.repository }}:{{ .Values.global.images.opendj.tag }}
-
   volumeClaim:
     name: um-login-service-pvc
   persistence:

@@ -18,6 +18,8 @@ gluuConfAdapter: kubernetes
 redisPass: aaaa
 pdpEp: /pdp
 
+image: {{ .Values.global.images.config.repository }}:{{ .Values.global.images.config.tag }}
+
 nameOverride: ""
 fullNameOverride: ""
 
