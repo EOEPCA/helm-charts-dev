@@ -3,10 +3,10 @@ dependencies:
   repository: https://charts-public.hub.eox.at/
   version: 1.3.3
 - name: rm-resource-catalogue
-  repository: https://eoepca.github.io/helm-charts/
-  version: 0.9.4
+  repository: file://../rm-resource-catalogue
+  version: 1.0.0
 - name: resource-guard
   repository: https://eoepca.github.io/helm-charts/
   version: 0.0.29
-digest: sha256:026b03cb3fa8293f733b80b47e1699942ec0064bdb1d3650c63837eaf8ec896e
-generated: "2021-10-04T17:04:45.205567+02:00"
+digest: sha256:5535801756e6c682f6c391335887c0779223993ec77544ee79f3deca795e632c
+generated: "2021-11-02T15:49:22.192219014+02:00"
