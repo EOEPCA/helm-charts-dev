@@ -18,9 +18,9 @@ spec:
       - name: cheddar
         image: "{{ .Values.cheddar.image.repository }}:{{ .Values.cheddar.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.cheddar.image.pullPolicy }}
-      {{- if .Values.pullSecret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pullSecret }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
 ---
 apiVersion: apps/v1
@@ -43,9 +43,9 @@ spec:
       - name: stilton
         image: "{{ .Values.stilton.image.repository }}:{{ .Values.stilton.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.stilton.image.pullPolicy }}
-      {{- if .Values.pullSecret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pullSecret }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
 ---
 apiVersion: apps/v1
@@ -68,9 +68,9 @@ spec:
       - name: wensleydale
         image: "{{ .Values.wensleydale.image.repository }}:{{ .Values.wensleydale.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.wensleydale.image.pullPolicy }}
-      {{- if .Values.pullSecret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pullSecret }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
 ---
 apiVersion: v1
