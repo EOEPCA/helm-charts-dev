@@ -410,6 +410,16 @@ entries:
   jupyter:
   - apiVersion: v2
     appVersion: 0.9.1
+    created: "2021-11-10T13:09:10.200517983Z"
+    description: Jupyter demo
+    digest: c8ad9415a5d56feccfdabf012d46a9ed4b8ffa70a5053b262b94556cd666d9f2
+    name: jupyter
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyter-0.9.4/jupyter-0.9.4.tgz
+    version: 0.9.4
+  - apiVersion: v2
+    appVersion: 0.9.1
     created: "2021-07-22T15:25:55.367003316Z"
     description: Jupyter demo
     digest: b9804cf2a0175a884e950ab2fa3ca3fa82a21376bdee5d3490984c39b2013b5d
@@ -1128,6 +1138,16 @@ entries:
   nfs-provisioner:
   - apiVersion: v2
     appVersion: 0.2.0
+    created: "2021-11-10T13:09:10.325027042Z"
+    description: Dynamic storage provisioner for NFS
+    digest: 01fcb8cfb15f73757dfc09290846c38fd7e49017004bc906b0a39b7e58eb9273
+    name: nfs-provisioner
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/nfs-provisioner-0.1.1/nfs-provisioner-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.2.0
     created: "2021-05-28T14:04:21.678350794Z"
     description: Dynamic storage provisioner for NFS
     digest: 30f1667c72e7d64eb35116eb786eba84ca47dce39b1e120081f77ca516456916
@@ -1137,6 +1157,18 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/nfs-provisioner-0.1.0/nfs-provisioner-0.1.0.tgz
     version: 0.1.0
   pdp-engine:
+  - apiVersion: v1
+    appVersion: v0.9.0
+    created: "2021-11-10T13:09:10.470787646Z"
+    description: A Helm chart for PDP Engine
+    digest: 7f238e278d1252af6a005954e5a1f613d695e03361e03f580da3b88d1b3aa2f4
+    maintainers:
+    - name: eoepca
+    name: pdp-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pdp-engine-0.9.8/pdp-engine-0.9.8.tgz
+    version: 0.9.8
   - apiVersion: v1
     appVersion: v0.9.0
     created: "2021-10-04T14:43:08.110327491Z"
@@ -1246,6 +1278,18 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/pdp-engine-0.1.3/pdp-engine-0.1.3.tgz
     version: 0.1.3
   pep-engine:
+  - apiVersion: v1
+    appVersion: task415_6
+    created: "2021-11-10T13:09:10.63396336Z"
+    description: A Helm chart for PEP Engine
+    digest: 02456dd953eb82a05b82894028318cd3ea2d3361e32a0839cd1f768dc54ab190
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-0.9.38/pep-engine-0.9.38.tgz
+    version: 0.9.38
   - apiVersion: v1
     appVersion: task415_6
     created: "2021-11-04T14:37:21.596442699Z"
@@ -3685,6 +3729,18 @@ entries:
   user-profile:
   - apiVersion: v1
     appVersion: v0.9.0
+    created: "2021-11-10T13:09:10.767380732Z"
+    description: A Helm chart for the User Profile
+    digest: 2ee3eb89e9b1c2791c81c5b88550840cd1ffca457f2e0ef962a6e294b222ce70
+    maintainers:
+    - name: eoepca
+    name: user-profile
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/user-profile-0.9.9/user-profile-0.9.9.tgz
+    version: 0.9.9
+  - apiVersion: v1
+    appVersion: v0.9.0
     created: "2021-10-04T14:43:08.586218252Z"
     description: A Helm chart for the User Profile
     digest: 55d4df8b004827c3ebb5ee63cc91b2ae5babf45733873baa1f2ba1390b6a5704
@@ -3803,4 +3859,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-10T12:57:51.829238865Z"
+generated: "2021-11-10T13:09:10.769146194Z"
