@@ -86,6 +86,11 @@ config:
   azureStorageKind: Shared
   volumeClaim:
     name: um-login-service-pvc
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+    limits: {}
 opendj:
   enabled: true
   # options REDIS/NATIVE_PERSISTENCE
@@ -108,6 +113,11 @@ opendj:
   livenessProbe:
     initialDelaySeconds: 150
     periodSeconds: 90
+  resources:
+    requests:
+      cpu: 700m
+      memory: 500Mi
+    limits: {}
 
 oxpassport:
   enabled: true  
@@ -115,6 +125,11 @@ oxpassport:
     repository: "{{ .Values.global.images.passport.repository }}"
     pullPolicy: "{{ .Values.global.images.passport.pullPolicy }}"
     tag: "{{ .Values.global.images.passport.tag }}"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+    limits: {}
 
 oxauth:
   enabled: true
@@ -127,6 +142,12 @@ oxauth:
   readinessProbe:
     initialDelaySeconds: 100
     periodSeconds: 60
+  #Resources for the deployment
+  resources:
+    requests:
+      cpu: 200m
+      memory: 1.2Gi
+    limits: {}
 
 oxtrust:
   enabled: true
@@ -141,6 +162,11 @@ oxtrust:
   readinessProbe:
     initialDelaySeconds: 100
     periodSeconds: 60
+  resources: 
+    requests:
+      cpu: 200m
+      memory: 500Mi
+    limits: {}
 
 nginx:
   enabled: true
