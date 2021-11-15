@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: {{ include "oxtrust.name" . }}
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        image: gluufederation/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.global.images.oxtrust.pullPolicy }}
+        image: gluufederation/{{ .Values.global.images.oxtrust.repository }}:{{ .Values.global.images.oxtrust.tag }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
         ports:

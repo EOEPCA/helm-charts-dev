@@ -1,3 +1,5 @@
+imagePullSecrets: []
+
 global:
   namespace: rm
 db:
