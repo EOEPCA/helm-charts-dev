@@ -77,10 +77,10 @@ spec:
               value: "{{ .Values.s3Region }}"
             - name: WORKSPACE_DOMAIN
               value: "{{ .Values.workspaceDomain }}"
-            - name: UMA_CLIENT_ID
-              value: "{{ .Values.umaClientId }}"
-            - name: UMA_CLIENT_SECRET
-              value: "{{ .Values.umaClientSecret }}"
+            - name: UMA_CLIENT_SECRET_NAME
+              value: "{{ .Values.umaClientSecretName }}"
+            - name: UMA_CLIENT_SECRET_NAMESPACE
+              value: "{{ .Values.umaClientSecretNamespace }}"
             - name: HARBOR_URL
               value: "{{ .Values.harborUrl }}"
             - name: HARBOR_ADMIN_USERNAME
