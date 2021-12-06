@@ -12,7 +12,7 @@ db:
   volume_path: /var/lib/postgresql/data/pgdata
   volume_size: 500Mi
   volume_access_modes: ReadWriteMany
-  volume_storage_type: managed-nfs-storage
+  volume_storage_type: managed-nfs-storage-retain
 ingress:
   enabled: true
   name: resource-catalogue
