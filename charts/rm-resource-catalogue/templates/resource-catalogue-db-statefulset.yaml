@@ -42,13 +42,13 @@ spec:
         - mountPath: {{ .Values.db.volume_path }}
           name: {{ .Values.db.volume_name }}
       restartPolicy: Always
-    volumeClaimTemplates:
-      - metadata:
-          name: {{ .Values.db.volume_name }}
-        spec:
-          storageClassName: {{ .Values.db.volume_storage_type }}
-          accessModes:
-          - {{ .Values.db.volume_access_modes }}
-          resources:
-            requests:
-              storage: {{ .Values.db.volume_size }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ .Values.db.volume_name }}
+      spec:
+        storageClassName: {{ .Values.db.volume_storage_type }}
+        accessModes:
+        - {{ .Values.db.volume_access_modes }}
+        resources:
+          requests:
+            storage: {{ .Values.db.volume_size }}
