@@ -51,14 +51,14 @@ vs:
         # - path: registrar_pycsw.backend.PycswBackend
         #   kwargs:
         #     repository_database_uri: postgresql://postgres:mypass@resource-catalogue-db/pycsw
-        #     ows_url: https://data-access.develop.eoepca.org/ows
+        #     ows_url: https://data-access.demo.eoepca.org/ows
 
       pathBackends: []
         # will be filled by workspace API
         # - path: registrar_pycsw.backend.PycswCWLBackend
         #   kwargs:
         #     repository_database_uri: postgresql://postgres:mypass@resource-catalogue-db/pycsw
-        #     ows_url: https://data-access.develop.eoepca.org/ows
+        #     ows_url: https://data-access.demo.eoepca.org/ows
 
   database:
     persistence:
