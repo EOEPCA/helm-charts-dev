@@ -136,4 +136,3 @@ volumeClaim:
   name: um-user-profile-pvc
   create: true
 ```
-
