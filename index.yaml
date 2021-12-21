@@ -563,6 +563,18 @@ entries:
     version: 0.1.0
   login-service:
   - apiVersion: v1
+    appVersion: 1.0.0
+    created: "2021-12-21T14:56:32.79154323Z"
+    description: A Helm chart for Login Service
+    digest: c907f7c5fb89a5e716118d2f45cd7d2c969b67c4aec4d0d5591b03d110ba1b97
+    maintainers:
+    - name: eoepca
+    name: login-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/login-service-1.0.0/login-service-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v1
     appVersion: 0.9.0
     created: "2021-11-12T14:23:21.070410312Z"
     description: A Helm chart for Login Service
@@ -1233,6 +1245,18 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/nfs-provisioner-0.1.0/nfs-provisioner-0.1.0.tgz
     version: 0.1.0
   pdp-engine:
+  - apiVersion: v1
+    appVersion: v1.0
+    created: "2021-12-21T14:56:32.923439212Z"
+    description: A Helm chart for PDP Engine
+    digest: 76fbfd5343e6ead5bfab4e73f7c49e623e96d8c8260edff69bf406a112c1ee9e
+    maintainers:
+    - name: eoepca
+    name: pdp-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pdp-engine-1.0.0/pdp-engine-1.0.0.tgz
+    version: 1.0.0
   - apiVersion: v1
     appVersion: v1.0
     created: "2021-11-16T16:18:16.62127887Z"
@@ -2945,6 +2969,26 @@ entries:
   rm-user-workspace:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2021-12-21T14:56:33.103584823Z"
+    dependencies:
+    - name: vs
+      repository: https://charts-public.hub.eox.at/
+      version: 2.0.4
+    - name: rm-resource-catalogue
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.0.5
+    - name: resource-guard
+      repository: https://eoepca.github.io/helm-charts/
+      version: 0.9.0
+    description: A Helm chart for Kubernetes
+    digest: 290974612051778ad9c64dc893fef9d36ffd232d3ed9af0307a25239a3f93e55
+    name: rm-user-workspace
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-user-workspace-1.0.0/rm-user-workspace-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2021-12-06T15:06:08.190021061Z"
     dependencies:
     - name: vs
@@ -3486,6 +3530,16 @@ entries:
     version: 0.1.4
   uma-user-agent:
   - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-12-21T14:56:33.234164102Z"
+    description: A Helm chart for Kubernetes
+    digest: cd2a8764abbe8dc1128c896689a1c95890c9992b36101f1ca2633d3621aa6a19
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-1.0.0/uma-user-agent-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     appVersion: 0.0.27
     created: "2021-11-09T16:01:08.411915289Z"
     description: A Helm chart for Kubernetes
@@ -3977,6 +4031,18 @@ entries:
     version: 0.0.1
   user-profile:
   - apiVersion: v1
+    appVersion: v1.0
+    created: "2021-12-21T14:56:33.373350798Z"
+    description: A Helm chart for the User Profile
+    digest: bd86ee6cf6fb2b9798bcda6426823007d7e800b6b8f85ca202b5a63d298a41f5
+    maintainers:
+    - name: eoepca
+    name: user-profile
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/user-profile-1.0.0/user-profile-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v1
     appVersion: v0.9.0
     created: "2021-11-10T13:09:10.767380732Z"
     description: A Helm chart for the User Profile
@@ -4108,4 +4174,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2021-12-06T15:09:15.656723923Z"
+generated: "2021-12-21T14:56:33.375873898Z"
