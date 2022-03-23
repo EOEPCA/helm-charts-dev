@@ -2,6 +2,12 @@ import os
 import sys
 
 from tornado.httpclient import AsyncHTTPClient
+from traitlets import Unicode
+from tornado.httputil import url_concat
+from tornado.httpclient import HTTPRequest
+from oauthenticator.generic import GenericOAuthenticator
+
+
 
 configuration_directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, configuration_directory)
@@ -12,6 +18,55 @@ from z2jh import (
 )
 
 
+
+class EoepcaOAuthenticator(GenericOAuthenticator):
+    login_service = Unicode("EOEPCA", config=True)
+    id_token = None
+    def _get_user_data(self, token_response):
+        access_token = token_response['access_token']
+        token_type = token_response['token_type'].capitalize()
+
+        # Determine who the logged in user is
+        headers = {
+            "Accept": "application/json",
+            "User-Agent": "JupyterHub",
+            "Authorization": "{} {}".format(token_type, access_token)
+        }
+        if self.userdata_url:
+            url = url_concat(self.userdata_url, self.userdata_params)
+        else:
+            raise ValueError("Please set the OAUTH2_USERDATA_URL environment variable")
+
+        if self.userdata_token_method == "url":
+            url = url_concat(self.userdata_url, dict(access_token=access_token))
+
+        req = HTTPRequest(url, headers=headers)
+        return self.fetch(req, "fetching user data")
+
+    @staticmethod
+    def _create_auth_state(token_response, user_data_response):
+        access_token = token_response['access_token']
+        refresh_token = token_response.get('refresh_token', None)
+        scope = token_response.get('scope', '')
+        id_token = token_response['id_token']
+        if isinstance(scope, str):
+            scope = scope.split(' ')
+
+        return {
+            'access_token': access_token,
+            'refresh_token': refresh_token,
+            'oauth_user': user_data_response,
+            'scope': scope,
+            'id_token': id_token
+        }
+    
+    async def pre_spawn_start(self, user, spawner):
+        """Pass upstream_token to spawner via environment variable"""
+        auth_state = await user.get_auth_state()
+        if not auth_state:
+            # auth_state not enabled
+            return
+        spawner.environment['ID_TOKEN'] = auth_state['id_token']
 
 # Configure JupyterHub to use the curl backend for making HTTP requests,
 # rather than the pure-python implementations. The default one starts
@@ -41,7 +96,11 @@ jupyterhub_oauth_client_secret = os.environ.get("JUPYTERHUB_OAUTH_CLIENT_SECRET"
 
 
 jupyterhub_hub_host = f"hub.{jupyterhub_hub_pod_namespace}"
-c.JupyterHub.authenticator_class = "jupyterhub.auth.DummyAuthenticator"
+c.JupyterHub.authenticator_class = EoepcaOAuthenticator
+
+c.Authenticator.enable_auth_state = True
+c.Authenticator.scope = 'openid email user_name is_operator'
+
 c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/cookie_secret"
 # Proxy config
 c.JupyterHub.cleanup_servers = False

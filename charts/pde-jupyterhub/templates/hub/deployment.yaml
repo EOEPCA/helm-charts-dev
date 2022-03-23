@@ -177,6 +177,9 @@ spec:
           lifecycle:
             {{- . | toYaml | nindent 12 }}
           {{- end }}
+          envFrom:
+            - secretRef:
+              name: jupyterhub-secrets
           env:
             - name: PYTHONUNBUFFERED
               value: "1"
