@@ -179,7 +179,7 @@ spec:
           {{- end }}
           envFrom:
             - secretRef:
-              name: jupyterhub-secrets
+                name: jupyterhub-secrets
           env:
             - name: PYTHONUNBUFFERED
               value: "1"
