@@ -42,7 +42,6 @@ spec:
               serviceName: {{ include "jupyterhub.proxy-public.fullname" $ }}
               servicePort: 80
               {{- end }}
-          {{- end }}
       {{- if $host }}
       host: {{ $host | quote }}
       {{- end }}
