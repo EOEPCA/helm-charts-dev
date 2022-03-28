@@ -20,15 +20,19 @@ spec:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
-      - backend:
+      - path:
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: "ImplementationSpecific"
+        {{- end }}
+        backend:
           {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
           service:
             name: {{ .Values.pycsw.service_name }}
             port:
-              number: {{ .Values.pycsw.service_port_name }}
+              number: {{ .Values.pycsw.service_port }}
           {{- else }}
           serviceName: {{ .Values.pycsw.service_name }}
-          servicePort: {{ .Values.pycsw.service_port_name }}
+          servicePort: {{ .Values.pycsw.service_port }}
           {{- end }}
   tls:
     - hosts:
