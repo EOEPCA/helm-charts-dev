@@ -31,6 +31,7 @@ hub:
       admin_access: true
       authenticator_class: dummy
   service:
+    port: 80
     type: ClusterIP
     annotations: {}
     ports:
@@ -552,12 +553,19 @@ prePuller:
 
 ingress:
   enabled: false
+  className: ""
   annotations: {}
-  ingressClassName:
-  hosts: []
-  pathSuffix:
-  pathType: Prefix
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
   tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 # cull relates to the jupyterhub-idle-culler service, responsible for evicting
 # inactive singleuser pods.
