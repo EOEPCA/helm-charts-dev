@@ -99,7 +99,7 @@ jupyterhub_hub_host = f"hub.{jupyterhub_hub_pod_namespace}"
 c.JupyterHub.authenticator_class = EoepcaOAuthenticator
 
 c.Authenticator.enable_auth_state = True
-c.Authenticator.scope = 'openid email user_name is_operator'
+c.Authenticator.scope = 'openid email user_name is_operator'.split(' ')
 
 c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/cookie_secret"
 # Proxy config
