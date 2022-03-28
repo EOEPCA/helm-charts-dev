@@ -1,8 +1,15 @@
 {{- if .Values.ingress.enabled -}}
-{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
+{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
+  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
+  {{- end }}
+{{- end }}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
-{{- else }}
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
@@ -14,26 +21,28 @@ metadata:
     {{- . | toYaml | nindent 4 }}
   {{- end }}
 spec:
-  {{- with .Values.ingress.ingressClassName }}
-  ingressClassName: "{{ . }}"
+  {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
   rules:
     {{- range $host := .Values.ingress.hosts | default (list "") }}
     - http:
         paths:
           - path: {{ $.Values.hub.baseUrl | trimSuffix "/" }}/{{ $.Values.ingress.pathSuffix }}
-            {{- if $.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress" }}
-            pathType: {{ $.Values.ingress.pathType }}
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+            pathType: {{ default "ImplementationSpecific" .pathType }}
+            {{- end }}
             backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
                 name: {{ include "jupyterhub.proxy-public.fullname" $ }}
                 port:
                   name: http
-            {{- else }}
-            backend:
+              {{- else }}
               serviceName: {{ include "jupyterhub.proxy-public.fullname" $ }}
               servicePort: 80
-            {{- end }}
+              {{- end }}
+          {{- end }}
       {{- if $host }}
       host: {{ $host | quote }}
       {{- end }}
