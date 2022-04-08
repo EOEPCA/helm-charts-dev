@@ -240,6 +240,9 @@ workflowExecutor:
   # Calrissian image tag
   calrissianImage: "terradue/calrissian:0.11.0-sprint1"
 
+  # processing pods node selector:
+  processingNodeSelector: {}
+
 wps:
   pepBaseUrl: "https://pep.eoepca.terradue.com"
   pepClientStatePath: "/opt/zooservices_user/pepclient"
