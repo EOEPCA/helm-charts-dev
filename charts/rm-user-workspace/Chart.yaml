@@ -29,11 +29,11 @@ dependencies:
     repository: "https://charts-public.hub.eox.at/"
 
   - name: "rm-resource-catalogue"
-    version: 1.0.5
+    version: 1.0.9
     repository: "https://eoepca.github.io/helm-charts/"
     # repository: "file://../rm-resource-catalogue"
 
   - name: "resource-guard"
-    version: 1.0.1
+    version: 1.0.5
     repository: "https://eoepca.github.io/helm-charts/"
     # repository: "file://../resource-guard"
