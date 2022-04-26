@@ -30,7 +30,7 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+          {{- if semverCompare ">=1.14-0" $.Capabilities.KubeVersion.GitVersion -}}
           {{- range .paths }}
           - path: {{ . }}
             pathType: ImplementationSpecific
