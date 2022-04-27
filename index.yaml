@@ -227,6 +227,16 @@ entries:
   bucket-operator:
   - apiVersion: v2
     appVersion: 0.3.2
+    created: "2022-04-27T16:05:09.95991688Z"
+    description: A Helm chart for Kubernetes
+    digest: 2653528472a8f8fb404cc895b899a95ef3fd12e4e6b7079af00f63560c104dc5
+    name: bucket-operator
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/bucket-operator-0.9.1/bucket-operator-0.9.1.tgz
+    version: 0.9.1
+  - apiVersion: v2
+    appVersion: 0.3.2
     created: "2022-04-27T15:47:13.540427856Z"
     description: A Helm chart for Kubernetes
     digest: 75fc9ee071ff328eee15c0c29bfb219a968c6bb5476902b76e9c2932ec82d4bf
@@ -5026,4 +5036,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-04-27T15:47:13.543580696Z"
+generated: "2022-04-27T16:05:09.962860399Z"
