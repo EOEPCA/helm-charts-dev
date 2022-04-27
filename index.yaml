@@ -224,6 +224,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/billing-service-0.1.0/billing-service-0.1.0.tgz
     version: 0.1.0
+  bucket-operator:
+  - apiVersion: v2
+    appVersion: 0.3.2
+    created: "2022-04-27T15:47:13.540427856Z"
+    description: A Helm chart for Kubernetes
+    digest: 75fc9ee071ff328eee15c0c29bfb219a968c6bb5476902b76e9c2932ec82d4bf
+    name: bucket-operator
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/bucket-operator-0.9.0/bucket-operator-0.9.0.tgz
+    version: 0.9.0
   cheese:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -5015,4 +5026,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-04-27T13:53:13.979796919Z"
+generated: "2022-04-27T15:47:13.543580696Z"
