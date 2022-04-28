@@ -3430,6 +3430,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-guard-0.0.1/resource-guard-0.0.1.tgz
     version: 0.0.1
+  rm-bucket-operator:
+  - apiVersion: v2
+    appVersion: 0.3.2
+    created: "2022-04-28T10:36:46.922493581Z"
+    description: A Helm chart for Kubernetes
+    digest: c543252001c3ce607eb0e4a7394096431ec72ffb04e7c3b6a0e4222999c3855d
+    name: rm-bucket-operator
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-0.9.3/rm-bucket-operator-0.9.3.tgz
+    version: 0.9.3
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 3.0.0
@@ -5046,4 +5057,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-04-27T16:12:42.286620863Z"
+generated: "2022-04-28T10:36:46.925073882Z"
