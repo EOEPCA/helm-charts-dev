@@ -7,7 +7,8 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  name: "eoepca/rm-bucket-operator"
+  tag: "1.1.0"
 
 imagePullSecrets: []
 nameOverride: ""

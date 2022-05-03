@@ -28,7 +28,7 @@ spec:
       serviceAccountName: bucket-operator
       containers:
       - name: bucket-operator
-        image: 'registry.gitlab.eox.at/eox/hub/bucket-operator:{{ .Values.image.tag | default .Chart.AppVersion }}'
+        image: '{{ .Values.image.name | default "eoepca/rm-bucket-operator" }}:{{ .Values.image.tag | default .Chart.AppVersion }}'
         ports:
         - name: http
           containerPort: 8080
