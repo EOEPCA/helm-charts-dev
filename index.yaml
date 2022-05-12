@@ -812,6 +812,29 @@ entries:
   jupyterhub:
   - apiVersion: v2
     appVersion: 2.0.2
+    created: "2022-05-12T10:52:41.05031721Z"
+    description: Multi-user Jupyter installation
+    digest: 82aa501a955c0c18cd1dd7188b1335a23c50113fec31aed3bf032e9c90c2a6d7
+    home: https://z2jh.jupyter.org
+    icon: https://jupyter.org/assets/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    - z2jh
+    kubeVersion: '>=1.17.0-0'
+    maintainers:
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - name: Simon Li
+      url: https://github.com/manics/
+    name: jupyterhub
+    sources:
+    - https://github.com/jupyterhub/zero-to-jupyterhub-k8s
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyterhub-1.1.12/jupyterhub-1.1.12.tgz
+    version: 1.1.12
+  - apiVersion: v2
+    appVersion: 2.0.2
     created: "2022-03-28T12:08:23.788509776Z"
     description: Multi-user Jupyter installation
     digest: da00c1efd64b053cc11c2c1fc36152edc8b6cb3618f8d6786c7cde653cf042ad
@@ -5269,4 +5292,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-05-06T10:46:38.028057236Z"
+generated: "2022-05-12T10:52:41.054732277Z"
