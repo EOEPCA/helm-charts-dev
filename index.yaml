@@ -3616,6 +3616,16 @@ entries:
   rm-bucket-operator:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2022-05-16T09:21:41.405449781Z"
+    description: A Helm chart for Kubernetes
+    digest: 7f376d34726f1313a6d259c7fe7950465a2b189cb027061e4e53b899555193ef
+    name: rm-bucket-operator
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-0.9.8/rm-bucket-operator-0.9.8.tgz
+    version: 0.9.8
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2022-05-16T09:17:39.686611896Z"
     description: A Helm chart for Kubernetes
     digest: 99722b7eb0598d3359465716ee3b2ac0a8df1a998d9dd48eaac535434325729a
@@ -5324,4 +5334,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-05-16T09:17:39.689071698Z"
+generated: "2022-05-16T09:21:41.410127435Z"
