@@ -2111,6 +2111,18 @@ entries:
   pep-engine:
   - apiVersion: v1
     appVersion: v1.1
+    created: "2022-06-20T16:03:04.634172258Z"
+    description: A Helm chart for PEP Engine
+    digest: 77dbd73a9575ab95fc8a49ab7925868b1ac68ed4f6fec549de194f0354b9a5a9
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-1.1.4/pep-engine-1.1.4.tgz
+    version: 1.1.4
+  - apiVersion: v1
+    appVersion: v1.1
     created: "2022-05-24T08:14:00.132572472Z"
     description: A Helm chart for PEP Engine
     digest: cbca5ffc8a6ddf03c628438b3dc16ce069e0cdda22220c3484263a72f97828d1
@@ -4868,6 +4880,16 @@ entries:
   uma-user-agent:
   - apiVersion: v2
     appVersion: 1.0.2
+    created: "2022-06-20T16:03:04.914253327Z"
+    description: A Helm chart for Kubernetes
+    digest: 7bc7cdd6e02559c8177d1ee68192e04e2b8f131278b489f96f9b74484f7b3c4c
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-1.0.4/uma-user-agent-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 1.0.2
     created: "2022-03-28T15:37:44.9430905Z"
     description: A Helm chart for Kubernetes
     digest: 8d90854423fed4dac7973561342a152e2c06d424d5e60009d1ed0b5974eed0d9
@@ -5589,4 +5611,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-06-20T13:53:37.337877772Z"
+generated: "2022-06-20T16:03:04.922784263Z"
