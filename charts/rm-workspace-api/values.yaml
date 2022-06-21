@@ -82,6 +82,11 @@ tolerations: []
 
 affinity: {}
 
+fluxHelmOperator:
+  # If you're cluster doesn't feature the flux helm-operator already,
+  # set this to true to enable it
+  enabled: false
+
 # some values for the workspace API
 prefixForName: "develop-user"
 workspaceSecretName: "bucket"
