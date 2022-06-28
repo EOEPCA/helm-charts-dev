@@ -8,13 +8,13 @@ v1 = client.CoreV1Api()
 
 #global vars
 name = "tls-certificate"
-namespace = "default"
+namespace = "um"
 
 # check if gluu secret exists
 def get_certs():
-    if ( v1.read_namespaced_secret( 'gluu', 'default' ) ):
-        ssl_cert = v1.read_namespaced_secret( 'gluu', 'default' ).data['ssl_cert']
-        ssl_key = v1.read_namespaced_secret( "gluu", "default" ).data['ssl_key']
+    if ( v1.read_namespaced_secret( 'gluu', 'um' ) ):
+        ssl_cert = v1.read_namespaced_secret( 'gluu', 'um' ).data['ssl_cert']
+        ssl_key = v1.read_namespaced_secret( "gluu", "um" ).data['ssl_key']
         
         print('ssl_cert / {} \n ssl_key: {}'.format(ssl_cert, ssl_key) )
 
