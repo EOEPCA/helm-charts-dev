@@ -69,3 +69,14 @@ The configuration parameters in this section control the resource catalogue conf
 | umaClientSecretNamespace                        | The UMA Client Secret Namespace | `""`                             |
 | workspaceChartsConfigMap          | Name of config map which features the helm chart templates which define the workspace | ""      |
 | fluxHelmOperator.enabled     | Whether to install the flux helm operator together with the workspace api (for cluster which don't use flux) | false | 
+
+
+## Defining the workspace
+
+The workspace-api deploys a workspace by rendering the contents of a config map (referenced by `workspaceChartsConfigMap`) as a jinja2 template and applying the resulting HelmRelease.
+
+The jinja2 template is rendered with the following template variables:
+
+* `workspace_name`
+* `default_owner`
+* Access data for the workspace bucket: `access_key_id`, `secret_access_key`, `bucket`, `projectid`
