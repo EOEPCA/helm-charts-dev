@@ -4872,6 +4872,16 @@ entries:
   storage:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-06-28T08:01:45.578812618Z"
+    description: Basic EOEPCA storage provision
+    digest: 56b8f1b0a71ba1b6d31b14875e642a2c798973e0d4b126c9949d0d1fffa64eb0
+    name: storage
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/storage-1.0.1/storage-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-12-21T17:12:58.103176732Z"
     description: Basic EOEPCA storage provision
     digest: b5dff8ef7b68bd2063090697b34fc94c194e4019ee85e7775b0b2efa6f5c624f
@@ -5696,4 +5706,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-06-27T15:04:17.949248651Z"
+generated: "2022-06-28T08:01:45.581927851Z"
