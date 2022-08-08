@@ -12,7 +12,7 @@ data:
   GLUU_SSL_CERT_FROM_SECRETS: "true"
   GLUU_NAMESPACE: {{ .Values.global.namespace }}
 
-  ---
+---
 
   apiVersion: v1
   kind: ConfigMap
