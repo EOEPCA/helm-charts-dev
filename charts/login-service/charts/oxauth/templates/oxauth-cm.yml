@@ -14,11 +14,11 @@ data:
 
 ---
 
-  apiVersion: v1
-  kind: ConfigMap
-  metadata:
-    name: front-customizations  
-  binaryData:
-    {{ if .Files.Get "customizations.tar.gz" }}
-    customizations.tar.gz: {{ .Files.Get "customizations.tar.gz" | b64enc  }}
-    {{ end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-customizations  
+binaryData:
+  {{ if .Files.Get "customizations.tar.gz" }}
+  customizations.tar.gz: {{ .Files.Get "customizations.tar.gz" | b64enc  }}
+  {{ end }}
