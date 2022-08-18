@@ -10,7 +10,9 @@ image:
   name: "eoepca/rm-bucket-operator"
   tag: "1.1.0"
 
-imagePullSecrets: []
+imagePullSecrets:
+- name : flux-bucket-operator
+
 nameOverride: ""
 fullnameOverride: ""
 
