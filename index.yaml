@@ -2070,6 +2070,18 @@ entries:
   pdp-engine:
   - apiVersion: v1
     appVersion: v1.1
+    created: "2022-09-29T12:11:03.459705564Z"
+    description: A Helm chart for PDP Engine
+    digest: bfd68cce4aef030765ccb83882e87a8fa3ed4deabdca1566f78b59d2d166de70
+    maintainers:
+    - name: eoepca
+    name: pdp-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pdp-engine-1.1.5/pdp-engine-1.1.5.tgz
+    version: 1.1.5
+  - apiVersion: v1
+    appVersion: v1.1
     created: "2022-06-27T15:04:17.260919846Z"
     description: A Helm chart for PDP Engine
     digest: 0e7cfcf25d4eb6f192e0ade9e3397d0989af12ee5daa03f6339ca7038e74b504
@@ -5746,6 +5758,18 @@ entries:
   user-profile:
   - apiVersion: v1
     appVersion: v1.1
+    created: "2022-09-29T12:11:03.677522172Z"
+    description: A Helm chart for the User Profile
+    digest: fc2697c9a4984f2fe664aa4c485f2f7f8843308a036014500cdeba058a9be15f
+    maintainers:
+    - name: eoepca
+    name: user-profile
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/user-profile-1.1.5/user-profile-1.1.5.tgz
+    version: 1.1.5
+  - apiVersion: v1
+    appVersion: v1.1
     created: "2022-06-27T15:04:17.946500816Z"
     description: A Helm chart for the User Profile
     digest: 2dc314e054d489a14613806730484529957fe9b0b656b6ac8cfbfef7561584a4
@@ -5948,4 +5972,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-09-29T07:53:37.575207087Z"
+generated: "2022-09-29T12:11:03.680299406Z"
