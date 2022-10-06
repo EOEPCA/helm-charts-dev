@@ -20,7 +20,7 @@ vs:
     replicaCount: 2
     image:
       repository: eoepca/rm-data-access-core
-      tag: 1.2-dev14
+      tag: 1.2-dev15
     ingress:
       enabled: false
 
@@ -37,16 +37,16 @@ vs:
     image:
       repository: eoepca/rm-data-access-core
       pullPolicy: Always
-      tag: latest
+      tag: 1.2-dev15
 
   harvester:
     image:
       repository: eoepca/rm-harvester
-      tag: 1.2-dev1
+      tag: 1.2-dev2
 
   client:
     image:
-      tag: release-2.0.29
+      tag: release-2.0.33
     ingress:
       enabled: false
 
