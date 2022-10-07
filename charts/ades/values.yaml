@@ -248,7 +248,7 @@ workflowExecutor:
     env: {}
       # HTTP_PROXY: http://1.2.3.4:8534
 
-  useResourceManager: true
+  useResourceManager: false
   resourceManagerEndpoint: "https://resourcemanager-api.com"
   resourceManagerWorkspacePrefix: "rm-user"
   platformDomain: "https://platform-eoepca.com"
