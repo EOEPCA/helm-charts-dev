@@ -486,21 +486,6 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/cheese-0.2.2/cheese-0.2.2.tgz
     version: 0.2.2
-  data-access:
-  - apiVersion: v2
-    appVersion: u1.0.4:p1.1.4
-    created: "2022-10-03T14:51:06.688952656Z"
-    dependencies:
-    - name: vs
-      repository: https://charts-public.hub.eox.at/
-      version: 2.2.4
-    description: A Helm chart for Kubernetes
-    digest: 7dfbe9ec337839695164d21133e6b8786170006055bcfe9fb1b55cdd215067b0
-    name: data-access
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.2.0/data-access-1.2.0.tgz
-    version: 1.2.0
   django-portal:
   - apiVersion: v2
     appVersion: 2022.05.05.08.25
