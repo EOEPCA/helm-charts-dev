@@ -531,6 +531,20 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.2.1/data-access-1.2.1.tgz
     version: 1.2.1
+  - apiVersion: v2
+    appVersion: 2.2.8
+    created: "2022-10-18T07:49:23.86573357Z"
+    dependencies:
+    - name: vs
+      repository: https://charts-public.hub.eox.at/
+      version: 2.2.8
+    description: A Helm chart for Kubernetes
+    digest: 81c2cfaaa04c89f9c6723af88b878e98f6cea9fab37f39b4c016f54451404b1e
+    name: data-access
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.2.0-rc1/data-access-1.2.0-rc1.tgz
+    version: 1.2.0-rc1
   django-portal:
   - apiVersion: v2
     appVersion: 2022.05.05.08.25
@@ -6088,4 +6102,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2022-10-18T07:42:16.926794413Z"
+generated: "2022-10-18T07:49:23.868407496Z"
