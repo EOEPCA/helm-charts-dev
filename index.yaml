@@ -374,6 +374,16 @@ entries:
   application-hub:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2023-02-08T15:41:06.298333789Z"
+    description: Application Hub Helm Chart
+    digest: 8bfc9b1a0c9ad477511c44ac269728846f7bc38bf07538bf4a7c3334070f74b6
+    name: application-hub
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/application-hub-2.0.1/application-hub-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2023-02-08T15:06:09.09269105Z"
     description: Application Hub Helm Chart
     digest: cb16c4ca5213fe41b5db86e0c03c9957a347295a95f72ecd145ea5af1083dffb
@@ -6425,4 +6435,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-02-08T15:06:09.095620492Z"
+generated: "2023-02-08T15:41:06.302894543Z"
