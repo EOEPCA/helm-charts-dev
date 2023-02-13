@@ -14,13 +14,8 @@ spec:
   ingressClassName: "{{ . }}"
   {{- end }}
   rules:
-<<<<<<< Updated upstream
-    {{- range $host := .Values.ingress.hosts | default (list "") }}
-    - http:
-=======
     - host: applicationhub.develop.eoepca.org
       http:
->>>>>>> Stashed changes
         paths:
           - path: {{ $.Values.hub.baseUrl | trimSuffix "/" }}/{{ $.Values.ingress.pathSuffix }}
             pathType: {{ $.Values.ingress.pathType }}
