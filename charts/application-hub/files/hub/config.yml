@@ -1,0 +1,180 @@
+profiles:
+  - id: profile_studio_labs
+    groups: 
+    - ellip-notebooks
+    default_url: "lab/tree/work"
+    definition:
+      display_name: Studio Labs
+      slug: ellip_studio_labs
+      default: False
+      kubespawner_override:
+        cpu_limit: 1
+        mem_limit: 4G
+        image: jupyter/datascience-notebook
+    # image_pull_secret:
+    #   name: cr-user-secret
+    #   content: |-
+    #     {
+    #       "auths":{
+    #           "docker.terradue.com": {
+    #                     "auth": "b2tkLWRvY2tlci1hZ2VudC1jcGUtdHJhaW5pbmc6QVA4Q2RmZkoyV3c3cHpCR3BKbzFydmNYa2dw"
+    #             },
+    #       }
+    #     }
+    volumes: []
+  - id: profile_studio_desktop
+    groups: 
+    - ellip-notebooks
+    default_url: "vnc_lite.html"
+    definition:
+      display_name: Studio Desktop version 0.3
+      slug: ellip_studio_desktop
+      default: False
+      kubespawner_override:
+        cpu_limit: 1
+        mem_limit: 8G
+        image: cr.terradue.com/ellip-studio/studio-desktop:0.7
+    # image_pull_secret:
+    #   name: cr-user-secret
+    #   content: |-
+    #     {
+    #       "auths":{
+    #           "docker.terradue.com": {
+    #                     "auth": "b2tkLWRvY2tlci1hZ2VudC1jcGUtdHJhaW5pbmc6QVA4Q2RmZkoyV3c3cHpCR3BKbzFydmNYa2dw"
+    #             },
+    #       }
+    #     }
+    volumes: []
+  - id: profile_studio_notebooks
+    groups: 
+    - ellip-notebooks
+    definition:
+      display_name: Studio Labs version 0.4
+      slug: ellip_studio_notebook
+      default: False
+      kubespawner_override:
+        cpu_limit: 1
+        mem_limit: 8G
+        image: cr.terradue.com/ellip-studio/studio-lab:0.1
+    image_pull_secret:
+      name: cr-user-secret
+      content: |-
+        {
+          "auths":{
+              "1ui32139.gra7.container-registry.ovh.net":{
+                "auth":"am…g1Ml4="
+              },
+              "docker-co.terradue.com":{
+                "auth":"Zm…Q=="
+              }
+          }
+        }
+    volumes: []
+  - id: profile_studio_coder
+    groups: 
+    - cpe-uat
+    definition:
+      display_name: Studio Coder - CPE Acceptance (0.12)
+      slug: ellip_studio_coder_slug1
+      default: False
+      kubespawner_override:
+        cpu_limit: 1
+        mem_limit: 8G
+        image: cr.terradue.com/ellip-studio/studio-coder:0.12
+    image_pull_secret:
+      name: cr-user-secret
+      content: |-
+        {
+          "auths":{
+              "1ui32139.gra7.container-registry.ovh.net":{
+                "auth":"am…g1Ml4="
+              },
+              "docker-co.terradue.com":{
+                "auth":"Zm…Q=="
+              }
+          }
+        }
+    roles:
+      - pod-manager-role:
+          verbs: ["create", "patch", "delete", "list", "watch"]
+          role_binding: "pod-manager-default-binding"
+          resources: ["pods", "pods/log"]
+      - log-reader-role:
+          verbs: ["get", "list"]
+          role_binding: "log-reader-default-binding"
+          resources: ["pods", "pods/log"]
+    volumes:
+      - name: volume-calrissian
+        claimName: claim-calrissian
+        size: 15Gi
+        storage_class: openebs-nfs-test
+        access_modes:
+          - "ReadWriteMany"
+        volume_mount:
+          name: volume-calrissian
+          mountPath: "/calrissian"
+    configMaps:
+      - name: bash-rc
+        key: bash-rc
+        content: |-
+          alias ll="ls -l"
+          alias calrissian="/opt/conda/bin/calrissian --stdout /calrissian/results.json --max-ram 16G --max-cores "8" --tmp-outdir-prefix /calrissian/tmp/ --outdir /calrissian/"
+          . /home/jovyan/.bashrc 
+        mountPath: /workspace/.bashrc 
+        defaultMode: 0660
+        readOnly: true
+      - name: aws-credentials
+        key: aws-credentials
+        content: |-
+          [default]
+          aws_access_key_id = SCW97Q14M0BWZQB92Z29
+          aws_secret_access_key = 94336c5f-cd32-469c-9735-aeca8fcd749e
+        mountPath: /workspace/.aws/credentials
+        defaultMode: 0660
+        readOnly: true
+      - name: aws-config
+        key: aws-config
+        content: |-
+          [plugins]
+          endpoint = awscli_plugin_endpoint
+
+          [default]
+          region = pl-waw
+          s3 =
+            endpoint_url = https://s3.pl-waw.scw.cloud
+            signature_version = s3v4
+            max_concurrent_requests = 100
+            max_queue_size = 1000
+            multipart_threshold = 50MB
+            multipart_chunksize = 10MB
+          s3api =
+            endpoint_url = https://s3.pl-waw.scw.cloud
+        mountPath: /workspace/.aws/config
+        defaultMode: 0660
+        readOnly: true
+      - name: pod-node-selector
+        key: pod-node-selector
+        content: |-
+          k8s.scaleway.com/pool-name: default
+        mountPath: /etc/calrissian/pod-node-selector.yml
+        defaultMode: 0660
+        readOnly: true
+      - name: container-registry
+        key: container-registry
+        content: |-
+          {
+            "auths":{
+                "1ui32139.gra7.container-registry.ovh.net":{
+                  "auth":"am…g1Ml4="
+                },
+                "docker-co.terradue.com":{
+                  "auth":"Zm…Q=="
+                }
+            }
+          }
+        mountPath: /workspace/.docker/config.json
+        defaultMode: 0660
+        readOnly: true
+    # pod_env_vars:
+    #   A: 10
+    #   B: 20
