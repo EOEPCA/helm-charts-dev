@@ -4,6 +4,11 @@ Utility methods for use in jupyterhub_config.py and dynamic subconfigs.
 Methods here can be imported by extraConfig in values.yaml
 """
 #from collections import Mapping
+<<<<<<< Updated upstream
+=======
+from collections.abc import Mapping
+from functools import lru_cache
+>>>>>>> Stashed changes
 import os
 from collections.abc import Mapping
 from functools import lru_cache
@@ -120,4 +125,7 @@ def set_config_if_not_none(cparent, name, key):
     data = get_config(key)
     if data is not None:
         setattr(cparent, name, data)
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
