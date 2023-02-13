@@ -17,7 +17,7 @@ metadata:
     {{- with .Values.ingress.annotations }}
       {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
-    {{- if .Values.ingress.subpath_enabled -}}
+    {{- if .Values.ingress.subpath_enabled }}
     {{- with .Values.ingress.subpath_annotations }}
       {{- tpl (toYaml .) $ | nindent 4 }}
     {{- end }}
@@ -30,7 +30,7 @@ spec:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
-      {{- if .Values.ingress.subpath_enabled -}}
+      {{- if .Values.ingress.subpath_enabled }}
       - path: {{ .Values.ingress.subpath }}/(.*)
         {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
         pathType: Prefix
@@ -59,7 +59,7 @@ spec:
           serviceName: {{ .Values.pycsw.service_name }}
           servicePort: {{ .Values.pycsw.service_port }}
           {{- end }}
-      {{- else -}}
+      {{- else }}
       - path:
         {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
         pathType: "ImplementationSpecific"
