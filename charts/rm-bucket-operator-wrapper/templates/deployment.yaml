@@ -55,14 +55,10 @@ spec:
             periodSeconds: 8
             failureThreshold: 1
           env:
-            - name: PREFIX_FOR_NAME
-              value: "{{ .Values.prefixForName }}"
             - name: WORKSPACE_SECRET_NAME
               value: "{{ .Values.workspaceSecretName }}"
             - name: NAMESPACE_FOR_BUCKET_RESOURCE
               value: "{{ .Values.namespaceForBucketResource }}"
-            - name: WORKSPACE_CONFIG_MAP_NAME
-              value: "{{ .Values.workspaceConfigMapName }}"
             - name: S3_ENDPOINT
               value: "{{ .Values.s3Endpoint }}"
             - name: S3_REGION
