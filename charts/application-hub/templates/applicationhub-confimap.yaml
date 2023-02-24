@@ -1,0 +1,7 @@
+{{- $fullName := include "application-hub.fullname" . -}}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ $fullName }}-jupyter-config
+data:
+  {{- (.Files.Glob "files/hub/*").AsConfig | nindent 2 }}

@@ -37,15 +37,67 @@ def custom_options_form(spawner):
 
     spawner.log.info("Configure profile list")
 
-    namespace = f"jupyter-{spawner.user.name}"
+    spawner.profile_list = [
+            {
+                "display_name": "PDE - Code Server",
+                "default": True,
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/pde-code-server:develop"
+                },
+            },
+            {
+                "display_name": "IAT - JupyterLab",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iat-jupyterlab:main"
+                },
+            },
+                        {
+                "display_name": "IGA - Remote Desktop base",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iga-remote-desktop:develop",
+                    "baseUrl": ""
+                },
+            },
+            {
+                "display_name": "IGA - Remote Desktop QGIS",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iga-remote-desktop-qgis:develop"
+                },
+            },
+            {
+                "display_name": "IGA - Remote Desktop SNAP",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iga-remote-desktop-snap:develop"
+                },
+            },         
 
-    # workspace = WorkspaceContext(
-    #     namespace=namespace,
-    #     spawner=spawner,
-    #     config_path=config_path,
-    # )
-
-    # spawner.profile_list = workspace.ws_config_parser.get_profiles()
+            {
+                "display_name": "IGA - Dashboard Streamlit",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iga-streamlit-demo:develop"
+                },
+            },
+            {
+                "display_name": "IGA - Dashboard Voila",
+                "kubespawner_override": {
+                    "cpu_limit": 1,
+                    "mem_limit": "8G",
+                    "image": "eoepca/iga-voila-demo:develop",
+                },
+            }   
+        ]
 
     return spawner._options_form_default()
 
@@ -104,10 +156,12 @@ c.JupyterHub.tornado_settings = {
     "slow_spawn_timeout": 0,
 }
 
-
 class EoepcaOAuthenticator(GenericOAuthenticator):
     login_service = Unicode("EOEPCA", config=True)
     id_token = None
+    print("LOGIN EOEPCA")
+
+
     def _get_user_data(self, token_response):
         access_token = token_response['access_token']
         token_type = token_response['token_type'].capitalize()
@@ -159,17 +213,15 @@ class EoepcaOAuthenticator(GenericOAuthenticator):
 jupyterhub_env = os.environ["JUPYTERHUB_ENV"].upper()
 jupyterhub_hub_host = "application-hub-hub.proc"
 jupyterhub_single_user_image = os.environ["JUPYTERHUB_SINGLE_USER_IMAGE_NOTEBOOKS"]
-jupyterhub_auth_method = os.environ.get("JUPYTERHUB_AUTH_METHOD", "pam")
-jupyterhub_oauth_callback_url = os.environ.get("JUPYTERHUB_OAUTH_CALLBACK_URL", "")
-jupyterhub_oauth_client_id = os.environ.get("JUPYTERHUB_OAUTH_CLIENT_ID", "")
-jupyterhub_oauth_client_secret = os.environ.get("JUPYTERHUB_OAUTH_CLIENT_SECRET", "")
-#jupyterhub_oauth_cryptkey = os.environ.get("JUPYTERHUB_CRYPT_KEY")
 
-#c.JupyterHub.authenticator_class = "dummy"
-#c.DummyAuthenticator.password = "bb"
 
 c.JupyterHub.authenticator_class = EoepcaOAuthenticator
 c.Authenticator.enable_auth_state = True
+
+# c.JupyterHub.authenticator_class = "dummy"
+# c.DummyAuthenticator.password = "bb"
+
+
 c.Authenticator.scope = 'openid email user_name is_operator'.split(' ')
 
 c.JupyterHub.cookie_secret_file = "/srv/jupyterhub/cookie_secret"
@@ -221,7 +273,7 @@ c.KubeSpawner.pod_name_template = (
 )
 
 # NodeSelector
-#c.KubeSpawner.node_selector = {"k8s.scaleway.com/pool-name": "processing-node-pool-dev"}
+# c.KubeSpawner.node_selector = {"node-role.kubernetes.io/worker": "true"}
 
 # Namespace
 c.KubeSpawner.namespace = "proc"
@@ -256,79 +308,5 @@ c.KubeSpawner.volume_mounts = [
 
 # c.KubeSpawner.image_pull_secrets = ["cr-config"]
 
-#c.KubeSpawner.options_form = custom_options_form
-
-# hooks
-# c.KubeSpawner.pre_spawn_hook = pre_spawn_hook
-# c.KubeSpawner.post_stop_hook = post_stop_hook
-
-
-
-c.KubeSpawner.profile_list = [
-    {
-        'display_name': 'Training Env',
-        'slug': 'training-python',
-        'default': True,
-        'profile_options': {
-            'image': {
-                'display_name': 'Image',
-                'choices': {
-                    'pytorch': {
-                        'display_name': 'Jupyter Minimal',
-                        'kubespawner_override': {
-                            'image': 'jupyter/minimal-notebook:2343e33dec46'
-                        }
-                    },
-                    'tf': {
-                        'display_name': 'eoepca/pde-container:1.0.3',
-                        'kubespawner_override': {
-                            'image': 'eoepca/pde-container:1.0.3'
-                        }
-                    }
-                }
-            }
-        }
-    }, {
-        'display_name': 'Python DataScience',
-        'slug': 'datascience-small',
-        'profile_options': {
-            'memory': {
-                'display_name': 'CPUs',
-                'choices': {
-                    '2': {
-                        'display_name': '2 CPUs',
-                        'kubespawner_override': {
-                            'cpu_limit': 2,
-                            'cpu_guarantee': 1.8,
-                            'node_selector': {
-                                'node.kubernetes.io/instance-type': 'n1-standard-2'
-                            }
-                        }
-                    },
-                    '4': {
-                        'display_name': '4 CPUs',
-                        'kubespawner_override': {
-                            'cpu_limit': 4,
-                            'cpu_guarantee': 3.5,
-                            'node_selector': {
-                                'node.kubernetes.io/instance-type': 'n1-standard-4'
-                            }
-                        }
-                    }
-                }
-            },
-        },
-        'kubespawner_override': {
-            'image': 'datascience/small:label',
-        }
-    }, {
-        'display_name': 'DataScience - Medium instance (GPUx2)',
-        'slug': 'datascience-gpu2x',
-        'kubespawner_override': {
-            'image': 'datascience/medium:label',
-            'cpu_limit': 48,
-            'mem_limit': '96G',
-            'extra_resource_guarantees': {"nvidia.com/gpu": "2"},
-        }
-    }
-]
+c.KubeSpawner.options_form = custom_options_form
+c.KubeSpawner.image_pull_policy = "Always"
