@@ -4439,6 +4439,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-0.9.3/rm-bucket-operator-0.9.3.tgz
     version: 0.9.3
+  rm-bucket-operator-wrapper:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-02-24T13:58:14.05058027Z"
+    description: A Helm chart for Kubernetes
+    digest: ffdb4116632de7d6318407e231c21e5edd8f2333f8e7b2935131ad1cc87ed12e
+    name: rm-bucket-operator-wrapper
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-wrapper-0.0.1/rm-bucket-operator-wrapper-0.0.1.tgz
+    version: 0.0.1
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 3.0.0
@@ -6457,4 +6468,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-02-22T09:52:28.246573606Z"
+generated: "2023-02-24T13:58:14.05356964Z"
