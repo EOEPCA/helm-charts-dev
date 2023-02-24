@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "rm-bucket-operator-wrapper.fullname" . }}
   labels:
-    {{- include "rm-wbucket-operator-wrapper.labels" . | nindent 4 }}
+    {{- include "rm-bucket-operator-wrapper.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:

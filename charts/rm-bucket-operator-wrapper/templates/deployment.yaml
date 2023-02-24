@@ -54,15 +54,6 @@ spec:
             timeoutSeconds: 2
             periodSeconds: 8
             failureThreshold: 1
-          env:
-            - name: WORKSPACE_SECRET_NAME
-              value: "{{ .Values.workspaceSecretName }}"
-            - name: NAMESPACE_FOR_BUCKET_RESOURCE
-              value: "{{ .Values.namespaceForBucketResource }}"
-            - name: S3_ENDPOINT
-              value: "{{ .Values.s3Endpoint }}"
-            - name: S3_REGION
-              value: "{{ .Values.s3Region }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

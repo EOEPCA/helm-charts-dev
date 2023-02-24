@@ -43,20 +43,6 @@ service:
   type: ClusterIP
   port: 8080
 
-ingress:
-  enabled: true
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-  hosts:
-    - host: bucket-operator-wrapper.eopca.org
-      paths: ["/"]
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -87,12 +73,4 @@ fluxHelmOperator:
   # set this to true to enable it
   enabled: false
 
-# some values for the bucket operator wrapper
-prefixForName: "develop-user"
-workspaceSecretName: "bucket"
-namespaceForBucketResource: "rm"
-workspaceConfigMapName: "workspace"
-s3Endpoint: "https://cf2.cloudferro.com:8080"
-s3Region: "RegionOne"
-workspaceChartsConfigMap: ""
 
