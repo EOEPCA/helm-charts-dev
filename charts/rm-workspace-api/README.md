@@ -73,9 +73,9 @@ The configuration parameters in this section control the resource catalogue conf
 | harborUrl | URL of harbor service | "" |
 | harborUsername | Username of harbor admin user | "" |
 | harborPassword | Password of harbor admin user | "" |
-| bucketEndpointUrl | the url of the bucket operator wrapper | "" |
-| pepBaseUrl | the url of the Resources endpoint of the PEP | "" |
-| autoProtectionEnabled | whether to register register a PEP resource for the created workspace  | "True" |
+| bucketEndpointUrl | The url of the bucket operator wrapper | "" |
+| pepBaseUrl | The url of the Resources endpoint of the PEP | "" |
+| autoProtectionEnabled | Whether to register register a PEP resource for the created workspace  | "True" |
 
 ## Defining the workspace
 
