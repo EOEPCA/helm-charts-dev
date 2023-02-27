@@ -304,4 +304,5 @@ c.KubeSpawner.volume_mounts = [
 # c.KubeSpawner.image_pull_secrets = ["cr-config"]
 
 c.KubeSpawner.options_form = custom_options_form
-c.KubeSpawner.image_pull_policy = "IfNotPresent"
+#c.KubeSpawner.image_pull_policy = "IfNotPresent"
+c.KubeSpawner.image_pull_policy = "Always"
