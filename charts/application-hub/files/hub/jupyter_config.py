@@ -214,7 +214,7 @@ jupyterhub_env = os.environ["JUPYTERHUB_ENV"].upper()
 jupyterhub_hub_host = "application-hub-hub.proc"
 jupyterhub_single_user_image = os.environ["JUPYTERHUB_SINGLE_USER_IMAGE_NOTEBOOKS"]
 
-resource_manager_workspace_prefix: os.getenv("RESOURCE_MANAGER_WORKSPACE_PREFIX", default="rm-user")
+resource_manager_workspace_prefix = os.environ["RESOURCE_MANAGER_WORKSPACE_PREFIX"]
 
 
 c.JupyterHub.authenticator_class = EoepcaOAuthenticator
@@ -275,7 +275,7 @@ c.KubeSpawner.pod_name_template = (
 )
 
 # NodeSelector
-# c.KubeSpawner.node_selector = {"node-role.kubernetes.io/worker": "true"}
+c.KubeSpawner.node_selector = {"node-role.kubernetes.io/worker": "true"}
 
 # Namespace
 c.KubeSpawner.namespace = "proc"
@@ -283,7 +283,7 @@ c.KubeSpawner.namespace = "proc"
 # User namespace
 c.KubeSpawner.enable_user_namespaces = True
 c.KubeSpawner.user_namespace_template = (
-    "{resource_manager_workspace_prefix}-{username}"
+    resource_manager_workspace_prefix + "-{username}"
 )
 
 # Volumes
