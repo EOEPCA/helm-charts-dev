@@ -45,7 +45,7 @@ def custom_options_form(spawner):
                     "cpu_limit": 1,
                     "mem_limit": "8G",
                     "image": "eoepca/pde-code-server:develop"
-                },
+                }
             },
             {
                 "display_name": "IAT - JupyterLab",
@@ -53,7 +53,7 @@ def custom_options_form(spawner):
                     "cpu_limit": 1,
                     "mem_limit": "8G",
                     "image": "eoepca/iat-jupyterlab:main"
-                },
+                }
             },
                         {
                 "display_name": "IGA - Remote Desktop base",
@@ -62,7 +62,7 @@ def custom_options_form(spawner):
                     "mem_limit": "8G",
                     "image": "eoepca/iga-remote-desktop:develop",
                     "baseUrl": ""
-                },
+                }
             },
             {
                 "display_name": "IGA - Remote Desktop QGIS",
@@ -70,7 +70,7 @@ def custom_options_form(spawner):
                     "cpu_limit": 1,
                     "mem_limit": "8G",
                     "image": "eoepca/iga-remote-desktop-qgis:develop"
-                },
+                }
             },
             {
                 "display_name": "IGA - Remote Desktop SNAP",
@@ -78,7 +78,7 @@ def custom_options_form(spawner):
                     "cpu_limit": 1,
                     "mem_limit": "8G",
                     "image": "eoepca/iga-remote-desktop-snap:develop"
-                },
+                }
             },         
 
             {
@@ -87,16 +87,9 @@ def custom_options_form(spawner):
                     "cpu_limit": 1,
                     "mem_limit": "8G",
                     "image": "eoepca/iga-streamlit-demo:develop"
-                },
+                }
             },
-            {
-                "display_name": "IGA - Dashboard Voila",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iga-voila-demo:develop",
-                },
-            }   
+
         ]
 
     return spawner._options_form_default()
@@ -311,4 +304,4 @@ c.KubeSpawner.volume_mounts = [
 # c.KubeSpawner.image_pull_secrets = ["cr-config"]
 
 c.KubeSpawner.options_form = custom_options_form
-c.KubeSpawner.image_pull_policy = "Always"
+c.KubeSpawner.image_pull_policy = "IfNotPresent"
