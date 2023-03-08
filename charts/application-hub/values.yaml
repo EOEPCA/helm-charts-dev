@@ -166,8 +166,10 @@ jupyterhub:
       - name: application-hub-config
         mountPath: /usr/local/etc/applicationhub
     image:
-      name: jupyterhub/k8s-hub
-      tag: "2.0.0"
+      #name: jupyterhub/k8s-hub
+      #tag: "2.0.0"
+      name: eoepca/app-hub
+      tag: "develop"
       pullPolicy:
       pullSecrets: []
     resources: {}
