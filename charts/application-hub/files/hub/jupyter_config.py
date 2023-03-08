@@ -17,7 +17,7 @@ from tornado.httpclient import HTTPRequest
 
 
 # from workspace_context.parser import WorkspaceConfigParser
-# from workspace_context.context import WorkspaceContext
+from application_hub_context.app_hub_context import ApplicationHubContext
 
 
 configuration_directory = os.path.dirname(os.path.realpath(__file__))
@@ -105,30 +105,31 @@ def pre_spawn_hook(spawner):
 
     spawner.log.info(f"Using profile slug {profile_slug}")
 
-    namespace = f"jupyter-{spawner.user.name}"
+    #namespace = f"jupyter-{spawner.user.name}"
+    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-    # workspace = WorkspaceContext(
-    #     namespace=namespace,
-    #     spawner=spawner,
-    #     config_path=config_path,
-    # )
+    workspace = ApplicationHubContext(
+        namespace=namespace,
+        spawner=spawner,
+        config_path=config_path,
+    )
 
-    # workspace.initialise()
+    workspace.initialise()
 
     spawner.log.info(f"env: {spawner.environment.get('JPY_DEFAULT_URL')}")
 
 def post_stop_hook(spawner):
 
-    namespace = f"jupyter-{spawner.user.name}"
+    #namespace = f"jupyter-{spawner.user.name}"
+    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-
-    # workspace = WorkspaceContext(
-    #     namespace=namespace,
-    #     spawner=spawner,
-    #     config_path=config_path,
-    # )
-    # spawner.log.info("Dispose in post stop hook")
-    # workspace.dispose()
+    workspace = ApplicationHubContext(
+        namespace=namespace,
+        spawner=spawner,
+        config_path=config_path,
+    )
+    spawner.log.info("Dispose in post stop hook")
+    workspace.dispose()
 
 
 # Configure JupyterHub to use the curl backend for making HTTP requests,
