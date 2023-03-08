@@ -5275,6 +5275,16 @@ entries:
     version: 0.0.13
   rm-workspace-api:
   - apiVersion: v2
+    appVersion: 1.3-dev5
+    created: "2023-03-08T09:10:46.579030386Z"
+    description: A Helm chart for Kubernetes
+    digest: 3b5cd7fd0d1e5d96ed329511ca5cae92ee561db2a66c1ba8a2ce3ab4c76b7933
+    name: rm-workspace-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-workspace-api-1.3.2/rm-workspace-api-1.3.2.tgz
+    version: 1.3.2
+  - apiVersion: v2
     appVersion: 1.3.0
     created: "2023-02-25T10:33:59.116493178Z"
     description: A Helm chart for Kubernetes
@@ -6585,4 +6595,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-03-08T08:46:42.458377312Z"
+generated: "2023-03-08T09:10:46.581420601Z"
