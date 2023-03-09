@@ -14,6 +14,10 @@ metadata:
     cert-manager.io/cluster-issuer: {{ .Values.global.certManager.clusterIssuer }}
     {{- end }}
     kubernetes.io/ingress.class: nginx
+    {{- if .Values.ingress.subpath_enabled }}
+    {{- with .Values.ingress.subpath_annotations }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
+    {{- end }}
 spec:
   rules:
   {{- if eq .Values.configMap.workingMode "PARTIAL" }}
@@ -23,6 +27,36 @@ spec:
   {{- end }}
     http:
       paths:
+      {{- if .Values.ingress.subpath_enabled }}
+      - path: {{ .Values.ingress.subpath }}/(.*)
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Prefix
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.pep $) }}
+            port:
+              number: {{ index .Values "global" "ports" "proxy-pep" "port" }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.pep $) }}
+          servicePort: {{ index .Values "global" "ports" "proxy-pep" "port" }}
+          {{- end }}
+      - path: {{ .Values.ingress.subpath }}$
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Exact
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.pep $) }}
+            port:
+              number: {{ index .Values "global" "ports" "proxy-pep" "port" }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.pep $) }}
+          servicePort: {{ index .Values "global" "ports" "proxy-pep" "port" }}
+          {{- end }}
+      {{- else }}
       - path: /
         {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
         pathType: "ImplementationSpecific"
@@ -57,11 +91,45 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    {{- if .Values.ingress.subpath_enabled }}
+    {{- with .Values.ingress.subpath_annotations }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
+    {{- end }}
 spec:
   rules:
   - host: {{ printf "%s-pepapi.%s" .Values.global.context .Values.global.domain | quote }}
     http:
       paths:
+      {{- if .Values.ingress.subpath_enabled }}
+      - path: {{ .Values.ingress.subpath }}/(.*)
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Prefix
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.pep $) }}
+            port:
+              number: {{ index .Values "global" "ports" "resources-pep" "port" }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.pep $) }}
+          servicePort: {{ index .Values "global" "ports" "resources-pep" "port" }}
+          {{- end }}
+      - path: {{ .Values.ingress.subpath }}$
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Exact
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.pep $) }}
+            port:
+              number: {{ index .Values "global" "ports" "resources-pep" "port" }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.pep $) }}
+          servicePort: {{ index .Values "global" "ports" "resources-pep" "port" }}
+          {{- end }}
+      {{- else }}
       - path: /
         {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
         pathType: "ImplementationSpecific"
@@ -95,8 +163,13 @@ metadata:
     cert-manager.io/cluster-issuer: {{ .Values.global.certManager.clusterIssuer }}
     {{- end }}
     kubernetes.io/ingress.class: nginx
+    {{- if .Values.ingress.subpath_enabled }}
+    {{- with .Values.ingress.subpath_annotations }}
+      {{- tpl (toYaml .) $ | nindent 4 }}
+    {{- else}}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       auth_request /authcheck;
+    {{- end }}
     nginx.ingress.kubernetes.io/server-snippet: |
       location /authcheck {
         internal;
@@ -115,6 +188,36 @@ spec:
   - host: {{ printf "%s.%s" $hostname .Values.global.domain | quote }}
     http:
       paths:
+      {{- if .Values.ingress.subpath_enabled }}
+      - path: {{ .Values.ingress.subpath }}/(.*)
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Prefix
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.resourceServer.name $) }}
+            port:
+              number: {{ .Values.global.resourceServer.port }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.resourceServer.name $) }}
+          servicePort: {{ .Values.global.resourceServer.port }}
+          {{- end }}
+      - path: {{ .Values.ingress.subpath }}$
+        {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
+        pathType: Exact
+        {{- end }}
+        backend:
+          {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ (tpl .Values.global.resourceServer.name $) }}
+            port:
+              number: {{ .Values.global.resourceServer.port }}
+          {{- else }}
+          serviceName: {{ (tpl .Values.global.resourceServer.name $) }}
+          servicePort: {{ .Values.global.resourceServer.port }}
+          {{- end }}
+      {{- else }}
       - path: /
         {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
         pathType: "ImplementationSpecific"

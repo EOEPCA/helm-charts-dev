@@ -70,7 +70,13 @@ nginxIntegration:
   enabled: false
   # First part of the hostname - global.domain will be appended
   hostname: ""
-
+ingress:
+  subpath_enabled: false
+  subpath: "/pep"
+  subpath_annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^({{ .Values.ingress.subpath }})$ $1/ redirect;
 readinessProbe:
   initialDelaySeconds: 1
   periodSeconds: 90
