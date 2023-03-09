@@ -313,3 +313,7 @@ c.KubeSpawner.volume_mounts = [
 c.KubeSpawner.options_form = custom_options_form
 #c.KubeSpawner.image_pull_policy = "IfNotPresent"
 c.KubeSpawner.image_pull_policy = "Always"
+
+# hooks
+c.KubeSpawner.pre_spawn_hook = pre_spawn_hook
+c.KubeSpawner.post_stop_hook = post_stop_hook
