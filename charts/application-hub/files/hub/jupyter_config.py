@@ -16,8 +16,7 @@ from tornado.httpclient import HTTPRequest
 
 
 
-# from workspace_context.parser import WorkspaceConfigParser
-from application_hub_context.app_hub_context import ApplicationHubContext
+from application_hub_context.app_hub_context import DefaulfApplicationHubContext
 
 
 configuration_directory = os.path.dirname(os.path.realpath(__file__))
@@ -37,60 +36,69 @@ def custom_options_form(spawner):
 
     spawner.log.info("Configure profile list")
 
-    spawner.profile_list = [
-            {
-                "display_name": "PDE - Code Server",
-                "default": True,
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/pde-code-server:develop"
-                }
-            },
-            {
-                "display_name": "IAT - JupyterLab",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iat-jupyterlab:main"
-                }
-            },
-                        {
-                "display_name": "IGA - Remote Desktop base",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iga-remote-desktop:develop",
-                    "baseUrl": ""
-                }
-            },
-            {
-                "display_name": "IGA - Remote Desktop QGIS",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iga-remote-desktop-qgis:develop"
-                }
-            },
-            {
-                "display_name": "IGA - Remote Desktop SNAP",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iga-remote-desktop-snap:develop"
-                }
-            },         
+    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-            {
-                "display_name": "IGA - Dashboard Streamlit",
-                "kubespawner_override": {
-                    "cpu_limit": 1,
-                    "mem_limit": "8G",
-                    "image": "eoepca/iga-streamlit-demo:develop"
-                }
-            },
+    workspace = DefaulfApplicationHubContext(
+        namespace=namespace,
+        spawner=spawner
+    )
 
-        ]
+    spawner.profile_list = workspace.get_profile_list()
+
+    # spawner.profile_list = [
+    #         {
+    #             "display_name": "PDE - Code Server",
+    #             "default": True,
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/pde-code-server:develop"
+    #             }
+    #         },
+    #         {
+    #             "display_name": "IAT - JupyterLab",
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/iat-jupyterlab:main"
+    #             }
+    #         },
+    #                     {
+    #             "display_name": "IGA - Remote Desktop base",
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/iga-remote-desktop:develop",
+    #                 "baseUrl": ""
+    #             }
+    #         },
+    #         {
+    #             "display_name": "IGA - Remote Desktop QGIS",
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/iga-remote-desktop-qgis:develop"
+    #             }
+    #         },
+    #         {
+    #             "display_name": "IGA - Remote Desktop SNAP",
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/iga-remote-desktop-snap:develop"
+    #             }
+    #         },         
+
+    #         {
+    #             "display_name": "IGA - Dashboard Streamlit",
+    #             "kubespawner_override": {
+    #                 "cpu_limit": 1,
+    #                 "mem_limit": "8G",
+    #                 "image": "eoepca/iga-streamlit-demo:develop"
+    #             }
+    #         },
+
+    #     ]
 
     return spawner._options_form_default()
 
@@ -108,10 +116,9 @@ def pre_spawn_hook(spawner):
     #namespace = f"jupyter-{spawner.user.name}"
     namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-    workspace = ApplicationHubContext(
+    workspace = DefaulfApplicationHubContext(
         namespace=namespace,
-        spawner=spawner,
-        config_path=config_path,
+        spawner=spawner
     )
 
     workspace.initialise()
@@ -123,10 +130,9 @@ def post_stop_hook(spawner):
     #namespace = f"jupyter-{spawner.user.name}"
     namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-    workspace = ApplicationHubContext(
+    workspace = DefaulfApplicationHubContext(
         namespace=namespace,
-        spawner=spawner,
-        config_path=config_path,
+        spawner=spawner
     )
     spawner.log.info("Dispose in post stop hook")
     workspace.dispose()
@@ -307,8 +313,3 @@ c.KubeSpawner.volume_mounts = [
 c.KubeSpawner.options_form = custom_options_form
 #c.KubeSpawner.image_pull_policy = "IfNotPresent"
 c.KubeSpawner.image_pull_policy = "Always"
-
-
-# hooks
-c.KubeSpawner.pre_spawn_hook = pre_spawn_hook
-c.KubeSpawner.post_stop_hook = post_stop_hook
