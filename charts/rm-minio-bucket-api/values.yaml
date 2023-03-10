@@ -68,12 +68,7 @@ tolerations: []
 
 affinity: {}
 
-fluxHelmOperator:
-  # If you're cluster doesn't feature the flux helm-operator already,
-  # set this to true to enable it
-  enabled: false
-
 namespaceForBucketResource: rm
 minIOServerEndpoint: https://minio.develop.eoepca.org
-minIORootUser: pxAPsYEBTAAEjULh
-minIORootPassword: 8aODZH9UZOcVh7t6LSkHFlNh47qQogV1
+minIORootUser: ""
+minIORootPassword: ""
