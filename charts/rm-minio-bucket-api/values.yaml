@@ -70,5 +70,8 @@ affinity: {}
 
 namespaceForBucketResource: rm
 minIOServerEndpoint: https://minio.develop.eoepca.org
-minIORootUser: ""
-minIORootPassword: ""
+
+accessCredentials:
+  user: ""
+  password: ""
+  secretName: ""

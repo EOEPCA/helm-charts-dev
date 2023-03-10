@@ -59,10 +59,23 @@ spec:
               value: "{{ .Values.namespaceForBucketResource }}"
             - name: MINIO_SERVER_ENDPOINT
               value: "{{ .Values.minIOServerEndpoint }}"
+            {{- if .Values.accessCredentials.secretName }}
             - name: MINIO_ROOT_USER
-              value: "{{ .Values.minIORootUser }}"
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.accessCredentials.secretName }}"
+                  key: rootUser
             - name: MINIO_ROOT_PASSWORD
-              value: "{{ .Values.minIORootPassword }}"
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.accessCredentials.secretName }}"
+                  key: rootPassword
+            {{- else }}
+            - name: MINIO_ROOT_USER
+              value: "{{ .Values.accessCredentials.user }}"
+            - name: MINIO_ROOT_PASSWORD
+              value: "{{ .Values.accessCredentials.password }}"
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
