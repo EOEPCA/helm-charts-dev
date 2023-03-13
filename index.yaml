@@ -4605,6 +4605,16 @@ entries:
     version: 0.0.1
   rm-minio-bucket-api:
   - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2023-03-13T12:26:25.524114996Z"
+    description: A Helm chart for Kubernetes
+    digest: 7ff0b92ba9d4900bf40ddb9af6d1c21c9b38bf0fd2557f2f0030c3b4f1489399
+    name: rm-minio-bucket-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-minio-bucket-api-0.0.3/rm-minio-bucket-api-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2023-03-13T10:58:18.027390011Z"
     description: A Helm chart for Kubernetes
@@ -6672,4 +6682,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-03-13T10:58:18.031475456Z"
+generated: "2023-03-13T12:26:25.526993873Z"
