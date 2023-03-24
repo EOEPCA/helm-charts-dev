@@ -172,12 +172,12 @@ workflowExecutor:
       hints:
         DockerRequirement:
           dockerPull: terradue/stars:2.9.2
-          "cwltool:Secrets":
-            secrets:
-              - ADES_STAGEIN_AWS_SERVICEURL
-              - ADES_STAGEIN_AWS_REGION
-              - ADES_STAGEIN_AWS_ACCESS_KEY_ID
-              - ADES_STAGEIN_AWS_SECRET_ACCESS_KEY
+        "cwltool:Secrets":
+          secrets:
+            - ADES_STAGEIN_AWS_SERVICEURL
+            - ADES_STAGEIN_AWS_REGION
+            - ADES_STAGEIN_AWS_ACCESS_KEY_ID
+            - ADES_STAGEIN_AWS_SECRET_ACCESS_KEY
       id: stars
       requirements:
         EnvVarRequirement:
