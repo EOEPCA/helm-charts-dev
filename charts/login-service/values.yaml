@@ -32,7 +32,7 @@ global:
     persistence:
       repository: eoepca/um-login-persistence
       pullPolicy: IfNotPresent
-      tag: "v1.0"
+      tag: "v1.1.1"
     oxauth:
       repository: oxauth
       pullPolicy: Always
@@ -112,6 +112,9 @@ opendj:
     #client credentials for the coih provider
     coihClientIDv: ""
     coihClientSecretv: ""
+    #Lifetime of UMA resources, maximum value: 2147483647
+    umaResourceLifetime: UMA_RESOURCE_LIFETIME
+    umaResourceLifetimev: 2147483647
   readinessProbe:
     initialDelaySeconds: 150
     periodSeconds: 90
