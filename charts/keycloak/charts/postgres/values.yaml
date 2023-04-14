@@ -67,7 +67,7 @@ deployment:
   volumes: |
     - name: postgresdata
       persistentVolumeClaim:
-        claimName: postgres-volume-claim
+        claimName: um-keycloak-volume-claim
   # Liveness probe configuration
   livenessProbe: {}
     # httpGet:
