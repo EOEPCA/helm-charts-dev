@@ -67,7 +67,7 @@ deployment:
   volumes: |
     - name: postgresdata
       persistentVolumeClaim:
-        claimName: um-keycloak-volume-claim
+        claimName: eoepca-userman-pvc
   # Liveness probe configuration
   livenessProbe: {}
     # httpGet:
@@ -126,5 +126,5 @@ serviceAccount:
   name: ""
 
 volumeClaim:
-  name: um-keycloak-volume-claim
+  name: eoepca-userman-pvc
   create: false
