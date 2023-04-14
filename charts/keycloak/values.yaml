@@ -1,4 +1,12 @@
 postgres:
     enabled: true
+    deployment:
+        image:
+            repository: postgres
+            pullPolicy: IfNotPresent
 keycloak:
     enabled: true
+    deployment:
+        image:
+            repository: quay.io/keycloak/keycloak
+            pullPolicy: IfNotPresent
