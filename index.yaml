@@ -1598,6 +1598,28 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyterhub-1.1.2/jupyterhub-1.1.2.tgz
     version: 1.1.2
+  keycloak:
+  - apiVersion: v1
+    appVersion: v1
+    created: "2023-04-14T10:39:27.974868225Z"
+    dependencies:
+    - condition: postgres.enabled
+      name: postgres
+      repository: ""
+      version: 1.0.0
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: ""
+      version: 0.2.0
+    description: A Helm chart for Login Service based on Keycloak
+    digest: 673e1fb5e8c7f19c0fc863b2fb63e68cc60ccc4adf34cef43db59c21784a2e70
+    maintainers:
+    - name: eoepca
+    name: keycloak
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/keycloak-0.2.0/keycloak-0.2.0.tgz
+    version: 0.2.0
   keycloak-login-service:
   - apiVersion: v1
     appVersion: "1"
@@ -6800,4 +6822,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-04-14T09:38:56.794559276Z"
+generated: "2023-04-14T10:39:27.97850199Z"
