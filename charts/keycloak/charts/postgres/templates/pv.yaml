@@ -5,6 +5,7 @@ kind: PersistentVolume
 metadata:
   name: {{ .Values.volumeClaim.name }}
   labels:
+    {{- include "postgres.labels" . | nindent 4 }}
     type: {{ .Values.persistence.type }}
     eoepca_type: userman
 spec:
