@@ -1601,6 +1601,27 @@ entries:
   keycloak:
   - apiVersion: v1
     appVersion: v1
+    created: "2023-04-14T11:37:22.119499522Z"
+    dependencies:
+    - condition: postgres.enabled
+      name: postgres
+      repository: ""
+      version: 1.0.0
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: ""
+      version: 0.5.0
+    description: A Helm chart for Login Service based on Keycloak
+    digest: 310e62a056fc32cd3a53eff9747d5654b0941ff9eb5ae1d85653a181d9839e7c
+    maintainers:
+    - name: eoepca
+    name: keycloak
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/keycloak-0.5.0/keycloak-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v1
+    appVersion: v1
     created: "2023-04-14T10:58:32.946172033Z"
     dependencies:
     - condition: postgres.enabled
@@ -6864,4 +6885,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-04-14T10:58:32.949544651Z"
+generated: "2023-04-14T11:37:22.123128649Z"
