@@ -10,6 +10,7 @@ configMap:
   postgresUser: keycloak
   postgresPassword: admin_Abcd1234#
   pgPassword: admin_Abcd1234#
+  pgData: /var/lib/postgresql/data/keycloak
 
 # ---------------------------------------------
 # Variable used in pv and pvc template

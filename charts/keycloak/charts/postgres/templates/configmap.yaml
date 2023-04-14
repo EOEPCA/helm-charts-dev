@@ -9,3 +9,4 @@ data:
   POSTGRES_USER: "{{ .Values.configMap.postgresUser }}"
   POSTGRES_PASSWORD: "{{ .Values.configMap.postgresPassword }}"
   PGPASSWORD: "{{ .Values.configMap.pgPassword }}"
+  PGDATA: "{{ .Values.configMap.pgData }}"
