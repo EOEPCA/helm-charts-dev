@@ -31,28 +31,6 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Common labels
-*/}}
-{{- define "postgres.labels" -}}
-app: {{ include "postgres.name" . }}
-helm.sh/chart: {{ include "postgres.chart" . }}
-{{ include "postgres.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{/*
-Selector labels
-*/}}
-{{- define "postgres.selectorLabels" -}}
-app: {{ include "postgres.name" . }}
-app.kubernetes.io/name: {{ include "postgres.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
 Create the name of the service account to use
 */}}
 {{- define "postgres.serviceAccountName" -}}
