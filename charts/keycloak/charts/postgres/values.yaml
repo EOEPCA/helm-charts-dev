@@ -126,5 +126,5 @@ serviceAccount:
   name: ""
 
 volumeClaim:
-  name: postgres-volume-claim
-  create: true
+  name: um-keycloak-volume-claim
+  create: false
