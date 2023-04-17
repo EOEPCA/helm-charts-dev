@@ -62,7 +62,7 @@ deployment:
     - name: "KC_DB_URL_HOST"
       value: "postgres"
     - name: "KC_DB_PASSWORD"
-      value: "admin_Abcd1234#"
+      value: "123456"
     - name: "KC_DB_USERNAME"
       value: "keycloak"
     - name: "KC_DB_URL_PORT"
@@ -116,16 +116,16 @@ ingress:
   enabled: true
   className: ""
   annotations:
-    traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls.certresolver: myresolver
+    cert-manager.io/cluster-issuer: letsencrypt
   hosts:
     - host: keycloak.local.eoepca.org
       paths:
         - path: /
           pathType: Prefix
-  tls: {}
-
+  tls:
+    - secretName: keycloak-tls-certificate
+      hosts:
+        - keycloak.local.eoepca.org
 # ---------------------------------------
 # Variable group used in ingress template
 # ---------------------------------------
