@@ -8,8 +8,8 @@
 configMap:
   postgresDb: keycloak
   postgresUser: keycloak
-  postgresPassword: admin_Abcd1234#
-  pgPassword: admin_Abcd1234#
+  postgresPassword: 123456
+  pgPassword: 123
   pgData: /var/lib/postgresql/data/keycloak
 
 # ---------------------------------------------
