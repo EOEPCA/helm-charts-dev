@@ -62,7 +62,7 @@ deployment:
     - name: "KC_DB_URL_HOST"
       value: "postgres"
     - name: "KC_DB_PASSWORD"
-      value: "123456"
+      value: "admin_Abcd1234#"
     - name: "KC_DB_USERNAME"
       value: "keycloak"
     - name: "KC_DB_URL_PORT"
