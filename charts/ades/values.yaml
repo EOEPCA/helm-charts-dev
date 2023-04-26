@@ -8,7 +8,7 @@ image:
   repository: eoepca/proc-ades
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2.0.13"
+  tag: "2.0.14"
   proxyRepository: eoepca/kubectl-proxy
   proxyTag: "0.9.0"
 
@@ -333,6 +333,8 @@ workflowExecutor:
 
   # processing pods node selector:
   processingNodeSelector: {}
+
+  usernameJwtJsonPath: "user_name"
 
 wps:
   pepBaseUrl: "https://pep.eoepca.terradue.com"
