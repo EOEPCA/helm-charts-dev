@@ -30,17 +30,19 @@ from z2jh import (
     get_secret_value,
 )
 
-config_path="/usr/local/etc/applicationhub/config.yml"
+
 
 def custom_options_form(spawner):
 
     spawner.log.info("Configure profile list")
 
-    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
+    config_path="/usr/local/etc/applicationhub/config.yml"
+    namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
 
     workspace = DefaulfApplicationHubContext(
         namespace=namespace,
-        spawner=spawner
+        spawner=spawner,
+        config_path=config_path
     )
 
     spawner.profile_list = workspace.get_profile_list()
