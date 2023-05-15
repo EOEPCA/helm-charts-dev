@@ -16,7 +16,7 @@ from tornado.httpclient import HTTPRequest
 
 
 
-from application_hub_context.app_hub_context import DefaulfApplicationHubContext
+from application_hub_context.app_hub_context import DefaultApplicationHubContext
 
 
 configuration_directory = os.path.dirname(os.path.realpath(__file__))
@@ -39,7 +39,7 @@ def custom_options_form(spawner):
     config_path="/usr/local/etc/applicationhub/config.yml"
     namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
 
-    workspace = DefaulfApplicationHubContext(
+    workspace = DefaultApplicationHubContext(
         namespace=namespace,
         spawner=spawner,
         config_path=config_path
@@ -63,7 +63,7 @@ def pre_spawn_hook(spawner):
     #namespace = f"jupyter-{spawner.user.name}"
     namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-    workspace = DefaulfApplicationHubContext(
+    workspace = DefaultApplicationHubContext(
         namespace=namespace,
         spawner=spawner
     )
@@ -77,7 +77,7 @@ def post_stop_hook(spawner):
     #namespace = f"jupyter-{spawner.user.name}"
     namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
 
-    workspace = DefaulfApplicationHubContext(
+    workspace = DefaultApplicationHubContext(
         namespace=namespace,
         spawner=spawner
     )
