@@ -302,10 +302,10 @@ profiles:
 
   - id: profile_studio_labs
     groups: 
-    - ellip-notebooks
+    - group-3
     definition:
       display_name: IAT - Interactive Analysis Tool (JupyterLab)
-      slug: ellip_studio_labs
+      slug: studio_labs_slug
       default: False
       kubespawner_override:
         cpu_limit: 1

@@ -61,7 +61,7 @@ def pre_spawn_hook(spawner):
     spawner.log.info(f"Using profile slug {profile_slug}")
 
     #namespace = f"jupyter-{spawner.user.name}"
-    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
+    namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
 
     workspace = DefaultApplicationHubContext(
         namespace=namespace,
@@ -76,7 +76,7 @@ def pre_spawn_hook(spawner):
 def post_stop_hook(spawner):
 
     #namespace = f"jupyter-{spawner.user.name}"
-    namespace = resource_manager_workspace_prefix + f"-{spawner.user.name}"
+    namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
 
     workspace = DefaultApplicationHubContext(
         namespace=namespace,
@@ -168,10 +168,7 @@ resource_manager_workspace_prefix = os.environ["RESOURCE_MANAGER_WORKSPACE_PREFI
 
 c.JupyterHub.authenticator_class = EoepcaOAuthenticator
 c.Authenticator.enable_auth_state = True
-
-# c.JupyterHub.authenticator_class = "dummy"
-# c.DummyAuthenticator.password = "bb"
-
+c.Authenticator.admin_users = {'eric'}
 
 c.Authenticator.scope = 'openid email user_name is_operator'.split(' ')
 
