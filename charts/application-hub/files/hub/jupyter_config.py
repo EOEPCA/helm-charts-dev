@@ -232,30 +232,6 @@ c.KubeSpawner.user_namespace_template = (
     resource_manager_workspace_prefix + "-{username}"
 )
 
-# Volumes
-c.KubeSpawner.storage_capacity = "10Gi"
-c.KubeSpawner.storage_class = "managed-nfs-storage"
-c.KubeSpawner.storage_pvc_ensure = True
-c.KubeSpawner.pvc_name_template = (
-    "claim-{username}-" + os.environ["JUPYTERHUB_ENV"].lower()
-)
-c.KubeSpawner.volumes = [
-    {
-        "name": "volume-workspace-{username}-" + os.environ["JUPYTERHUB_ENV"].lower(),
-        "persistentVolumeClaim": {
-            "claimName": "claim-{username}-" + os.environ["JUPYTERHUB_ENV"].lower()
-        },
-    },
-]
-c.KubeSpawner.volume_mounts = [
-    {
-        "name": "volume-workspace-{username}-" + os.environ["JUPYTERHUB_ENV"].lower(),
-        "mountPath": "/workspace",
-    }
-]
-
-# c.KubeSpawner.image_pull_secrets = ["cr-config"]
-
 c.KubeSpawner.options_form = custom_options_form
 #c.KubeSpawner.image_pull_policy = "IfNotPresent"
 c.KubeSpawner.image_pull_policy = "Always"

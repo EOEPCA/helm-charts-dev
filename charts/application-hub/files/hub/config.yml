@@ -377,16 +377,6 @@ profiles:
           name: volume-workspace
           mount_path: "/workspace"
         persist: true
-      - name: volume-calrissian
-        claim_name: claim-calrissian
-        size: 15Gi
-        storage_class: managed-nfs-storage
-        access_modes:
-          - "ReadWriteMany"
-        volume_mount:
-          name: volume-calrissian
-          mount_path: "/calrissian"
-        persist: false
     configMaps:
       - name: bash-rc
         key: bash-rc
