@@ -19,6 +19,7 @@ from tornado.httpclient import HTTPRequest
 from application_hub_context.app_hub_context import DefaultApplicationHubContext
 
 
+config_path="/usr/local/etc/applicationhub/config.yml"
 configuration_directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, configuration_directory)
 
@@ -36,9 +37,8 @@ def custom_options_form(spawner):
 
     spawner.log.info("Configure profile list")
 
-    config_path="/usr/local/etc/applicationhub/config.yml"
-    namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
 
+    namespace = f"{resource_manager_workspace_prefix}-{spawner.user.name}"
     workspace = DefaultApplicationHubContext(
         namespace=namespace,
         spawner=spawner,
@@ -65,7 +65,8 @@ def pre_spawn_hook(spawner):
 
     workspace = DefaultApplicationHubContext(
         namespace=namespace,
-        spawner=spawner
+        spawner=spawner,
+        config_path=config_path
     )
 
     workspace.initialise()
@@ -79,7 +80,8 @@ def post_stop_hook(spawner):
 
     workspace = DefaultApplicationHubContext(
         namespace=namespace,
-        spawner=spawner
+        spawner=spawner,
+        config_path=config_path
     )
     spawner.log.info("Dispose in post stop hook")
     workspace.dispose()
