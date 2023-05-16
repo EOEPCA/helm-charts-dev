@@ -168,7 +168,7 @@ resource_manager_workspace_prefix = os.environ["RESOURCE_MANAGER_WORKSPACE_PREFI
 
 c.JupyterHub.authenticator_class = EoepcaOAuthenticator
 c.Authenticator.enable_auth_state = True
-c.Authenticator.admin_users = {'eric'}
+c.Authenticator.admin_users = {'eric','bob'} 
 
 c.Authenticator.scope = 'openid email user_name is_operator'.split(' ')
 
