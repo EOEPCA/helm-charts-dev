@@ -382,16 +382,8 @@ profiles:
         key: bash-rc
         content: |-
           alias ll="ls -l"
-          alias calrissian="/opt/conda/bin/calrissian --stdout /calrissian/results.json --max-ram 16G --max-cores "8" --tmp-outdir-prefix /calrissian/tmp/ --outdir /calrissian/"
           . /home/jovyan/.bashrc 
         mount_path: /workspace/.bashrc 
-        default_mode: 0660
-        readonly: true
-      - name: pod-node-selector
-        key: pod-node-selector
-        content: |-
-          node-role.kubernetes.io/worker: true
-        mount_path: /etc/calrissian/pod-node-selector.yml
         default_mode: 0660
         readonly: true
       - name: aws-credentials
