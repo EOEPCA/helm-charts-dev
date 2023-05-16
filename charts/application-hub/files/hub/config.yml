@@ -42,7 +42,7 @@ profiles:
           mount_path: "/workspace"
         persist: true
     node_selector: 
-      k8s.scaleway.com/pool-name: default
+      node-role.kubernetes.io/worker: "true"
 
   - id: profile_studio_stac_browser_planet
     groups: 
