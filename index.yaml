@@ -5255,6 +5255,16 @@ entries:
   rm-registration-api:
   - apiVersion: v2
     appVersion: 1.3-dev0
+    created: "2023-05-25T09:01:04.201673844Z"
+    description: A Helm chart for Kubernetes
+    digest: a5bb1907b0bc3bc5fa0dabf2611b6237576a599c98ce9640aea5d7cb8095e7aa
+    name: rm-registration-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-registration-api-1.3-dev1/rm-registration-api-1.3-dev1.tgz
+    version: 1.3-dev1
+  - apiVersion: v2
+    appVersion: 1.3-dev0
     created: "2023-05-22T14:36:15.18723167Z"
     description: A Helm chart for Kubernetes
     digest: 15c5247998add87466ac5d9cbd1bc102424e5c85b867e2beaee166b6e600f3ad
@@ -7331,4 +7341,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-05-23T05:51:34.215237209Z"
+generated: "2023-05-25T09:01:04.204719463Z"
