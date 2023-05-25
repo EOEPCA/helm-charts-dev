@@ -32,7 +32,6 @@ The configuration parameters in this section control the resource catalogue conf
 | image.repository                                 | The image repository to use  | `eoepca/rm-registration-api`                              |
 | image.pullPolicy                       | The pull policy to use  | `IfNotPresent`                              |
 | image.tag                        | Image tag to use  | `""`                              |
-| imagePullSecrets                        | Any image pull sectets to use  | `[{name: flux-workspace-api}]`                              |
 | nameOverride                        | Override the full name  | `""`                              |
 | fullNameOverride                        | Override the name  | `""`                              |
 | serviceAccount.create                        | Whether or not to create a service account  | `true`                              |
@@ -54,30 +53,6 @@ The configuration parameters in this section control the resource catalogue conf
 | nodeSelector                        | Specify a node selector  | `{}`                              |
 | tolerations                        | Specify a tolerations  | `{}`                              |
 | affinity                        | Specify a affinity  | `{}`                              |
-| prefixForName                        | Specify a workspace prefix to be prepended before each workspace  | `develop-user`                              |
-| workspaceSecretName                        | Specify the name of the secret containing the workspace bucket credentials  | `bucket`                              |
-| namespaceForBucketResource                        | Specify the namespace for the created bucket resource  | `rm`                              |
-| workspaceConfigMapName                        | Specify the name of the ConfigMap to locate the | `workspace`                              |
-| s3Endpoint                        | The S3 Endpoint for the users bucket | `https://cf2.cloudferro.com:8080`                              |
-| s3Region                        | The S3 Region for the users bucket | `RegionOne`                              |
-| umaClientSecretName                        | The UMA Client Secret Name | `""`                             |
-| umaClientSecretNamespace                        | The UMA Client Secret Namespace | `""`                             |
-| workspaceChartsConfigMap          | Name of config map which features the helm chart templates which define the workspace | ""      |
-| fluxHelmOperator.enabled     | Whether to install the flux helm operator together with the workspace api (for cluster which don't use flux) | false |
 | redisServiceName           | Name of the redis service in the namespace | "vs-redis-master"      |
-| harborUrl | URL of harbor service | "" |
-| harborUsername | Username of harbor admin user | "" |
-| harborPassword | Password of harbor admin user | "" |
-| bucketEndpointUrl | The url of the bucket operator wrapper | "" |
-| pepBaseUrl | The url of the Resources endpoint of the PEP | "" |
+| workspaceK8sNamespace           | Name of the kubernetes namespace to deploy | "rm"      |
 | autoProtectionEnabled | Whether to register register a PEP resource for the created workspace  | "True" |
-
-## Defining the workspace
-
-The workspace-api deploys a workspace by rendering the contents of a config map (referenced by `workspaceChartsConfigMap`) as a jinja2 template and applying the resulting HelmRelease.
-
-The jinja2 template is rendered with the following template variables:
-
-* `workspace_name`
-* `default_owner`
-* Access data for the workspace bucket: `access_key_id`, `secret_access_key`, `bucket`, `projectid`
