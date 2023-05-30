@@ -960,6 +960,20 @@ entries:
     version: 2.3.3
   - apiVersion: v2
     appVersion: 2.3.3
+    created: "2023-05-30T14:39:54.448579805Z"
+    dependencies:
+    - name: vs
+      repository: https://charts-public.hub.eox.at/
+      version: 2.3.3
+    description: A Helm chart for Kubernetes
+    digest: 7d42502616643e84c4ac791c31aadf54c4914f8c1690207aba0206872586867f
+    name: data-access
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.3.0-dev3/data-access-1.3.0-dev3.tgz
+    version: 1.3.0-dev3
+  - apiVersion: v2
+    appVersion: 2.3.3
     created: "2023-04-22T08:11:22.767966967Z"
     dependencies:
     - name: vs
@@ -7361,4 +7375,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-05-30T14:38:48.014814216Z"
+generated: "2023-05-30T14:39:54.451538942Z"
