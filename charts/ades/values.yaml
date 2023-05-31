@@ -345,6 +345,9 @@ workflowExecutor:
   resourceManagerWorkspacePrefix: "rm-user"
   platformDomain: "https://platform-eoepca.com"
   
+  # path to the username value in the JWT token payload
+  usernameJwtJsonPath: "user_name"
+
   # adds a label to the job namespace
   # jobNamespaceLabels:
   #   app: "ades-app"
