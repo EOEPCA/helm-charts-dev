@@ -19,10 +19,10 @@ global:
   fsType: ext4
   images:
     config:
-      repository: gluufederation/config-init
+      repository: eoepca/config-init
       tag: 4.1.1_02
     opendj:
-      repository: gluufederation/wrends
+      repository: eoepca/wrends
       pullPolicy: Always
       tag: 4.1.1_01
     passport:
