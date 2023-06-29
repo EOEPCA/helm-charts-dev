@@ -298,7 +298,7 @@ The Nginx controller can be used as Ingress for load balancing, currently will u
       hosts:
         - myplatform.eoepca.org
       tls: 
-      - secretName: tls-certificate
+      - secretName: login-tls-certificate
         hosts:
           - myplatform.eoepca.org
     resources: {}
