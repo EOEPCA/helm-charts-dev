@@ -286,7 +286,7 @@ The base configuration for jetty support needs some mount path for the volume to
 
 ## Nginx
 
-The Nginx controller can be used as Ingress for load balancing, currently will use the tls-certificates and specify the domain name for the Login Service. It uses an external image to manage tls with Gluu under the name and tag repository `kungus/gluu-tls-initializer:stable`
+The Nginx controller can be used as Ingress for load balancing, currently will use the gluu-tls-certificates and specify the domain name for the Login Service. It uses an external image to manage tls with Gluu under the name and tag repository `kungus/gluu-tls-initializer:stable`
 
   ```yaml
   nginx:
@@ -298,7 +298,7 @@ The Nginx controller can be used as Ingress for load balancing, currently will u
       hosts:
         - myplatform.eoepca.org
       tls: 
-      - secretName: tls-certificate
+      - secretName: gluu-tls-certificate
         hosts:
           - myplatform.eoepca.org
     resources: {}

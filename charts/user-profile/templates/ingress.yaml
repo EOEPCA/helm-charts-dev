@@ -14,7 +14,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   tls: 
-  - secretName: {{ printf "tls-certificate-user-profile" .Values.context | quote }}
+  - secretName: {{ printf "user-profile-tls-certificate" .Values.context | quote }}
     hosts:
       - {{ .Values.global.domain | quote }}
   rules:
@@ -56,7 +56,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   tls: 
-  - secretName: {{ printf "tls-certificate-user-profile" .Values.context | quote }}
+  - secretName: {{ printf "user-profile-tls-certificate" .Values.context | quote }}
     hosts:
       - {{ .Values.global.domain | quote }}
   rules:
