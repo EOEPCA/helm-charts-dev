@@ -7,7 +7,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: pdp-{{ .Values.context }}-service
+  name: pdp-service
   
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -15,7 +15,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   tls: 
-  - secretName: {{ printf "pdp-tls-certificate" .Values.context | quote }}
+  - secretName: "pdp-tls-certificate"
     hosts:
       - {{ .Values.global.domain | quote }}
   rules:
