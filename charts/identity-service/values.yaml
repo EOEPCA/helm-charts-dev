@@ -1,16 +1,16 @@
-postgres:
+identity-postgres:
     enabled: true
     deployment:
         image:
             repository: postgres
             pullPolicy: IfNotPresent
-keycloak:
+identity-keycloak:
     enabled: true
     deployment:
         image:
             repository: quay.io/keycloak/keycloak
             pullPolicy: IfNotPresent
-identity-api:
+identity-identity-api:
     enabled: true
     deployment:
         image:
@@ -22,7 +22,7 @@ identity-manager:
         image:
             repository: ghcr.io/eoepca/um-identity-manager
             pullPolicy: IfNotPresent
-oauth2-proxy:
+identity-proxy:
     enabled: true
     deployment:
         image:
