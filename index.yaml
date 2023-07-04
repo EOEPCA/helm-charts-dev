@@ -1428,6 +1428,40 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/dummy-0.9.0/dummy-0.9.0.tgz
     version: 0.9.0
+  identity:
+  - apiVersion: v1
+    appVersion: v1
+    created: "2023-07-04T10:30:49.939912602Z"
+    dependencies:
+    - condition: identity-api.enabled
+      name: identity-api
+      repository: ""
+      version: 1.0.0
+    - condition: identity-manager.enabled
+      name: identity-manager
+      repository: ""
+      version: 1.0.0
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: ""
+      version: 0.15.0
+    - condition: oauth2-proxy.enabled
+      name: oauth2-proxy
+      repository: ""
+      version: 1.0.0
+    - condition: postgres.enabled
+      name: postgres
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart to deploy Identity Service based on Keycloak
+    digest: bd524ca23ea616274d68bf1975a353c04ed0429aef7716ca333b965f1ab9f1c4
+    maintainers:
+    - name: eoepca
+    name: identity
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-0.15.0/identity-0.15.0.tgz
+    version: 0.15.0
   jupyter:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -7623,4 +7657,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-06-30T18:17:59.023767951Z"
+generated: "2023-07-04T10:30:49.946502478Z"
