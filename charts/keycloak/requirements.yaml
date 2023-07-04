@@ -1,7 +1,0 @@
-dependencies:
-    - name: postgres
-      condition: postgres.enabled
-      version: 1.0.0
-    - name: keycloak
-      condition: keycloak.enabled
-      version: 0.15.0
