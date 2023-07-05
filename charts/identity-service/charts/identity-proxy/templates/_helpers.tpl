@@ -63,7 +63,7 @@ Get the secret name.
 {{- if .Values.config.existingSecret -}}
 {{- printf "%s" .Values.config.existingSecret -}}
 {{- else -}}
-{{- printf "%s" (include "oauth2-proxy.fullname" .) -}}
+{{- printf "%s" (include "oauth2-proxy.name" .) -}}
 {{- end -}}
 {{- end -}}
 
@@ -72,7 +72,7 @@ Create the name of the service account to use
 */}}
 {{- define "oauth2-proxy.serviceAccountName" -}}
 {{- if .Values.serviceAccount.enabled -}}
-    {{ default (include "oauth2-proxy.fullname" .) .Values.serviceAccount.name }}
+    {{ default (include "oauth2-proxy.name" .) .Values.serviceAccount.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
