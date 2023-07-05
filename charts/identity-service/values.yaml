@@ -15,13 +15,13 @@ identity-identity-api:
     deployment:
         image:
             repository: ghcr.io/eoepca/um-identity-api
-            pullPolicy: IfNotPresent
+            pullPolicy: Always
 identity-manager:
     enabled: true
     deployment:
         image:
             repository: ghcr.io/eoepca/um-identity-manager
-            pullPolicy: IfNotPresent
+            pullPolicy: Always
 identity-proxy:
     enabled: true
     deployment:
