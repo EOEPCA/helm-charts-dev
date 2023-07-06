@@ -346,8 +346,8 @@ config:
     cookie_secure = true
     cookie_secret = "JxJZrvNo4z1VJIiDMDGJe3q4TjmpVxMNHziW97J9UAo="
     upstreams = ["https://dummy-service.develop.eoepca.org"]
-    cookie_domains = [".eoepca.org"] # Required so cookie can be read on all subdomains.
-    whitelist_domains = [".eoepca.org"] # Required to allow redirection back to original requested target.
+    cookie_domains = [".eoepca.org", "localhost"] # Required so cookie can be read on all subdomains.
+    whitelist_domains = [".eoepca.org", "localhost"] # Required to allow redirection back to original requested target.
     pass_access_token = true
     set_xauthrequest = true
     # allow accounts to sign-in with empty emails
