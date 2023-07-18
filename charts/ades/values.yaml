@@ -368,8 +368,6 @@ workflowExecutor:
   # processing pods node selector:
   processingNodeSelector: {}
 
-  usernameJwtJsonPath: "user_name"
-
 wps:
   pepBaseUrl: "https://pep.eoepca.terradue.com"
   pepClientStatePath: "/opt/zooservices_user/pepclient"
