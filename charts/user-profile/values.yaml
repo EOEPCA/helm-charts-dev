@@ -39,6 +39,7 @@ configMap:
   useThreads: "true"
   debugMode: "true"
   pdpPort: 5567
+  pdpUrl: "http://demoexample.gluu.org"
 
 image: 
   repository: ghcr.io/eoepca/um-user-profile
