@@ -84,6 +84,7 @@ The values specified in the ConfigMap will apply changes on the front page of th
   useThreads: "true"
   debugMode: "true"
   pdpPort: 5567
+  pdpUrl: "http://demoexample.gluu.org"
   ```
 
 ## Ports
