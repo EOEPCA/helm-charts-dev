@@ -83,6 +83,7 @@ The values specified in the ConfigMap will apply changes on the front page of th
   colorButtonModify: "#38A79F"
   useThreads: "true"
   debugMode: "true"
+  pdpPort: 5567
   ```
 
 ## Ports
