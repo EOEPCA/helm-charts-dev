@@ -3808,6 +3808,18 @@ entries:
   pdp-engine:
   - apiVersion: v1
     appVersion: v1.2
+    created: "2023-08-03T17:13:03.438828275Z"
+    description: A Helm chart for PDP Engine
+    digest: 497c782962e4359d4923695ef60832c39476909618a3faec0e296caf2d6b5737
+    maintainers:
+    - name: eoepca
+    name: pdp-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pdp-engine-1.1.13/pdp-engine-1.1.13.tgz
+    version: 1.1.13
+  - apiVersion: v1
+    appVersion: v1.2
     created: "2023-07-21T14:09:16.742760895Z"
     description: A Helm chart for PDP Engine
     digest: ea701c09f1cbd6048f6b6e51c59c1e3ad2d1c6e4251742b1c3066797b9e3f05f
@@ -4119,6 +4131,18 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/pdp-engine-0.1.3/pdp-engine-0.1.3.tgz
     version: 0.1.3
   pep-engine:
+  - apiVersion: v1
+    appVersion: v1.2
+    created: "2023-08-03T17:13:03.620423373Z"
+    description: A Helm chart for PEP Engine
+    digest: 64a499eec60a88335070ab4f799e2312c4371f2cee568288eed431d10bc8f3a3
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-1.1.10/pep-engine-1.1.10.tgz
+    version: 1.1.10
   - apiVersion: v1
     appVersion: v1.2
     created: "2023-07-21T15:06:17.501401518Z"
@@ -7982,6 +8006,18 @@ entries:
     version: 0.0.1
   user-profile:
   - apiVersion: v1
+    appVersion: v1.2
+    created: "2023-08-03T17:13:03.959608116Z"
+    description: A Helm chart for the User Profile
+    digest: 99a64bf5833a1592ecbcaf573a20254b7f74d484503e50ced3268dd4ee19f9aa
+    maintainers:
+    - name: eoepca
+    name: user-profile
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/user-profile-1.1.13/user-profile-1.1.13.tgz
+    version: 1.1.13
+  - apiVersion: v1
     appVersion: v1.3
     created: "2023-07-21T10:25:31.6013494Z"
     description: A Helm chart for the User Profile
@@ -8281,4 +8317,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-08-02T13:51:55.626400602Z"
+generated: "2023-08-03T17:13:03.966483789Z"
