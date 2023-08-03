@@ -42,7 +42,7 @@ configMap:
   pdpUrl: "http://demoexample.gluu.org"
 
 image: 
-  repository: ghcr.io/eoepca/um-user-profile
+  repository: um-user-profile
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
