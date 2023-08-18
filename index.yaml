@@ -504,6 +504,20 @@ entries:
   application-hub:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2023-08-18T15:49:25.300272124Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart
+      version: 2.0.0
+    description: Application Hub Helm Chart
+    digest: 41729e8e304e3e8e9ab0f5a61745334a65a28b4b85b4dd30dbfdbf3405704ca5
+    name: application-hub
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/application-hub-2.0.47/application-hub-2.0.47.tgz
+    version: 2.0.47
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2023-08-18T15:36:04.737337841Z"
     dependencies:
     - name: jupyterhub
@@ -8360,4 +8374,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-08-18T15:36:04.741367588Z"
+generated: "2023-08-18T15:49:25.303379637Z"
