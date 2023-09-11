@@ -18,8 +18,8 @@ storeExecuteResponse=true
 servicePath=/zooservices/
 
 [identification]
-title=Ellip-WPS
-keywords=
+title=ADES-Processing
+keywords=OGC,WPS,Processes,WebServices
 abstract=
 accessConstraints=none
 fees=None
@@ -90,3 +90,4 @@ val=.
 rep=_
 val_1=-
 rep_1=_
+
