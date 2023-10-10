@@ -10,21 +10,33 @@ identity-keycloak:
         image:
             repository: quay.io/keycloak/keycloak
             pullPolicy: IfNotPresent
-identity-identity-api:
+identity-api:
     enabled: true
     deployment:
         image:
             repository: ghcr.io/eoepca/um-identity-api
-            pullPolicy: Always
+            pullPolicy: IfNotPresent
 identity-manager:
     enabled: true
     deployment:
         image:
             repository: ghcr.io/eoepca/um-identity-manager
-            pullPolicy: Always
+            pullPolicy: IfNotPresent
 identity-proxy:
-    enabled: true
+    enabled: false
     deployment:
         image:
             repository: quay.io/oauth2-proxy/oauth2-proxy
+            pullPolicy: IfNotPresent
+identity-gatekeeper:
+    enabled: true
+    deployment:
+        image:
+            repository: quay.io/gogatekeeper/gatekeeper
+            pullPolicy: IfNotPresent
+identity-dummy:
+    enabled: true
+    deployment:
+        image:
+            repository: ghcr.io/eoepca/um-identity-dummy
             pullPolicy: IfNotPresent

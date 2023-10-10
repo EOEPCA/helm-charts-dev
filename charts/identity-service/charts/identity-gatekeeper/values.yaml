@@ -1,0 +1,128 @@
+nameOverride: ""
+fullnameOverride: ""
+kubeVersionOverride: ""
+deployment:
+  replicaCount: 1
+  image:
+    pullPolicy: IfNotPresent
+  strategy:
+    type: Recreate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+  automountServiceAccountToken: false
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext:
+    enabled: false
+    # fsGroup: 2000
+  containerSecurityContext:
+    enabled: true
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    # runAsUser: 1000
+  extraArgs: []
+  # - --foo
+  # - --bar
+  extraEnvVars: []
+  # - name: FOO
+  #   value: BAR
+  extraVolumes: []
+  # - emptyDir: {}
+  #   name: tmp
+  extraVolumeMounts: []
+  # - mountPath: /tmp
+  #   name: tmp
+  priorityClassName: ""
+  hostAliases: []
+  # - ip: "127.0.0.1"
+  #   hostnames:
+  #   - "foo.local"
+  #   - "bar.local"
+  # - ip: "10.1.2.3"
+  #   hostnames:
+  #   - "foo.remote"
+  #   - "bar.remote"
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  livenessProbe:
+    enabled: false
+    httpGet:
+      path: /oauth/health
+      port: admin
+  readinessProbe:
+    enabled: true
+    httpGet:
+      path: /oauth/health
+      port: admin
+service:
+  type: ClusterIP
+  annotations: {}
+  proxy:
+    port: 3000
+    nodePort:
+  admin:
+    port: 4000
+    nodePort:
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  hosts:
+    - host: identity.gatekeeper.develop.eoepca.org
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: identity-gatekeeper-tls-certificate
+      hosts:
+        - identity.gatekeeper.develop.eoepca.org
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  #targetMemoryUtilizationPercentage: 80
+pdb:
+  create: false
+  minAvailable: 1
+metrics:
+  addPrometheusScrapeAnnotation: false
+  serviceMonitor:
+    enabled: false
+    namespace:
+    additionalLabels: {}
+    annotations: {}
+    interval:
+config:
+  client-id: dummy-service
+  client-secret: replaceme
+  discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
+  secure-cookie: true
+  skip-openid-provider-tls-verify: true
+  upstream-url: https://dummy-service.develop.eoepca.org
+  enable-default-deny: true
+  encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
+  listen: :3000
+  listen-admin: :4000
+  enable-metrics: true
+  enable-logging: true
+  enable-request-id: true
+  enable-login-handler: true
+  enable-refresh-tokens: true
