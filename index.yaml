@@ -1674,6 +1674,47 @@ entries:
   identity-service:
   - apiVersion: v1
     appVersion: v1
+    created: "2023-10-10T10:31:06.800871278Z"
+    dependencies:
+    - condition: identity-keycloak.enabled
+      name: identity-keycloak
+      repository: ""
+      version: 0.15.0
+    - condition: identity-postgres.enabled
+      name: identity-postgres
+      repository: ""
+      version: 1.0.0
+    - condition: identity-api.enabled
+      name: identity-api
+      repository: ""
+      version: 1.0.0
+    - condition: identity-manager.enabled
+      name: identity-manager
+      repository: ""
+      version: 1.0.0
+    - condition: identity-proxy.enabled
+      name: identity-proxy
+      repository: ""
+      version: 1.0.0
+    - condition: identity-gatekeeper.enabled
+      name: identity-gatekeeper
+      repository: ""
+      version: 1.0.0
+    - condition: identity-dummy.enabled
+      name: identity-dummy
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart to deploy Identity Service based on Keycloak
+    digest: f03b17c43c77a31532d36690d445021a569b92b514d685d33eda25d41744f982
+    maintainers:
+    - name: eoepca
+    name: identity-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-service-1.0.18/identity-service-1.0.18.tgz
+    version: 1.0.18
+  - apiVersion: v1
+    appVersion: v1
     created: "2023-10-10T10:13:15.0313748Z"
     dependencies:
     - condition: identity-keycloak.enabled
@@ -8515,4 +8556,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-10-10T10:13:15.034875295Z"
+generated: "2023-10-10T10:31:06.807076548Z"
