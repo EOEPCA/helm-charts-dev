@@ -53,7 +53,7 @@ spec:
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
           args:
             - --config
-            - /etc/gatekeeper/config.yaml
+            - /etc/gatekeeper/gatekeeper-config.yaml
             {{- with .Values.deployment.extraArgs }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
@@ -80,7 +80,7 @@ spec:
             {{- toYaml .Values.deployment.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /etc/gatekeeper
-              name: config
+              name: gatekeeper-config
             {{- with .Values.deployment.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}

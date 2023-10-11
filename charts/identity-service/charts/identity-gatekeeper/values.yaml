@@ -112,7 +112,7 @@ metrics:
     interval:
 config:
   client-id: dummy-service
-  client-secret: r2EIKNjGWz9k09o6Le2DS50SJ7LOPTp3
+  client-secret: 4UTyXReSH455zuri7UVKHQxEkabi6cz4
   discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
   secure-cookie: true
   skip-openid-provider-tls-verify: true

@@ -7,5 +7,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 type: Opaque
 stringData:
-  config.yaml: |
+  gatekeeper-config.yaml: |
     {{- tpl (.Values.config | toYaml) $ | nindent 4 }}
