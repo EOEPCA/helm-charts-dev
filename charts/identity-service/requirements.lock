@@ -1,0 +1,21 @@
+dependencies:
+- name: identity-keycloak
+  repository: ""
+  version: 0.15.0
+- name: identity-postgres
+  repository: ""
+  version: 1.0.0
+- name: identity-api
+  repository: ""
+  version: 1.0.0
+- name: identity-manager
+  repository: ""
+  version: 1.0.0
+- name: identity-proxy
+  repository: ""
+  version: 1.0.0
+- name: identity-gatekeeper
+  repository: ""
+  version: 1.0.0
+digest: sha256:408aabeba8fc7daf85c6b414366f70bf5b5b589dfef66224ea072745a8e47757
+generated: "2023-10-11T18:13:54.5032203+01:00"
