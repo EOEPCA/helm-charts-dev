@@ -116,7 +116,9 @@ config:
   discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
   secure-cookie: true
   skip-openid-provider-tls-verify: true
-  upstream-url: https://identity.dummy.develop.eoepca.org
+  #upstream-url: https://identity.dummy.develop.eoepca.org
+  no-redirects: true
+  no-proxy: true
   enable-default-deny: true
   encryption-key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
   listen: :3000
