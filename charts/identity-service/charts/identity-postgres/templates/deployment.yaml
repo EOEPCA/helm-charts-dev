@@ -4,6 +4,7 @@ metadata:
   name: {{ include "postgres.name" . }}
   labels:
     {{- include "postgres.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.deployment.replicaCount }}

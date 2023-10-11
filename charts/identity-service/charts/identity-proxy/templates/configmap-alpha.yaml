@@ -10,7 +10,7 @@ metadata:
     app: {{ template "oauth2-proxy.name" . }}
   {{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.name" . }}-alpha
-  namespace: {{ template "oauth2-proxy.namespace" $ }}
+  namespace: {{ .Release.Namespace }}
 data:
   oauth2_proxy.yml: |
     ---

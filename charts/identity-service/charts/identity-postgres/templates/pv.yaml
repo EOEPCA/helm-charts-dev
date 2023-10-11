@@ -8,6 +8,7 @@ metadata:
     {{- include "postgres.labels" . | nindent 4 }}
     type: {{ .Values.persistence.type }}
     eoepca_type: userman
+  namespace: {{ .Release.Namespace }}
 spec:
   storageClassName: {{ .Values.persistence.storageClassName }}
   capacity:

@@ -4,6 +4,7 @@ metadata:
   name: {{ include "postgres.name" . }}-secret
   labels:
     {{- include "postgres.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
 data:
   POSTGRES_DB: "{{ .Values.configMap.postgresDb }}"
   POSTGRES_USER: "{{ .Values.configMap.postgresUser }}"

@@ -5,6 +5,7 @@ metadata:
   name: {{ include "identity-gatekeeper.name" . }}
   labels:
     {{- include "identity-gatekeeper.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.deployment.replicaCount }}

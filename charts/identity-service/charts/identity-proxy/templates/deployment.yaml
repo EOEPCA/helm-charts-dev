@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "oauth2-proxy.name" . }}
-  namespace: {{ template "oauth2-proxy.namespace" $ }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: {{ include "oauth2-proxy.name" . -}}
 {{- include "oauth2-proxy.labels" . | indent 4 }}

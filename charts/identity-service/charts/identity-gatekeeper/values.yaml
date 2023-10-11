@@ -106,7 +106,7 @@ metrics:
   addPrometheusScrapeAnnotation: false
   serviceMonitor:
     enabled: false
-    namespace:
+    namespace: um
     additionalLabels: {}
     annotations: {}
     interval:

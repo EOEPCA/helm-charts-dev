@@ -9,7 +9,7 @@ metadata:
     app: {{ template "oauth2-proxy.name" . }}
 {{- include "oauth2-proxy.labels" . | indent 4 }}
   name: {{ template "oauth2-proxy.name" . }}-google
-  namespace: {{ template "oauth2-proxy.namespace" $ }}
+  namespace: {{ .Release.Namespace }}
 type: Opaque
 data:
   service-account.json: {{ .Values.config.google.serviceAccountJson | b64enc | quote }}

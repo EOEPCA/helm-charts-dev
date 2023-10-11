@@ -4,6 +4,7 @@ metadata:
   name: {{ include "identity-api.name" . }}
   labels:
     {{- include "identity-api.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.deployment.replicaCount }}
