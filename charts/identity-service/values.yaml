@@ -34,9 +34,3 @@ identity-gatekeeper:
         image:
             repository: quay.io/gogatekeeper/gatekeeper
             pullPolicy: IfNotPresent
-identity-dummy:
-    enabled: true
-    deployment:
-        image:
-            repository: ghcr.io/eoepca/um-identity-dummy
-            pullPolicy: IfNotPresent
