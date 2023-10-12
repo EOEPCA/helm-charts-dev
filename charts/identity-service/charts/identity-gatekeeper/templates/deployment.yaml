@@ -85,8 +85,8 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
       volumes:
-        - secret:
-            secretName: {{ include "identity-gatekeeper.fullname" . }}
+        - configMap:
+            name: {{ include "identity-gatekeeper.fullname" . }}
           name: config
         {{- with .Values.deployment.extraVolumes }}
         {{- toYaml . | nindent 8 }}
