@@ -42,7 +42,7 @@ deployment:
     pullPolicy: IfNotPresent
 
   ## Overrides the default args for the Keycloak container
-  args: ["start", "--auto-build"]
+  args: ["start-dev"]
 
   # Additional environment variables for Keycloak
   extraEnv: |

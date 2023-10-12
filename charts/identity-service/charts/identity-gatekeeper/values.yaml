@@ -113,9 +113,9 @@ metrics:
 config:
   client-id: dummy-service
   client-secret: 4UTyXReSH455zuri7UVKHQxEkabi6cz4
-  discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
-  secure-cookie: true
+  discovery-url: http://identity-keycloak:8080/realms/master
   skip-openid-provider-tls-verify: true
+  secure-cookie: true
   #upstream-url: https://dummy-service-open.develop.eoepca.org
   no-redirects: true
   no-proxy: true
