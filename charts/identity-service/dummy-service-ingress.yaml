@@ -1,5 +1,4 @@
 
-#{{- $authRptCookieName := (printf "%s-%s" .Values.authRptCookieName .Values.global.context) -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -8,27 +7,17 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      #---
-      # establish the auth request endpoint
-      #---
-      auth_request /authcheck;
-      # Unpick the auth_request response
-      auth_request_set $x_user_id $upstream_http_x_user_id;
-      auth_request_set $x_auth_rpt $upstream_http_x_auth_rpt;
-      auth_request_set $x_auth_rpt_options $upstream_http_x_auth_rpt_options;
-      # Set headers on the proxied request
-      proxy_set_header X-User-Id $x_user_id;
-      proxy_set_header Authorization "Bearer $x_user_id";
-      # Set headers in the response
-      add_header Set-Cookie "auth_rpt=$x_auth_rpt;$x_auth_rpt_options";
+      auth_request /auth;
     nginx.ingress.kubernetes.io/server-snippet: |
-      location ^~ /authcheck {
+      location ^~ /auth {
         internal;
-        proxy_pass https://identity.gatekeeper.develop.eoepca.org/;
+        proxy_pass http://identity-gatekeeper.um.svc.cluster.local:3000/$request_uri;
         proxy_pass_request_body off;
         proxy_set_header Content-Length "";
-        proxy_set_header X-Original-URI $request_uri;
-        proxy_set_header X-Original-Method $request_method;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Method $request_method;
+        proxy_set_header X-Forwarded-URI $request_uri;
       }
 spec:
   ingressClassName: nginx
