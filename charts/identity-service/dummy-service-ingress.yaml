@@ -18,6 +18,9 @@ metadata:
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Method $request_method;
         proxy_set_header X-Forwarded-URI $request_uri;
+        proxy_busy_buffers_size 64k;
+        proxy_buffers 8 32k;
+        proxy_buffer_size 32k;
       }
 spec:
   ingressClassName: nginx
