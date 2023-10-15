@@ -41,11 +41,13 @@ spec:
             {{- tpl . $ | nindent 12 }}
             {{- end }}
           envFrom:
-            - configMapRef:
-                name: {{ include "postgres.name" . }}-secret
             {{- with .Values.deployment.extraEnvFrom }}
             {{- tpl . $ | nindent 12 }}
             {{- end }}
+            - configMapRef:
+                name: {{ include "postgres.name" . }}-secret
+            - secretRef:
+                name: {{ include "identity-postgres.name" . }}
           ports:
             - containerPort: {{ .Values.deployment.containerPort }}
           volumeMounts:

@@ -2,15 +2,15 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "keycloak.name" . }}
+  name: {{ include "identity-keycloak.name" . }}
   labels:
-    {{- include "keycloak.labels" . | nindent 4 }}
+    {{- include "identity-keycloak.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "keycloak.name" . }}
+    name: {{ include "identity-keycloak.name" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

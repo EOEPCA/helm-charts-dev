@@ -61,6 +61,12 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          envFrom:
+            {{- with .Values.deployment.extraEnvFrom }}
+            {{- tpl . $ | nindent 12 }}
+            {{- end }}
+            - secretRef:
+                name: {{ include "identity-gatekeeper.name" . }}
           ports:
             - name: proxy
               containerPort: {{ regexFind ":[0-9]+" .Values.config.listen | trimPrefix ":" }}

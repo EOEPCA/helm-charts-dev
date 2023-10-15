@@ -22,12 +22,6 @@ identity-manager:
         image:
             repository: ghcr.io/eoepca/um-identity-manager
             pullPolicy: IfNotPresent
-identity-proxy:
-    enabled: false
-    deployment:
-        image:
-            repository: quay.io/oauth2-proxy/oauth2-proxy
-            pullPolicy: IfNotPresent
 identity-gatekeeper:
     enabled: true
     deployment:

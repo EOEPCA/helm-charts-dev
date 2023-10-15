@@ -11,9 +11,6 @@ dependencies:
   - name: identity-manager
     condition: identity-manager.enabled
     version: 1.0.0
-  - name: identity-proxy
-    condition: identity-proxy.enabled
-    version: 1.0.0
   - name: identity-gatekeeper
     condition: identity-gatekeeper.enabled
     version: 1.0.0

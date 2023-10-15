@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "keycloak.name" . }}
+  name: {{ include "identity-keycloak.name" . }}
   labels:
-    {{- include "keycloak.labels" . | nindent 4 }}
+    {{- include "identity-keycloak.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   type: {{ .Values.service.type }}
@@ -13,4 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "keycloak.selectorLabels" . | nindent 4 }}
+    {{- include "identity-keycloak.selectorLabels" . | nindent 4 }}

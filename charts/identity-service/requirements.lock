@@ -11,11 +11,8 @@ dependencies:
 - name: identity-manager
   repository: ""
   version: 1.0.0
-- name: identity-proxy
-  repository: ""
-  version: 1.0.0
 - name: identity-gatekeeper
   repository: ""
   version: 1.0.0
-digest: sha256:408aabeba8fc7daf85c6b414366f70bf5b5b589dfef66224ea072745a8e47757
-generated: "2023-10-11T18:13:54.5032203+01:00"
+digest: sha256:e1d40ccf4d38c6db2901fe0cd8e675f3b1e0cede48aab5958e23ff28ca44a6de
+generated: "2023-10-15T16:11:28.6815928+01:00"
