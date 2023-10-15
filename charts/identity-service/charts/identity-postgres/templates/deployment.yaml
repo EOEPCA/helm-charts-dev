@@ -47,7 +47,7 @@ spec:
             - configMapRef:
                 name: {{ include "identity-postgres.name" . }}-secret
             - secretRef:
-                name: {{ include "identity-identity-postgres.name" . }}
+                name: {{ include "identity-postgres.name" . }}
           ports:
             - containerPort: {{ .Values.deployment.containerPort }}
           volumeMounts:
