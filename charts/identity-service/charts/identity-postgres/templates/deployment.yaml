@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "postgres.name" . }}
+  name: {{ include "identity-postgres.name" . }}
   labels:
-    {{- include "postgres.labels" . | nindent 4 }}
+    {{- include "identity-postgres.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -11,7 +11,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "postgres.selectorLabels" . | nindent 6 }}
+      {{- include "identity-postgres.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.deployment.podAnnotations }}
@@ -19,13 +19,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "postgres.selectorLabels" . | nindent 8 }}
+        {{- include "identity-postgres.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.deployment.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "postgres.serviceAccountName" . }}
+      serviceAccountName: {{ include "identity-postgres.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.deployment.podSecurityContext | nindent 8 }}
       containers:
@@ -45,9 +45,9 @@ spec:
             {{- tpl . $ | nindent 12 }}
             {{- end }}
             - configMapRef:
-                name: {{ include "postgres.name" . }}-secret
+                name: {{ include "identity-postgres.name" . }}-secret
             - secretRef:
-                name: {{ include "identity-postgres.name" . }}
+                name: {{ include "identity-identity-postgres.name" . }}
           ports:
             - containerPort: {{ .Values.deployment.containerPort }}
           volumeMounts:
