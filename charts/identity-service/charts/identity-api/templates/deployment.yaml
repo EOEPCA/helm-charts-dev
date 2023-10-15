@@ -44,6 +44,8 @@ spec:
             {{- with .Values.deployment.extraEnvFrom }}
             {{- tpl . $ | nindent 12 }}
             {{- end }}
+            - configMapRef:
+                name: {{ include "identity-api.name" . }}
             - secretRef:
                 name: {{ include "identity-api.name" . }}
           ports:
