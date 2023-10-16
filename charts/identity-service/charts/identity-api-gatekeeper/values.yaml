@@ -1,0 +1,131 @@
+nameOverride: ""
+fullnameOverride: ""
+kubeVersionOverride: ""
+deployment:
+  replicaCount: 1
+  image:
+    pullPolicy: IfNotPresent
+  strategy:
+    type: Recreate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+  automountServiceAccountToken: false
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext:
+    enabled: false
+    # fsGroup: 2000
+  containerSecurityContext:
+    enabled: true
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    # runAsUser: 1000
+  extraArgs: []
+  # - --foo
+  # - --bar
+  extraEnvVars: []
+  # - name: FOO
+  #   value: BAR
+  extraVolumes: []
+  # - emptyDir: {}
+  #   name: tmp
+  extraVolumeMounts: []
+  # - mountPath: /tmp
+  #   name: tmp
+  priorityClassName: ""
+  hostAliases: []
+  # - ip: "127.0.0.1"
+  #   hostnames:
+  #   - "foo.local"
+  #   - "bar.local"
+  # - ip: "10.1.2.3"
+  #   hostnames:
+  #   - "foo.remote"
+  #   - "bar.remote"
+  resources:
+    limits: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+    requests: {}
+    #   cpu: 100m
+    #   memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  livenessProbe:
+    enabled: false
+    httpGet:
+      path: /oauth/health
+      port: admin
+  readinessProbe:
+    enabled: true
+    httpGet:
+      path: /oauth/health
+      port: admin
+service:
+  type: ClusterIP
+  annotations: {}
+  proxy:
+    port: 3000
+    nodePort:
+  admin:
+    port: 4000
+    nodePort:
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  hosts:
+    - host: identity.api-gatekeeper.develop.eoepca.org
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: identity-gatekeeper-tls-certificate
+      hosts:
+        - identity.gatekeeper.develop.eoepca.org
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  #targetMemoryUtilizationPercentage: 80
+pdb:
+  create: false
+  minAvailable: 1
+metrics:
+  addPrometheusScrapeAnnotation: false
+  serviceMonitor:
+    enabled: false
+    namespace: um
+    additionalLabels: {}
+    annotations: {}
+    interval:
+config:
+  client-id: identity-api
+  discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
+  no-redirects: true
+  no-proxy: true
+  secure-cookie: true
+  enable-default-deny: true
+  enable-uma: true
+  enable-metrics: true
+  enable-logging: true
+  enable-request-id: true
+  enable-login-handler: true
+  enable-refresh-tokens: true
+  enable-logout-redirect: true
+  listen: :3000
+  listen-admin: :4000
+secrets:
+  clientSecret: AgAHDAfqU6gZJuDekFZpgQGzLfbZvNhrgjB8VT0LmMFXyd0dtb05OlOVgxGMTfxCQ+g9leyPOdUBLOZTiLgSb5EzMjfELEWhSVXPBatdfEZn+CptPZ8Pvt2hFzUaSsU0GIrHxRAoVqFBZKSuXvxy1RBbKRK/icoUlOm5xxCizfCzYJfsWzTdhdwIlnngQD81J6ah2fdMsc+D08qbGrWRVjJmDuCpAvi9ooVUlK19Bx8zZboIM8IR7CYKxPaHCsV2ch8OH8zAbiO9oqJskzTdvMY3R5sQ6nEb6fyvokkloj76+uyjyzl4NTxqv57ck8G4ZRJxrxYigcVb8/YbKuYirfpGxKxMcdBHyR/q+FA+eHPMjdvexWK/wkkRaOzWCZy/Pl/KQMKtuqRBrcJQCbBz4CIbierUvaPD1yRmdDP+FV4K2tpKpXYKhjE3jk41zQzJ5QxGoEUu88Juy10AvhxOPWtqQR+X+M84wCQ8n6GDCtUdsBe+6D+otC702jhlEr+s3r6nab1LcPHwTV3rP8YrOf/trOS/JPEcHJnOwPTj0x+RujEqQi+EAn644IFPVIoOFtd7AYEmOU4TemHtJgPap5Fm47GWeQwVAgcsuKZKwI78x7jDq4jLwW616t7XokElReUF3LpCmZugx83qQkemmTujGqXoLZJ5Oadq5N2a7Kij9qxOJxB19JuSQ2ogwW/zWgidvKD/pUDbAFWi8kQEmRW3sTyuvj8Ian3Ifc/oxs5OiA==
+  encryptionKey: AgBMu2WaXmyhciLf45Q+1kc6AyS3HSZyshDyzMlJVMMZw9lwAP9rUxmVKnVLKsAN8Kyyh6veVhBH7k3kzP1xeCrGN3ck30ZnmCgCTlH8QnEsg1SLaTfoln4MLZBPyi30oMcJuF8V2aWphv42dChopKoYCaOMW+11YG7/CTKsNbAugg4bS3CAG8cTzcLO8oyzXPsT8KMH+Jvj4U6ASpLsUG8S6tazBAqGLgiOeanLUcxNynsVr0XjwV6/lqJacX8Er8eDK8jiP/EiwZ7SmazPQ0FsUxCeQ5ogR3Pmz3d2KHgBoAKD05ohHhUa79gdIc6toF2gv0KvE2529zmBZIuoABqXjXio/V4ySMZE4lYGVMUcW9kwpskUhCkGbMusdD2B+EL+0cHaVSM6b70eUv1mLoySe4wYj7WX4EvxWVa4dk2JHOyzTnJh7x2jpLUsVszZbVL7J2lm4Ne7CdAxeTLAa/mqB5kqdTL0MoORLPgZmNGWtFrxLbSCe/TobYvJpUqit4t++AErxKvKzuXBB81nrO5sL5ZwCxdKHAVksbsveGfjesgBqJs50a8pfzcZJCg/sK/OWm2TQU0YyCJ+lZMp7pcrZ//CPJCc5yu96L1GiW+LZya3xE+G6Vq90glbMO7ss+FbI6sDbA0xYw/VS3kMqZnkPUmGlKCN61ECEhenKCNQItYAEkFlo+Z4vp11V71nS+EO30rUiMH9O5yFwxEyFPKpLDjryuwsaYReNFlcZyz+9g==
