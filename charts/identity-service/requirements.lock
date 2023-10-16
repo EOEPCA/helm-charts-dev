@@ -17,5 +17,5 @@ dependencies:
 - name: identity-api-gatekeeper
   repository: ""
   version: 1.0.0
-digest: sha256:3d74bc8a3ee6e186946e6308c94e577d1521e40cd7c22ad48a9227060efc7744
-generated: "2023-10-16T10:10:38.2128494+01:00"
+digest: sha256:a84bba51a1d23bbdfe7e8491e3cafed52419f6ad31581e0df37be938d6e4b717
+generated: "2023-10-16T18:05:34.5144309+01:00"
