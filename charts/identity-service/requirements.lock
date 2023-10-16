@@ -8,7 +8,7 @@ dependencies:
 - name: identity-api
   repository: ""
   version: 1.0.0
-- name: identity-manager
+- name: identity-portal
   repository: ""
   version: 1.0.0
 - name: identity-gatekeeper

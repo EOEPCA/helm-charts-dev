@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "identity-manager.name" -}}
+{{- define "identity-portal.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "identity-manager.fullname" -}}
+{{- define "identity-portal.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,7 +26,7 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "identity-manager.chart" -}}
+{{- define "identity-portal.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -36,9 +36,9 @@ Create chart name and version as used by the chart label.
 {{/*
 Common labels
 */}}
-{{- define "identity-manager.labels" -}}
-helm.sh/chart: {{ include "identity-manager.chart" . }}
-{{ include "identity-manager.selectorLabels" . }}
+{{- define "identity-portal.labels" -}}
+helm.sh/chart: {{ include "identity-portal.chart" . }}
+{{ include "identity-portal.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -48,17 +48,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "identity-manager.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "identity-manager.name" . }}
+{{- define "identity-portal.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "identity-portal.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "identity-manager.serviceAccountName" -}}
+{{- define "identity-portal.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "identity-manager.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "identity-portal.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

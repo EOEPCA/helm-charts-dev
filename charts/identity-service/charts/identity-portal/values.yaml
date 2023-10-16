@@ -1,4 +1,4 @@
-# Default values for identity-manager.
+# Default values for identity-portal.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -33,12 +33,12 @@ deployment:
   # SecurityContext for the entire Pod. Every container running in the Pod will inherit this SecurityContext. This might be relevant when other components of the environment inject additional containers into running Pods (service meshes are the most prominent example for this)
   podSecurityContext:
     fsGroup: 1000
-  # SecurityContext for the identity-manager container
+  # SecurityContext for the identity-portal container
   securityContext:
     runAsUser: 1000
     runAsNonRoot: true
   image:
-    repository: ghcr.io/eoepca/um-identity-manager
+    repository: ghcr.io/eoepca/um-identity-portal
     pullPolicy: Always
 
   # Define which port will be used in the containers
@@ -95,7 +95,7 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: identity-manager-tls-certificate
+    - secretName: identity-portal-tls-certificate
       hosts:
         - identity.manager.develop.eoepca.org
 # ---------------------------------------

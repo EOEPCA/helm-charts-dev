@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "identity-manager.name" . }}
+  name: {{ include "identity-portal.name" . }}
   labels:
-    {{- include "identity-manager.labels" . | nindent 4 }}
+    {{- include "identity-portal.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
@@ -11,7 +11,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "identity-manager.selectorLabels" . | nindent 6 }}
+      {{- include "identity-portal.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.deployment.podAnnotations }}
@@ -19,13 +19,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "identity-manager.selectorLabels" . | nindent 8 }}
+        {{- include "identity-portal.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.deployment.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "identity-manager.serviceAccountName" . }}
+      serviceAccountName: {{ include "identity-portal.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.deployment.podSecurityContext | nindent 8 }}
       containers:

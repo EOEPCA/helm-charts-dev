@@ -2,15 +2,15 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "identity-manager.name" . }}
+  name: {{ include "identity-portal.name" . }}
   labels:
-    {{- include "identity-manager.labels" . | nindent 4 }}
+    {{- include "identity-portal.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "identity-manager.name" . }}
+    name: {{ include "identity-portal.name" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

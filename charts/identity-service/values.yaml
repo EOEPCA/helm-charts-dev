@@ -16,11 +16,11 @@ identity-api:
         image:
             repository: ghcr.io/eoepca/um-identity-api
             pullPolicy: IfNotPresent
-identity-manager:
+identity-portal:
     enabled: true
     deployment:
         image:
-            repository: ghcr.io/eoepca/um-identity-manager
+            repository: ghcr.io/eoepca/um-identity-portal
             pullPolicy: IfNotPresent
 identity-gatekeeper:
     enabled: true
