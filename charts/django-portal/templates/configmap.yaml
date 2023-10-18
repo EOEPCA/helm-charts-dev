@@ -5,12 +5,13 @@ metadata:
 data:
   OIDC_RP_SIGN_ALGO: {{ .Values.configmap.sign_algo }}
 
-  OIDC_OP_AUTHORIZATION_ENDPOINT: {{ printf "https://%s.%s/oxauth/restv1/authorize" .Values.authHost .Values.domain }}
-  OIDC_OP_TOKEN_ENDPOINT: {{ printf "https://%s.%s/oxauth/restv1/token" .Values.authHost .Values.domain }}
-  OIDC_OP_USER_ENDPOINT: {{ printf "https://%s.%s/oxauth/restv1/userinfo" .Values.authHost .Values.domain }}
-  OIDC_OP_JWKS_ENDPOINT: {{ printf "https://%s.%s/oxauth/restv1/jwks" .Values.authHost .Values.domain }}
-
+  OIDC_OP_AUTHORIZATION_ENDPOINT: {{ .Values.configmap.oidc_op_authorization_endpoint | default printf "https://%s.%s/oxauth/restv1/authorize" .Values.authHost .Values.domain }}
+  OIDC_OP_TOKEN_ENDPOINT: {{ .Values.configmap.oidc_op_token_endpoint | default printf "https://%s.%s/oxauth/restv1/token" .Values.authHost .Values.domain }}
+  OIDC_OP_USER_ENDPOINT: {{ .Values.configmap.oidc_op_user_endpoint | default printf "https://%s.%s/oxauth/restv1/userinfo" .Values.authHost .Values.domain }}
+  OIDC_OP_JWKS_ENDPOINT: {{ .Values.configmap.oidc_op_jwks_endpoint | default printf "https://%s.%s/oxauth/restv1/jwks" .Values.authHost .Values.domain }}
+  OIDC_OP_LOGOUT_URL_METHOD: {{ .Values.configmap.oidc_op_logout_url_method }}
   OIDC_TOKEN_USE_BASIC_AUTH: {{ .Values.configmap.use_basic_auth | quote }}
+
   OIDC_VERIFY_SSL: {{ .Values.configmap.oidc_verify_ssl | quote }}
   TOKEN_ID_COOKIE: {{ .Values.configmap.token_id_cookie }}
   USER_PREFIX: {{ .Values.configmap.user_prefix }}
