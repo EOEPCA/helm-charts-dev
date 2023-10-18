@@ -1325,6 +1325,16 @@ entries:
   django-portal:
   - apiVersion: v2
     appVersion: 2022.05.05.08.25
+    created: "2023-10-18T10:00:20.581886405Z"
+    description: A Helm chart for Kubernetes
+    digest: 257d081d993dfd3aca67df30e51c9f4b961355f355c28f7d651759dbd537eaf6
+    name: django-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/django-portal-1.0.8/django-portal-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: 2022.05.05.08.25
     created: "2022-05-17T13:25:01.425449198Z"
     description: A Helm chart for Kubernetes
     digest: 987662e295d2404e504c610e715d6f0c259efe122c112c50a77ba4b6f12529f2
@@ -9630,4 +9640,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-10-16T17:06:11.501325821Z"
+generated: "2023-10-18T10:00:20.587707357Z"
