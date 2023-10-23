@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portal
+  name: {{ include "django-portal-keycloak.name" . }}
   labels:
-    app: portal
+    {{- include "django-portal-keycloak.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
@@ -24,9 +25,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         envFrom:
         - configMapRef:
-            name: {{ include "django-portal-keycloak.fullname" . }}
+            name: {{ include "django-portal-keycloak.name" . }}
         - secretRef:
-            name: {{ include "django-portal-keycloak.fullname" . }}
+            name: {{ include "django-portal-keycloak.name" . }}
         ports:
         - name: http-portal
           containerPort: 80
