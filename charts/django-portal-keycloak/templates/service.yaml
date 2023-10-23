@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.port }}
-    name: http-portal
+    name: http
     targetPort: 8080
     protocol: TCP
   selector:

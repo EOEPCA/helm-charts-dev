@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: portal
+      app: {{ include "django-portal-keycloak.name" . }}
   template:
     metadata:
       labels:
-        app: portal
+        app: {{ include "django-portal-keycloak.name" . }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -29,6 +29,6 @@ spec:
         - secretRef:
             name: {{ include "django-portal-keycloak.name" . }}
         ports:
-        - name: http-portal
+        - name: http
           containerPort: 80
           protocol: TCP
