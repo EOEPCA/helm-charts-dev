@@ -45,11 +45,17 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # ingress.kubernetes.io/ssl-redirect: "false"
-    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    # cert-manager.io/cluster-issuer: letsencrypt
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  hosts:
+    - host: portal-keycloak.develop.eoepca.org
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: portal-keycloak-tls-certificate
+      hosts:
+        - portal-keycloak.develop.eoepca.org
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -29,6 +29,6 @@ spec:
         - secretRef:
             name: {{ include "django-portal-keycloak.name" . }}
         ports:
-        - name: http
-          containerPort: 80
-          protocol: TCP
+          - name: http
+            containerPort: {{ .Values.service.port }}
+            protocol: TCP
