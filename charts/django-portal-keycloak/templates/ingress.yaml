@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "django-portal-keycloak.fullname" . -}}
+{{- $name := include "django-portal-keycloak.name" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -15,7 +15,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $name }}
   labels:
     {{- include "django-portal-keycloak.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
@@ -41,11 +41,11 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: portal
+                name: {{ $name }}
                 port:
                   number: {{ $svcPort }}
               {{- else }}
-              serviceName: portal
+              serviceName: {{ $name }}
               servicePort: {{ $svcPort }}
               {{- end }}
 {{- end }}
