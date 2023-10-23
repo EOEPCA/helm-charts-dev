@@ -77,6 +77,11 @@ tolerations: []
 affinity: {}
 
 configmap:
+  oidc_op_authorization_endpoint:
+  oidc_op_token_endpoint:
+  oidc_op_user_endpoint:
+  oidc_op_jwks_endpoint:
+  oidc_op_logout_url_method:
   use_basic_auth: "true"
   oidc_verify_ssl: "true"
   sign_algo: 'RS256'
