@@ -29,7 +29,7 @@ spec:
   tls:
     - hosts:
         - {{ printf "%s.%s" .Values.portalHost .Values.domain }}
-      secretName: portal-tls
+      secretName: portal-keycloak-tls
   rules:
     - host: {{ printf "%s.%s" .Values.portalHost .Values.domain }}
       http:
