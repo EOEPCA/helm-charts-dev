@@ -9,16 +9,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "django-portal-keycloak.name" . }}
+      {{- include "django-portal-keycloak.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: {{ include "django-portal-keycloak.name" . }}
+        {{- include "django-portal-keycloak.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "django-portal-keycloak.serviceAccountName" . }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
