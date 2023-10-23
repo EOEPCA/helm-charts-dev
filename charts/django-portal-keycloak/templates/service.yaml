@@ -13,4 +13,4 @@ spec:
     targetPort: 8080
     protocol: TCP
   selector:
-    app: portal
+    {{- include "django-portal-keycloak.selectorLabels" . | nindent 4 }}
