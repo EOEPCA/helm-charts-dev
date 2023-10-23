@@ -1576,6 +1576,16 @@ entries:
   django-portal-keycloak:
   - apiVersion: v2
     appVersion: v1.1.1
+    created: "2023-10-23T16:42:40.999644687Z"
+    description: A Helm chart for Kubernetes
+    digest: 8074807e543219454a5a0363713b1802991af6bdcb2a77f0f2ab8113587a2094
+    name: django-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/django-portal-keycloak-1.0.9/django-portal-keycloak-1.0.9.tgz
+    version: 1.0.9
+  - apiVersion: v2
+    appVersion: v1.1.1
     created: "2023-10-23T16:38:26.344098722Z"
     description: A Helm chart for Kubernetes
     digest: f5e4a0e9b7080e0bbc189553c65cd56c2083da35e808b6397897b6804379a64d
@@ -9741,4 +9751,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-10-23T16:38:26.348304878Z"
+generated: "2023-10-23T16:42:41.004614327Z"
