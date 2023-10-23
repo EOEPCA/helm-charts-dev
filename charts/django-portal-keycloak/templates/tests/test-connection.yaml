@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "django-portal.fullname" . }}-test-connection"
+  name: "{{ include "django-portal-keycloak.fullname" . }}-test-connection"
   labels:
-    {{- include "django-portal.labels" . | nindent 4 }}
+    {{- include "django-portal-keycloak.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "django-portal.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "django-portal-keycloak.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
