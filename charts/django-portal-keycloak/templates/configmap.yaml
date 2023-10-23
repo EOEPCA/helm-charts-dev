@@ -12,6 +12,7 @@ data:
   OIDC_OP_USER_ENDPOINT: "{{ .Values.configmap.oidc_op_user_endpoint }}"
   OIDC_OP_JWKS_ENDPOINT: "{{ .Values.configmap.oidc_op_jwks_endpoint }}"
   OIDC_OP_LOGOUT_URL_METHOD: "{{ .Values.configmap.oidc_op_logout_url_method }}"
+  OIDC_RP_SCOPES: "{{ .Values.configmap.oidc_rp_scopes }}"
   OIDC_TOKEN_USE_BASIC_AUTH: "{{ .Values.configmap.use_basic_auth }}"
   OIDC_VERIFY_SSL: "{{ .Values.configmap.oidc_verify_ssl}}"
   TOKEN_ID_COOKIE: "{{ .Values.configmap.token_id_cookie }}"

@@ -88,8 +88,9 @@ configmap:
   oidc_op_user_endpoint:
   oidc_op_jwks_endpoint:
   oidc_op_logout_url_method:
-  use_basic_auth: "true"
-  oidc_verify_ssl: "true"
-  sign_algo: 'RS256'
-  token_id_cookie: "auth_user_id"
-  user_prefix: "test-user"
+  oidc_rp_scopes: openid
+  use_basic_auth: true
+  oidc_verify_ssl: true
+  sign_algo: RS256
+  token_id_cookie: auth_user_id
+  user_prefix: test-user
