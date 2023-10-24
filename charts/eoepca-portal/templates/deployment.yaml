@@ -1,34 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "django-portal-keycloak.name" . }}
+  name: {{ include "eoepca-portal.name" . }}
   labels:
-    {{- include "django-portal-keycloak.labels" . | nindent 4 }}
+    {{- include "eoepca-portal.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "django-portal-keycloak.selectorLabels" . | nindent 6 }}
+      {{- include "eoepca-portal.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "django-portal-keycloak.selectorLabels" . | nindent 8 }}
+        {{- include "eoepca-portal.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "django-portal-keycloak.serviceAccountName" . }}
+      serviceAccountName: {{ include "eoepca-portal.serviceAccountName" . }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         envFrom:
         - configMapRef:
-            name: {{ include "django-portal-keycloak.name" . }}
-        - secretRef:
-            name: {{ include "django-portal-keycloak.name" . }}
+            name: {{ include "eoepca-portal.name" . }}
         ports:
           - name: http
             containerPort: {{ .Values.service.port }}

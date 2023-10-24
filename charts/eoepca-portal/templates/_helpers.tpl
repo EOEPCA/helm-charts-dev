@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "django-portal-keycloak.name" -}}
+{{- define "eoepca-portal.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "django-portal-keycloak.fullname" -}}
+{{- define "eoepca-portal.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "django-portal-keycloak.chart" -}}
+{{- define "eoepca-portal.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "django-portal-keycloak.labels" -}}
-helm.sh/chart: {{ include "django-portal-keycloak.chart" . }}
-{{ include "django-portal-keycloak.selectorLabels" . }}
+{{- define "eoepca-portal.labels" -}}
+helm.sh/chart: {{ include "eoepca-portal.chart" . }}
+{{ include "eoepca-portal.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "django-portal-keycloak.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "django-portal-keycloak.name" . }}
+{{- define "eoepca-portal.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "eoepca-portal.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "django-portal-keycloak.serviceAccountName" -}}
+{{- define "eoepca-portal.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "django-portal-keycloak.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "eoepca-portal.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
