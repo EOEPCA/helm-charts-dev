@@ -1815,6 +1815,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/dummy-0.9.0/dummy-0.9.0.tgz
     version: 0.9.0
+  eoepca-portal:
+  - apiVersion: v2
+    appVersion: v1.1.0
+    created: "2023-10-24T17:29:02.029325081Z"
+    description: A Helm chart for EOEPCA Portal
+    digest: 5149b3a68e974e4590f47f53726059a49b41dbd8721d7284bd6a8389c8e1650a
+    name: eoepca-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoepca-portal-1.0.0/eoepca-portal-1.0.0.tgz
+    version: 1.0.0
   identity:
   - apiVersion: v1
     appVersion: v1
@@ -9841,4 +9852,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-10-23T18:45:56.153307627Z"
+generated: "2023-10-24T17:29:02.033494828Z"
