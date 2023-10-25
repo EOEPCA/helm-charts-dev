@@ -1817,6 +1817,16 @@ entries:
     version: 0.9.0
   eoepca-portal:
   - apiVersion: v2
+    appVersion: v1.1.2
+    created: "2023-10-25T10:47:35.364467918Z"
+    description: A Helm chart for EOEPCA Portal
+    digest: 0ef83e61d15d73370c48e778730efd021c8a65ef90575fe6fd86e8c8bd15eb72
+    name: eoepca-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoepca-portal-1.0.2/eoepca-portal-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
     appVersion: v1.1.1
     created: "2023-10-25T10:35:09.199305324Z"
     description: A Helm chart for EOEPCA Portal
@@ -9862,4 +9872,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-10-25T10:35:09.203686767Z"
+generated: "2023-10-25T10:47:35.369522609Z"
