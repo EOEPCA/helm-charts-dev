@@ -92,7 +92,7 @@ ingress:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       auth_request /auth;
       # Preflighted requests
-      if ($request_method = OPTIONS ) {
+      if ($request_method = OPTIONS) {
         return 200;
       }
       add_header Access-Control-Allow-Origin $http_origin always;
