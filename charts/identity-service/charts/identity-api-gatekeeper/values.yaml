@@ -90,7 +90,7 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: identity-gatekeeper-tls-certificate
+    - secretName: identity-api-gatekeeper-tls-certificate
       hosts:
         - identity.gatekeeper.develop.eoepca.org
 autoscaling:
