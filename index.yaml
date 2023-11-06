@@ -1817,6 +1817,16 @@ entries:
     version: 0.9.0
   eoepca-portal:
   - apiVersion: v2
+    appVersion: v1.3.4
+    created: "2023-11-06T11:11:26.691343982Z"
+    description: A Helm chart for EOEPCA Portal
+    digest: 3ce0037f86525f0f5a0e71852742783cd7eafe8ccc463469baa58b59d19a62fb
+    name: eoepca-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoepca-portal-1.0.6/eoepca-portal-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
     appVersion: v1.2.4
     created: "2023-10-29T23:06:22.870050455Z"
     description: A Helm chart for EOEPCA Portal
@@ -1944,6 +1954,43 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-0.15.0/identity-0.15.0.tgz
     version: 0.15.0
   identity-service:
+  - apiVersion: v1
+    appVersion: v1
+    created: "2023-11-06T11:11:26.858808157Z"
+    dependencies:
+    - condition: identity-keycloak.enabled
+      name: identity-keycloak
+      repository: ""
+      version: 0.15.0
+    - condition: identity-postgres.enabled
+      name: identity-postgres
+      repository: ""
+      version: 1.0.0
+    - condition: identity-api.enabled
+      name: identity-api
+      repository: ""
+      version: 1.0.0
+    - condition: identity-portal.enabled
+      name: identity-portal
+      repository: ""
+      version: 1.0.0
+    - condition: identity-gatekeeper.enabled
+      name: identity-gatekeeper
+      repository: ""
+      version: 1.0.0
+    - condition: identity-api-gatekeeper.enabled
+      name: identity-api-gatekeeper
+      repository: ""
+      version: 1.0.0
+    description: A Helm chart to deploy Identity Service based on Keycloak
+    digest: e2ab78cbdfa5cebb2056588a507b98b0714dba536420ea9c6d4b1db263f646d7
+    maintainers:
+    - name: eoepca
+    name: identity-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-service-1.0.51/identity-service-1.0.51.tgz
+    version: 1.0.51
   - apiVersion: v1
     appVersion: v1
     created: "2023-11-06T11:00:16.176352476Z"
@@ -10013,4 +10060,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-11-06T11:00:16.181466933Z"
+generated: "2023-11-06T11:11:26.862962539Z"
