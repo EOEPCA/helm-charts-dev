@@ -115,9 +115,11 @@ config:
   discovery-url: https://identity.keycloak.develop.eoepca.org/realms/master
   no-redirects: true
   no-proxy: true
-  secure-cookie: true
   enable-default-deny: true
   enable-uma: true
+  #secure-cookie: true
+  cookie-domain: develop.eoepca.org
+  cookie-access-name: auth_user_id
   enable-metrics: true
   enable-logging: true
   enable-request-id: true
