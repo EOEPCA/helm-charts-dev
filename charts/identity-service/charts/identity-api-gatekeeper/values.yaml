@@ -119,6 +119,7 @@ config:
   #enable-default-deny: true
   cookie-domain: develop.eoepca.org
   cookie-access-name: auth_user_id
+  cookie-refresh-name: auth_refresh_token
   #secure-cookie: true
   enable-metrics: true
   enable-logging: true
@@ -128,11 +129,6 @@ config:
   enable-logout-redirect: true
   listen: :3000
   listen-admin: :4000
-  resources:
-    - uri: /docs/*
-      white-listed: true
-    - uri: /redoc/*
-      white-listed: true
 
 secrets:
   clientSecret: AgAl2YLPqV3ph1tlb9eu/kQZFvqSGyas1iQtJixB8LJjZ1XkV6/8vSShXwnw9sUXa9+4sAsjNWdzdhv1wtyl1i5THNjKaZCyykA5fWHJZRcF+F4bgYSq4pqK5JEwfvuoNlbTq3ZFz0yA4WSTuVPLKbiPI0/6kaW8Yf7QXdBHO0f2mz46RXxbhk4DJCJ9iimgKTv7E67HX6I3lmSS4vuXNlcFBTkdKTiIXThz0/OjgH3w5cviYe8NWYqxWpqaFx2JytwEHn8S+M3vgnBkKJ91fNWZKBFn5f30ZR+oiLTV0ixPYuDVEfBsWsNhkDL4H56sKdEzhEYE8ibt7Ms4X8WXBDbaDN+WZlJTa0jYcDPb/Io02qMXATQCj8bUx+FDOZTwED3gLg+TeHsBozMfLSow0hYdNt+A6nsbYqFi/rPDT/a5rNpfV6TCrjmjJ6uFqnQyBIVZ7tm5NwreKTC48cARZoA3AwgZL2esE9qYUprJrNkJvnITpRCalFS5dXW/M5soBAtwkG8eSwsBnjHHQX1oleBsy4oSdP8N0xASmUpfSQq+fA0cLj1MlCUrRDfOAAttkCq3mRqFYbf/JWtbdjAiYWdJtKK68wa7TmqBR69C5NQV+rwW8HakanS3eZ1jz/KHUq5kI5ZzRLpR6GxEo2ZQmlFNWRLGP/mAWvHhCIL/E7PGEZBB2trjEXVgjgFoMuKn1/G74yWbbm1FvyezMqe/yLptrKed0QRDEV4okIB5Dsj51w==
