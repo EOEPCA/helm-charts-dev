@@ -42,7 +42,7 @@ deployment:
     pullPolicy: IfNotPresent
 
   ## Overrides the default args for the Keycloak container
-  args: ["start-dev"]
+  args: ["start-dev --features=account3,admin-fine-grained-authz,declarative-user-profile,recovery-codes,scripts,token-exchange"]
 
   # Additional environment variables for Keycloak
   extraEnv: ""
