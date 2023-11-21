@@ -101,10 +101,10 @@ ingress:
     nginx.ingress.kubernetes.io/server-snippet: |
       location /oauth/(authorize|callback|expired|health|login|logout|token|metrics|discovery) {
         proxy_pass http://identity-api-gatekeeper.um.svc.cluster.local:3000/$request_uri;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Method $request_method;
-        proxy_set_header X-Forwarded-URI $request_uri;
+        # proxy_set_header X-Forwarded-Proto $scheme;
+        # proxy_set_header X-Forwarded-Host $host;
+        # proxy_set_header X-Forwarded-Method $request_method;
+        # proxy_set_header X-Forwarded-URI $request_uri;
       }
       location ^~ /auth {
         internal;
