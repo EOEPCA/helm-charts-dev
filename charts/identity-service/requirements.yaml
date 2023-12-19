@@ -8,9 +8,6 @@ dependencies:
   - name: identity-api
     condition: identity-api.enabled
     version: 1.0.0
-  - name: identity-portal
-    condition: identity-portal.enabled
-    version: 1.0.0
   - name: identity-gatekeeper
     condition: identity-gatekeeper.enabled
     version: 1.0.0

@@ -8,14 +8,11 @@ dependencies:
 - name: identity-api
   repository: ""
   version: 1.0.0
-- name: identity-portal
-  repository: ""
-  version: 1.0.0
 - name: identity-gatekeeper
   repository: ""
   version: 1.0.0
 - name: identity-api-gatekeeper
   repository: ""
   version: 1.0.0
-digest: sha256:a84bba51a1d23bbdfe7e8491e3cafed52419f6ad31581e0df37be938d6e4b717
-generated: "2023-10-16T18:05:34.5144309+01:00"
+digest: sha256:22c3f907489d28973f5cda3a0619f4f78cf65785885c1e78a636f9bd3658d65b
+generated: "2023-12-19T00:16:44.1470298Z"
