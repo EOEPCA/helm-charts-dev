@@ -1795,6 +1795,16 @@ entries:
   dummy:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-01-02T11:07:11.97170838Z"
+    description: A Helm chart for a dummy Resource Server (used for debugging)
+    digest: d3fe9b0f59a302fded03308949471e4ff5d3e901d000026b6f87d7f7198372f6
+    name: dummy
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/dummy-1.0.2/dummy-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-03-21T17:09:39.494851317Z"
     description: A Helm chart for a dummy Resource Server (used for debugging)
     digest: f11ee953a4a750c1744a21b4f698ca91492f9cbe61ee56f5604f5fa3b339a299
@@ -11096,4 +11106,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2023-12-19T00:17:54.477480352Z"
+generated: "2024-01-02T11:07:11.975482523Z"
