@@ -22,8 +22,8 @@ configMap:
 # Variable used in secrets template
 # ---------------------------------------------
 secrets:
-  postgresPassword: AgBnukPYo25/umXKF+J6ZDqZudZ+zHqPmeolpCrvVkCwHL/8BNKe18LkekSU+MxsfQkiMTMh0O/9ONL+3t0Zmkfcgo1qAFGoO4RFegvhjjr9TVngIo6SUHS+hPBfCm8k04wP0S6kYFgNx4lf+zDIJv2I6cWGR39qtvln8At8dv0STRFQtQ6bGhrk7ruDQveL9fhiFpdaI1VX37B702wNX8SAd5SU5KkRNKYiO7UcG2RrE1MRhDKCHPCsKpXseb8osmBuhr2Emtb6wwICx09u8k+1f3QES39sEW42nybwSHQhsPj6eGl7wvSBJcMOSdBPnqv0MHYVJ9cLeRNwwy1aWL2pJJ9UhheuQW37Pb54jn84coUhMIw7GfiAyLWV0KcG0B6Vuolty6qX7ZpoxZs/RYQMOlzYxbQk7+1noSyu/5MGyWb6atUyH7FjId1BVm+Xw2cjf1TbRMCSHr4UNVPW1pcPv8G6pIgue41IZ87j/34/XvNT1qOyr4ce4WFYsZqXTo1YcJ9+uYcpua06iFlbHTCzYmXHS62NKyQTxFcXJU1r4LmvsnK52Lg1UJNdWpGTwhe3QNwedm9xtfcJBxnyNM/1x3Cr28LtaSZJi7wuPKtbWgH8IVbg54YYOR7lqMqzpzf5/LP4DGOdEcvQWtpmErh2/H9XnbDUUIZo6W5jkBjloVZn2R1UhU8KMHPi54rHHhAZuFnQn5SnfKfvCzI3aXw=
-  pgPassword: AgB5QHS0b/J0CsdV/bTXsO3OR0+WgA6kzARlOVulcBu2RegcbyOWdCrHxT0dS+ICpGR8dKWa20eCRR76/xnpj44bcFAjfvPu0HaXdGViYlkk9r4iwTOj7ONujVBlQCsQ4S6hKMlTiDP7FrbcVdNdo54J5XVNTOahfXau3nSinV2NZhOLTHWeZbejSLOlRU7d+d5ojw5xrr1WGFzwFYOssXRVfp+91On6Ss152f7ILibcREYxWAFSHuKaLfyRjV8hesI3cei94z4NnxiUjEEf1+WjyaygeiBZT8V2s+CpmteBL4HUkIHp41KgQAHXkP1MlbNmt8VanEfN+YuQu8X2qmLIeoK2IBYmVHIWGV9eD6xIuViDaq9IsJjkSr8I6IffrkhCLwyvWNp2MG+2RV14RTuOEBVsSx+sWKCsdEO8JzSLTRSN3RwaX8dLZs6tcW0yr9GAt7UcELyuGFC00rb96ihRXwFYJtK+d65JHZIMlA3FDhTSpwnf0KaDw3+RXvN1X5nZt6Y5skT/e1iXrpFETgUtd6xn4jYTaeXpke5nzWtFow3WFF22TG/+3eHXjCfYyZYVv57rj7z7iikYHqnfSxYhPbUiaMSWWsP4BhF0kCbW8Qv0NY+YjDw8UpZhCUTfWVxny++5/Pi9Kh5cQtROxEN1b/SpEJW1tqwn2V5COOD/cgZ0wdbGQNInSthixqbhAAU0Bvjx7R75vX2h7ITocDA=
+  postgresPassword: ""
+  pgPassword: ""
 
 # ---------------------------------------------
 # Variable used in pv and pvc template
@@ -78,10 +78,6 @@ deployment:
   # Define Volumes mount
   volumeMountPath: /var/lib/postgresql/data
   volumeMountName: postgresdata
-  volumes: |
-    - name: postgresdata
-      persistentVolumeClaim:
-        claimName: eoepca-userman-pvc
   # Liveness probe configuration
   livenessProbe: {}
     # httpGet:
