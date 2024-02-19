@@ -350,6 +350,10 @@ profiles:
     pod_env_vars:
       A: "10"
       B: "20"
+      # GITLAB_TOKEN:
+      #   from_config_map:
+      #     name: gitlabenv
+      #     key: GITLAB_TOKEN
     node_selector: 
       {{ .Values.nodeSelector.key }}: {{ .Values.nodeSelector.value }}
     role_bindings:
