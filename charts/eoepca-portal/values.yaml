@@ -57,7 +57,7 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 configMap:
-  auth_server_url: "https://identity.keycloak.develop.eoepca.org"
+  identity_url: "https://identity.keycloak.develop.eoepca.org"
   realm: "eoepca"
   client_id: "eoepca-portal"
   identity_api_url: "https://identity.api.develop.eoepca.org"
