@@ -28,14 +28,14 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
   hosts:
-    - host: eoepca-portal.develop.eoepca.org
+    - host: eoepca-portal.myplatform.mydomain
       paths:
         - path: /
           pathType: Prefix
   tls:
     - secretName: eoepca-portal-tls-certificate
       hosts:
-        - eoepca-portal.develop.eoepca.org
+        - eoepca-portal.myplatform.mydomain
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -57,18 +57,18 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 configMap:
-  identity_url: "https://identity.keycloak.develop.eoepca.org"
+  identity_url: "https://identity.keycloak.myplatform.mydomain"
   realm: "eoepca"
   client_id: "eoepca-portal"
-  identity_api_url: "https://identity.api.develop.eoepca.org"
-  ades_url: "https://ades.develop.eoepca.org/ogc-api/processes"
-  resource_catalogue_url: "https://resource-catalogue.develop.eoepca.org"
-  data_access_url: "https://data-access.develop.eoepca.org"
-  workspace_url: "https://workspace-api.develop.eoepca.org"
-  workspace_docs_url: "https://workspace-api.develop.eoepca.org/docs#"
-  images_registry_url: "https://harbor.develop.eoepca.org"
-  dummy_service_url: "https://identity.dummy-service.develop.eoepca.org"
+  identity_api_url: "https://identity.api.myplatform.mydomain"
+  ades_url: "https://ades.myplatform.mydomain/ogc-api/processes"
+  resource_catalogue_url: "https://resource-catalogue.myplatform.mydomain"
+  data_access_url: "https://data-access.myplatform.mydomain"
+  workspace_url: "https://workspace-api.myplatform.mydomain"
+  workspace_docs_url: "https://workspace-api.myplatform.mydomain/docs#"
+  images_registry_url: "https://harbor.myplatform.mydomain"
+  dummy_service_url: "https://identity.dummy-service.myplatform.mydomain"
   access_token_name: "auth_user_id"
-  access_token_domain: ".develop.eoepca.org"
+  access_token_domain: ".myplatform.mydomain"
   refresh_token_name: "auth_refresh_token"
-  refresh_token_domain: ".develop.eoepca.org"
+  refresh_token_domain: ".myplatform.mydomain"
