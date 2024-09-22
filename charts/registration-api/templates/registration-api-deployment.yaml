@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    io.kompose.service: pygeoapi
+  name: {{ .Values.pygeoapi.service_name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: pygeoapi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: pygeoapi
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}    
+      containers:
+      - env:
+        - name: PYGEOAPI_SERVER_URL
+          value: {{ .Values.pygeoapi.config.server.url }}
+        image: {{ .Values.pygeoapi.image.repository }}:{{ .Values.pygeoapi.image.tag | default .Chart.AppVersion }}
+        imagePullPolicy: {{ .Values.pygeoapi.image.pullPolicy }}
+        name: pygeoapi
+        ports:
+        - containerPort: {{ .Values.pygeoapi.container_port }}
+        resources: {}
+        volumeMounts:
+        - mountPath: {{ .Values.pygeoapi.volume_path }}
+          name: {{ .Values.pygeoapi.volume_name }}
+      restartPolicy: Always
+      volumes:
+      - name: {{ .Values.pygeoapi.volume_name }}
+        configMap:
+          name: {{ .Values.pygeoapi.configmap_name }}
