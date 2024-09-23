@@ -1,21 +1,8 @@
 apiVersion: v1
 data:
   local.config.yml: |+
-server:
-{{- if .Values.pygeoapi.config.server }}
-{{- toYaml .Values.pygeoapi.config.server | nindent 2 -}}
-{{- end }}
-logging:
-{{- if .Values.pygeoapi.config.logging }}
-{{- toYaml .Values.pygeoapi.config.logging | nindent 2 -}}
-{{- end }}
-metadata:
-{{- if .Values.pygeoapi.config.metadata }}
-{{- toYaml .Values.pygeoapi.config.metadata | nindent 2 -}}
-{{- end }}
-resources:
-{{- if .Values.pygeoapi.config.resources }}
-{{- toYaml .Values.pygeoapi.config.resources | nindent 2 -}}
+{{- if .Values.pygeoapi.config }}
+  {{- toYaml .Values.pygeoapi.config | nindent 4 -}}
 {{- end }}
 
 kind: ConfigMap
