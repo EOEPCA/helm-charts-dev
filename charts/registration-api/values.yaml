@@ -9,7 +9,7 @@ ingress:
   host: registration-api.demo.eoepca.org
   tls_host: registration-api.demo.eoepca.org
   tls_secret_name: registration-api-tls
-  subpath_enabled: false
+  subpath_enabled: "false"
   subpath: "/registration-api"
   default_annotations:
     kubernetes.io/ingress.class: "{{ .Values.ingress.class }}"
@@ -47,10 +47,10 @@ pygeoapi:
       url: https://registration-api.demo.eoepca.org
       mimetype: application/json; charset=UTF-8
       encoding: utf-8
-      gzip: false
+      gzip: "false"
       language: en-US
-      cors: true
-      pretty_print: true
+      cors: "true"
+      pretty_print: "true"
       limit: 10
       # templates: /path/to/templates
     logging:
