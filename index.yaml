@@ -8283,6 +8283,16 @@ entries:
   registration-api:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2024-09-23T10:38:37.170303688Z"
+    description: A Helm chart for EOEPCA Registration API
+    digest: 71305fa6e05587b89abc874f72edc90debe9de76c15189027e886197f50b7add
+    name: registration-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-api-2.0.0-dev2/registration-api-2.0.0-dev2.tgz
+    version: 2.0.0-dev2
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2024-09-22T10:45:51.791021732Z"
     description: A Helm chart for EOEPCA Registration API
     digest: aeea56eff8ec663e2b37a043f3e18f5c3195321a01c8c69d6d76d6da5ed878fa
@@ -11965,4 +11975,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2024-09-23T09:00:57.274638659Z"
+generated: "2024-09-23T10:38:37.174485235Z"
