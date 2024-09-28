@@ -27,7 +27,7 @@ pygeoapi:
     repository: eoepca/registration-api
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "latest"
+    tag: "2.0.0-dev1"
   container_port: 80
   service_name: registration-api-service
   service_type: ClusterIP
