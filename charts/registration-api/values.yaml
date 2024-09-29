@@ -53,17 +53,26 @@ pygeoapi:
       pretty_print: "true"
       limit: 10
       # templates: /path/to/templates
+      map:
+        url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+        attribution: 'Map data &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+      manager:
+        name: TinyDB
+        connection: /tmp/registration-api-process-manager.db
+        output_dir: /tmp/
     logging:
       level: ERROR
       # /tmp/pygeoapi.log
     metadata:
       identification:
-        title: EOEPCA+ Registration API based on pygeoapi
+        title: EOEPCA Registration API based on pygeoapi
         description: pygeoapi provides an API to geospatial data
         keywords:
-          - geospatial
-          - data
-          - api
+          - EOEPCA
+          - Earth observation
+          - exploitation
+          - processing
+          - registration
         keywords_type: theme
         terms_of_service: https://creativecommons.org/licenses/by/4.0/
         url: https://github.com/geopython/pygeoapi
@@ -71,8 +80,8 @@ pygeoapi:
         name: CC-BY 4.0 license
         url: https://creativecommons.org/licenses/by/4.0/
       provider:
-        name: pygeoapi Development Team
-        url: https://pygeoapi.io
+        name: EOEPCA
+        url: https://eoepca.org
       contact:
         name: Tzotsos, Angelos
         position: Core Dev
@@ -89,7 +98,7 @@ pygeoapi:
         instructions: During hours of service.  Off on weekends.
         role: pointOfContact
     resources:
-      hello-world:
+      registrar:
         type: process
         processor:
-          name: HelloWorld
+          name: registration_api.processes.registration.RegistrarProcessor
