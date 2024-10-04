@@ -12025,4 +12025,15 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/user-profile-0.1.1/user-profile-0.1.1.tgz
     version: 0.1.1
-generated: "2024-09-29T13:15:01.302115401Z"
+  workspace-ui:
+  - apiVersion: v2
+    appVersion: v1.2.5
+    created: "2024-10-04T10:41:59.810072068Z"
+    description: Helm chart for the Workspace UI incl. Storage Layer
+    digest: 1899ad9b6b64ee8c7ed105e855486c61f5da9bd8bf7dcfa101d23489ad73cfdb
+    name: workspace-ui
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-10-04T10:41:59.81442361Z"
