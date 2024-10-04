@@ -59,6 +59,10 @@ spec:
               value: "{{ .Values.brandingName }}"
             - name: PASSWORD
               value: "{{ .Values.password }}"
+          {{- if .Values.defaultBucketNames }}
+            - name: BUCKET_DEFAULT
+              value: "{{ .Values.defaultBucketNames }}"
+          {{- end }}
           {{- if .Values.s3CredentialsSecretName }}
           envFrom:
             - secretRef:
