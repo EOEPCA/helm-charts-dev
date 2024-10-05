@@ -1,0 +1,19 @@
+imagePullSecrets: []
+
+harvester:
+  service:
+    name: registration-harvester
+    type: ClusterIP
+    port: 8080
+  image:
+    repository: eoepca/registration-harvester
+    pullPolicy: IfNotPresent
+    tag: latest
+  container_port: 8080
+  config:
+    flowable:
+      host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
+      rest_user: eoepca
+      rest_password: eoepca
+      use_tls: "true"
+
