@@ -8351,6 +8351,18 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-api-2.0.0-dev1/registration-api-2.0.0-dev1.tgz
     version: 2.0.0-dev1
+  registration-harvester:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-10-05T11:44:56.220739173Z"
+    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
+      Registration building block
+    digest: a0ea521b72ace31929c315ce2ce43566aae5e78a67e58808a89542b99b754382
+    name: registration-harvester
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-0.0.1/registration-harvester-0.0.1.tgz
+    version: 0.0.1
   resource-guard:
   - apiVersion: v2
     appVersion: u1.2.4:p1.1.11
@@ -12046,4 +12058,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-04T11:32:18.83160762Z"
+generated: "2024-10-05T11:44:56.224719076Z"
