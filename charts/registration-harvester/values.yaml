@@ -15,5 +15,5 @@ harvester:
       host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
       rest_user: eoepca
       rest_password: eoepca
-      use_tls: "true"
+      use_tls: true
 

@@ -6,4 +6,4 @@ data:
   FLOWABLE_HOST: {{ .Values.harvester.config.flowable.host }}
   FLOWABLE_REST_USER: {{ .Values.harvester.config.flowable.rest_user }}
   FLOWABLE_REST_PASSWORD: {{ .Values.harvester.config.flowable.rest_password }}
-  FLOWABLE_USE_TLS: {{ .Values.harvester.config.flowable.use_tls }}
+  FLOWABLE_USE_TLS: {{ .Values.harvester.config.flowable.use_tls | quote }}
