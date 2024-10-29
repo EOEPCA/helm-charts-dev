@@ -12106,6 +12106,16 @@ entries:
     version: 0.1.1
   workspace-ui:
   - apiVersion: v2
+    appVersion: v1.4.0
+    created: "2024-10-29T07:53:21.075229152Z"
+    description: Helm chart for the Workspace UI incl. Storage Layer
+    digest: 7225737aec731ebab6be8d9b6d10adf5bd56f47724ce6fbc053db2f487f88647
+    name: workspace-ui
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.3/workspace-ui-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     appVersion: v1.2.5
     created: "2024-10-04T11:32:18.828246392Z"
     description: Helm chart for the Workspace UI incl. Storage Layer
@@ -12125,4 +12135,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-08T09:57:41.696301144Z"
+generated: "2024-10-29T07:53:21.078750406Z"
