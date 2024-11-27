@@ -69,6 +69,11 @@ spec:
               value: "{{ .Values.harborUsername }}"
             - name: HARBOR_ADMIN_PASSWORD
               value: "{{ .Values.harborPassword }}"
+          {{- if .Values.harborPasswordSecretName }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.harborPasswordSecretName }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
