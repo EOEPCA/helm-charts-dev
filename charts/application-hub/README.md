@@ -8,7 +8,7 @@ This repository provides a Helm chart and supporting configurations for deployin
 
 ### Based on JupyterHub
 
-This chart relies on the official JupyterHub Helm chart (`v3.3.7`) as its umbrella chart. It includes all core JupyterHub features and extends them with custom scheduling configurations.
+This chart relies on the official JupyterHub Helm chart (`v4.0.0`) as its umbrella chart. It includes all core JupyterHub features and extends them with custom scheduling configurations.
 
 ---
 
