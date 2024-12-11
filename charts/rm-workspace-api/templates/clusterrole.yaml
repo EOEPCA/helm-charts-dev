@@ -7,25 +7,15 @@ rules:
     verbs: ["get", "watch", "patch", "create", "delete"]
     resources:
       - secrets
-      - configmaps
-      - persistentvolumeclaims
-  - apiGroups: ["extensions"]  # older k8s versions
+  - apiGroups: ["epca.eo"]
+    verbs: ["get", "watch", "patch", "create", "delete"]
+    resources:
+      - workspaces
+  - apiGroups: [""]
     verbs: ["get", "list"]
     resources:
-      - ingresses
+      - namespaces
   - apiGroups: ["networking.k8s.io"]  # newer k8s versions
     verbs: ["get", "list"]
     resources:
       - ingresses
-  - apiGroups: [""]
-    verbs: ["create", "get", "delete"]
-    resources:
-      - namespaces
-  - apiGroups: ["helm.toolkit.fluxcd.io"]
-    verbs: ["create", "patch", "list"]
-    resources:
-      - helmreleases
-  - apiGroups: ["epca.eo"]
-    verbs: ["create"]
-    resources:
-      - buckets
