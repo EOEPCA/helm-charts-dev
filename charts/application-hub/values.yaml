@@ -53,10 +53,10 @@ jupyterhub:
       JUPYTERHUB_ENV: "dev"
       JUPYTERHUB_SINGLE_USER_IMAGE_NOTEBOOKS: "jupyter/minimal-notebook:2343e33dec46"
       APP_HUB_NAMESPACE: "default"
-      STORAGE_CLASS: "standard"
+      STORAGE_CLASS: "managed-nfs-storage"
       RESOURCE_MANAGER_WORKSPACE_PREFIX: "develop-user"
       BASE_URL: "/"
-      JUPYTERHUB_CRYPT_KEY: 9bb5272a954baaee689bb50810dd6f3ca411472e16d213e9ce09cc3f714930c9
+      JUPYTERHUB_CRYPT_KEY: 
     extraVolumes:
       - name: application-hub-config
         configMap:
