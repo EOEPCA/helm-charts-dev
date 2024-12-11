@@ -39,6 +39,14 @@ This chart relies on the official JupyterHub Helm chart (`v3.3.7`) as its umbrel
     helm dependency update
     ```
 
+2. **Generate the necessary Enviroment Variable**
+
+   Generate the JUPYTERHUB_CRYPT_KEY enviroment variable with the following command:
+   ```
+   openssl rand -hex 32
+   ```
+   and copy the result string in the values.yaml file: https://github.com/EOEPCA/helm-charts-dev/blob/develop/charts/application-hub/values.yaml#L59
+
 3. **Install the Chart**
 
    Run the following command to deploy the application:
