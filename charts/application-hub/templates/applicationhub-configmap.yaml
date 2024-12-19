@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: application-hub-jupyter-config
+data:
+  config.yml: {{ required "A valid .Values.configYml entry required!" (.Values.configYml | default (.Files.Get "files/hub/config.yml") | quote) }}
+  jupyter_config.py: {{ required "A valid .Values.jupyter_config entry required!" (tpl (.Values.jupyterConfig | default (.Files.Get "files/hub/jupyter_config.py")) . | quote) }}
+  z2jh.py: {{ required "A valid .Values.z2jh entry required!" (tpl (.Values.z2jh | default (.Files.Get "files/hub/z2jh.py")) . | quote) }}
