@@ -39,7 +39,7 @@ spec:
           periodSeconds: 8
           failureThreshold: 1
         volumeMounts:
-        - mountPath: /worker
+        - mountPath: /worker/etc
           name: registration-harvester-config
       restartPolicy: Always
       volumes:
