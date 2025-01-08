@@ -11,9 +11,13 @@ harvester:
     tag: latest
   container_port: 8080
   config:
-    flowable:
-      host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
-      rest_user: eoepca
-      rest_password: eoepca
-      use_tls: true
-
+    worker:
+      log_level: INFO
+      flowable:
+        host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
+        user: eoepca
+        password: eoepca
+        tls: "true"
+        #cacert: ./etc/eoepca-ca-chain.pem
+      topics:
+      handlers:

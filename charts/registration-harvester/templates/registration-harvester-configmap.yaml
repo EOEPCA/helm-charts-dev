@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.harvester.service.name }}-configmap
 data:
-  FLOWABLE_HOST: {{ .Values.harvester.config.flowable.host }}
-  FLOWABLE_REST_USER: {{ .Values.harvester.config.flowable.rest_user }}
-  FLOWABLE_REST_PASSWORD: {{ .Values.harvester.config.flowable.rest_password }}
-  FLOWABLE_USE_TLS: {{ .Values.harvester.config.flowable.use_tls | quote }}
+  # The key is the filename this config map will appear in the volumeMount
+  config.yaml: |+
+{{- if .Values.harvester.config }}
+  {{- toYaml .Values.harvester.config | nindent 4 -}}
+{{- end }}
