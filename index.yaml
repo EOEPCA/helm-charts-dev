@@ -8428,6 +8428,17 @@ entries:
     version: 2.0.0-beta2
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-01-09T09:41:48.128780274Z"
+    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
+      Registration building block
+    digest: 9f3fd47462c87373e8de1145b058575b1b1bba5b0a6d91d7cd099277060ef530
+    name: registration-harvester
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-2.0.0-beta2/registration-harvester-2.0.0-beta2.tgz
+    version: 2.0.0-beta2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-10-08T09:57:41.6921582Z"
     description: A Helm chart for the Harvester component of the EOEPCA+ Resource
       Registration building block
@@ -12206,4 +12217,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-01-08T18:25:03.480332803Z"
+generated: "2025-01-09T09:41:48.132422657Z"
