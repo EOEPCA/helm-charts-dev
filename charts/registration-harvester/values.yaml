@@ -7,8 +7,10 @@ harvester:
     port: 8080
   image:
     repository: eoepca/registration-harvester
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     tag: latest
+  volume_name: registration-harvester-config
+  volume_path: /worker/config
   container_port: 8080
   config:
     worker:

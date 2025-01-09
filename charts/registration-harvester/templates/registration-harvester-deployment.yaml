@@ -28,6 +28,9 @@ spec:
       - name: {{ .Values.harvester.service.name }}
         image: {{ .Values.harvester.image.repository }}:{{ .Values.harvester.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.harvester.image.pullPolicy }}
+        env:
+        - name: CONFIG_FILE_PATH
+          value: {{ .Values.harvester.volume_path }}/config.yaml
         ports:
         - containerPort: {{ .Values.harvester.container_port }}
         livenessProbe:
@@ -39,10 +42,10 @@ spec:
           periodSeconds: 8
           failureThreshold: 1
         volumeMounts:
-        - mountPath: /worker/etc
-          name: registration-harvester-config
+        - mountPath: {{ .Values.harvester.volume_path }}
+          name: {{ .Values.harvester.volume_name }}
       restartPolicy: Always
       volumes:
-      - name: registration-harvester-config
+      - name: {{ .Values.harvester.volume_name }}
         configMap:
           name: {{ .Values.harvester.service.name }}-configmap      
