@@ -9,6 +9,8 @@ harvester:
     repository: eoepca/registration-harvester
     pullPolicy: Always
     tag: latest
+  secret:
+    name: ""
   volume_name: registration-harvester-config
   volume_path: /worker/config
   container_port: 8080
@@ -17,9 +19,7 @@ harvester:
       log_level: INFO
       flowable:
         host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
-        user: eoepca
-        password: eoepca
         tls: "true"
-        #cacert: ./etc/eoepca-ca-chain.pem
+        cacert: ""
       topics:
       handlers:
