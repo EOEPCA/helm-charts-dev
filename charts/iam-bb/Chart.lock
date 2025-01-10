@@ -1,0 +1,15 @@
+dependencies:
+- name: keycloak
+  repository: https://charts.bitnami.com/bitnami
+  version: 21.4.4
+- name: opal
+  repository: https://permitio.github.io/opal-helm-chart
+  version: 0.0.28
+- name: identity-service
+  repository: https://eoepca.github.io/helm-charts
+  version: 1.0.98
+- name: apisix
+  repository: https://charts.apiseven.com
+  version: 2.9.0
+digest: sha256:5be0238a7be011b6fd882cb1c9f5ef9fb3fc99cf2a4fa3a8a191f1eafab5d1e5
+generated: "2025-01-09T11:33:51.644718512+01:00"
