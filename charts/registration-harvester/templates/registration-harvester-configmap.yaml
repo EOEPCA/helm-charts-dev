@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.harvester.service.name }}-configmap
+  name: {{ .Release.Name }}-configmap
 data:
   # The key is the filename this config map will appear in the volumeMount
   config.yaml: |+
