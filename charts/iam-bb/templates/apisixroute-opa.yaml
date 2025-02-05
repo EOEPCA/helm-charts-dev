@@ -29,7 +29,7 @@ spec:
           access_token_in_authorization_header: true
           discovery: "{{ .Values.iam.keycloak.url }}/realms/eoepca/.well-known/openid-configuration"
 {{- if .Values.iam.opa.clientSecretRef }}
-        refSecret: {{ .Values.iam.opa.clientSecretRef | quote }}
+        secretRef: {{ .Values.iam.opa.clientSecretRef | quote }}
 {{- end }}
       - name: authz-keycloak
         enable: true
@@ -48,7 +48,7 @@ spec:
           # ssl_verify may have to be set to false in a test environment. Not recommended for production.
           ssl_verify: false
 {{- if .Values.iam.opa.clientSecretRef }}
-        refSecret: {{ .Values.iam.opa.clientSecretRef | quote }}
+        secretRef: {{ .Values.iam.opa.clientSecretRef | quote }}
 {{- end }}
 {{- end }}
 {{- end }}
