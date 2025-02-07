@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "knative-operator.fullname" . }}-config-logging
+  labels:
+  {{- include "knative-operator.labels" . | nindent 4 }}
+data:
+  _example: {{ .Values.configLogging.Example | toYaml | indent 1 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "knative-operator.fullname" . }}-config-observability
+  labels:
+  {{- include "knative-operator.labels" . | nindent 4 }}
+data:
+  _example: {{ .Values.configObservability.Example | toYaml | indent 1 }}
