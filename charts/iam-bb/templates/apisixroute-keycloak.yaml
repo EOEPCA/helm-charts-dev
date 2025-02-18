@@ -9,7 +9,11 @@ spec:
   http:
   - backends:
     - serviceName: iam-keycloak
+{{- if .Values.keycloak.tls.enabled }}
+      servicePort: 443
+{{- else }}
       servicePort: 80
+{{- end }}
     match:
       hosts: {{- .Values.iam.keycloak.hosts | toYaml | nindent 6 }}
       paths: {{- .Values.iam.keycloak.paths | toYaml | nindent 6 }}
