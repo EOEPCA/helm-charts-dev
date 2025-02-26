@@ -3,13 +3,13 @@ imagePullSecrets: []
 global:
   namespace: rm
 ingress:
-  enabled: "true"
+  enabled: true
   name: registration-api
   class: nginx
   host: registration-api.demo.eoepca.org
   tls_host: registration-api.demo.eoepca.org
   tls_secret_name: registration-api-tls
-  subpath_enabled: "false"
+  subpath_enabled: false
   subpath: "/registration-api"
   default_annotations:
     kubernetes.io/ingress.class: "{{ .Values.ingress.class }}"
