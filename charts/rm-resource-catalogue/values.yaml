@@ -14,7 +14,9 @@ db:
   volume_path: /var/lib/postgresql/data/pgdata
   volume_size: 500Mi
   volume_access_modes: ReadWriteMany
-  volume_storage_type: managed-nfs-storage-retain
+  volume_storageclass: managed-nfs-storage-retain
+  volume_subpath_enabled: false
+  volume_subpath: data
   configmap_name: resource-catalogue-db-configmap
   configmap_volume_name: resource-catalogue-db-config
   configmap_volume_path: /etc/postgresql

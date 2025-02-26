@@ -41,6 +41,9 @@ spec:
         volumeMounts:
         - mountPath: {{ .Values.db.volume_path }}
           name: {{ .Values.db.volume_name }}
+          {{- if .Values.db.volume_subpath_enabled }}
+          subPath: {{ .Values.db.volume_subpath }}
+          {{- end }}
         - mountPath: {{ .Values.db.configmap_volume_path }}
           name: {{ .Values.db.configmap_volume_name }}
       restartPolicy: Always
@@ -52,7 +55,7 @@ spec:
     - metadata:
         name: {{ .Values.db.volume_name }}
       spec:
-        storageClassName: {{ .Values.db.volume_storage_type }}
+        storageClassName: {{ .Values.db.volume_storageclass }}
         accessModes:
         - {{ .Values.db.volume_access_modes }}
         resources:
