@@ -17,6 +17,29 @@ iam:
       - iam-auth.apx.develop.eoepca.org
     paths:
       - /*
+    # TODO: Maybe move Keycloak configuration to a separate Helm chart
+    # Optional configuration to apply as Crossplane CRs
+    configuration:
+      # Set this to true to enable generation of Crossplane CRs;
+      # if set to false, Crossplane is not used and no CRs are generated.
+      useCrossplane: false
+      # Set to true to auto-generate clients as Crossplane CRs.
+      createClients: false
+      realm:
+        # Set to true to auto-generate realm as Crossplane CR.
+        create: false
+        # Name of realm to create or of existing realm to create clients in
+        name: eoepca
+        displayName: EOEPCA
+        # TODO: Maybe add spec or forProvider section here and reference it from template
+      provider:
+        # Set to true to generate Provider config for Keycloak
+        create: false
+        # Reference to existing secret containing Keycloak location and credentials
+        secretRef:
+          name: keycloak-credentials
+          key: credentials
+          namespace: crossplane-system
   opa:
     enabled: &opaEnabled true
     createRoute: true

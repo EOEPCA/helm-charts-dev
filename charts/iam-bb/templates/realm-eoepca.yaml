@@ -1,0 +1,14 @@
+{{ if .Values.iam.keycloak.configuration.useCrossplane -}}
+{{ if .Values.iam.keycloak.configuration.realm.create -}}
+apiVersion: realm.keycloak.crossplane.io/v1alpha1
+kind: Realm
+metadata:
+  name: eoepca-realm
+spec:
+  forProvider:
+    realm: {{- .Values.iam.keycloak.configuration.realm.name | quote }}
+    displayName: {{- .Values.iam.keycloak.configuration.realm.displayName | quote }}
+  providerConfigRef:
+    name: keycloak-provider-config
+{{- end }}
+{{- end }}
