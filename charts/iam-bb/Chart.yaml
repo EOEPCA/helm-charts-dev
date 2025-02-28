@@ -15,13 +15,13 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 2.0.0-beta2.1
+version: 2.0.0-beta2.2
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "2.0.0-beta2"
+appVersion: "2.0.0-beta2.2"
 
 dependencies:
   - name: keycloak
@@ -37,6 +37,6 @@ dependencies:
     repository: "https://eoepca.github.io/helm-charts"
     condition: identityApi.enabled
   - name: apisix
-    version: "2.9.0"
+    version: "2.10.0"
     repository: "https://charts.apiseven.com"
     condition: apisix.enabled
