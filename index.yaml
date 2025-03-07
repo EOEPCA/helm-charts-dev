@@ -1504,6 +1504,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.2.0-rc1/data-access-1.2.0-rc1.tgz
     version: 1.2.0-rc1
+  datacube-access:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-03-07T13:16:18.667529035Z"
+    description: A Helm chart for Kubernetes
+    digest: cade6fd64781f65a56a4062e68abe130311a3e37e7c0cc222b42e1ccfdc7ca25
+    name: datacube-access
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/datacube-access-0.0.2/datacube-access-0.0.2.tgz
+    version: 0.0.2
   django-portal:
   - apiVersion: v2
     appVersion: v1.1.0
@@ -12468,4 +12479,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-03T14:18:10.927950632Z"
+generated: "2025-03-07T13:16:18.671818865Z"
