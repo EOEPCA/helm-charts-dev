@@ -3,6 +3,7 @@ imagePullSecrets: []
 global:
   namespace: rm
 db:
+  enabled: true
   name: resource-catalogue-db
   service_name: resource-catalogue-db-service
   image: postgis/postgis:12-3.1
