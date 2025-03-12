@@ -8,7 +8,7 @@
 # because otherwise the dependent values will not be set.
 # Note that further adaptations may still be needed in the service-specific
 # sections below.
-iam:
+iam: &iam
   keycloak:
     enabled: &keycloakEnabled true
     # "Official" Keycloak URL
@@ -19,7 +19,7 @@ iam:
       - /*
     # TODO: Maybe move Keycloak configuration to a separate Helm chart
     # Optional configuration to apply as Crossplane CRs
-    configuration:
+    configuration: &kcConfig
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
@@ -57,7 +57,7 @@ iam:
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
     #clientSecretRef: opa-route
   identityApi:
-    enabled: &identityApiEnabled true
+    enabled: &identityApiEnabled false
     createRoute: true
     hosts:
       - identity-api.apx.develop.eoepca.org
@@ -75,6 +75,8 @@ iam:
     #clientSecretRef: identity-api-route
   apisix:
     enabled: &apisixEnabled true
+  config:
+    enabled: &configEnabled false
 
 # ----
 
@@ -360,6 +362,16 @@ apisix:
         https_port: 443
   ingress-controller:
     enabled: true
+
+# Configuration for iam-bb-config when applied stand-alone
+#config: &config
+#  keycloak: *kcConfig
+
+# Configuration for iam-bb-config when applied as subchart
+iamBbConfig:
+  enabled: *configEnabled
+  iam: *iam
+  #config: *config
 
 identityApi:
   enabled: *identityApiEnabled
