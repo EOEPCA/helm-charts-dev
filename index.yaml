@@ -2360,6 +2360,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-0.2.0/iam-bb-0.2.0.tgz
     version: 0.2.0
+  iam-bb-config:
+  - apiVersion: v2
+    appVersion: 2.0.0-beta2.3
+    created: "2025-03-12T14:44:49.043985573Z"
+    description: A Helm chart for Kubernetes
+    digest: 0c40080c7209204df4a53b7bc0cdfa83ace7b261d37d3177cdb33402f540ea2f
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.0.0-beta2.3/iam-bb-config-2.0.0-beta2.3.tgz
+    version: 2.0.0-beta2.3
   identity:
   - apiVersion: v1
     appVersion: v1
@@ -12510,4 +12521,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-10T14:15:19.691383709Z"
+generated: "2025-03-12T14:44:49.048545328Z"
