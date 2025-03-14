@@ -65,3 +65,4 @@ tolerations: []
 affinity: {}
 
 stacApi: ""
+publicUrl: ""
