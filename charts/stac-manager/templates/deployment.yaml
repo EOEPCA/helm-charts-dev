@@ -43,7 +43,7 @@ spec:
           env:
             - name: REACT_APP_STAC_API
               value: {{ .Values.stacApi | required "Please provide a value for stacApi" }}
-            {{ if .Values.publicUrl}}
+            {{ if .Values.publicUrl }}
             - name: PUBLIC_URL
               value: {{ .Values.publicUrl }}
             {{ end }}

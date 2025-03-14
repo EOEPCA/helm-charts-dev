@@ -4,6 +4,6 @@ description: A Helm chart for stac-manager. https://github.com/developmentseed/s
 
 type: application
 
-version: 0.0.2
+version: 0.0.3
 
 appVersion: "0.0.0"
