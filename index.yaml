@@ -11506,6 +11506,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-workspace-api-0.1.0/rm-workspace-api-0.1.0.tgz
     version: 0.1.0
+  stac-manager:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2025-03-14T13:23:16.460940249Z"
+    description: A Helm chart for stac-manager. https://github.com/developmentseed/stac-manager
+    digest: 78e6d313e946e31552ecb17bcabced171454b082623890017453ae87a5326e6e
+    name: stac-manager
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/stac-manager-0.0.1/stac-manager-0.0.1.tgz
+    version: 0.0.1
   storage:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -12562,4 +12573,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-13T15:40:06.16231095Z"
+generated: "2025-03-14T13:23:16.464480889Z"
