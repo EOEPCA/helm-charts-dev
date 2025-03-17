@@ -2020,6 +2020,16 @@ entries:
     version: 0.9.0
   eoapi-maps-plugin:
   - apiVersion: v2
+    appVersion: 0.0.11
+    created: "2025-03-17T13:04:02.79888391Z"
+    description: A Helm chart containing a deployment of pygeoapi and eoapi-maps-plugin
+    digest: 67983ffadc72b7586caa015d0cee24eb70dab5f437938fa7d61ef0cc82aed9cb
+    name: eoapi-maps-plugin
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoapi-maps-plugin-0.0.13/eoapi-maps-plugin-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
     appVersion: 0.0.10
     created: "2025-03-13T15:40:06.158363979Z"
     description: A Helm chart containing a deployment of pygeoapi and eoapi-maps-plugin
@@ -12593,4 +12603,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-14T15:13:14.332342515Z"
+generated: "2025-03-17T13:04:02.802399761Z"
