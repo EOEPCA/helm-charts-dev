@@ -41,6 +41,9 @@ spec:
                 {{- if .Values.sync.forceLinkMimetypeCheck }}
                 - "-l"
                 {{- end }}
+                {{- if .Values.sync.debug }}
+                - "--debug"
+                {{- end }}
               env:
                 {{- range $key, $value := .Values.env }}
                 - name: {{ $key }}
