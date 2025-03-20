@@ -66,9 +66,7 @@ tolerations: []
 affinity: {}
 
 prefixForName: "ws-"
-workspaceSecretName: "bucket"
-s3Endpoint: "https://minio.develop.eoepca.org"
-s3Region: "eu-central-1"
+workspaceSecretName: "workspace"
 harborUrl: ""
 harborUsername: ""
 harborPassword: ""

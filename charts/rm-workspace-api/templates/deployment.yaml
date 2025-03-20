@@ -59,10 +59,6 @@ spec:
               value: "{{ .Values.prefixForName }}"
             - name: WORKSPACE_SECRET_NAME
               value: "{{ .Values.workspaceSecretName }}"
-            - name: S3_ENDPOINT
-              value: "{{ .Values.s3Endpoint }}"
-            - name: S3_REGION
-              value: "{{ .Values.s3Region }}"
             - name: HARBOR_URL
               value: "{{ .Values.harborUrl }}"
             - name: HARBOR_ADMIN_USERNAME
