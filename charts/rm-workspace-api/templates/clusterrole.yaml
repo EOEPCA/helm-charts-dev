@@ -15,7 +15,11 @@ rules:
     verbs: ["get", "list"]
     resources:
       - namespaces
-  - apiGroups: ["networking.k8s.io"]  # newer k8s versions
+  - apiGroups: ["networking.k8s.io"]
     verbs: ["get", "list"]
     resources:
       - ingresses
+  - apiGroups: ["apisix.apache.org"]
+    verbs: ["get", "list"]
+    resources:
+      - apisixroutes
