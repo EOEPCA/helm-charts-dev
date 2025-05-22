@@ -72,7 +72,8 @@ pycsw:
     repository: geopython/pycsw
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "eoepca-2.0.0-beta2"
+    tag: "eoepca-2.0.0-rc1"
+  replicas: 1
   container_port: 8000
   service_name: resource-catalogue-service
   service_type: ClusterIP

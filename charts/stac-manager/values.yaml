@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/eoepca/stac-manager
+  repository: eoepca/stac-manager
   pullPolicy: IfNotPresent
   tag: ""
 
@@ -24,7 +24,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 9000
+  port: 80
 
 ingress:
   enabled: false
@@ -63,6 +63,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-stacApi: ""
-publicUrl: ""
