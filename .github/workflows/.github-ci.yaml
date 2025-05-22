@@ -1,3 +1,11 @@
+name: Build, Scan, and Publish Helm Chart
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
 stages:
   - build
   - scan
