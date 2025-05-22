@@ -32,6 +32,11 @@ jupyterhub:
   # ConfigurableHTTPProxy speaks with the actual ConfigurableHTTPProxy server in
   # the proxy pod.
   hub:
+    serviceAccount:
+      create: true
+      name: ""
+    networkPolicy:
+      enabled: false
     db:
       type: sqlite-pvc
       upgrade:
@@ -42,7 +47,7 @@ jupyterhub:
         - ReadWriteOnce
         storage: 1Gi
         subPath:
-        storageClassName: managed-nfs-storage
+        storageClassName: standard
     args:
     - "jupyterhub"
     - "--config"
@@ -50,29 +55,33 @@ jupyterhub:
     - "--debug"
     - "--upgrade-db"
     extraEnv:
-      JUPYTERHUB_ENV: "dev"
+      JUPYTERHUB_AUTH_METHOD: dummy
+      JUPYTERHUB_ENV: dev
+      JUPYTERHUB_FULLNAME_OVERRIDE: "application-hub"
       JUPYTERHUB_SINGLE_USER_IMAGE_NOTEBOOKS: "jupyter/minimal-notebook:2343e33dec46"
-      APP_HUB_NAMESPACE: "default"
-      STORAGE_CLASS: "managed-nfs-storage"
+      STORAGE_CLASS: standard
       RESOURCE_MANAGER_WORKSPACE_PREFIX: "develop-user"
-      BASE_URL: "/"
-      #UPYTERHUB_CRYPT_KEY: ""
     extraVolumes:
     - name: application-hub-config
       configMap:
         name: application-hub-jupyter-config
-        defaultMode: 0744
+        standardMode: 0744
     extraVolumeMounts:
     - name: application-hub-config
       mountPath: /usr/local/etc/applicationhub
     image:
       name: eoepca/application-hub
-      tag: "1.3.1"
+      tag: "1.4.3"
+      pullPolicy: IfNotPresent
+
 
   # proxy relates to the proxy pod, the proxy-public service, and the autohttps
   # pod and proxy-http service.
   proxy:
     secretToken: ""
+    chp:
+      networkPolicy:
+        enabled: false
     service:
       type: ClusterIP #LoadBalancer
     # traefik relates to the autohttps pod, which is responsible for TLS
@@ -89,5 +98,6 @@ jupyterhub:
   # pod, and its spawning of user pods such as jupyter-myusername.
   singleuser:
     networkPolicy:
+      enabled: false
       egressAllowRules:
         cloudMetadataServer: false

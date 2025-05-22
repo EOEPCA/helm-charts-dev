@@ -1,0 +1,56 @@
+stages:
+  - build
+  - scan
+  - publish
+
+variables:
+  CHART_PATH: charts/application-hub
+  HELM_EXPERIMENTAL_OCI: 1
+
+helm-build:
+  stage: build
+  image:
+    name: alpine/helm:3.14.0
+    entrypoint: [""]
+  script:
+    - apk add --no-cache git curl
+    - CHART_NAME=$(grep '^name:' $CHART_PATH/Chart.yaml | awk '{print $2}')
+    - CHART_VERSION=$(grep '^version:' $CHART_PATH/Chart.yaml | awk '{print $2}')
+    - helm plugin install https://github.com/chartmuseum/helm-push
+    - helm dependency update $CHART_PATH || true
+    - helm lint $CHART_PATH
+    - helm package $CHART_PATH --destination .
+    - echo "CHART_PACKAGE=${CHART_NAME}-${CHART_VERSION}.tgz" >> build.env
+    - echo "CHART_NAME=$CHART_NAME" >> build.env
+    - echo "CHART_VERSION=$CHART_VERSION" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+    paths:
+      - "*.tgz"
+    expire_in: 1 hour
+
+helm-scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  needs: [helm-build]
+  script:
+    - source build.env
+    - echo "🔍 Scanning chart with Trivy..."
+    - trivy config --exit-code 1 --severity HIGH,CRITICAL $CHART_PATH
+
+helm-publish:
+  stage: publish
+  image:
+    name: alpine/helm:3.14.0
+    entrypoint: [""]
+  needs: [helm-build]
+  script:
+    - apk add --no-cache curl
+    - source build.env
+
+    # Push to cr.terradue.com using helm-push plugin
+    - helm plugin install https://github.com/chartmuseum/helm-push
+    - echo "${{ secrets.CR_PASSWORD }}" | helm registry login --username "${{ secrets.CR_USERNAME }}" --password-stdin "${{ secrets.CR_REGISTRY }}"
+    - echo "Pushing chart to cr.terradue.com..."
+    - helm cm-push $CHART_PACKAGE "${{ secrets.CR_REGISTRY }}" --username "$CR_USER" --password "$CR_PASSWORD"

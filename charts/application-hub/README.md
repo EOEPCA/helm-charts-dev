@@ -39,15 +39,52 @@ This chart relies on the official JupyterHub Helm chart (`v4.0.0`) as its umbrel
     helm dependency update
     ```
 
-2. **Generate the necessary Enviroment Variable**
+3. **Generate the necessary Enviroment Variable**
 
-   Generate the JUPYTERHUB_CRYPT_KEY enviroment variable with the following command:
-   ```
-   openssl rand -hex 32
-   ```
-   and copy the result string in the values.yaml file: https://github.com/EOEPCA/helm-charts-dev/blob/develop/charts/application-hub/values.yaml#L59
+   Make sure to define the following environment variables to ensure correct behavior of your JupyterHub deployment:
 
-3. **Install the Chart**
+   1. JUPYTERHUB_CRYPT_KEY
+      
+      Used to encrypt user cookies and tokens.
+      Generate it with the following command:
+      ```
+      openssl rand -hex 32
+      ```
+      and copy the result string in the values.yaml file: https://github.com/EOEPCA/helm-charts-dev/blob/develop/charts/application-hub/values.yaml#L59
+
+
+   2. JUPYTERHUB_ENV
+      
+      Represents the Kubernetes namespace where JupyterHub is deployed.
+
+   3. JUPYTERHUB_FULLNAME_OVERRIDE
+      
+      * Must match the fullnameOverride field defined in your values.yaml.
+      * Used to determine the internal name of the JupyterHub services, such as the hub API.
+      * Ensures correct DNS resolution within the Kubernetes cluster.
+
+4. **Service Account and Cluster Permissions**
+
+   This Helm chart automatically creates a Kubernetes service account for the JupyterHub hub component. That service account is then linked to cluster-wide permissions so that JupyterHub can manage resources as needed.
+
+   Specifically:
+      * The service account is created with a name you specify (e.g. application-hub).
+      * A ClusterRoleBinding is also created, which assigns that service account the cluster-admin role.
+
+   This setup allows the JupyterHub hub to:
+      * Create and manage user namespaces
+      * Access and create Kubernetes Secrets (e.g., tokens, credentials)
+
+   Example configuration in values.yaml:
+   ```
+   hub:
+      serviceAccount:
+         create: true
+         name: application-hub
+   ```
+   This ensures that JupyterHub has the access it needs to manage dynamic, per-user environments across the cluster.
+
+4. **Install the Chart**
 
    Run the following command to deploy the application:
    
@@ -56,7 +93,7 @@ This chart relies on the official JupyterHub Helm chart (`v4.0.0`) as its umbrel
    ```
    This command installs the Helm chart in the current namespace. Use the *--namespace* flag if a specific namespace is required.
 
-4. **Verify Deployment** 
+5. **Verify Deployment** 
 
    Monitor the deployment using *kubectl*:
    ```
@@ -65,10 +102,14 @@ This chart relies on the official JupyterHub Helm chart (`v4.0.0`) as its umbrel
    ```
    Ensure that all pods are running, and the services are properly exposed.
 
-5. **Access JupyterHub**
+6. **Access JupyterHub**
 
    Access the deployed JupyterHub using the URL defined in the Ingress configuration. For example:
    ```
    https://<your-ingress-hostname>
+   ```
 
+   or use port forward of the proxy-public service:
+   ```
+   kubectl port-forward svc/<proxy-public-service> 8080:80 -n <namespace>
    ```

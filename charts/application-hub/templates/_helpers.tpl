@@ -10,8 +10,8 @@ Create a default fully qualified app name.
 This version does NOT include the release name.
 */}}
 {{- define "application-hub.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- if .Values.jupyterhub.fullnameOverride }}
+{{- .Values.jupyterhub.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
