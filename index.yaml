@@ -524,6 +524,20 @@ entries:
   application-hub:
   - apiVersion: v2
     appVersion: 4.0.0
+    created: "2025-05-22T15:09:43.343539066Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart
+      version: 4.2.0
+    description: Application Hub Helm Chart
+    digest: 0426af181f047a25c5bf5060eec767d7ecd6c53a2e20b83a9055cdb4eca11abe
+    name: application-hub
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/application-hub-4.0.2/application-hub-4.0.2.tgz
+    version: 4.0.2
+  - apiVersion: v2
+    appVersion: 4.0.0
     created: "2024-12-20T08:29:03.604539753Z"
     dependencies:
     - name: jupyterhub
@@ -2303,6 +2317,37 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
     version: 2.0.0-rc1
   - apiVersion: v2
+    appVersion: 2.0.0-rc1
+    created: "2025-05-22T15:09:43.795342183Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 24.4.11
+    - condition: opal.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: identityApi.enabled
+      name: identity-service
+      repository: https://eoepca.github.io/helm-charts
+      version: 1.0.98
+    - condition: apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.10.0
+    - condition: iamBbConfig.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.0.0-rc1
+    description: EOEPCA IAM BB Helm chart
+    digest: 8f793a292c0fb18316465ec1af81ac4aa510d1cee6fae3a28db0029b21851ace
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
     appVersion: 2.0.0-beta2.5
     created: "2025-04-07T08:58:43.202130524Z"
     dependencies:
@@ -2590,6 +2635,16 @@ entries:
     created: "2025-04-07T08:47:10.818280386Z"
     description: A Helm chart for Kubernetes
     digest: c0c9d383f1c974e2d4f54d6e6753aa9f8d725f009c3a8a3cad74a8c076f19ddd
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.0.0-rc1/iam-bb-config-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 2.0.0-rc1
+    created: "2025-05-22T15:09:44.132820231Z"
+    description: A Helm chart for Kubernetes
+    digest: 112720843494b681b5545961fa8c62e9c333c886af6e70c97c8721427a458b44
     name: iam-bb-config
     type: application
     urls:
@@ -8793,6 +8848,16 @@ entries:
   registration-api:
   - apiVersion: v2
     appVersion: 0.20.0
+    created: "2025-05-22T15:09:44.354254911Z"
+    description: A Helm chart for EOEPCA Registration API
+    digest: 351f9efc9c816afefb24a6b05a3dfe718fc8f91ff4a099f781951a2ce693e492
+    name: registration-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-api-2.0.0-rc1/registration-api-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 0.20.0
     created: "2025-04-07T16:10:22.429047516Z"
     description: A Helm chart for EOEPCA Registration API
     digest: 4bde45e5968b697dd92ab7a6b3ec54e7f8dc3499d90da70e918c46a738152f1d
@@ -8918,6 +8983,17 @@ entries:
     description: A Helm chart for the Harvester component of the EOEPCA+ Resource
       Registration building block
     digest: aa5ced8bc53f456d093b028c3a9835eb9f6dee073bae0574efac8600df963eb2
+    name: registration-harvester
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-2.0.0-rc1/registration-harvester-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2025-05-22T15:09:44.546668677Z"
+    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
+      Registration building block
+    digest: e58cbfe5978d7e98db629f417377a0f147f97da11f2b1ffafa5164e8729f19c5
     name: registration-harvester
     type: application
     urls:
@@ -10420,6 +10496,16 @@ entries:
     created: "2025-04-07T15:58:25.723310317Z"
     description: A Helm chart for Resource Catalogue
     digest: 1381209acb52740550b69d3301e3501532df0ff1e8be96bf9aada93ef8834460
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-2.0.0-rc1/rm-resource-catalogue-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2025-05-22T15:09:44.739336475Z"
+    description: A Helm chart for Resource Catalogue
+    digest: 8f6f91fb907d2251255d6bc68e94096ea1a44cc3c195397dc67f7e78356ce4ca
     name: rm-resource-catalogue
     type: application
     urls:
@@ -12848,4 +12934,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-12T18:11:12.067404156Z"
+generated: "2025-05-22T15:09:44.975466589Z"
