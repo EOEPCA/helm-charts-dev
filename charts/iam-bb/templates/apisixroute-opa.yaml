@@ -27,6 +27,7 @@ spec:
 {{- end }}
 {{- end }}
           access_token_in_authorization_header: true
+          use_jwks: true
           discovery: "{{ .Values.iam.keycloak.url }}/realms/eoepca/.well-known/openid-configuration"
 {{- if .Values.iam.opa.clientSecretRef }}
         secretRef: {{ .Values.iam.opa.clientSecretRef | quote }}

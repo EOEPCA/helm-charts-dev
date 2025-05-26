@@ -2,10 +2,10 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ $fullName }}-rbac
+  name: {{ .Release.Name }}-rbac
 subjects:
   - kind: ServiceAccount
-    name: {{ $fullName }}-hub
+    name: {{ include "jupyterhub.hub-serviceaccount.fullname" (dict "Values" .Values.jupyterhub "Release" .Release "Chart" .Chart "Capabilities" .Capabilities) }}
     namespace: {{  .Release.Namespace }}
 roleRef:
   kind: ClusterRole
