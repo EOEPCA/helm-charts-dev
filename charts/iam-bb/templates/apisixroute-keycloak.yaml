@@ -1,4 +1,5 @@
 {{ if .Values.keycloak.enabled -}}
+{{ if .Values.iam.keycloak.createRoute -}}
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
@@ -33,4 +34,5 @@ spec:
 #          phase: "rewrite"
 #          functions:
 #            - "return function(conf, ctx) if tonumber(ngx.var.var_x_forwarded_port) > 9000 then ngx.var.var_x_forwarded_port = ngx.var.var_x_forwarded_port - 9000 end end"
+{{ end -}}
 {{ end -}}

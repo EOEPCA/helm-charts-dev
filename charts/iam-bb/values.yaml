@@ -16,6 +16,7 @@ global:
 iam: &iam
   keycloak:
     enabled: &keycloakEnabled true
+    createRoute: true
     # "Official" Keycloak URL
     url: &kcurl https://iam-auth.apx.develop.eoepca.org
     hosts:
