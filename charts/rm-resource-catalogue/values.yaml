@@ -2,6 +2,8 @@ imagePullSecrets: []
 
 global:
   namespace: rm
+
+# should we run a dedicated database instance?
 db:
   enabled: true
   name: resource-catalogue-db
@@ -46,6 +48,16 @@ db:
     # cpu_operator_cost: 0.0025
     # parallel_tuple_cost: 0.1
     # parallel_setup_cost: 1000.0
+
+# should we connect to an external database?
+externalDatabase:
+  #host: resource-catalogue-db
+  #port: 5432
+  #database: pycsw
+  #auth:
+  #  # expects a secret with {username,password} keys
+  #  secretName: resource-catalogue-db-auth
+
 ingress:
   enabled: true
   name: resource-catalogue
@@ -162,7 +174,8 @@ pycsw:
           begin: YYYY-MM-DD
           end: YYYY-MM-DD
     repository:
-      database: postgresql://postgres:mypass@resource-catalogue-db/pycsw
+      #database: postgresql://postgres:mypass@resource-catalogue-db/pycsw
+      database: '${PYCSW_REPOSITORY_DATABASE_URI}'
       table: records
       # mappings: path/to/mappings.py
       # filter: type = 'http://purl.org/dc/dcmitype/Dataset'
