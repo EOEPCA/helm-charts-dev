@@ -25,22 +25,22 @@ spec:
       - env:
         - name: PYCSW_SERVER_URL
           value: {{ .Values.pycsw.config.server.url }}
-        {{- if .Values.externalDatabase }}
+        {{- if .Values.external_db }}
         - name: _DB_HOST
-          value: {{ .Values.externalDatabase.host }}
+          value: {{ .Values.external_db.host }}
         - name: _DB_PORT
-          value: {{ .Values.externalDatabase.port | default "5432" | squote }}
+          value: {{ .Values.external_db.port | default "5432" | squote }}
         - name: _DB_NAME
-          value: {{ .Values.externalDatabase.database | default "pycsw" }}
+          value: {{ .Values.external_db.database | default "pycsw" }}
         - name: _DB_USER
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.externalDatabase.auth.secretName }}
+              name: {{ .Values.external_db.auth.secret_name }}
               key: username
         - name: _DB_PASS
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.externalDatabase.auth.secretName }}
+              name: {{ .Values.external_db.auth.secret_name }}
               key: password
         {{- else }}
         - name: _DB_HOST
@@ -53,7 +53,7 @@ spec:
           value: {{ .Values.db.user }}
         - name: _DB_PASS
           value: {{ .Values.db.pass | squote }}
-        {{- end }}{{/* if .Values.externalDatabase */}}
+        {{- end }}{{/* if .Values.external_db */}}
         - name: PYCSW_REPOSITORY_DATABASE_URI
           value: >-
             postgresql://$(_DB_USER):$(_DB_PASS)@$(_DB_HOST):$(_DB_PORT)/$(_DB_NAME)

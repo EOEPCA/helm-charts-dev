@@ -50,13 +50,13 @@ db:
     # parallel_setup_cost: 1000.0
 
 # should we connect to an external database?
-externalDatabase:
+external_db:
   #host: resource-catalogue-db
   #port: 5432
   #database: pycsw
   #auth:
   #  # expects a secret with {username,password} keys
-  #  secretName: resource-catalogue-db-auth
+  #  secret_name: resource-catalogue-db-auth
 
 ingress:
   enabled: true
