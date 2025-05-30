@@ -18,6 +18,12 @@ spec:
       hosts: {{- .Values.iam.keycloak.hosts | toYaml | nindent 6 }}
       paths: {{- .Values.iam.keycloak.paths | toYaml | nindent 6 }}
     name: keycloak
+    plugins:
+{{- if .Values.keycloak.cors.enabled }}
+      # Allow CORS access
+      - name: cors
+        enable: true
+{{- end }}
 # The following workaround has been replaced with a global rule and is not needed here any more.
 #    plugins:
 #      # Possible workaround for redirect-to-9443 problem that also works for HTTP
