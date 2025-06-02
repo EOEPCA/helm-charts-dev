@@ -23,29 +23,46 @@ iam: &iam
       - iam-auth.apx.develop.eoepca.org
     paths:
       - /*
-    # TODO: Maybe move Keycloak configuration to a separate Helm chart
-    # Optional configuration to apply as Crossplane CRs
+    # Optional configuration to apply as Crossplane CRs.
+    # Evaluated by the iam-bb-config Helm chart.
+    # See also section keycloak.keycloakConfigCli for another way to
+    # configure Keycloak, which can be combined with this approach.
+    # By default, the EOEPCA realm and a user account for Crossplane
+    # should be initialized using keycloak-config-cli, whereas further
+    # configuration (like clients, groups etc.) should be applied via
+    # the Crossplane Keycloak Provider.
     configuration: &kcConfig
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
+      # Set this to true to enable Keycloak Config CLI. The realm configuration
+      # must be provided in the keycloak.keycloakConfigCli section.
+      useKeycloakConfigCli: &useKeycloakConfigCli false
       # Set to true to auto-generate clients as Crossplane CRs.
       createClients: false
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
         create: false
         # Name of realm to create or of existing realm to create clients in
-        name: eoepca
-        displayName: EOEPCA
+        name: &realmName eoepca
+        displayName: &realmDisplayName EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
         # Set to true to generate Provider config for Keycloak
         create: false
+        # Set to true to create a client with service account to be used by Crossplane
+        # Keycloak Provider.
+        createServiceAccount: false
+        # Client secret for the Crossplane Keycloak Provider client.
+        # Unfortunately it is currently not possible to generate this secret via
+        # kubernetes-secret-generator. Therefore it must either be specified here
+        # or provided through an existing secret.
+        clientSecret: ""
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
-          name: keycloak-credentials
-          key: credentials
-          namespace: crossplane-system
+          name: "" #keycloak-credentials
+          key: "" #credentials
+          namespace: "" #crossplane-system
   opa:
     enabled: &opaEnabled true
     createRoute: true
@@ -60,6 +77,9 @@ iam: &iam
     clientId: opa
     # clientSecret: Client secret as plain text
     #clientSecret:
+    # generateSecret: If set to true, a secret will automatically be generated with a random client secret.
+    # Note that this requires kubernetes-secret-generator to be installed.
+    generateSecret: true
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
     #clientSecretRef: opa-route
   identityApi:
@@ -83,6 +103,8 @@ iam: &iam
     enabled: &apisixEnabled true
   config:
     enabled: &configEnabled false
+  secretGenerator:
+    enabled: false
 
 # ----
 
@@ -219,6 +241,87 @@ keycloak:
     # Fresh deployments should use PostgreSQL 17, which is the default.
     #image:
     #  tag: 16.4.0-debian-12-r14
+  keycloakConfigCli:
+    enabled: *useKeycloakConfigCli
+    ## @param keycloakConfigCli.extraEnvVars Additional environment variables to set
+    ## Example:
+    ## extraEnvVars:
+    ##   - name: FOO
+    ##     value: "bar"
+    ##
+    extraEnvVars:
+      - name: IMPORT_VARSUBSTITUTION_ENABLED
+        value: "true"
+      - name: IAM_REALM_NAME
+        value: *realmName
+      - name: IAM_REALM_DISPLAY_NAME
+        value: *realmDisplayName
+    # TODO: Create secret for crossplane user credentials and reference it here.
+    extraEnvVarsSecret: "keycloak-provider"
+    ## @param keycloakConfigCli.configuration keycloak-config-cli realms configuration
+    ## NOTE: nil keys will be considered files to import locally
+    ## Example:
+    ## configuration:
+    ##   realm1.json: |
+    ##     {
+    ##       "realm": "realm1",
+    ##       "clients": []
+    ##     }
+    ##   realm2.yaml: |
+    ##     realm: realm2
+    ##     clients: []
+    ##
+#    configuration:
+#      realm.yaml: |
+#        id: $(env:IAM_REALM_NAME)
+#        realm: $(env:IAM_REALM_NAME)
+#        displayName: $(env:IAM_REALM_DISPLAY_NAME)
+#        clients:
+#          - clientId: crossplane-keycloak-provider
+#            name: crossplane-keycloak-provider
+#            type:
+#            enabled: true
+#            clientAuthenticatorType: client-secret
+#            secret: $(env:client_secret)
+#            serviceAccountsEnabled: true
+#            #authorizationServicesEnabled: ...
+#            publicClient: false
+#            fullScopeAllowed: true
+#            #defaultClientScopes:
+#            #  - "web-origins",
+#            #  - "acr",
+#            #  - "roles",
+#            #  - "profile",
+#            #  - "basic",
+#            #  - "email"
+#            #optionalClientScopes:
+#            #  - "address",
+#            #  - "phone",
+#            #  - "offline_access",
+#            #  - "microprofile-jwt"
+#            #authorizationSettings: { ... } # ResourceServerRepresentation
+#            # ...
+#        users:
+#          - username: service-account-crossplane-keycloak-provider
+#            enabled: true
+#            totp: false
+#            serviceAccountClientId: "crossplane-keycloak-provider"
+#            #firstName: Crossplane Keycloak Provider
+#            #lastName: Admin
+#            realmRoles:
+#              - default-roles-$(env:IAM_REALM_NAME)
+#            clientRoles:
+#              realm-management:
+#                - manage-users
+#                - manage-clients
+#                - manage-authorization
+#                - create-client
+#              #crossplane-keycloak-provider:
+#              #  - uma_protection
+    ## @param keycloakConfigCli.existingConfigmap ConfigMap with keycloak-config-cli configuration
+    ## NOTE: This will override keycloakConfigCli.configuration
+    ## TODO: Maybe use this as alternative to literal config above.
+    existingConfigmap: "initial-keycloak-config"
 
 opal:
   enabled: *opaEnabled

@@ -9,7 +9,7 @@ metadata:
 spec:
   http:
   - backends:
-    - serviceName: iam-keycloak
+    - serviceName: {{ printf "%s-keycloak" .Release.Name }} #iam-keycloak
 {{- if .Values.keycloak.tls.enabled }}
       servicePort: 443
 {{- else }}

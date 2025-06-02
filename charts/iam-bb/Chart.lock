@@ -14,5 +14,8 @@ dependencies:
 - name: iam-bb-config
   repository: https://eoepca.github.io/helm-charts-dev
   version: 2.0.0-rc1
-digest: sha256:feb5c1ff8f0bd73862925aec46b09b5891dc88b78142c9c3643d023372413281
-generated: "2025-04-07T10:53:10.017803512+02:00"
+- name: kubernetes-secret-generator
+  repository: https://helm.mittwald.de
+  version: 3.4.1
+digest: sha256:22633b2aebe3d7cfb87ec6f951ea1c3140822b03d7695edf6075f228e9f840f6
+generated: "2025-06-02T16:30:09.173160737+02:00"
