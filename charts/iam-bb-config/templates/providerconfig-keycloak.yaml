@@ -3,13 +3,14 @@
 apiVersion: keycloak.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: keycloak-provider-config
+  name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
 spec:
   credentials:
     source: Secret
-    secretRef: {{- .Values.iam.keycloak.configuration.provider.secretRef | toYaml | nindent 6 }}
-{{/*      name: keycloak-credentials*/}}
-{{/*      key: credentials*/}}
-{{/*      namespace: crossplane-system*/}}
+    #secretRef: {{- .Values.iam.keycloak.configuration.provider.secretRef | toYaml | nindent 6 }}
+    secretRef:
+      name: {{ or .Values.iam.keycloak.configuration.provider.secretRef.name "keycloak-provider" }}
+      key: {{ or .Values.iam.keycloak.configuration.provider.secretRef.key "credentials" }}
+      namespace: {{ or .Values.iam.keycloak.configuration.provider.secretRef.namespace .Release.Namespace }}
 {{- end }}
 {{- end }}

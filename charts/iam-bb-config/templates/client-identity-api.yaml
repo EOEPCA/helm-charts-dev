@@ -4,7 +4,7 @@
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata:
-  name: identity-api-client
+  name: {{ printf "%s-identity-api-client" .Release.Name }}
 spec:
   deletionPolicy: Delete
   forProvider:
@@ -17,7 +17,7 @@ spec:
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
   providerConfigRef:
-    name: keycloak-provider-config
+    name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
 {{- end }}
 {{- end }}
 {{- end }}

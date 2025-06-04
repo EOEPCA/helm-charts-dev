@@ -3,7 +3,7 @@
 apiVersion: realm.keycloak.crossplane.io/v1alpha1
 kind: Realm
 metadata:
-  name: eoepca-realm
+  name: {{ printf "%s-eoepca-realm" .Release.Name }}
 spec:
   # Do not accidentally delete the realm...
   deletionPolicy: Orphan
@@ -11,6 +11,6 @@ spec:
     realm: {{- .Values.iam.keycloak.configuration.realm.name | quote }}
     displayName: {{- .Values.iam.keycloak.configuration.realm.displayName | quote }}
   providerConfigRef:
-    name: keycloak-provider-config
+    name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
 {{- end }}
 {{- end }}

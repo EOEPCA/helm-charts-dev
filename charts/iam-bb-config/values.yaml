@@ -10,6 +10,14 @@
 
 iam:
   keycloak:
+    # Optional configuration to apply as Crossplane CRs.
+    # Evaluated by the iam-bb-config Helm chart.
+    # See also section keycloak.keycloakConfigCli for another way to
+    # configure Keycloak, which can be combined with this approach.
+    # By default, the EOEPCA realm and a user account for Crossplane
+    # should be initialized using keycloak-config-cli, whereas further
+    # configuration (like clients, groups etc.) should be applied via
+    # the Crossplane Keycloak Provider.
     configuration:
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
@@ -26,11 +34,19 @@ iam:
       provider:
         # Set to true to generate Provider config for Keycloak
         create: false
+        # Set to true to create a client with service account to be used by Crossplane
+        # Keycloak Provider.
+        createServiceAccount: false
+        # Client secret for the Crossplane Keycloak Provider client.
+        # Unfortunately it is currently not possible to generate this secret via
+        # kubernetes-secret-generator. Therefore it must either be specified here
+        # or provided through an existing secret.
+        clientSecret: ""
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
-          name: keycloak-credentials
-          key: credentials
-          namespace: crossplane-system
+          name: "" #keycloak-credentials
+          key: "" #credentials
+          namespace: "" #crossplane-system
   opa:
     enabled: false
   identityApi:
