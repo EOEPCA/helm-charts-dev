@@ -7,7 +7,6 @@ metadata:
 spec:
   credentials:
     source: Secret
-    #secretRef: {{- .Values.iam.keycloak.configuration.provider.secretRef | toYaml | nindent 6 }}
     secretRef:
       name: {{ or .Values.iam.keycloak.configuration.provider.secretRef.name "keycloak-provider" }}
       key: {{ or .Values.iam.keycloak.configuration.provider.secretRef.key "credentials" }}
