@@ -1,7 +1,11 @@
 name: Release Charts
 
 on:
-  workflow_dispatch:  # Enables manual triggering via GitHub UI
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Commit SHA to checkout"
+        required: true
   push:
     branches:
       - develop
@@ -13,6 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.inputs.ref || github.sha }}
           fetch-depth: 0
 
       - name: Configure Git
