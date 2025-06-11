@@ -49,5 +49,7 @@ iam:
           namespace: "" #crossplane-system
   opa:
     enabled: false
+    # "Official" OPA URL (used as root URL for the client if one is created)
+    url: https://iam-opa.apx.develop.eoepca.org
   identityApi:
     enabled: false

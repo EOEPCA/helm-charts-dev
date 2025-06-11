@@ -16,6 +16,19 @@ spec:
       namespace: {{ .Release.Namespace }}
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
+    name: opa
+{{- if .Values.iam.opa.url }}
+    rootUrl: {{ .Values.iam.opa.url }}
+    adminUrl: {{ .Values.iam.opa.url }}
+{{- end }}
+    #baseUrl: TBD
+    validRedirectUris:
+      - "/*" # TODO: Maybe make more specific
+{{/*{{- if .Values.iam.opa.url }}*/}}
+{{/*      - {{ .Values.iam.opa.url }}/.apisix/redirect*/}}
+{{/*{{- end }}*/}}
+    webOrigins:
+      - "/*"
   providerConfigRef:
     name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
 {{- end }}
