@@ -16,6 +16,8 @@ spec:
       namespace: {{ .Release.Namespace }}
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
+    standardFlowEnabled: true
+    useRefreshTokens: true
     name: opa
 {{- if .Values.iam.opa.url }}
     rootUrl: {{ .Values.iam.opa.url }}

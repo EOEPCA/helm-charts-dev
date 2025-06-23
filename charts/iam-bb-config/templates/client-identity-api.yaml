@@ -16,6 +16,17 @@ spec:
       namespace: {{ .Release.Namespace }}
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
+    standardFlowEnabled: true
+    useRefreshTokens: true
+    name: identity-api
+{{- if .Values.iam.identityApi.url }}
+    rootUrl: {{ .Values.iam.identityApi.url }}
+    adminUrl: {{ .Values.iam.identityApi.url }}
+{{- end }}
+    validRedirectUris:
+      - "/*"
+    webOrigins:
+      - "/*"
   providerConfigRef:
     name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
 {{- end }}
