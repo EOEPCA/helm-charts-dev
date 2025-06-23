@@ -1520,6 +1520,16 @@ entries:
     version: 1.2.0-rc1
   datacube-access:
   - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2025-06-23T15:19:02.568468927Z"
+    description: A Helm chart for Kubernetes
+    digest: ffea3231bb4b4b9357503d53b3d13193536c742778d3c60109d73f06513494f2
+    name: datacube-access
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/datacube-access-0.0.3/datacube-access-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2025-03-07T13:16:18.667529035Z"
     description: A Helm chart for Kubernetes
@@ -13015,4 +13025,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-11T11:20:02.010373728Z"
+generated: "2025-06-23T15:19:02.569649832Z"
