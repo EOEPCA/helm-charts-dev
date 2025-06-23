@@ -20,18 +20,9 @@ spec:
 {{- if .Values.iam.opa.clientId }}
           client_id: {{ .Values.iam.opa.clientId | quote }}
 {{- end }}
-{{- if .Values.iam.opa.clientSecret }}
-{{- if not .Values.iam.opa.clientSecretRef }}
-          client_secret: {{ .Values.iam.opa.clientSecret | quote }}
-{{- end }}
-{{- end }}
           access_token_in_authorization_header: true
           use_jwks: true
           discovery: {{ printf "%s/realms/%s/.well-known/openid-configuration" .Values.iam.keycloak.url .Values.iam.keycloak.configuration.realm.name | quote }}
-{{- if .Values.iam.opa.clientSecretRef }}
-        secretRef: {{ .Values.iam.opa.clientSecretRef | quote }}
-{{- else if .Values.iam.opa.generateSecret }}
-        secretRef: opa-route
-{{- end }}
+        secretRef: {{ .Values.iam.opa.clientSecretRef | default "opa-route" | quote }}
 {{- end }}
 {{- end }}

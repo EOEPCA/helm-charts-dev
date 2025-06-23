@@ -35,5 +35,5 @@ data:
             - manage-clients
             - manage-authorization
             - create-client
-  {{- end }}
-  {{- end }}
+{{- end }}
+{{- end }}

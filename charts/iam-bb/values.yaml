@@ -17,8 +17,11 @@ iam: &iam
   keycloak:
     enabled: &keycloakEnabled true
     createRoute: true
-    # "Official" Keycloak URL
+    # "Official" Keycloak URL (used everywhere where Keycloak needs to be addressed)
     url: &kcurl https://iam-auth.apx.develop.eoepca.org
+    # Deviating "internal" Keycloak URL to use for cluster-internal access
+    # (defaults to official URL). Only used for Crossplane provider so far.
+    internalUrl: ""
     hosts:
       - iam-auth.apx.develop.eoepca.org
     paths:
@@ -31,13 +34,16 @@ iam: &iam
     # should be initialized using keycloak-config-cli, whereas further
     # configuration (like clients, groups etc.) should be applied via
     # the Crossplane Keycloak Provider.
-    configuration: &kcConfig
+    configuration:
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
       # Set this to true to enable Keycloak Config CLI. The realm configuration
       # must be provided in the keycloak.keycloakConfigCli section.
       useKeycloakConfigCli: &useKeycloakConfigCli false
+      # Set to true to generate secrets using kubernetes-secret-generator;
+      # Set to false (default) to generate them using Helm random functions.
+      useSecretGenerator: false
       # Set to true to auto-generate clients as Crossplane CRs.
       createClients: false
       realm:
@@ -48,10 +54,12 @@ iam: &iam
         displayName: &realmDisplayName EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
-        # Set to true to generate Provider config for Keycloak
+        # Set to true to generate Provider config for Keycloak (only honoured if
+        # useCrossplane is true)
         create: false
         # Set to true to create a client with service account to be used by Crossplane
-        # Keycloak Provider.
+        # Keycloak Provider. (only honoured if useKeycloakConfigCli is true, but
+        # independent of useCrossplane setting)
         createServiceAccount: false
         # Client secret for the Crossplane Keycloak Provider client.
         # Unfortunately it is currently not possible to generate this secret via
@@ -66,22 +74,19 @@ iam: &iam
   opa:
     enabled: &opaEnabled true
     createRoute: true
+    # "Official" OPA URL (used as root URL for the client if one is created)
+    url: https://iam-opa.apx.develop.eoepca.org
     hosts:
       - iam-opa.apx.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
-    # clientId is mandatory if clientSecret is specified or clientSecretRef is *not* specified.
-    # Note: If both clientSecret and clientSecretRef are specified, a secret is generated
-    # automatically, and the client secret is omitted from the route definition.
+    # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: opa
-    # clientSecret: Client secret as plain text
-    #clientSecret:
-    # generateSecret: If set to true, a secret will automatically be generated with a random client secret.
-    # Note that this requires kubernetes-secret-generator to be installed.
-    generateSecret: true
+    # clientSecret: Client secret as plain text (generated internally if omitted)
+    clientSecret: ""
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
-    #clientSecretRef: opa-route
+    clientSecretRef: ""
   identityApi:
     enabled: &identityApiEnabled false
     createRoute: true
@@ -91,19 +96,20 @@ iam: &iam
       - /*
     docsPath: /docs/*
     # Client credentials:
-    # clientId is mandatory if clientSecret is specified or clientSecretRef is *not* specified.
-    # Note: If both clientSecret and clientSecretRef are specified, a secret is generated
-    # automatically, and the client secret is omitted from the route definition.
+    # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: identity-api
-    # clientSecret: Client secret as plain text
-    #clientSecret:
+    # clientSecret: Client secret as plain text (generated internally if omitted)
+    clientSecret: ""
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values
-    #clientSecretRef: identity-api-route
+    clientSecretRef: ""
   apisix:
     enabled: &apisixEnabled true
   config:
+    # Set this to true in order to apply iam-bb-config as a subchart.
+    # If set to false, iam-bb-config must be applied separately if needed.
     enabled: &configEnabled false
   secretGenerator:
+    # Set to true to install kubernetes-secret-generator as a subchart (EXPERIMENTAL)
     enabled: false
 
 # ----
@@ -445,9 +451,9 @@ opal:
           print("External, Input: ", input, " Claims: ", claims)
         }
         allow if {
-          # Allow selected Werum users to GET arbitrary URLs 
+          # Allow selected users to GET arbitrary URLs 
           claims := verified_claims
-          claims.email in ["w-scho@werum.de", "w-jfe@werum.de", "w-mwo@werum.de"]
+          claims.email in ["privileged_user@nowhere.com"]
           input.method = "GET"
           print("External, Input: ", input, " Claims: ", claims)
         }
@@ -499,8 +505,8 @@ apisix:
 #config: &config
 #  keycloak: *kcConfig
 
-# Configuration for iam-bb-config when applied as subchart
-iamBbConfig:
+# Configuration for iam-bb-config when applied as a subchart
+iam-bb-config:
   enabled: *configEnabled
   iam: *iam
   #config: *config
