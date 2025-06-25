@@ -38,8 +38,9 @@ iam: &iam
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
-      # Set this to true to enable Keycloak Config CLI. The realm configuration
-      # must be provided in the keycloak.keycloakConfigCli section.
+      # Set this to true to enable Keycloak Config CLI for initial realm
+      # setup. The realm configuration must be provided in the
+      # keycloak.keycloakConfigCli section.
       useKeycloakConfigCli: &useKeycloakConfigCli false
       # Set to true to generate secrets using kubernetes-secret-generator;
       # Set to false (default) to generate them using Helm random functions.
@@ -48,6 +49,8 @@ iam: &iam
       createClients: false
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
+        # Note that this only makes sense if useKeycloakConfigCli is set to
+        # false and the iam-bb-config chart is applied separately.
         create: false
         # Name of realm to create or of existing realm to create clients in
         name: &realmName eoepca
@@ -88,6 +91,10 @@ iam: &iam
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
     clientSecretRef: ""
   identityApi:
+    # Note: The use of Identity API in conjunction with the IAM BB is deprecated.
+    # Installing Identity API as part of the IAM BB is still supported, but neither
+    # well-tested nor fully automated. Additional manual Keycloak configuration may
+    # thus be required.
     enabled: &identityApiEnabled false
     createRoute: true
     hosts:
@@ -326,7 +333,8 @@ keycloak:
 #              #  - uma_protection
     ## @param keycloakConfigCli.existingConfigmap ConfigMap with keycloak-config-cli configuration
     ## NOTE: This will override keycloakConfigCli.configuration
-    ## TODO: Maybe use this as alternative to literal config above.
+    # Note: The default config map "initial-keycloak-config" is generated automatically.
+    # Change this to your own config map if you need to override the defaults.
     existingConfigmap: "initial-keycloak-config"
 
 opal:

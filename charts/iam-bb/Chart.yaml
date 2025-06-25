@@ -42,9 +42,9 @@ dependencies:
     repository: "https://charts.apiseven.com"
     condition: apisix.enabled
   - name: iam-bb-config
-    version: "2.0.0-rc1"
+    version: "2.0.0-rc1.5"
     repository: "https://eoepca.github.io/helm-charts-dev"
-    condition: iamBbConfig.enabled
+    condition: iam-bb-config.enabled
   - name: kubernetes-secret-generator
     version: "3.4.1"
     repository: "https://helm.mittwald.de"
