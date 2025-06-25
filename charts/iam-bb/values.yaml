@@ -115,9 +115,9 @@ iam: &iam
     # Set this to true in order to apply iam-bb-config as a subchart.
     # If set to false, iam-bb-config must be applied separately if needed.
     enabled: &configEnabled false
-  secretGenerator:
-    # Set to true to install kubernetes-secret-generator as a subchart (EXPERIMENTAL)
-    enabled: false
+#  secretGenerator:
+#    # Set to true to install kubernetes-secret-generator as a subchart (EXPERIMENTAL)
+#    enabled: false
 
 # ----
 
@@ -509,10 +509,6 @@ apisix:
         # namespace "ingress-apisix"
         #serviceNamespace: ingress-apisix
 
-# Configuration for iam-bb-config when applied stand-alone
-#config: &config
-#  keycloak: *kcConfig
-
 # Configuration for iam-bb-config when applied as a subchart
 iam-bb-config:
   enabled: *configEnabled
@@ -533,7 +529,7 @@ identity-service:
     enabled: *identityApiEnabled #true #"{{ .Values.identityApi.enabled }}"
     secrets:
       # Values for secret 'identity-api'
-      # Note - if ommitted, these can instead be set by creating the secret independently
+      # Note - if omitted, these can instead be set by creating the secret independently
       # e.g. as a SealedSecret via GitOps.
       adminPassword: *adminPwd
     deployment:

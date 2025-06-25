@@ -45,7 +45,7 @@ dependencies:
     version: "2.0.0-rc1.5"
     repository: "https://eoepca.github.io/helm-charts-dev"
     condition: iam-bb-config.enabled
-  - name: kubernetes-secret-generator
-    version: "3.4.1"
-    repository: "https://helm.mittwald.de"
-    condition: iam.secretGenerator.enabled
+#  - name: kubernetes-secret-generator
+#    version: "3.4.1"
+#    repository: "https://helm.mittwald.de"
+#    condition: iam.secretGenerator.enabled
