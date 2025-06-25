@@ -26,6 +26,8 @@ iam:
       createClients: false
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
+        # Note that this only makes sense if useKeycloakConfigCli is set to
+        # false and the iam-bb-config chart is applied separately.
         create: false
         # Name of realm to create or of existing realm to create clients in
         name: eoepca
@@ -34,22 +36,24 @@ iam:
       provider:
         # Set to true to generate Provider config for Keycloak
         create: false
-        # Set to true to create a client with service account to be used by Crossplane
-        # Keycloak Provider.
-        createServiceAccount: false
-        # Client secret for the Crossplane Keycloak Provider client.
-        # Unfortunately it is currently not possible to generate this secret via
-        # kubernetes-secret-generator. Therefore it must either be specified here
-        # or provided through an existing secret.
-        clientSecret: ""
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
-          name: "" #keycloak-credentials
-          key: "" #credentials
-          namespace: "" #crossplane-system
+          name: ""
+          key: ""
+          namespace: ""
   opa:
     enabled: false
     # "Official" OPA URL (used as root URL for the client if one is created)
     url: https://iam-opa.apx.develop.eoepca.org
+    # Client credentials:
+    # clientId is mandatory if clientSecretRef is *not* specified.
+    clientId: opa
+    # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
+    clientSecretRef: ""
   identityApi:
     enabled: false
+    # Client credentials:
+    # clientId is mandatory if clientSecretRef is *not* specified.
+    clientId: identity-api
+    # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values
+    clientSecretRef: ""

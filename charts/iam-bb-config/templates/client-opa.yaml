@@ -9,21 +9,20 @@ spec:
   deletionPolicy: Delete
   forProvider:
     accessType: confidential
-    clientId: opa
+    clientId: {{ .Values.iam.opa.clientId | default "opa" | quote }}
     clientSecretSecretRef:
       key: client_secret
-      name: opa-route
+      name: {{ .Values.iam.opa.clientSecretRef | default "opa-route" | quote }}
       namespace: {{ .Release.Namespace }}
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
     standardFlowEnabled: true
     useRefreshTokens: true
-    name: opa
+    name: {{ .Values.iam.opa.clientId | default "opa" | quote }}
 {{- if .Values.iam.opa.url }}
     rootUrl: {{ .Values.iam.opa.url }}
     adminUrl: {{ .Values.iam.opa.url }}
 {{- end }}
-    #baseUrl: TBD
     validRedirectUris:
       - "/*" # TODO: Maybe make more specific
 {{/*{{- if .Values.iam.opa.url }}*/}}

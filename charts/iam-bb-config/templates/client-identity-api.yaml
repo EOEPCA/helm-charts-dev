@@ -9,16 +9,18 @@ spec:
   deletionPolicy: Delete
   forProvider:
     accessType: confidential
-    clientId: identity-api
+    clientId: {{ .Values.iam.identityApi.clientId | default "identity-api" | quote }}
     clientSecretSecretRef:
       key: client_secret
-      name: identity-api-route
+      name: {{ .Values.iam.identityApi.clientSecretRef | default "identity-api-route" | quote }}
       namespace: {{ .Release.Namespace }}
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: true
     standardFlowEnabled: true
     useRefreshTokens: true
-    name: identity-api
+    authorization:
+      - keepDefaults: true
+    name: {{ .Values.iam.identityApi.clientId | default "identity-api" | quote }}
 {{- if .Values.iam.identityApi.url }}
     rootUrl: {{ .Values.iam.identityApi.url }}
     adminUrl: {{ .Values.iam.identityApi.url }}
