@@ -11,6 +11,6 @@ spec:
     realm: {{- .Values.iam.keycloak.configuration.realm.name | quote }}
     displayName: {{- .Values.iam.keycloak.configuration.realm.displayName | quote }}
   providerConfigRef:
-    name: {{ printf "%s-keycloak-provider-config" .Release.Name }}
+    name: {{ .Values.iam.keycloak.configuration.provider.existingConfigRef | default (printf "%s-keycloak-provider-config" .Release.Name) }}
 {{- end }}
 {{- end }}

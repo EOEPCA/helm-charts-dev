@@ -10,6 +10,7 @@
 
 iam:
   keycloak:
+    enabled: true
     # Optional configuration to apply as Crossplane CRs.
     # Evaluated by the iam-bb-config Helm chart.
     # See also section keycloak.keycloakConfigCli for another way to
@@ -34,7 +35,9 @@ iam:
         displayName: EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
-        # Set to true to generate Provider config for Keycloak
+        # Reference to existing ProviderConfig to use (instead of own one)
+        existingConfigRef: ""
+        # Set to true to generate ProviderConfig for Keycloak
         create: false
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
@@ -52,6 +55,8 @@ iam:
     clientSecretRef: ""
   identityApi:
     enabled: false
+    # "Official" Identity API URL (used as root URL for the client if one is created)
+    url: https://identity-api.apx.develop.eoepca.org
     # Client credentials:
     # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: identity-api
