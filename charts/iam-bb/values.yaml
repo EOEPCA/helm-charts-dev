@@ -57,7 +57,9 @@ iam: &iam
         displayName: &realmDisplayName EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
-        # Set to true to generate Provider config for Keycloak (only honoured if
+        # Reference to existing ProviderConfig to use (instead of creating own one)
+        existingConfigRef: ""
+        # Set to true to generate ProviderConfig for Keycloak (only honoured if
         # useCrossplane is true)
         create: false
         # Set to true to create a client with service account to be used by Crossplane
@@ -97,11 +99,12 @@ iam: &iam
     # thus be required.
     enabled: &identityApiEnabled false
     createRoute: true
+    # "Official" Identity API URL (used as root URL for the client if one is created)
+    url: https://identity-api.apx.develop.eoepca.org
     hosts:
       - identity-api.apx.develop.eoepca.org
     paths:
       - /*
-    docsPath: /docs/*
     # Client credentials:
     # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: identity-api

@@ -15,7 +15,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 2.0.0-rc.1.3
+version: 2.0.0-rc.1.4
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -42,7 +42,7 @@ dependencies:
     repository: "https://charts.apiseven.com"
     condition: apisix.enabled
   - name: iam-bb-config
-    version: "2.0.0-rc1.5"
+    version: "2.0.0-rc1.6"
     repository: "https://eoepca.github.io/helm-charts-dev"
     condition: iam-bb-config.enabled
 #  - name: kubernetes-secret-generator
