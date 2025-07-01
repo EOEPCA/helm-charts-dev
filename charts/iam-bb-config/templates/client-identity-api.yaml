@@ -8,7 +8,7 @@ metadata:
 spec:
   deletionPolicy: Delete
   forProvider:
-    accessType: confidential
+    accessType: CONFIDENTIAL
     clientId: {{ .Values.iam.identityApi.clientId | default "identity-api" | quote }}
     clientSecretSecretRef:
       key: client_secret
@@ -19,7 +19,10 @@ spec:
     standardFlowEnabled: true
     useRefreshTokens: true
     authorization:
-      - keepDefaults: true
+      - allowRemoteResourceManagement: false
+        decisionStrategy: UNANIMOUS
+        keepDefaults: true
+        policyEnforcementMode: ""
     name: {{ .Values.iam.identityApi.clientId | default "identity-api" | quote }}
 {{- if .Values.iam.identityApi.url }}
     rootUrl: {{ .Values.iam.identityApi.url }}

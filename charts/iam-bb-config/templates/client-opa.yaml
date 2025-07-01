@@ -8,7 +8,7 @@ metadata:
 spec:
   deletionPolicy: Delete
   forProvider:
-    accessType: confidential
+    accessType: CONFIDENTIAL
     clientId: {{ .Values.iam.opa.clientId | default "opa" | quote }}
     clientSecretSecretRef:
       key: client_secret
