@@ -2734,6 +2734,16 @@ entries:
     version: 0.2.0
   iam-bb-config:
   - apiVersion: v2
+    appVersion: 2.0.0-rc2
+    created: "2025-07-01T08:48:03.218363187Z"
+    description: Optional Crossplane-based Keycloak configuration for the IAM BB
+    digest: 0a53037e05c44d8e09eed098dc297f7c681c189784010dde7ee4ee4dadda1d25
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.0.0-rc1.7/iam-bb-config-2.0.0-rc1.7.tgz
+    version: 2.0.0-rc1.7
+  - apiVersion: v2
     appVersion: 2.0.0-rc1
     created: "2025-06-26T14:53:10.24195576Z"
     description: Optional Crossplane-based Keycloak configuration for the IAM BB
@@ -13117,4 +13127,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-27T09:49:37.751462591Z"
+generated: "2025-07-01T08:48:03.220347235Z"
