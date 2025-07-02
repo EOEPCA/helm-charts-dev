@@ -8048,6 +8048,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/nfs-provisioner-0.1.0/nfs-provisioner-0.1.0.tgz
     version: 0.1.0
+  openeo-web-editor:
+  - apiVersion: v2
+    appVersion: 0.14.0
+    created: "2025-07-02T19:48:36.700883545Z"
+    description: EOEPCA's self-hosted instance of the openEO Web Editor
+    digest: 39f2f9f526db6aa8198006ea970319a9cea1fd0ae6110274a46df7631252dfe2
+    name: openeo-web-editor
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/openeo-web-editor-0.1.0/openeo-web-editor-0.1.0.tgz
+    version: 0.1.0
   pdp-engine:
   - apiVersion: v1
     appVersion: v1.2
@@ -13188,4 +13199,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-02T09:14:16.45224597Z"
+generated: "2025-07-02T19:48:36.702054241Z"
