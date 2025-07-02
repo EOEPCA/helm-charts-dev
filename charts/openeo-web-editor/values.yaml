@@ -1,0 +1,22 @@
+image:
+  repository: docker.io/mundialis/openeo-web-editor
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "sha-614a443"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: 0.0.0.0
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+replicaCount: 1
