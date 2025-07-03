@@ -13,6 +13,6 @@ dependencies:
   version: 2.10.0
 - name: iam-bb-config
   repository: https://eoepca.github.io/helm-charts-dev
-  version: 2.0.0-rc1.7
-digest: sha256:d9b3d3a49e9fbd259db4920b7632778fa457af5ff922355a186c9fbd0e987b58
-generated: "2025-07-01T10:49:12.340532552+02:00"
+  version: 2.0.0-rc2
+digest: sha256:285f3254ee7cb419ff25667568eb85a982c4d9bf2e51263c2b6243a613aeb0c7
+generated: "2025-07-03T09:49:23.354330122+02:00"
