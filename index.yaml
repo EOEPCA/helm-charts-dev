@@ -8092,6 +8092,16 @@ entries:
   openeo-web-editor:
   - apiVersion: v2
     appVersion: 0.14.0
+    created: "2025-07-03T13:39:28.997912848Z"
+    description: EOEPCA's self-hosted instance of the openEO Web Editor
+    digest: 37a9c94f85c26ebd75432c9f5fbb9f11269a9a4e65fd880f93584ee9761ec9f1
+    name: openeo-web-editor
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/openeo-web-editor-0.2.0/openeo-web-editor-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 0.14.0
     created: "2025-07-03T11:09:04.651848727Z"
     description: EOEPCA's self-hosted instance of the openEO Web Editor
     digest: 75ee5ac9adb3d2c3b1c1b95254e083fa74ba8ef6c5aec445c3f02f75171daae2
@@ -13260,4 +13270,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-03T11:09:04.653008442Z"
+generated: "2025-07-03T13:39:29.000046825Z"
