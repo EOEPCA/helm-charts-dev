@@ -1,9 +1,0 @@
-apiVersion: v2
-name: stac-manager
-description: A Helm chart for stac-manager. https://github.com/developmentseed/stac-manager
-
-type: application
-
-version: 0.0.4
-
-appVersion: "0.0.0"
