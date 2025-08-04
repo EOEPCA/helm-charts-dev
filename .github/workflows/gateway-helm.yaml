@@ -35,8 +35,8 @@ jobs:
 
           yq -i '.entries["gateway-helm"] |= map(select(.version != "v0.0.0-latest"))' index.yaml
 
-          extracted=$(yq '.entries["gateway-helm"][] | select(.version == "v0.0.0-latest")' charts/index.yaml)
-          yq -i --argjson newItem "$extracted" '.entries["gateway-helm"] += [$newItem]' index.yaml
+          extracted=$(yq -y '.entries["gateway-helm"][] | select(.version == "v0.0.0-latest")' charts/index.yaml)
+          echo "$extracted" | yq -i '.entries["gateway-helm"] += [.]' index.yaml
 
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
