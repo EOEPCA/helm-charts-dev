@@ -1,0 +1,46 @@
+name: Update Gateway Helm Chart
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # runs daily at midnight UTC
+
+jobs:
+  update-gateway-helm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          repository: EOEPCA/helm-charts-dev
+          ref: gh-pages
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull latest chart
+        run: helm pull oci://docker.io/envoyproxy/gateway-helm --version v0.0.0-latest -d charts
+
+      - name: Detect chart changes
+        id: changes
+        run: |
+          git diff --quiet || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Update index.yaml if chart changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "Chart update detected"
+
+          helm repo index charts --url https://raw.githubusercontent.com/EOEPCA/helm-charts-dev/gh-pages/charts
+
+          yq -i '.entries["gateway-helm"] |= map(select(.version != "v0.0.0-latest"))' index.yaml
+
+          extracted=$(yq '.entries["gateway-helm"][] | select(.version == "v0.0.0-latest")' charts/index.yaml)
+          yq -i --argjson newItem "$extracted" '.entries["gateway-helm"] += [$newItem]' index.yaml
+
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+
+          git add index.yaml charts/gateway-helm-v0.0.0-latest.tgz
+          git commit -m "Updated chart gateway-helm"
+          git push
