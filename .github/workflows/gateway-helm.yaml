@@ -23,11 +23,11 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Install yq v4
+      - name: Install kislyuk/yq (jq wrapper)
         run: |
-          sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
-          sudo chmod +x /usr/bin/yq
-          yq --version  # Sanity check
+          python3 -m pip install --upgrade pip
+          pip install yq
+          yq --version
 
       - name: Pull latest chart
         run: helm pull oci://docker.io/envoyproxy/gateway-helm --version v0.0.0-latest -d charts
@@ -44,10 +44,10 @@ jobs:
 
           helm repo index charts --url https://raw.githubusercontent.com/EOEPCA/helm-charts-dev/gh-pages/charts
 
-          yq -i '.entries["gateway-helm"] |= map(select(.version != "v0.0.0-latest"))' index.yaml
+          yq -y -i '.entries["gateway-helm"] |= map(select(.version != "v0.0.0-latest"))' index.yaml
 
-          extracted=$(yq -y '.entries["gateway-helm"][] | select(.version == "v0.0.0-latest")' charts/index.yaml)
-          echo "$extracted" | yq -i '.entries["gateway-helm"] += [.]' index.yaml
+          extracted=$(yq '.entries["gateway-helm"][] | select(.version == "v0.0.0-latest")' charts/index.yaml)
+          yq -y -i --argjson newItem "$extracted" '.entries["gateway-helm"] += [$newItem]' index.yaml
 
           git add index.yaml charts/gateway-helm-v0.0.0-latest.tgz
           git commit -m "Updated chart gateway-helm"
