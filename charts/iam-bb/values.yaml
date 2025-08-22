@@ -78,6 +78,11 @@ iam: &iam
           namespace: "" #crossplane-system
   opa:
     enabled: &opaEnabled true
+    # inline: true: Use inline OPA; false: deploy and use OPA in a separate pod.
+    # If set to false, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED should
+    # be set to "False" to prevent inline OPA from being started.
+    # Furthermore OPAL_POLICY_STORE_URL should be changed to "http://iam-opa:8181".
+    inline: true
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
     url: https://iam-opa.apx.develop.eoepca.org
@@ -253,12 +258,15 @@ keycloak:
       database: bitnami_keycloak
       existingSecret: "kc-postgres"
     architecture: standalone
-    # Optionally use PostgreSQL 16.4 for existing deployments instead of migrating the data.
-    # Fresh deployments should use PostgreSQL 17, which is the default.
-    #image:
-    #  tag: 16.4.0-debian-12-r14
+    image:
+      repository: bitnamilegacy/postgresql
+      # Optionally use PostgreSQL 16.4 for existing deployments instead of migrating the data.
+      # Fresh deployments should use PostgreSQL 17, which is the default.
+      # tag: 16.4.0-debian-12-r14
   keycloakConfigCli:
     enabled: *useKeycloakConfigCli
+    image:
+      repository: bitnamilegacy/keycloak-config-cli
     ## @param keycloakConfigCli.extraEnvVars Additional environment variables to set
     ## Example:
     ## extraEnvVars:
@@ -472,8 +480,9 @@ opal:
       OPAL_POLICY_STORE_URL: http://localhost:8181
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
-      OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_DATA_UPDATER_ENABLED: False
+      OPAL_INLINE_OPA_ENABLED: True
+      OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_INLINE_OPA_CONFIG: >-
         {
           "addr": "http://0.0.0.0:8181",
@@ -511,6 +520,9 @@ apisix:
         # The following value must be adapted if the chart is not installed in the
         # namespace "ingress-apisix"
         #serviceNamespace: ingress-apisix
+  etcd:
+    image:
+      repository: bitnamilegacy/etcd
 
 # Configuration for iam-bb-config when applied as a subchart
 iam-bb-config:
