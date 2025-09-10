@@ -2307,9 +2307,9 @@ entries:
   gateway-helm:
     - apiVersion: v2
       appVersion: latest
-      created: '2025-09-05T01:43:37.282137097Z'
+      created: '2025-09-10T01:41:56.606017363Z'
       description: The Helm chart for Envoy Gateway
-      digest: 952a33fcc94c9e996b5a85d8773fe5eab1a4885d8c80b1b61d16506db86ba15c
+      digest: 7fb8234a0e835e02a3e522caba8f869b9eeb769220876fb840adc6a4b1b65bb6
       home: https://gateway.envoyproxy.io/
       icon: https://raw.githubusercontent.com/envoyproxy/gateway/main/site/assets/icons/logo.svg
       keywords:
