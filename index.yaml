@@ -9341,39 +9341,6 @@ entries:
   registration-harvester:
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-09-12T14:12:30.305771212Z"
-    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
-      Registration building block
-    digest: d951d7ccb1c89acc51874e001c628d9fd49cda51a809d93838cd2aeeabbd9ea2
-    name: registration-harvester
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-2.0.0-rc2-pr-63/registration-harvester-2.0.0-rc2-pr-63.tgz
-    version: 2.0.0-rc2-pr-63
-  - apiVersion: v2
-    appVersion: 1.1.0
-    created: "2025-09-12T14:00:42.155310925Z"
-    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
-      Registration building block
-    digest: 9026c523e98f9b9656e0d8cd6991574f15e0a76592ad44ed84b07f9fb63f4081
-    name: registration-harvester
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-2.0.0-rc2-pr-63/registration-harvester-2.0.0-rc2-pr-63.tgz
-    version: 2.0.0-rc2-pr-63
-  - apiVersion: v2
-    appVersion: 1.1.0
-    created: "2025-09-12T14:10:06.218049541Z"
-    description: A Helm chart for the Harvester component of the EOEPCA+ Resource
-      Registration building block
-    digest: 8676b03bbc34f9c441f2a7981c0c2a402c00fb25c6ca1b331935a8a5daf2eee9
-    name: registration-harvester
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/registration-harvester-2.0.0-rc2-pr-63/registration-harvester-2.0.0-rc2-pr-63.tgz
-    version: 2.0.0-rc2-pr-63
-  - apiVersion: v2
-    appVersion: 1.1.0
     created: "2025-07-04T13:37:13.385857391Z"
     description: A Helm chart for the Harvester component of the EOEPCA+ Resource
       Registration building block
