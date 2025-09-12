@@ -5,7 +5,7 @@ on:
     inputs:
       ref:
         description: "Commit SHA to checkout"
-        required: true
+        required: false
   push:
     branches:
       - develop
