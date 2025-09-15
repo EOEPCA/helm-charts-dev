@@ -1,13 +1,13 @@
-{{- if .Values.knativeEventing.install }}
+{{- if .Values.eventing.install }}
 apiVersion: operator.knative.dev/v1beta1
 kind: KnativeEventing
 metadata:
   name: knative-eventing
-  namespace: {{ .Values.knativeEventing.namespace }}
+  namespace: {{ .Values.eventing.namespace }}
 spec:
   config:
     config-features:
-      authentication-oidc: {{ if .Values.knativeEventing.authenticationOidc }}enabled{{ else }}disabled{{ end }}
+      authentication-oidc: {{ if .Values.eventing.authenticationOidc }}enabled{{ else }}disabled{{ end }}
       eventtype-auto-create: enabled
     default-ch-webhook:
       default-ch-config: |
@@ -19,5 +19,5 @@ spec:
               backoffDelay: PT0.5S
               backoffPolicy: exponential
               retry: 5
-  version: {{ .Values.knativeEventing.version }}
+  version: {{ .Values.eventing.version }}
 {{- end }}

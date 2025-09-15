@@ -1,8 +1,8 @@
-{{- if .Values.knativeServing.install }}
+{{- if .Values.serving.install }}
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: {{ .Values.knativeServing.namespace }}
+  name: {{ .Values.serving.namespace }}
   labels:
-    name: {{ .Values.knativeServing.namespace }}
+    name: {{ .Values.serving.namespace }}
 {{- end }}

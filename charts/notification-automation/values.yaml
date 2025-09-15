@@ -5,7 +5,7 @@
 replicaCount: 1
 
 # Knative Eventing configuration
-knativeEventing:
+eventing:
   # Specifies whether KnativeEventing should be installed
   install: false
   # Version of KnativeEventing to install
@@ -22,7 +22,7 @@ knativeEventing:
     name: default
 
 # Knative Serving configuration
-knativeServing:
+serving:
   # Specifies whether KnativeServing should be installed
   install: false
   # Version of KnativeServing to install
