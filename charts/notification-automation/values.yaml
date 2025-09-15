@@ -14,11 +14,23 @@ knativeEventing:
   namespace: knative-eventing
   # Enable OIDC authentication
   authenticationOidc: true
+  # Default Broker configuration
+  defaultBroker:
+    # Specifies whether a default Broker should be created
+    create: true
+    # Name of the default Broker
+    name: default
 
-# Default Broker configuration
-defaultBroker:
-  # Specifies whether a default Broker should be created
-  create: true
+# Knative Serving configuration
+knativeServing:
+  # Specifies whether KnativeServing should be installed
+  install: true
+  # Version of KnativeServing to install
+  version: "1.18.1"
+  # Namespace where KnativeServing should be installed
+  namespace: knative-serving
+  # Domain configuration
+  domain: svc.uvt-01.eocube.ro
 
 
 

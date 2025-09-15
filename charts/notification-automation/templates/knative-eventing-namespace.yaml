@@ -1,0 +1,8 @@
+{{- if .Values.knativeEventing.install }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.knativeEventing.namespace }}
+  labels:
+    name: {{ .Values.knativeEventing.namespace }}
+{{- end }}
