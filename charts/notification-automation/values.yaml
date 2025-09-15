@@ -1,0 +1,29 @@
+# Default values for notification-automation.
+# This is a YAML-formatted file.
+# Declare variables to be substituted into your templates.
+
+replicaCount: 1
+
+# Knative Eventing configuration
+knativeEventing:
+  # Specifies whether KnativeEventing should be installed
+  install: true
+  # Version of KnativeEventing to install
+  version: "1.18.1"
+  # Namespace where KnativeEventing should be installed
+  namespace: knative-eventing
+  # Enable OIDC authentication
+  authenticationOidc: true
+
+# Default Broker configuration
+defaultBroker:
+  # Specifies whether a default Broker should be created
+  create: true
+
+
+
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
