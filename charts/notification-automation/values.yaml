@@ -7,7 +7,7 @@ replicaCount: 1
 # Knative Eventing configuration
 knativeEventing:
   # Specifies whether KnativeEventing should be installed
-  install: true
+  install: false
   # Version of KnativeEventing to install
   version: "1.18.1"
   # Namespace where KnativeEventing should be installed
@@ -24,13 +24,13 @@ knativeEventing:
 # Knative Serving configuration
 knativeServing:
   # Specifies whether KnativeServing should be installed
-  install: true
+  install: false
   # Version of KnativeServing to install
   version: "1.18.1"
   # Namespace where KnativeServing should be installed
   namespace: knative-serving
   # Domain configuration
-  domain: svc.uvt-01.eocube.ro
+  domain: functions.eoepca.org
 
 
 
