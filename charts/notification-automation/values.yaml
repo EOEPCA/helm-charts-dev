@@ -26,7 +26,7 @@ serving:
   # Specifies whether KnativeServing should be installed
   install: false
   # Version of KnativeServing to install
-  version: "1.18.1"
+  version: "1.18.2"
   # Namespace where KnativeServing should be installed
   namespace: knative-serving
   # Domain configuration
