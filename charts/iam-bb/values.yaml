@@ -184,7 +184,7 @@ keycloak:
   extraEnvVars:
     # KC_SPI_POLICY_OPA_OPA_BASE_URI must point to the base URI of the OPA service.
     - name: KC_SPI_POLICY_OPA_OPA_BASE_URI
-      value: "http://iam-opal-client:8181/v1/data/"
+      value: "http://iam-opa:8181/v1/data/"
     # KC_SPI_POLICY_OPA_OPA_POLICY_DIR points to a pod-internal config directory for
     # policies and should not be changed.
     - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
@@ -287,7 +287,6 @@ keycloak:
         value: *realmName
       - name: IAM_REALM_DISPLAY_NAME
         value: *realmDisplayName
-    # TODO: Create secret for crossplane user credentials and reference it here.
     extraEnvVarsSecret: "keycloak-provider"
     ## @param keycloakConfigCli.configuration keycloak-config-cli realms configuration
     ## NOTE: nil keys will be considered files to import locally
@@ -484,7 +483,8 @@ opal:
           print("External, Input: ", input, " Claims: ", claims)
         }
     extraEnv:
-      OPAL_POLICY_STORE_URL: http://localhost:8181
+      #OPAL_POLICY_STORE_URL: http://localhost:8181
+      OPAL_POLICY_STORE_URL: http://iam-opa:8181
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
       OPAL_DATA_UPDATER_ENABLED: False
