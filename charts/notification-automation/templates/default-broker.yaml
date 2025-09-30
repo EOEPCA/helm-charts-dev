@@ -1,4 +1,4 @@
-{{- if .Values.eventing.defaultBroker.create }}
+{{- if and .Values.eventing.install .Values.eventing.defaultBroker.create }}
 apiVersion: eventing.knative.dev/v1
 kind: Broker
 metadata:
