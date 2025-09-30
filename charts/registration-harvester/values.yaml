@@ -23,3 +23,13 @@ harvester:
         cacert: ""
       topics:
       handlers:
+  eodata:
+    enabled: false
+    createPVC: true
+    # reuseExistingVolume: existing-pv-name  # optional override
+    claimName: eodata
+    volumeName: eodata
+    mountPath: /eodata
+    accessMode: ReadWriteMany
+    storageClass: standard
+    size: 100Gi

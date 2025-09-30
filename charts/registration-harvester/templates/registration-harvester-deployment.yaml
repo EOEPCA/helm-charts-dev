@@ -47,8 +47,17 @@ spec:
         volumeMounts:
         - mountPath: {{ .Values.harvester.volume_path }}
           name: {{ .Values.harvester.volume_name }}
+        {{- if .Values.harvester.eodata.enabled }}
+        - mountPath: {{ .Values.harvester.eodata.mountPath }}
+          name: {{ .Values.harvester.eodata.volumeName }}
+        {{- end }}
       restartPolicy: Always
       volumes:
       - name: {{ .Values.harvester.volume_name }}
         configMap:
           name: {{ .Release.Name }}-configmap
+      {{- if .Values.harvester.eodata.enabled }}
+      - name: {{ .Values.harvester.eodata.volumeName }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.harvester.eodata.claimName }}
+      {{- end }}
