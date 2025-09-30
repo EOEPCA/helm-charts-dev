@@ -1,0 +1,8 @@
+{{- if and .Values.eventing.install .Values.eventing.defaultBroker.create }}
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  name: {{ .Values.eventing.defaultBroker.name }}
+  namespace: {{ .Release.Namespace }}
+spec: {}
+{{- end }}

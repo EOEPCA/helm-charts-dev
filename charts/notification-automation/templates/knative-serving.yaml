@@ -1,0 +1,19 @@
+{{- if .Values.serving.install }}
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  name: knative-serving
+  namespace: {{ .Values.serving.namespace }}
+spec:
+  config:
+    {{- if and .Values.serving.domain (ne .Values.serving.domain "") }}
+    domain:
+      {{ .Values.serving.domain }}: ""
+    {{- end }}
+    network:
+      ingress-class: kourier.ingress.networking.knative.dev
+  ingress:
+    kourier:
+      enabled: true
+  version: {{ .Values.serving.version }}
+{{- end }}

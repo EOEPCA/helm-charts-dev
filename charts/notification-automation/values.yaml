@@ -1,0 +1,47 @@
+# Default values for notification-automation.
+# This is a YAML-formatted file.
+# Declare variables to be substituted into your templates.
+
+replicaCount: 1
+
+# Control CRD presence checks (used by templates/knative-crd-check.yaml)
+crdChecks:
+  # When true, chart will verify Knative Operator CRDs exist in the cluster and fail if missing.
+  # Keep this false for `helm template` or other offline renders where `lookup` cannot access the cluster.
+  enforce: false
+
+# Knative Eventing configuration
+eventing:
+  # Specifies whether KnativeEventing should be installed
+  install: false
+  # Version of KnativeEventing to install
+  version: "1.18.1"
+  # Namespace where KnativeEventing should be installed
+  namespace: knative-eventing
+  # Enable OIDC authentication
+  authenticationOidc: true
+  # Default Broker configuration
+  defaultBroker:
+    # Specifies whether a default Broker should be created
+    create: true
+    # Name of the default Broker
+    name: default
+
+# Knative Serving configuration
+serving:
+  # Specifies whether KnativeServing should be installed
+  install: false
+  # Version of KnativeServing to install
+  version: "1.18.0"
+  # Namespace where KnativeServing should be installed
+  namespace: knative-serving
+  # Domain configuration
+  domain: functions.eoepca.org
+
+
+
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
