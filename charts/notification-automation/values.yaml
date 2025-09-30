@@ -4,6 +4,12 @@
 
 replicaCount: 1
 
+# Control CRD presence checks (used by templates/knative-crd-check.yaml)
+crdChecks:
+  # When true, chart will verify Knative Operator CRDs exist in the cluster and fail if missing.
+  # Keep this false for `helm template` or other offline renders where `lookup` cannot access the cluster.
+  enforce: false
+
 # Knative Eventing configuration
 eventing:
   # Specifies whether KnativeEventing should be installed
@@ -26,7 +32,7 @@ serving:
   # Specifies whether KnativeServing should be installed
   install: false
   # Version of KnativeServing to install
-  version: "1.18.2"
+  version: "1.18.0"
   # Namespace where KnativeServing should be installed
   namespace: knative-serving
   # Domain configuration
