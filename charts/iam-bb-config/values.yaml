@@ -24,7 +24,7 @@ iam:
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: true
       # Set to true to auto-generate clients as Crossplane CRs.
-      createClients: false
+      createClients: true
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
         # Note that this only makes sense if useKeycloakConfigCli is set to
@@ -35,10 +35,11 @@ iam:
         displayName: EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
-        # Reference to existing ProviderConfig to use (instead of own one)
+        # Reference to existing ProviderConfig to use (instead of creating own one)
         existingConfigRef: ""
-        # Set to true to generate ProviderConfig for Keycloak
-        create: false
+        # Set to true to generate ProviderConfig for Keycloak (only honoured if
+        # useCrossplane is true)
+        create: true
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
           name: ""
@@ -47,7 +48,7 @@ iam:
   opa:
     enabled: false
     # "Official" OPA URL (used as root URL for the client if one is created)
-    url: https://iam-opa.apx.develop.eoepca.org
+    url: https://iam-opa.develop.eoepca.org
     # Client credentials:
     # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: opa
@@ -56,7 +57,7 @@ iam:
   identityApi:
     enabled: false
     # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.apx.develop.eoepca.org
+    url: https://identity-api.develop.eoepca.org
     # Client credentials:
     # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: identity-api
