@@ -46,7 +46,7 @@ iam: &iam
       # Set to false (default) to generate them using Helm random functions.
       useSecretGenerator: false
       # Set to true to auto-generate clients as Crossplane CRs.
-      createClients: false
+      createClients: true
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
         # Note that this only makes sense if useKeycloakConfigCli is set to
@@ -61,7 +61,7 @@ iam: &iam
         existingConfigRef: ""
         # Set to true to generate ProviderConfig for Keycloak (only honoured if
         # useCrossplane is true)
-        create: false
+        create: true
         # Set to true to create a client with service account to be used by Crossplane
         # Keycloak Provider. (only honoured if useKeycloakConfigCli is true, but
         # independent of useCrossplane setting)
@@ -79,10 +79,9 @@ iam: &iam
   opa:
     enabled: &opaEnabled true
     # inline: true: Use inline OPA; false: deploy and use OPA in a separate pod.
-    # If set to false, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED should
-    # be set to "False" to prevent inline OPA from being started.
-    # Furthermore OPAL_POLICY_STORE_URL should be changed to "http://iam-opa:8181".
-    inline: true
+    # If set to true, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED must
+    # be set to "True" so that inline OPA is actually started.
+    inline: false
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
     url: https://iam-opa.apx.develop.eoepca.org
@@ -488,7 +487,7 @@ opal:
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
       OPAL_DATA_UPDATER_ENABLED: False
-      OPAL_INLINE_OPA_ENABLED: True
+      OPAL_INLINE_OPA_ENABLED: False
       OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_INLINE_OPA_CONFIG: >-
         {
