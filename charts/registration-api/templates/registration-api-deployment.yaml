@@ -25,6 +25,18 @@ spec:
       - env:
         - name: PYGEOAPI_SERVER_URL
           value: {{ .Values.pygeoapi.config.server.url }}
+        {{ if .Values.pygeoapi.iam_realm }}
+        - name: EOEPCA_REGISTRATION_API_IAM_REALM
+          value: {{ .Values.pygeoapi.iam_realm }}
+        {{ end }}
+        {{ if .Values.pygeoapi.iam_grant_type }}
+        - name: EOEPCA_REGISTRATION_API_IAM_GRANT_TYPE
+          value: {{ .Values.pygeoapi.iam_grant_type }}
+        {{ end }}
+        {{ if .Values.pygeoapi.iam_endpoint }}
+        - name: EOEPCA_REGISTRATION_API_IAM_ENDPOINT
+          value: {{ .Values.pygeoapi.iam_endpoint }}
+        {{ end }}
         image: {{ .Values.pygeoapi.image.repository }}:{{ .Values.pygeoapi.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.pygeoapi.image.pullPolicy }}
         name: pygeoapi

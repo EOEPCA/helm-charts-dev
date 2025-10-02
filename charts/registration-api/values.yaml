@@ -41,6 +41,9 @@ pygeoapi:
   volume_path: /pygeoapi
   # secret:
   #   name: ""
+  # iam_endpoint: ""
+  # iam_realm: "eoepca"
+  # iam_grant_type: "client_credentials"
   config:
     server:
       bind:
