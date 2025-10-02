@@ -18,12 +18,12 @@ iam: &iam
     enabled: &keycloakEnabled true
     createRoute: true
     # "Official" Keycloak URL (used everywhere where Keycloak needs to be addressed)
-    url: &kcurl https://iam-auth.apx.develop.eoepca.org
+    url: &kcurl https://iam-auth.develop.eoepca.org
     # Deviating "internal" Keycloak URL to use for cluster-internal access
     # (defaults to official URL). Only used for Crossplane provider so far.
     internalUrl: ""
     hosts:
-      - iam-auth.apx.develop.eoepca.org
+      - iam-auth.develop.eoepca.org
     paths:
       - /*
     # Optional configuration to apply as Crossplane CRs.
@@ -84,9 +84,9 @@ iam: &iam
     inline: false
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
-    url: https://iam-opa.apx.develop.eoepca.org
+    url: https://iam-opa.develop.eoepca.org
     hosts:
-      - iam-opa.apx.develop.eoepca.org
+      - iam-opa.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
@@ -111,9 +111,9 @@ iam: &iam
     enabled: &identityApiEnabled false
     createRoute: true
     # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.apx.develop.eoepca.org
+    url: https://identity-api.develop.eoepca.org
     hosts:
-      - identity-api.apx.develop.eoepca.org
+      - identity-api.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
