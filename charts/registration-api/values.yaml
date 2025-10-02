@@ -39,6 +39,8 @@ pygeoapi:
   configmap_name: registration-api-configmap
   volume_name: registration-api-config
   volume_path: /pygeoapi
+  # secret:
+  #   name: ""
   config:
     server:
       bind:

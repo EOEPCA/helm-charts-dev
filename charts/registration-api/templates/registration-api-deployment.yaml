@@ -28,6 +28,11 @@ spec:
         image: {{ .Values.pygeoapi.image.repository }}:{{ .Values.pygeoapi.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.pygeoapi.image.pullPolicy }}
         name: pygeoapi
+        {{ if .Values.pygeoapi.secret.name }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.pygeoapi.secret.name }}
+        {{ end }}
         ports:
         - containerPort: {{ .Values.pygeoapi.container_port }}
         resources: {}
