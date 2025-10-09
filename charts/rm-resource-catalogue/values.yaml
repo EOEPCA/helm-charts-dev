@@ -124,6 +124,10 @@ pycsw:
       allowed_ips:
         - 127.0.0.1
       csw_harvest_pagesize: 10
+    # pubsub:
+    #   broker:
+    #   type: mqtt
+    #   url: mqtt://localhost:1883
     metadata:
       identification:
         title: pycsw Geospatial Catalogue
