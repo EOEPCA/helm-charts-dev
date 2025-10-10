@@ -2893,6 +2893,16 @@ entries:
     version: 0.2.0
   iam-bb-config:
   - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2025-10-10T11:45:27.461358962Z"
+    description: Optional Crossplane-based Keycloak configuration for the IAM BB
+    digest: a6226dc2bc99bc456ee00c9e1a289e0889e6ca5cc5f1d3d8fc871a9d67f854ad
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.0.0/iam-bb-config-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 2.0.0-rc2
     created: "2025-07-03T07:41:37.653147654Z"
     description: Optional Crossplane-based Keycloak configuration for the IAM BB
@@ -10979,6 +10989,16 @@ entries:
     version: 2.0.0-rc1
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2025-10-10T11:45:27.574970094Z"
+    description: A Helm chart for Resource Catalogue
+    digest: b539350c88051c218e55f90a49448fb68f6ae026dd13d962c0bfd82f25ac9ce7
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-2.0.0-dev8/rm-resource-catalogue-2.0.0-dev8.tgz
+    version: 2.0.0-dev8
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2025-05-27T14:25:07.158389607Z"
     description: A Helm chart for Resource Catalogue
     digest: 0383973bafc55e4ea0030e33224dc2fb0d1d700da6e5f17939c3234f93883a67
@@ -13410,4 +13430,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-10-02T10:03:17.049946576Z"
+generated: "2025-10-10T11:45:27.577124305Z"
