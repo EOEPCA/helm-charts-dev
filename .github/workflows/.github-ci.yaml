@@ -82,17 +82,6 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
           helm plugin install https://github.com/chartmuseum/helm-push
 
-      - name: Push to cr.terradue.com
-        run: |
-          CHART_NAME=${{ needs.build.outputs.chart_name }}
-          CHART_VERSION=${{ needs.build.outputs.chart_version }}
-          CHART_PACKAGE=${{ needs.build.outputs.chart_package }}
-
-          echo "${{ secrets.CR_PASSWORD }}" | helm registry login --username "${{ secrets.CR_USERNAME }}" --password-stdin https://cr.terradue.com
-          helm cm-push $CHART_PACKAGE https://cr.terradue.com/chartrepo/${{ secrets.CR_REPO }} \
-            --username "${{ secrets.CR_USERNAME }}" \
-            --password "${{ secrets.CR_PASSWORD }}"
-
       - name: Push to GHCR
         run: |
           CHART_NAME=${{ needs.build.outputs.chart_name }}
