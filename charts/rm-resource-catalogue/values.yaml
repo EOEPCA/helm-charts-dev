@@ -79,7 +79,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
 
 pycsw:
-  name: resource-catalogue
+  name: pycsw
   image:
     repository: geopython/pycsw
     pullPolicy: IfNotPresent
