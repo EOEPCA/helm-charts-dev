@@ -8279,6 +8279,24 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts/releases/download/nfs-provisioner-0.1.0/nfs-provisioner-0.1.0.tgz
     version: 0.1.0
+  notification-automation:
+  - apiVersion: v1
+    appVersion: "1"
+    created: "2025-12-09T10:44:04.799017189Z"
+    dependencies:
+    - name: knative-operator
+      repository: https://knative.github.io/operator
+      version: v1.19.2
+    description: A Helm chart for Notification Automation
+    digest: 622b9440a8894c120df02e955af287d04638262f5c5e287ea485276436cb605b
+    kubeVersion: '>=1.31.0'
+    maintainers:
+    - name: eoepca
+    name: notification-automation
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/notification-automation-0.1.0/notification-automation-0.1.0.tgz
+    version: 0.1.0
   openeo-web-editor:
   - apiVersion: v2
     appVersion: 0.14.0
@@ -11082,6 +11100,16 @@ entries:
     version: 2.0.0-rc1
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2025-12-09T10:44:04.991260462Z"
+    description: A Helm chart for Resource Catalogue
+    digest: b7716d9a690badf23769c84a15a50d2dec1cfe3bab1b6d56d10e52d794974d38
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-2.0.0-dev9/rm-resource-catalogue-2.0.0-dev9.tgz
+    version: 2.0.0-dev9
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2025-10-10T11:45:27.574970094Z"
     description: A Helm chart for Resource Catalogue
     digest: b539350c88051c218e55f90a49448fb68f6ae026dd13d962c0bfd82f25ac9ce7
@@ -13523,4 +13551,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-10-30T08:55:19.248288476Z"
+generated: "2025-12-09T10:44:04.993960158Z"
