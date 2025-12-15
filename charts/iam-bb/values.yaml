@@ -39,8 +39,7 @@ iam: &iam
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
       # Set this to true to enable Keycloak Config CLI for initial realm
-      # setup. The realm configuration must be provided in the
-      # keycloak.keycloakConfigCli section.
+      # setup.
       useKeycloakConfigCli: &useKeycloakConfigCli false
       # Set to true to generate secrets using kubernetes-secret-generator;
       # Set to false (default) to generate them using Helm random functions.
@@ -428,7 +427,7 @@ opal:
         }
         default allow_policy_evaluation := false
         allow_policy_evaluation if {
-          # Generally allow GET and POST on /v1/data/** except /v1/data/system/** 
+          # Generally allow GET and POST on /v1/data/** except /v1/data/system/**
           #"GET" == input.method
           input.method in ["GET", "POST"]
           "v1" == input.path[0]

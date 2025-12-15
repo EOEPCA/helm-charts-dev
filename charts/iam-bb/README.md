@@ -244,7 +244,7 @@ initialisation.
 | `iam.keycloak.configuration.realm.displayName`          | "EOEPCA" | Display name of the EOEPCA realm                                         |
 | `iam.keycloak.configuration.provider.create`            | `true`   | Enable or disable creation of the `ProviderConfig`.                      |
 | `iam.keycloak.configuration.provider.clientSecret`      | ""       | Client secret for the Crossplane provider client                         |
-| `iam.keycloak.configuration.provider.clientSecretRef`   | unset    | Reference to a secret that contains Keycloak location and credentials    |
+| `iam.keycloak.configuration.provider.secretRef`         | unset    | Reference to a secret that contains Keycloak location and credentials    |
 | `iam.keycloak.configuration.provider.existingConfigRef` | ""       | Name of an existing `ProviderConfig` to use                              |
 
 For a typical IAM BB setup, Crossplane should be leveraged. Hence
