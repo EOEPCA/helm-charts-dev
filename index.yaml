@@ -11081,6 +11081,16 @@ entries:
   rm-resource-catalogue:
   - apiVersion: v2
     appVersion: 3.0.0
+    created: "2025-12-21T11:45:52.015147666Z"
+    description: A Helm chart for Resource Catalogue
+    digest: ddbcc3c1dd93c7ffc0fd0d72277a7aa001434fc7a8312136ace9f5254953a8c5
+    name: rm-resource-catalogue
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-resource-catalogue-2.0.0-rc3/rm-resource-catalogue-2.0.0-rc3.tgz
+    version: 2.0.0-rc3
+  - apiVersion: v2
+    appVersion: 3.0.0
     created: "2025-07-01T15:41:31.019751385Z"
     description: A Helm chart for Resource Catalogue
     digest: 12617ec84d536031548d4a3c05cbd4c0cb1d25bdc04c0b74eb7002591b3de388
@@ -13572,4 +13582,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-10T22:30:09.334133152Z"
+generated: "2025-12-21T11:45:52.017634632Z"
