@@ -3,7 +3,7 @@ kind: Service
 metadata:
   namespace: {{ .Values.global.namespace }}
   labels:
-    io.kompose.service: pygeoapi
+    io.kompose.service: {{ .Values.pygeoapi.name }}
   name: {{ .Values.pygeoapi.service_name }}
 spec:
   type: {{ .Values.pygeoapi.service_type }}
@@ -20,4 +20,4 @@ spec:
       {{ end }}
       name: {{ .Values.pygeoapi.service_port_name }}
   selector:
-    io.kompose.service: pygeoapi
+    io.kompose.service: {{ .Values.pygeoapi.name }}
