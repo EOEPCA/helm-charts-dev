@@ -8,7 +8,7 @@ db:
   enabled: true
   name: resource-catalogue-db
   service_name: resource-catalogue-db-service
-  image: postgis/postgis:12-3.1
+  image: postgis/postgis:17-3.5
   port: 5432
   database: pycsw
   user: postgres
@@ -16,7 +16,7 @@ db:
   volume_name: db-data
   volume_path: /var/lib/postgresql/data/pgdata
   volume_size: 500Mi
-  volume_access_modes: ReadWriteMany
+  volume_access_modes: ReadWriteOnce
   volume_storageclass: managed-nfs-storage-retain
   volume_subpath_enabled: false
   volume_subpath: data
@@ -84,7 +84,7 @@ pycsw:
     repository: geopython/pycsw
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "eoepca-2.0.0-rc2"
+    tag: "eoepca-2.0.0"
   replicas: 1
   container_port: 8000
   service_name: resource-catalogue-service
