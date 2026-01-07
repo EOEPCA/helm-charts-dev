@@ -520,9 +520,18 @@ apisix:
     pluginAttrs:
       redirect:
         https_port: 443
+    deployment:
+      role: traditional
+      role_traditional:
+        config_provider: yaml # Standalone Mode
   ingress-controller:
     enabled: true
     config:
+      kubernetes:
+        defaultIngressClass: true
+      provider:
+        #type: apisix
+        type: apisix-standalone
       apisix:
         adminAPIVersion: "v3"
         # The following value may have to be adapted if the release name is not "iam"
@@ -531,6 +540,7 @@ apisix:
         # namespace "ingress-apisix"
         #serviceNamespace: ingress-apisix
   etcd:
+    enabled: false
     image:
       repository: bitnamilegacy/etcd
 
