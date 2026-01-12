@@ -12,8 +12,8 @@ spec:
       {{ if .Values.pygeoapi.service_node_port }}
       nodePort: {{ .Values.pygeoapi.service_node_port }}
       {{ end }}
-      {{ if .Values.pygeoapi.service_target_port }}
-      targetPort: {{ .Values.pygeoapi.service_target_port }}
+      {{ if .Values.pygeoapi.container_port }}
+      targetPort: {{ .Values.pygeoapi.container_port }}
       {{ end }}
       {{ if .Values.pygeoapi.service_port_protocol }}
       protocol: {{ .Values.pygeoapi.service_port_protocol }}

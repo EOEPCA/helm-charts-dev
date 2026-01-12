@@ -35,7 +35,6 @@ pygeoapi:
   service_port_name: http
   # service_node_port: 30000
   service_port_protocol: TCP
-  service_target_port: 80
   configmap_name: registration-api-configmap
   volume_name: registration-api-config
   volume_path: /pygeoapi

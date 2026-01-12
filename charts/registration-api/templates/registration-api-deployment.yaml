@@ -37,6 +37,8 @@ spec:
         - name: EOEPCA_REGISTRATION_API_IAM_ENDPOINT
           value: {{ .Values.pygeoapi.iam_endpoint }}
         {{ end }}
+        - name: CONTAINER_PORT
+          value: "{{ .Values.pygeoapi.container_port }}"
         image: {{ .Values.pygeoapi.image.repository }}:{{ .Values.pygeoapi.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.pygeoapi.image.pullPolicy }}
         name: pygeoapi
