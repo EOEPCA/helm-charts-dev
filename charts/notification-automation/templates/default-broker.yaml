@@ -4,5 +4,8 @@ kind: Broker
 metadata:
   name: {{ .Values.eventing.defaultBroker.name }}
   namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "10"
 spec: {}
 {{- end }}
