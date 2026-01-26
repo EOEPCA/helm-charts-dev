@@ -38,7 +38,7 @@ dependencies:
     repository: "https://eoepca.github.io/helm-charts"
     condition: identityApi.enabled
   - name: apisix
-    version: "2.12.4"
+    version: "2.12.5"
     repository: "https://charts.apiseven.com"
     condition: apisix.enabled
   - name: iam-bb-config
