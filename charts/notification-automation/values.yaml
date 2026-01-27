@@ -129,4 +129,8 @@ cloudEventsPlayer:
           - path: /
             pathType: Prefix
     tls: []
+  subscribeBroker:
+    enabled: true
+    broker:
+      name: ""
   extraEnv: []

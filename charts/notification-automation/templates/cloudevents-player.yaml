@@ -74,4 +74,29 @@ spec:
   type: {{ .Values.cloudEventsPlayer.service.type }}
 ---
 {{- end }}
+
+{{- if .Values.cloudEventsPlayer.subscribeBroker.enabled }}
+{{- $brokerRef := .Values.cloudEventsPlayer.subscribeBroker.broker }}
+{{- $brokerName := $brokerRef.name }}
+{{- if and (not $brokerName) .Values.eventing.install .Values.eventing.defaultBroker.create }}
+{{- $brokerName = .Values.eventing.defaultBroker.name }}
+{{- end }}
+{{- if $brokerName }}
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: {{ $name }}-trigger
+  labels:
+    app: {{ $name }}
+spec:
+  broker: {{ $brokerName }}
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: {{ $name }}
+    uri: /
+---
+{{- end }}
+{{- end }}
 {{- end }}
