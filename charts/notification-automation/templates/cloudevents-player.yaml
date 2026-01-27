@@ -1,0 +1,102 @@
+{{- if .Values.cloudEventsPlayer.enabled }}
+{{- $name := .Values.cloudEventsPlayer.name }}
+{{- $saName := default $name .Values.cloudEventsPlayer.serviceAccount.name }}
+{{- $imageRepo := required "cloudEventsPlayer.image.repository is required when cloudEventsPlayer.enabled=true" .Values.cloudEventsPlayer.image.repository }}
+{{- $imageTag := default "latest" .Values.cloudEventsPlayer.image.tag }}
+
+{{- if .Values.cloudEventsPlayer.serviceAccount.create }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ $saName }}
+  labels:
+    app: {{ $name }}
+---
+{{- end }}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    app: {{ $name }}
+spec:
+  replicas: {{ .Values.cloudEventsPlayer.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      serviceAccountName: {{ $saName }}
+      containers:
+      - name: {{ $name }}
+        image: {{ $imageRepo }}:{{ $imageTag }}
+        imagePullPolicy: {{ .Values.cloudEventsPlayer.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.cloudEventsPlayer.containerPort }}
+          protocol: TCP
+        env:
+        - name: PORT
+          value: {{ .Values.cloudEventsPlayer.containerPort | quote }}
+        {{- if .Values.cloudEventsPlayer.extraEnv }}
+        {{- toYaml .Values.cloudEventsPlayer.extraEnv | nindent 8 }}
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.cloudEventsPlayer.containerPort }}
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.cloudEventsPlayer.containerPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+{{- if .Values.cloudEventsPlayer.service.create }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    app: {{ $name }}
+spec:
+  selector:
+    app: {{ $name }}
+  ports:
+  - port: {{ .Values.cloudEventsPlayer.service.port }}
+    targetPort: {{ .Values.cloudEventsPlayer.service.targetPort }}
+    protocol: TCP
+  type: {{ .Values.cloudEventsPlayer.service.type }}
+---
+{{- end }}
+
+{{- if .Values.cloudEventsPlayer.subscribeBroker.enabled }}
+{{- $brokerRef := .Values.cloudEventsPlayer.subscribeBroker.broker }}
+{{- $brokerName := $brokerRef.name }}
+{{- if and (not $brokerName) .Values.eventing.install .Values.eventing.defaultBroker.create }}
+{{- $brokerName = .Values.eventing.defaultBroker.name }}
+{{- end }}
+{{- if $brokerName }}
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: {{ $name }}-trigger
+  labels:
+    app: {{ $name }}
+spec:
+  broker: {{ $brokerName }}
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: {{ $name }}
+    uri: /
+---
+{{- end }}
+{{- end }}
+{{- end }}

@@ -2,5 +2,3 @@ dependencies:
 - name: knative-operator
   repository: https://knative.github.io/operator
   version: v1.19.2
-digest: sha256:9706ad46149ad98207109d6e92e2116698629cf9eb84832a26b453307efef6b3
-generated: "2025-12-09T10:37:51.651139236Z"
