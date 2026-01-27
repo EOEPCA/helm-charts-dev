@@ -100,3 +100,33 @@ webhookSource:
         name: default
       uri: ""
   extraEnv: []
+
+# CloudEvents Player configuration
+cloudEventsPlayer:
+  enabled: false
+  name: cloudevents-player
+  replicaCount: 1
+  image:
+    repository: "quay.io/ruben/cloudevents-player"
+    tag: "v1.3"
+    pullPolicy: IfNotPresent
+  containerPort: 8080
+  serviceAccount:
+    create: true
+    name: ""
+  service:
+    create: true
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts:
+      - host: cloudevents-player.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+  extraEnv: []
