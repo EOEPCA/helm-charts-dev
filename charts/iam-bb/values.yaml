@@ -18,12 +18,12 @@ iam: &iam
     enabled: &keycloakEnabled true
     createRoute: true
     # "Official" Keycloak URL (used everywhere where Keycloak needs to be addressed)
-    url: &kcurl https://iam-auth.apx.develop.eoepca.org
+    url: &kcurl https://iam-auth.develop.eoepca.org
     # Deviating "internal" Keycloak URL to use for cluster-internal access
     # (defaults to official URL). Only used for Crossplane provider so far.
     internalUrl: ""
     hosts:
-      - iam-auth.apx.develop.eoepca.org
+      - iam-auth.develop.eoepca.org
     paths:
       - /*
     # Optional configuration to apply as Crossplane CRs.
@@ -39,14 +39,13 @@ iam: &iam
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
       # Set this to true to enable Keycloak Config CLI for initial realm
-      # setup. The realm configuration must be provided in the
-      # keycloak.keycloakConfigCli section.
+      # setup.
       useKeycloakConfigCli: &useKeycloakConfigCli false
       # Set to true to generate secrets using kubernetes-secret-generator;
       # Set to false (default) to generate them using Helm random functions.
       useSecretGenerator: false
       # Set to true to auto-generate clients as Crossplane CRs.
-      createClients: false
+      createClients: true
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
         # Note that this only makes sense if useKeycloakConfigCli is set to
@@ -61,7 +60,7 @@ iam: &iam
         existingConfigRef: ""
         # Set to true to generate ProviderConfig for Keycloak (only honoured if
         # useCrossplane is true)
-        create: false
+        create: true
         # Set to true to create a client with service account to be used by Crossplane
         # Keycloak Provider. (only honoured if useKeycloakConfigCli is true, but
         # independent of useCrossplane setting)
@@ -79,15 +78,14 @@ iam: &iam
   opa:
     enabled: &opaEnabled true
     # inline: true: Use inline OPA; false: deploy and use OPA in a separate pod.
-    # If set to false, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED should
-    # be set to "False" to prevent inline OPA from being started.
-    # Furthermore OPAL_POLICY_STORE_URL should be changed to "http://iam-opa:8181".
-    inline: true
+    # If set to true, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED must
+    # be set to "True" so that inline OPA is actually started.
+    inline: false
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
-    url: https://iam-opa.apx.develop.eoepca.org
+    url: https://iam-opa.develop.eoepca.org
     hosts:
-      - iam-opa.apx.develop.eoepca.org
+      - iam-opa.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
@@ -112,9 +110,9 @@ iam: &iam
     enabled: &identityApiEnabled false
     createRoute: true
     # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.apx.develop.eoepca.org
+    url: https://identity-api.develop.eoepca.org
     hosts:
-      - identity-api.apx.develop.eoepca.org
+      - identity-api.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
@@ -144,7 +142,7 @@ keycloak:
     # If you do not need the Keycloak OPA Plugin, you may also use the standard Keycloak image instead.
     registry: byud8gih.c1.de1.container-registry.ovh.net
     repository: eoepca/keycloak-with-opa-plugin
-    tag: 0.5.0
+    tag: 0.5.1
     digest: ""
     pullPolicy: IfNotPresent
   auth:
@@ -184,7 +182,7 @@ keycloak:
   extraEnvVars:
     # KC_SPI_POLICY_OPA_OPA_BASE_URI must point to the base URI of the OPA service.
     - name: KC_SPI_POLICY_OPA_OPA_BASE_URI
-      value: "http://iam-opal-client:8181/v1/data/"
+      value: "http://iam-opa:8181/v1/data/"
     # KC_SPI_POLICY_OPA_OPA_POLICY_DIR points to a pod-internal config directory for
     # policies and should not be changed.
     - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
@@ -287,7 +285,6 @@ keycloak:
         value: *realmName
       - name: IAM_REALM_DISPLAY_NAME
         value: *realmDisplayName
-    # TODO: Create secret for crossplane user credentials and reference it here.
     extraEnvVarsSecret: "keycloak-provider"
     ## @param keycloakConfigCli.configuration keycloak-config-cli realms configuration
     ## NOTE: nil keys will be considered files to import locally
@@ -430,7 +427,7 @@ opal:
         }
         default allow_policy_evaluation := false
         allow_policy_evaluation if {
-          # Generally allow GET and POST on /v1/data/** except /v1/data/system/** 
+          # Generally allow GET and POST on /v1/data/** except /v1/data/system/**
           #"GET" == input.method
           input.method in ["GET", "POST"]
           "v1" == input.path[0]
@@ -484,11 +481,12 @@ opal:
           print("External, Input: ", input, " Claims: ", claims)
         }
     extraEnv:
-      OPAL_POLICY_STORE_URL: http://localhost:8181
+      #OPAL_POLICY_STORE_URL: http://localhost:8181
+      OPAL_POLICY_STORE_URL: http://iam-opa:8181
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
       OPAL_DATA_UPDATER_ENABLED: False
-      OPAL_INLINE_OPA_ENABLED: True
+      OPAL_INLINE_OPA_ENABLED: False
       OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_INLINE_OPA_CONFIG: >-
         {

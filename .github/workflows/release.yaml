@@ -34,6 +34,7 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo add permitio https://permitio.github.io/opal-helm-chart
           helm repo add apiseven https://charts.apiseven.com
+          helm repo add knative-operator https://knative.github.io/operator
           helm repo list
 
       - name: Run chart-releaser

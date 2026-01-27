@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   namespace: {{ .Values.global.namespace }}
   labels:
-    io.kompose.service: pycsw
+    io.kompose.service: {{ .Values.pycsw.name }}
   name: {{ .Values.pycsw.service_name }}
 spec:
   replicas: {{ .Values.pycsw.replicas }}
   selector:
     matchLabels:
-      io.kompose.service: pycsw
+      io.kompose.service: {{ .Values.pycsw.name }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        io.kompose.service: pycsw
+        io.kompose.service: {{ .Values.pycsw.name }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

@@ -27,7 +27,7 @@ pygeoapi:
     repository: eoepca/registration-api
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "2.0.0-rc2"
+    tag: "2.0.0"
   container_port: 80
   service_name: registration-api-service
   service_type: ClusterIP
@@ -35,10 +35,14 @@ pygeoapi:
   service_port_name: http
   # service_node_port: 30000
   service_port_protocol: TCP
-  service_target_port: 80
   configmap_name: registration-api-configmap
   volume_name: registration-api-config
   volume_path: /pygeoapi
+  # secret:
+  #   name: ""
+  # iam_endpoint: ""
+  # iam_realm: "eoepca"
+  # iam_grant_type: "client_credentials"
   config:
     server:
       bind:
@@ -51,7 +55,9 @@ pygeoapi:
       language: en-US
       cors: "true"
       pretty_print: "true"
-      limit: 10
+      limits:
+        default_items: 10
+        max_items: 10
       # templates: /path/to/templates
       map:
         url: https://tile.openstreetmap.org/{z}/{x}/{y}.png

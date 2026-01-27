@@ -8,7 +8,7 @@ harvester:
   image:
     repository: eoepca/registration-harvester
     pullPolicy: Always
-    tag: 2.0.0-rc2
+    tag: latest
   secret:
     name: ""
   volume_name: registration-harvester-config
@@ -18,9 +18,6 @@ harvester:
     worker:
       log_level: INFO
       flowable:
-        host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
-        tls: "true"
-        cacert: ""
       topics:
       handlers:
   eodata:
