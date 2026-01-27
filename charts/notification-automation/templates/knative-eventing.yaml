@@ -4,9 +4,6 @@ kind: KnativeEventing
 metadata:
   name: knative-eventing
   namespace: {{ .Values.eventing.namespace }}
-  annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "-5"
 spec:
   config:
     config-features:
