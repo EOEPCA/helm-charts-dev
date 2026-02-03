@@ -2332,6 +2332,37 @@ entries:
   iam-bb:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2026-02-03T10:29:07.31694417Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 24.4.11
+    - condition: opal.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: identityApi.enabled
+      name: identity-service
+      repository: https://eoepca.github.io/helm-charts
+      version: 1.0.98
+    - condition: apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.10.0
+    - condition: iam-bb-config.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts
+      version: 2.0.0
+    description: EOEPCA IAM BB Helm chart
+    digest: baedb0a509edf82af3d6b5f7868db0127da7a9654bb3e7750a52233bfc6cf8ac
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0/iam-bb-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2026-01-26T13:21:00.496605328Z"
     dependencies:
     - condition: keycloak.enabled
@@ -2549,37 +2580,6 @@ entries:
     version: 2.0.0-rc2
   - apiVersion: v2
     appVersion: 2.0.0-rc1
-    created: "2025-05-22T15:09:43.795342183Z"
-    dependencies:
-    - condition: keycloak.enabled
-      name: keycloak
-      repository: https://charts.bitnami.com/bitnami
-      version: 24.4.11
-    - condition: opal.enabled
-      name: opal
-      repository: https://permitio.github.io/opal-helm-chart
-      version: 0.0.28
-    - condition: identityApi.enabled
-      name: identity-service
-      repository: https://eoepca.github.io/helm-charts
-      version: 1.0.98
-    - condition: apisix.enabled
-      name: apisix
-      repository: https://charts.apiseven.com
-      version: 2.10.0
-    - condition: iamBbConfig.enabled
-      name: iam-bb-config
-      repository: https://eoepca.github.io/helm-charts-dev
-      version: 2.0.0-rc1
-    description: EOEPCA IAM BB Helm chart
-    digest: 8f793a292c0fb18316465ec1af81ac4aa510d1cee6fae3a28db0029b21851ace
-    name: iam-bb
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
-    version: 2.0.0-rc1
-  - apiVersion: v2
-    appVersion: 2.0.0-rc1
     created: "2025-04-07T14:13:51.088659578Z"
     dependencies:
     - condition: keycloak.enabled
@@ -2604,6 +2604,37 @@ entries:
       version: 2.0.0-rc1
     description: EOEPCA IAM BB Helm chart
     digest: b0542629969fdde91120ef173af6c10069f8e00280d90288889abd8b51f84628
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 2.0.0-rc1
+    created: "2025-05-22T15:09:43.795342183Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 24.4.11
+    - condition: opal.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: identityApi.enabled
+      name: identity-service
+      repository: https://eoepca.github.io/helm-charts
+      version: 1.0.98
+    - condition: apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.10.0
+    - condition: iamBbConfig.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.0.0-rc1
+    description: EOEPCA IAM BB Helm chart
+    digest: 8f793a292c0fb18316465ec1af81ac4aa510d1cee6fae3a28db0029b21851ace
     name: iam-bb
     type: application
     urls:
@@ -13684,4 +13715,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-01-26T13:21:00.497812771Z"
+generated: "2026-02-03T10:29:07.318155625Z"
