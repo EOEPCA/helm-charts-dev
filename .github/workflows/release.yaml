@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - develop
+      - release-cherrypicker
 
 jobs:
   release:
