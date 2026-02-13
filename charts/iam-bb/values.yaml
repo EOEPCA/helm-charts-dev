@@ -160,6 +160,11 @@ keycloak:
   cors:
     # Set this to true to enable CORS
     enabled: false
+    # List of allowed origins. Empty defaults to '*'.
+    # Note: Credentials require specific origins (not '*').
+    allowedOrigins: []
+    # Allow credentials (cookies, authorization headers)
+    allowCredentials: true
   ## @param production Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   ##
   production: false
@@ -445,7 +450,7 @@ opal:
           input.path in [[""], ["health"]]
           print("GET /, Input: ", input)
         }
-        # Claims from JWT if JWT is present and can be verified; null otherwise 
+        # Claims from JWT if JWT is present and can be verified; null otherwise
         default verified_claims = null
         verified_claims := claims if {
           [type, token] := split(input.headers["Authorization"][_], " ")
@@ -467,14 +472,14 @@ opal:
           print("AuthZ unset, Input: ", input)
         }
         allow if {
-          # Allow authenticated users to evaluate policies 
+          # Allow authenticated users to evaluate policies
           claims := verified_claims
           claims != null
           allow_policy_evaluation == true
           print("External, Input: ", input, " Claims: ", claims)
         }
         allow if {
-          # Allow selected users to GET arbitrary URLs 
+          # Allow selected users to GET arbitrary URLs
           claims := verified_claims
           claims.email in ["privileged_user@nowhere.com"]
           input.method = "GET"

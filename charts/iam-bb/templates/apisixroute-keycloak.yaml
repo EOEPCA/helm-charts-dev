@@ -24,6 +24,21 @@ spec:
       # Allow CORS access
       - name: cors
         enable: true
+        config:
+{{- if .Values.keycloak.cors.allowedOrigins }}
+          allow_origins: {{- .Values.keycloak.cors.allowedOrigins | toJson | nindent 12 }}
+{{- else }}
+          allow_origins: "*"
+{{- end }}
+          allow_methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+          allow_headers: "*"
+          expose_headers: "*"
+{{- if and .Values.keycloak.cors.allowedOrigins .Values.keycloak.cors.allowCredentials }}
+          allow_credential: true
+{{- else }}
+          allow_credential: false
+{{- end }}
+          max_age: 3600
 {{- end }}
 # The following workaround has been replaced with a global rule and is not needed here any more.
 #    plugins:
