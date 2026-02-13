@@ -41,6 +41,48 @@ serving:
 
 
 
+# na-emailer configuration
+emailer:
+  # Specifies whether na-emailer should be deployed
+  install: false
+  replicaCount: 1
+  image:
+    repository: ghcr.io/eoepca/na-emailer
+    tag: latest
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+  service:
+    type: ClusterIP
+    port: 80
+  resources: {}
+  # Configuration mapped to na-emailer environment variables
+  config:
+    logLevel: "INFO"
+    # Filtering
+    filterMode: "all"           # all|any
+    filtersJson: ""             # JSON object string
+    # Templates
+    templateDefault: "default"
+    templateMapJson: ""         # JSON object string
+    templateStrictUndefined: false
+    templatesInlineJson: ""     # JSON object string
+    # Email addressing defaults
+    emailFrom: ""
+    emailTo: ""                 # comma-separated list
+    emailCc: ""
+    emailBcc: ""
+    emailSubjectPrefix: ""
+    # Email client
+    emailClient: "yagmail"
+    dryRun: false
+    # Yagmail SMTP settings
+    yagmailUser: ""
+    yagmailPassword: ""
+    yagmailHost: ""
+    yagmailPort: ""
+    yagmailSmtpStarttls: ""
+    yagmailSmtpSsl: ""
+
 image:
   repository: ""
   pullPolicy: IfNotPresent
