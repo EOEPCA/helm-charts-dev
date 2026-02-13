@@ -20,6 +20,7 @@ eventing:
   namespace: knative-eventing
   # Enable OIDC authentication
   authenticationOidc: true
+  defaultAuthorizationMode: ""
   # Default Broker configuration
   defaultBroker:
     # Specifies whether a default Broker should be created
