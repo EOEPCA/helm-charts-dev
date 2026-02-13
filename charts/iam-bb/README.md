@@ -281,6 +281,31 @@ By default, secrets are generated automatically. If `clientSecretRef`
 is used to reference an existing secret, this secret may contain further
 parameters like the client ID.
 
+
+### CORS Configuration
+
+Enable CORS for JavaScript applications from different domains to authenticate with Keycloak.
+
+| Parameter                         | Default        | Description                                             |
+|-----------------------------------|----------------|---------------------------------------------------------|
+| `keycloak.cors.enabled`           | `false`        | Enable CORS for Keycloak route                          |
+| `keycloak.cors.allowedOrigins`    | `[]`           | List of allowed origins. Empty list defaults to `*`     |
+| `keycloak.cors.allowCredentials`  | `true`         | Allow credentials (cookies, auth headers) in requests   |
+
+**Note:** When credentials are enabled with specific origins, browsers reject wildcard `*`. List all origins explicitly for multi-tenant setups.
+
+#### Example
+
+```yaml
+keycloak:
+  cors:
+    enabled: true
+    allowedOrigins:
+      - https://eoapi.develop.eoepca.org
+      - https://another-app.develop.eoepca.org
+    allowCredentials: true
+```
+
 ### Handling of secrets
 
 The Helm chart supports four approaches to specify or generate client
