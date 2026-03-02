@@ -10,9 +10,9 @@ dependencies:
   version: 1.0.98
 - name: apisix
   repository: https://charts.apiseven.com
-  version: 2.12.5
+  version: 2.13.0
 - name: iam-bb-config
   repository: https://eoepca.github.io/helm-charts-dev
   version: 2.0.0
-digest: sha256:05df95054b185afe542d9a052a776924d7f5020bb252f0f0220cc830eb7e7fc9
-generated: "2026-01-12T10:33:34.430700235+01:00"
+digest: sha256:843f32da568dd21af159c256bcc8338774ffbc2e89495a39b62c2370b6697fac
+generated: "2026-02-23T13:34:21.670649175+01:00"
