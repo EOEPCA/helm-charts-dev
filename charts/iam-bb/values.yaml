@@ -124,6 +124,9 @@ iam: &iam
     clientSecretRef: ""
   apisix:
     enabled: &apisixEnabled true
+    # Ingress class name for APISIX. Also used for ingressClassName attribute of routes etc.
+    # Defaults to "apisix"
+    ingressClassName: &ingressClassName apisix
   config:
     # Set this to true in order to apply iam-bb-config as a subchart.
     # If set to false, iam-bb-config must be applied separately if needed.
@@ -528,7 +531,7 @@ apisix:
     enabled: true
     config:
       kubernetes:
-        defaultIngressClass: true
+        ingressClass: *ingressClassName
       provider:
         #type: apisix
         type: apisix-standalone

@@ -5,7 +5,7 @@ kind: ApisixRoute
 metadata:
   name: identity-api-route
 spec:
-  ingressClassName: apisix
+  ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   http:
   - name: identity-api
     match:

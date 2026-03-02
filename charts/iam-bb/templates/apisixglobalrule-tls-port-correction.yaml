@@ -9,6 +9,7 @@ kind: ApisixGlobalRule
 metadata:
   name: tls-port-correction
 spec:
+  ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   plugins:
     - name: serverless-pre-function
       enable: true
