@@ -102,26 +102,6 @@ iam: &iam
       repository: openpolicyagent/opa
       tag: 1.7.1
       pullPolicy: IfNotPresent
-  identityApi:
-    # Note: The use of Identity API in conjunction with the IAM BB is deprecated.
-    # Installing Identity API as part of the IAM BB is still supported, but neither
-    # well-tested nor fully automated. Additional manual Keycloak configuration may
-    # thus be required.
-    enabled: &identityApiEnabled false
-    createRoute: true
-    # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.develop.eoepca.org
-    hosts:
-      - identity-api.develop.eoepca.org
-    paths:
-      - /*
-    # Client credentials:
-    # clientId is mandatory if clientSecretRef is *not* specified.
-    clientId: identity-api
-    # clientSecret: Client secret as plain text (generated internally if omitted)
-    clientSecret: ""
-    # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values
-    clientSecretRef: ""
   apisix:
     enabled: &apisixEnabled true
     # Ingress class name for APISIX. Also used for ingressClassName attribute of routes etc.
@@ -552,34 +532,3 @@ iam-bb-config:
   enabled: *configEnabled
   iam: *iam
   #config: *config
-
-identityApi:
-  enabled: *identityApiEnabled
-
-identity-service:
-  identity-postgres:
-    enabled: false
-  identity-keycloak:
-    enabled: false
-  identity-gatekeeper:
-    enabled: false
-  identity-api:
-    enabled: *identityApiEnabled #true #"{{ .Values.identityApi.enabled }}"
-    secrets:
-      # Values for secret 'identity-api'
-      # Note - if omitted, these can instead be set by creating the secret independently
-      # e.g. as a SealedSecret via GitOps.
-      adminPassword: *adminPwd
-    deployment:
-      # Config values that can be passed via env vars
-      extraEnv:
-        - name: AUTH_SERVER_URL  # see configMap.authServerUrl instead
-          value: *kcurl
-        - name: ADMIN_USERNAME
-          value: *adminUser #"admin"
-        - name: REALM
-          value: "eoepca"
-        # - name: VERSION
-        #   value: v1.0.0
-        - name: LOG_LEVEL
-          value: DEBUG
