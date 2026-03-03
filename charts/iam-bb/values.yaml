@@ -143,11 +143,22 @@ keycloak:
   cors:
     # Set this to true to enable CORS
     enabled: false
-    # List of allowed origins. Empty defaults to '*'.
-    # Note: Credentials require specific origins (not '*').
-    allowedOrigins: []
-    # Allow credentials (cookies, authorization headers)
-    allowCredentials: true
+    # Allowed origin(s). Can be string or list:
+    #   - string: "*" or "https://example.org" or "https://a.com,https://b.com"
+    #   - list: ["https://a.com", "https://b.com"]
+    # APISIX constraint: when allowCredentials=true, cannot use "*" for origins, headers, or expose_headers.
+    allowedOrigins: "*"
+    # Allow credentials (cookies, authorization headers).
+    # Must be false when using wildcard origins or headers.
+    allowCredentials: false
+    # Allowed HTTP methods for CORS requests.
+    allowedMethods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+    # Allowed request headers. Use explicit list when allowCredentials=true.
+    allowedHeaders: "*"
+    # Exposed response headers. Use explicit list when allowCredentials=true.
+    exposeHeaders: "*"
+    # Preflight cache max age (seconds).
+    maxAge: 3600
   ## @param production Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   ##
   production: false

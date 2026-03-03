@@ -26,20 +26,16 @@ spec:
       - name: cors
         enable: true
         config:
-{{- if .Values.keycloak.cors.allowedOrigins }}
-          allow_origins: {{- .Values.keycloak.cors.allowedOrigins | toJson | nindent 12 }}
-{{- else }}
-          allow_origins: "*"
+{{- $allowOrigins := .Values.keycloak.cors.allowedOrigins -}}
+{{- if kindIs "slice" $allowOrigins -}}
+  {{- $allowOrigins = join "," $allowOrigins -}}
 {{- end }}
-          allow_methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
-          allow_headers: "*"
-          expose_headers: "*"
-{{- if and .Values.keycloak.cors.allowedOrigins .Values.keycloak.cors.allowCredentials }}
-          allow_credential: true
-{{- else }}
-          allow_credential: false
-{{- end }}
-          max_age: 3600
+          allow_origins: {{ $allowOrigins | quote }}
+          allow_methods: {{ .Values.keycloak.cors.allowedMethods | quote }}
+          allow_headers: {{ .Values.keycloak.cors.allowedHeaders | quote }}
+          expose_headers: {{ .Values.keycloak.cors.exposeHeaders | quote }}
+          allow_credential: {{ .Values.keycloak.cors.allowCredentials }}
+          max_age: {{ .Values.keycloak.cors.maxAge }}
 {{- end }}
 # The following workaround has been replaced with a global rule and is not needed here any more.
 #    plugins:
