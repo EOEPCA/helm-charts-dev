@@ -271,14 +271,21 @@ parameters like the client ID.
 Enable CORS for JavaScript applications from different domains to authenticate
 with Keycloak.
 
-| Parameter                         | Default        | Description                                             |
-|-----------------------------------|----------------|---------------------------------------------------------|
-| `keycloak.cors.enabled`           | `false`        | Enable CORS for Keycloak route                          |
-| `keycloak.cors.allowedOrigins`    | `[]`           | List of allowed origins. Empty list defaults to `*`     |
-| `keycloak.cors.allowCredentials`  | `true`         | Allow credentials (cookies, auth headers) in requests   |
+| Parameter                        | Default | Description                                           |
+|----------------------------------|---------|-------------------------------------------------------|
+| `keycloak.cors.enabled`          | `false` | Enable CORS for Keycloak route                        |
+| `keycloak.cors.allowedOrigins`   | `*`     | Comma-separated list of allowed origins.              |
+| `keycloak.cors.allowedHeaders`   | `*`     | Comma-separated list of allowed headers.              |
+| `keycloak.cors.exposedHeaders`   | `*`     | Comma-separated list of exposed headers.              |
+| `keycloak.cors.allowedMethods`   | (all)   | Comma-separated list of allowed methods.              |
+| `keycloak.cors.allowCredentials` | `true`  | Allow credentials (cookies, auth headers) in requests |
+| `keycloak.cors.mayAge`           | 3600    | Pre-flight cache max age in seconds                   |
 
 **Note:** When credentials are enabled with specific origins, browsers
-reject wildcard `*`. List all origins explicitly for multi-tenant setups.
+reject wildcard `*`. List all origins and headers explicitly for multi-tenant setups.
+
+The default for `allowedMethods` is to allow all standard HTTP methods, i.e.,
+GET,HEAD,PUT,PATCH,POST,DELETE and OPTIONS.
 
 #### Example
 
@@ -286,9 +293,9 @@ reject wildcard `*`. List all origins explicitly for multi-tenant setups.
 keycloak:
   cors:
     enabled: true
-    allowedOrigins:
-      - https://eoapi.develop.eoepca.org
-      - https://another-app.develop.eoepca.org
+    allowedOrigins: "https://eoapi.develop.eoepca.org,https://another-app.develop.eoepca.org"
+    allowedHeaders: "X-Custom-Header,X-Another-Header"
+    exposedHeaders: "X-Custom-Header"
     allowCredentials: true
 ```
 
