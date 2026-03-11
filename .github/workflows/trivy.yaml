@@ -1,0 +1,23 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/eoepca-226-security-scans
+  pull_request:
+jobs:
+  tryviy-scan:
+    name: Trivy Scan
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner on the Helm Charts
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          scan-type: 'config'
+          scan-ref: 'charts'
+          format: 'sarif'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
+
