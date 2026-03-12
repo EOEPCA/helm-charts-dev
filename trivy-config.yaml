@@ -2,32 +2,18 @@ format: 'sarif'
 output: 'trivy-scan.sarif'
 severity: 'CRITICAL,HIGH,MEDIUM,UNKNOWN'
 exit-code: 0
-helm:
+misconfiguration:
   scanners:
     - helm
     - kubernetes
+  helm:
+    kube-version: '1.32.0'
+    set:
+      - config.dataBackend=https://eoapi.eoepca.local/stac/
+      - ingress.enabled=true
+      - jupyterhub.fullnameOverride=application-hub
+      - pygeoapi.secret.name=registration-api-secret
+
 scan:
   skip-dirs:
-    - billing-service
-    - cheese
-    - django-portal
     - dummy
-    - eoapi-maps-plugin
-    - identity-gatekeeper
-    - identity-service
-    - license-manager
-    - login-service
-    - nfs-provisioner
-    - pde-jupyterhub
-    - pdp-engine
-    - pep-engine
-    - pricing-engine
-    - resource-guard
-    - rm-bucket-operator
-    - rm-bucket-operator-wrapper
-    - rm-minio-bucket-api
-    - rm-registration-api
-    - rm-user-workspace
-    - storage
-    - uma-user-agent
-    - user-profile
