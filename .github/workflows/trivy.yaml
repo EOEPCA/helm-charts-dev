@@ -18,14 +18,7 @@ jobs:
         with:
           scan-type: 'config'
           scan-ref: 'charts'
-          format: 'sarif'
-          output: 'trivy-scan.sarif'
-          severity: 'CRITICAL,HIGH,MEDIUM,UNKNOWN'
-          exit-code: 0
-          helm:
-            scanners:
-              - helm
-              - kubernetes
+          trivy-config: trivy-config.yaml              
       - uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: trivy-scan.sarif
