@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v6.0.2
       - name: Download Helm dependencies
         uses: docker://alpine/helm:4
-        run: helm dependency update charts/iam-bb
+        with:
+          args: dependency update charts/iam-bb
       - name: Run Trivy vulnerability scanner on the Helm Charts
         uses: aquasecurity/trivy-action@0.35.0
         with:
