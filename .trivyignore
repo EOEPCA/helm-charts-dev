@@ -1,3 +1,0 @@
-# Setting up seccomp profiles is left as a task for operators with higher security requirements.
-# It requires special cluster configuration to work.
-KSV-0104

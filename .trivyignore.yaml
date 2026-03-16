@@ -1,0 +1,36 @@
+misconfigurations:
+  - id: KSV-0104
+    statement: |
+      Setting up seccomp profiles is left as a task for operators with higher security requirements.
+      It requires special cluster configuration to work.
+
+
+  - id: KSV-0114
+    statement: Webhook access required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+
+  - id: KSV-0041
+    statement: Secret access required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+
+  - id: KSV-0046
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+    statement: False positive? Access still limited by apiGroup
+
+  - id: KSV-0048
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+    statement: Broad access to pods, etc, required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
+
+  - id: KSV-0049
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+    statement: Broad access to configmaps, etc, required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
+
+  - id: KSV-0056
+    paths:
+      - knative-operator/templates/clusterrole.yaml
+    statement: Broad access to services, etc, required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
