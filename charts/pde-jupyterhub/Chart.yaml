@@ -1,7 +1,7 @@
 # Chart.yaml v2 reference: https://helm.sh/docs/topics/charts/#the-chartyaml-file
 apiVersion: v2
 name: jupyterhub
-version: 1.1.12
+version: 1.1.13
 appVersion: 2.0.2
 description: Multi-user Jupyter installation
 keywords: [jupyter, jupyterhub, z2jh]
@@ -9,6 +9,10 @@ home: https://z2jh.jupyter.org
 sources: [https://github.com/jupyterhub/zero-to-jupyterhub-k8s]
 icon: https://jupyter.org/assets/hublogo.svg
 kubeVersion: ">=1.17.0-0"
+
+# Upstream chart used instead
+deprecated: true
+
 maintainers:
   # Since it is a requirement of Artifact Hub to have specific maintainers
   # listed, we have added some below, but in practice the entire JupyterHub team
