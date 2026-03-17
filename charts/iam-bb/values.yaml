@@ -103,7 +103,7 @@ iam: &iam
       tag: 1.7.1
       pullPolicy: IfNotPresent
   apisix:
-    enabled: &apisixEnabled true
+    enabled: &apisixEnabled false
     # Ingress class name for APISIX. Also used for ingressClassName attribute of routes etc.
     # Defaults to "apisix"
     ingressClassName: &ingressClassName apisix
