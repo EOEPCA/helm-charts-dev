@@ -78,7 +78,7 @@ spec:
 {{- if .Values.cloudEventsPlayer.subscribeBroker.enabled }}
 {{- $brokerRef := .Values.cloudEventsPlayer.subscribeBroker.broker }}
 {{- $brokerName := $brokerRef.name }}
-{{- if and (not $brokerName) .Values.eventing.install .Values.eventing.defaultBroker.create }}
+{{- if and (not $brokerName) .Values.eventing.defaultBroker.create }}
 {{- $brokerName = .Values.eventing.defaultBroker.name }}
 {{- end }}
 {{- if $brokerName }}

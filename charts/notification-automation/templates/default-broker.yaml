@@ -1,4 +1,4 @@
-{{- if and .Values.eventing.install .Values.eventing.defaultBroker.create }}
+{{- if .Values.eventing.defaultBroker.create }}
 {{- $existingBroker := lookup "eventing.knative.dev/v1" "Broker" .Release.Namespace .Values.eventing.defaultBroker.name }}
 apiVersion: eventing.knative.dev/v1
 kind: Broker
@@ -7,14 +7,14 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     eventing.knative.dev/broker.class: MTChannelBasedBroker
-{{- if and $existingBroker (not $existingBroker.spec.config) }}
-spec: {}
-{{- else }}
+{{- if and .Values.eventing.install (not (and $existingBroker (not $existingBroker.spec.config))) }}
 spec:
   config:
     apiVersion: v1
     kind: ConfigMap
     name: config-br-default-channel
     namespace: {{ .Values.eventing.namespace }}
+{{- else }}
+spec: {}
 {{- end }}
 {{- end }}
