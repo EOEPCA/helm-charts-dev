@@ -3,7 +3,7 @@
 {{- $saName := default $name .Values.webhookSource.serviceAccount.name }}
 {{- $imageRepo := required "webhookSource.image.repository is required when webhookSource.enabled=true" .Values.webhookSource.image.repository }}
 {{- $imageTag := default "latest" .Values.webhookSource.image.tag }}
-{{- $autoSinkToDefaultBroker := and .Values.eventing.install .Values.eventing.defaultBroker.create }}
+{{- $autoSinkToDefaultBroker := .Values.eventing.defaultBroker.create }}
 {{- $cmName := .Values.webhookSource.configMap.name }}
 {{- $cmKey := .Values.webhookSource.configMap.key }}
 {{- $secretName := .Values.webhookSource.secrets.name }}
@@ -143,6 +143,9 @@ spec:
       apiVersion: {{ .Values.webhookSource.sinkBinding.sink.ref.apiVersion }}
       kind: {{ .Values.webhookSource.sinkBinding.sink.ref.kind }}
       name: {{ .Values.webhookSource.sinkBinding.sink.ref.name }}
+      {{- if .Values.webhookSource.sinkBinding.sink.ref.namespace }}
+      namespace: {{ .Values.webhookSource.sinkBinding.sink.ref.namespace }}
+      {{- end }}
     {{- end }}
     {{- if and .Values.webhookSource.sinkBinding.sink.uri (ne .Values.webhookSource.sinkBinding.sink.uri "") }}
     uri: {{ .Values.webhookSource.sinkBinding.sink.uri | quote }}

@@ -141,6 +141,7 @@ webhookSource:
         apiVersion: eventing.knative.dev/v1
         kind: Broker
         name: default
+        namespace: ""
       uri: ""
   extraEnv: []
 

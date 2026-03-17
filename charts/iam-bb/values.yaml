@@ -102,28 +102,11 @@ iam: &iam
       repository: openpolicyagent/opa
       tag: 1.7.1
       pullPolicy: IfNotPresent
-  identityApi:
-    # Note: The use of Identity API in conjunction with the IAM BB is deprecated.
-    # Installing Identity API as part of the IAM BB is still supported, but neither
-    # well-tested nor fully automated. Additional manual Keycloak configuration may
-    # thus be required.
-    enabled: &identityApiEnabled false
-    createRoute: true
-    # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.develop.eoepca.org
-    hosts:
-      - identity-api.develop.eoepca.org
-    paths:
-      - /*
-    # Client credentials:
-    # clientId is mandatory if clientSecretRef is *not* specified.
-    clientId: identity-api
-    # clientSecret: Client secret as plain text (generated internally if omitted)
-    clientSecret: ""
-    # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values
-    clientSecretRef: ""
   apisix:
     enabled: &apisixEnabled true
+    # Ingress class name for APISIX. Also used for ingressClassName attribute of routes etc.
+    # Defaults to "apisix"
+    ingressClassName: &ingressClassName apisix
   config:
     # Set this to true in order to apply iam-bb-config as a subchart.
     # If set to false, iam-bb-config must be applied separately if needed.
@@ -160,6 +143,21 @@ keycloak:
   cors:
     # Set this to true to enable CORS
     enabled: false
+    # Allowed origin(s). Can be string or comma-separated list:
+    #   - string: "*" or "https://example.org" or "https://a.com,https://b.com"
+    #   - list: ["https://a.com", "https://b.com"]
+    allowedOrigins: "*"
+    # Comma-separated list of allowed headers.
+    # APISIX constraint: When allowCredentials=true, cannot use "*" for origins, headers, or expose_headers.
+    allowedHeaders: "*"
+    # Comma-separated list of exposed headers.
+    exposedHeaders: "*"
+    # Comma-separated list of allowed methods for CORS requests.
+    allowedMethods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+    # Allow credentials (cookies, authorization headers)
+    allowCredentials: true
+    # Preflight cache max age (seconds).
+    maxAge: 3600
   ## @param production Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   ##
   production: false
@@ -445,7 +443,7 @@ opal:
           input.path in [[""], ["health"]]
           print("GET /, Input: ", input)
         }
-        # Claims from JWT if JWT is present and can be verified; null otherwise 
+        # Claims from JWT if JWT is present and can be verified; null otherwise
         default verified_claims = null
         verified_claims := claims if {
           [type, token] := split(input.headers["Authorization"][_], " ")
@@ -467,14 +465,14 @@ opal:
           print("AuthZ unset, Input: ", input)
         }
         allow if {
-          # Allow authenticated users to evaluate policies 
+          # Allow authenticated users to evaluate policies
           claims := verified_claims
           claims != null
           allow_policy_evaluation == true
           print("External, Input: ", input, " Claims: ", claims)
         }
         allow if {
-          # Allow selected users to GET arbitrary URLs 
+          # Allow selected users to GET arbitrary URLs
           claims := verified_claims
           claims.email in ["privileged_user@nowhere.com"]
           input.method = "GET"
@@ -515,9 +513,18 @@ apisix:
     pluginAttrs:
       redirect:
         https_port: 443
+    deployment:
+      role: traditional
+      role_traditional:
+        config_provider: yaml # Standalone Mode
   ingress-controller:
     enabled: true
     config:
+      kubernetes:
+        ingressClass: *ingressClassName
+      provider:
+        #type: apisix
+        type: apisix-standalone
       apisix:
         adminAPIVersion: "v3"
         # The following value may have to be adapted if the release name is not "iam"
@@ -526,6 +533,7 @@ apisix:
         # namespace "ingress-apisix"
         #serviceNamespace: ingress-apisix
   etcd:
+    enabled: false
     image:
       repository: bitnamilegacy/etcd
 
@@ -534,34 +542,3 @@ iam-bb-config:
   enabled: *configEnabled
   iam: *iam
   #config: *config
-
-identityApi:
-  enabled: *identityApiEnabled
-
-identity-service:
-  identity-postgres:
-    enabled: false
-  identity-keycloak:
-    enabled: false
-  identity-gatekeeper:
-    enabled: false
-  identity-api:
-    enabled: *identityApiEnabled #true #"{{ .Values.identityApi.enabled }}"
-    secrets:
-      # Values for secret 'identity-api'
-      # Note - if omitted, these can instead be set by creating the secret independently
-      # e.g. as a SealedSecret via GitOps.
-      adminPassword: *adminPwd
-    deployment:
-      # Config values that can be passed via env vars
-      extraEnv:
-        - name: AUTH_SERVER_URL  # see configMap.authServerUrl instead
-          value: *kcurl
-        - name: ADMIN_USERNAME
-          value: *adminUser #"admin"
-        - name: REALM
-          value: "eoepca"
-        # - name: VERSION
-        #   value: v1.0.0
-        - name: LOG_LEVEL
-          value: DEBUG
