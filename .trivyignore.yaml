@@ -48,6 +48,7 @@ misconfigurations:
       - registration-api/templates/registration-api-configmap.yaml
       - rm-resource-catalogue/templates/resource-catalogue-configmap.yaml
       - application-hub/charts/jupyterhub/templates/hub/configmap.yaml
+      - application-hub/templates/applicationhub-configmap.yaml
     statement: False positive / we don't regard the information as too sensitive for ConfigMap
 
   - id: KSV-0048
@@ -70,12 +71,3 @@ misconfigurations:
     paths:
       - rm-workspace-api/templates/clusterrole.yaml
     statement: Workspace API needs to manage Secrets to function
-
-  - id: KSV-0041
-    statement: Upstream chart and not modifiable via values.yaml
-    paths:
-      - iam-bb/charts/apisix/charts/ingress-controller/templates/cluster_role.yaml
-  - id: KSV-0049
-    statement: Upstream chart and not modifiable via values.yaml
-    paths:
-      - iam-bb/charts/apisix/charts/ingress-controller/templates/role.yaml
