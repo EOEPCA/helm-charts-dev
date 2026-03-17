@@ -34,3 +34,48 @@ misconfigurations:
     paths:
       - knative-operator/templates/clusterrole.yaml
     statement: Broad access to services, etc, required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
+
+  - id: KSV-0109
+    paths:
+      - application-hub/files/hub/config.yml
+      - application-hub/templates/applicationhub-configmap.yaml
+      - application-hub/charts/jupyterhub/templates/hub/configmap.yaml
+    statement: False positives
+
+  - id: KSV-01010
+    paths:
+      - iam-bb/charts/keycloak/templates/configmap-env-vars.yaml
+      - registration-api/templates/registration-api-configmap.yaml
+      - rm-resource-catalogue/templates/resource-catalogue-configmap.yaml
+      - application-hub/charts/jupyterhub/templates/hub/configmap.yaml
+    statement: False positive / we don't regard the information as too sensitive for ConfigMap
+
+  - id: KSV-0048
+    paths:
+      - application-hub/charts/jupyterhub/templates/hub/rbac.yaml
+      - application-hub/charts/jupyterhub/templates/scheduling/user-scheduler/rbac.yaml
+    statement: JupyterHub inherently needs to create Pods, etc, to function
+
+  - id: KSV-0056
+    paths:
+      - application-hub/charts/jupyterhub/templates/hub/rbac.yaml
+    statement: JupyterHub inherently needs to create Pods, etc, to function
+
+  - id: KSV-0113
+    paths:
+      - application-hub/charts/jupyterhub/templates/hub/rbac.yaml
+    statement: JupyterHub inherently needs to manage secrets to function
+
+  - id: KSV-0041
+    paths:
+      - rm-workspace-api/templates/clusterrole.yaml
+    statement: Workspace API needs to manage Secrets to function
+
+  - id: KSV-0041
+    statement: Upstream chart and not modifiable via values.yaml
+    paths:
+      - iam-bb/charts/apisix/charts/ingress-controller/templates/cluster_role.yaml
+  - id: KSV-0049
+    statement: Upstream chart and not modifiable via values.yaml
+    paths:
+      - iam-bb/charts/apisix/charts/ingress-controller/templates/role.yaml

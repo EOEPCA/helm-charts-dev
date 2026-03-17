@@ -18,3 +18,7 @@ misconfiguration:
 scan:
   skip-dirs:
     - dummy
+
+rego:
+  data:
+    - trivy-config-data.yaml
