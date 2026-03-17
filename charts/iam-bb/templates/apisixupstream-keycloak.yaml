@@ -5,6 +5,7 @@ kind: ApisixUpstream
 metadata:
   name: {{ printf "%s-keycloak" .Release.Name }}
 spec:
+  ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   scheme: https
 {{ end -}}
 {{ end -}}

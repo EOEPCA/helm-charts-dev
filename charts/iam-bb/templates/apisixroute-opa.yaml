@@ -5,6 +5,7 @@ kind: ApisixRoute
 metadata:
   name: opa-route
 spec:
+  ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   http:
   - name: opa
     match:

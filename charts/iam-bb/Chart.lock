@@ -5,14 +5,11 @@ dependencies:
 - name: opal
   repository: https://permitio.github.io/opal-helm-chart
   version: 0.0.28
-- name: identity-service
-  repository: https://eoepca.github.io/helm-charts
-  version: 1.0.98
 - name: apisix
   repository: https://charts.apiseven.com
-  version: 2.10.0
+  version: 2.13.0
 - name: iam-bb-config
   repository: https://eoepca.github.io/helm-charts-dev
-  version: 2.0.0
-digest: sha256:bc1e95e904703fe1cce912ae4b8bfb73e683c0ddf3c67f0ec11ef9b96ce94741
-generated: "2025-10-10T14:00:21.306210583+02:00"
+  version: 2.1.0-dev1
+digest: sha256:874633910c6c48204d6435aad0329ed93a61369d6c89fa019f8b275f02e376a3
+generated: "2026-03-03T11:29:03.325942827+01:00"

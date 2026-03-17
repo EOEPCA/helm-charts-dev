@@ -21,7 +21,6 @@ The Helm chart is able to install the following components:
 * Keycloak
 * Open Policy Administration Layer (OPAL) with an embedded or separate
   instance of Open Policy Agent (OPA)
-* Identity API (optional, deprecated)
 * APISIX (optional)
 * Configuration for Crossplane Keycloak Provider (optional, via
   `iam-bb-config´ Helm chart) 
@@ -29,12 +28,8 @@ The Helm chart is able to install the following components:
 All components can be enabled or disabled separately. Keycloak and OPAL with
 OPA are enabled by default. They are the core components of the IAM BB.
 APISIX is also enabled by default to facilitate a simple setup of the IAM BB
-with APISIX for evaluation. Identity API and the Crossplane configuration
-are disabled by default.
-
-Identity API is only provided for compatibility with old code from EOEPCA 1.4
-and should not be used unless required for this purpose. It will be
-removed in a later release.
+with APISIX for evaluation. The Crossplane configuration is disabled by
+default.
 
 In simple cases (e.g. for evaluation), APISIX can be installed as part of
 the IAM BB by enabling it in the `values.yaml` file. In most cases, however,
@@ -49,10 +44,10 @@ be deployed prior to the IAM BB, because the IAM BB relies on its CRDs.
 The optional Crossplane configuration is provided as a separate Helm chart
 (`iam-bb-config`), which can be applied separately or as part of the
 `iam-bb` Helm chart. It provides a global `ProviderConfig` that is linked
-to Keycloak and can also preconfigure clients for OPA and/or Identity API
-as Crossplane CRs. As an alternative to installing the `iam-bb-config`
-Helm chart, the required clients can also be configured manually. Note that
-the `iam-bb-config` Helm chart requires Crossplane and the Crossplane
+to Keycloak and can also preconfigure aclient for OPA as a Crossplane CR.
+As an alternative to installing the `iam-bb-config` Helm chart, the
+required clients can also be configured manually. Note that  the
+`iam-bb-config` Helm chart requires Crossplane and the Crossplane
 Keycloak Provider to be present. It does not deploy them itself.
 
 ## Background Information
@@ -79,12 +74,6 @@ The `values.yaml` file consists of the following sections:
   be necessary.
 * `iam-bb-config`: Settings for the `iam-bb-config` subchart. Should not
   be changed. All values are propagated here via yaml anchors.
-* `identityApi`: Redundant `enabled` setting for Identity API. This
-  section is deprecated and only needed if Identity API is enabled.
-  Otherwise it may be removed.
-* `identity-service`: Settings for the `identity-service` subchart.
-  This section is deprecated and only needed if Identity API is enabled.
-  Otherwise it may be removed.
 
 In a custom `values.yaml` file, settings may be omitted if they do not
 deviate from the default. If settings that are propagated by anchors
@@ -127,9 +116,9 @@ Alternatively, an existing `ProviderConfig` can be reused by setting
 However, this only makes sense if the `iam-bb-config` Helm chart
 is deployed independently of Keycloak in a separate step.
 
-The `iam-bb-config` Helm chart also creates Keycloak clients for external
-access to OPA and Identity API if
-`iam.keycloak.configuration.createClients` is set to `true`.
+The `iam-bb-config` Helm chart also creates a Keycloak client for
+external access to OPA if `iam.keycloak.configuration.createClients`
+is set to `true`.
 
 Optionally, the `iam-bb-config` chart is also able to create the realm as
 a Crossplane CR (if `iam.keycloak.configuration.realm.create` is `true`).
@@ -150,7 +139,6 @@ to the comments in the
 |---------------------------|---------|------------------------------------------------------------------------------------------------------------------|
 | `iam.keycloak.enabled`    | `true`  | Determines if Keycloak shall be installed.                                                                       |
 | `iam.opa.enabled`         | `true`  | Determines if OPAL and OPA shall be installed.                                                                   |
-| `iam.identityApi.enabled` | `false` | Determines if Identity API shall be installed. (deprecated)                                                      |
 | `iam.apisix.enabled`      | `true`  | Determines if APISIX shall be installed as part of the IAM BB. Set this to `false` if it is deployed separately. |
 | `iam.config.enabled`      | `false` | Determines if the Crossplane-based realm configuration (`iam-bb-config` Helm chart) shall be applied.            |
 
@@ -182,7 +170,7 @@ possible to apply the `iam-bb-config` Helm chart. In this case, there
 are the following alternatives:
 
 * Apply the `iam-bb-config` Helm chart separately from the "main"
-  EOEPCA environment. The referred secrets have to be taken over
+  EOEPCA environment. The referenced secrets have to be taken over
   manually before in this case.
 * Configure the `ProviderConfig` (if Crossplane shall be used) and
   required Keycloak clients manually. If desired, Keycloak clients
@@ -251,12 +239,12 @@ For a typical IAM BB setup, Crossplane should be leveraged. Hence
 `useCrossplane` should be set to `true`. The other settings can
 safely be left at their defaults.
 The provider client secret is generated automatically in this case.
-Client names and secrets for OPA and Identity API clients are shared
+Client names and secrets for the OPA client are shared
 with the route configuration. See the following sections for details.
 
 ### Routes
 
-The Helm chart is able to create routes for Keycloak, OPA and Identity API.
+The Helm chart is able to create routes for Keycloak and OPA.
 Routes are only generated for components that are enabled.
 Route generation can be further controlled by the following parameters:
 
@@ -264,22 +252,52 @@ Route generation can be further controlled by the following parameters:
 |-----------------------------------|----------------|---------------------------------------------------------|
 | `iam.keycloak.createRoute`        | `true`         | Enable or disable creation of route for Keycloak.       |
 | `iam.opa.createRoute`             | `true`         | Enable or disable creation of route for OPA.            |
-| `iam.identityApi.createRoute`     | `true`         | Enable or disable creation of route for Identity API.   |
 | `iam.opa.clientId`                | "opa"          | Client ID for OPA client                                |
 | `iam.opa.clientSecret`            | ""             | Client secret for OPA client                            |
 | `iam.opa.clientSecretRef`         | ""             | Name of existing secret that contains the client secret |
-| `iam.identityApi.clientId`        | "identity-api" | Client ID for Identity API client                       |
-| `iam.identityApi.clientSecret`    | ""             | Client secret for Identity API client                   |
-| `iam.identityApi.clientSecretRef` | ""             | Name of existing secret that contains the client secret |
 
 Thus by default, a route is created for each component that is enabled.
 For security reasons, however, route creation should be disabled for
 components that need not be accessed from the Internet. In a single-cluster
-setup, this typically applies to OPA and maybe Identity API.
+setup, this typically applies to OPA.
 
 By default, secrets are generated automatically. If `clientSecretRef`
 is used to reference an existing secret, this secret may contain further
 parameters like the client ID.
+
+
+### CORS Configuration
+
+Enable CORS for JavaScript applications from different domains to authenticate
+with Keycloak.
+
+| Parameter                        | Default | Description                                           |
+|----------------------------------|---------|-------------------------------------------------------|
+| `keycloak.cors.enabled`          | `false` | Enable CORS for Keycloak route                        |
+| `keycloak.cors.allowedOrigins`   | `*`     | Comma-separated list of allowed origins.              |
+| `keycloak.cors.allowedHeaders`   | `*`     | Comma-separated list of allowed headers.              |
+| `keycloak.cors.exposedHeaders`   | `*`     | Comma-separated list of exposed headers.              |
+| `keycloak.cors.allowedMethods`   | (all)   | Comma-separated list of allowed methods.              |
+| `keycloak.cors.allowCredentials` | `true`  | Allow credentials (cookies, auth headers) in requests |
+| `keycloak.cors.mayAge`           | 3600    | Pre-flight cache max age in seconds                   |
+
+**Note:** When credentials are enabled with specific origins, browsers
+reject wildcard `*`. List all origins and headers explicitly for multi-tenant setups.
+
+The default for `allowedMethods` is to allow all standard HTTP methods, i.e.,
+GET,HEAD,PUT,PATCH,POST,DELETE and OPTIONS.
+
+#### Example
+
+```yaml
+keycloak:
+  cors:
+    enabled: true
+    allowedOrigins: "https://eoapi.develop.eoepca.org,https://another-app.develop.eoepca.org"
+    allowedHeaders: "X-Custom-Header,X-Another-Header"
+    exposedHeaders: "X-Custom-Header"
+    allowCredentials: true
+```
 
 ### Handling of secrets
 

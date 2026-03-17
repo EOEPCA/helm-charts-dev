@@ -54,12 +54,3 @@ iam:
     clientId: opa
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
     clientSecretRef: ""
-  identityApi:
-    enabled: false
-    # "Official" Identity API URL (used as root URL for the client if one is created)
-    url: https://identity-api.develop.eoepca.org
-    # Client credentials:
-    # clientId is mandatory if clientSecretRef is *not* specified.
-    clientId: identity-api
-    # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values
-    clientSecretRef: ""
