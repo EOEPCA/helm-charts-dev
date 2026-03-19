@@ -27,9 +27,7 @@ The Helm chart is able to install the following components:
 
 All components can be enabled or disabled separately. Keycloak and OPAL with
 OPA are enabled by default. They are the core components of the IAM BB.
-APISIX is also enabled by default to facilitate a simple setup of the IAM BB
-with APISIX for evaluation. The Crossplane configuration is disabled by
-default.
+APISIX and the Crossplane configuration are disabled by default.
 
 In simple cases (e.g. for evaluation), APISIX can be installed as part of
 the IAM BB by enabling it in the `values.yaml` file. In most cases, however,
@@ -135,19 +133,19 @@ to the comments in the
 
 ### Selection of components
 
-| Parameter                 | Default | Description                                                                                                      |
-|---------------------------|---------|------------------------------------------------------------------------------------------------------------------|
-| `iam.keycloak.enabled`    | `true`  | Determines if Keycloak shall be installed.                                                                       |
-| `iam.opa.enabled`         | `true`  | Determines if OPAL and OPA shall be installed.                                                                   |
-| `iam.apisix.enabled`      | `true`  | Determines if APISIX shall be installed as part of the IAM BB. Set this to `false` if it is deployed separately. |
-| `iam.config.enabled`      | `false` | Determines if the Crossplane-based realm configuration (`iam-bb-config` Helm chart) shall be applied.            |
+| Parameter                 | Default | Description                                                                                                           |
+|---------------------------|---------|-----------------------------------------------------------------------------------------------------------------------|
+| `iam.keycloak.enabled`    | `true`  | Determines if Keycloak shall be installed.                                                                            |
+| `iam.opa.enabled`         | `true`  | Determines if OPAL and OPA shall be installed.                                                                        |
+| `iam.apisix.enabled`      | `false` | Determines if APISIX shall be installed as part of the IAM BB. Set this to `true` to deploy it along with the IAM BB. |
+| `iam.config.enabled`      | `false` | Determines if the Crossplane-based realm configuration (`iam-bb-config` Helm chart) shall be applied.                 |
 
 Each component can be deployed separately by installing the IAM BB Helm
 chart multiple times with different settings for the `enabled` flags. This
 may be helpful e.g. if they shall appear as separate apps in ArgoCD.
 
 In a simple setup (e.g. for evaluation), the default set of components
-(including APISIX) should be selected. In more complex setups, it
+(plus APISIX) should be selected. In more complex setups, it
 may be better to deploy APISIX separately as an infrastructure
 component. Keycloak and OPAL/OPA should be deployed together unless
 there is a good reason to separate them.
