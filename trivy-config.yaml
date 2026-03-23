@@ -15,10 +15,6 @@ misconfiguration:
       - jupyterhub.fullnameOverride=application-hub
       - pygeoapi.secret.name=registration-api-secret
 
-scan:
-  skip-dirs:
-    - dummy
-
 rego:
   data:
     - trivy-config-data.yaml

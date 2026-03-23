@@ -4,7 +4,6 @@ misconfigurations:
       Setting up seccomp profiles is left as a task for operators with higher security requirements.
       It requires special cluster configuration to work.
 
-
   - id: KSV-0114
     statement: Webhook access required by knative, see https://docs.cloud.google.com/kubernetes-engine/enterprise/knative-serving/docs/install/permissions
     paths:
