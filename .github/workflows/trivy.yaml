@@ -7,7 +7,7 @@ on:
       - feature/eoepca-226-security-scans
   pull_request:
 jobs:
-  tryviy-scan:
+  trivy-scan:
     name: Trivy Scan
     runs-on: ubuntu-24.04
     steps:
