@@ -3,6 +3,17 @@ entries:
   ades:
   - apiVersion: v2
     appVersion: 2.0.21
+    created: "2026-03-23T10:03:53.161480485Z"
+    deprecated: true
+    description: A Helm chart for the ADES
+    digest: 2bf57dda72ebbe5f6a23a57ccdae6d14e60a1f2dda8f5e906940641670a74a4a
+    name: ades
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/ades-2.0.25/ades-2.0.25.tgz
+    version: 2.0.25
+  - apiVersion: v2
+    appVersion: 2.0.21
     created: "2023-09-06T09:07:40.518821454Z"
     description: A Helm chart for the ADES
     digest: 270b0ae2c5a12666c5dbe8b847cc67287c042c1e5f690f1a6b0c8c4b2ba7a16d
@@ -1077,6 +1088,19 @@ entries:
   billing-service:
   - apiVersion: v1
     appVersion: "1"
+    created: "2026-03-23T10:03:53.296529415Z"
+    deprecated: true
+    description: A Helm chart for Billing Service
+    digest: 586015205b2e7352a9387c634f67ffa7249ba4c3569e2ea6adb8b50afd73d448
+    maintainers:
+    - name: eoepca
+    name: billing-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/billing-service-0.1.1/billing-service-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1"
     created: "2021-06-08T09:10:32.92798622Z"
     description: A Helm chart for Billing Service
     digest: 104a6a718b62ab6f527f55a5a6bf8ba6e86fe5c9d604af20093a31ec43122032
@@ -1119,6 +1143,17 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/bucket-operator-0.9.0/bucket-operator-0.9.0.tgz
     version: 0.9.0
   cheese:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-23T10:03:53.451866514Z"
+    deprecated: true
+    description: Cheese web pages used for testing ingress
+    digest: 8db0e96c7a51548be70c0c4cda8ee1ebbc762d4e1604c01a21186ee5bd14a564
+    name: cheese
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/cheese-1.0.4/cheese-1.0.4.tgz
+    version: 1.0.4
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-05-20T13:17:45.608786272Z"
@@ -1294,6 +1329,21 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-2.3.3/data-access-2.3.3.tgz
     version: 2.3.3
+  - apiVersion: v2
+    appVersion: 4.1.3
+    created: "2026-03-23T10:03:53.60963508Z"
+    dependencies:
+    - name: vs
+      repository: https://charts-public.hub.eox.at/
+      version: 4.1.3
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: af41dfffe9d175bbca021cfda863c041fabceb9c4afdef02acc5f5285213a5c9
+    name: data-access
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/data-access-1.4.2/data-access-1.4.2.tgz
+    version: 1.4.2
   - apiVersion: v2
     appVersion: 4.1.3
     created: "2024-04-03T10:24:53.095414019Z"
@@ -1994,6 +2044,17 @@ entries:
   dummy:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-23T10:03:53.98469132Z"
+    deprecated: true
+    description: A Helm chart for a dummy Resource Server (used for debugging)
+    digest: 725b23abb6cec34b2d3a17642a5213854d44e8b3eb6f881c5e894b475f4080a7
+    name: dummy
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/dummy-1.0.3/dummy-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-01-02T11:07:11.97170838Z"
     description: A Helm chart for a dummy Resource Server (used for debugging)
     digest: d3fe9b0f59a302fded03308949471e4ff5d3e901d000026b6f87d7f7198372f6
@@ -2053,6 +2114,17 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/dummy-0.9.0/dummy-0.9.0.tgz
     version: 0.9.0
   eoapi-maps-plugin:
+  - apiVersion: v2
+    appVersion: 0.0.18
+    created: "2026-03-23T10:03:54.157608029Z"
+    deprecated: true
+    description: A Helm chart containing a deployment of pygeoapi and eoapi-maps-plugin
+    digest: c6454d11318839d3700e6c653340bdd1305c375ff32fd8f77ac04ced00488e01
+    name: eoapi-maps-plugin
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoapi-maps-plugin-0.0.22/eoapi-maps-plugin-0.0.22.tgz
+    version: 0.0.22
   - apiVersion: v2
     appVersion: 0.0.18
     created: "2025-03-31T17:28:18.196730712Z"
@@ -2164,6 +2236,17 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoapi-maps-plugin-0.0.11/eoapi-maps-plugin-0.0.11.tgz
     version: 0.0.11
   eoepca-portal:
+  - apiVersion: v2
+    appVersion: v1.4.1
+    created: "2026-03-23T10:03:54.292769058Z"
+    deprecated: true
+    description: A Helm chart for EOEPCA Portal
+    digest: 524c0f0f8eb5e8f2db3299f99128eb63d8b2ec578dcd51af62c780f4ff6aa70a
+    name: eoepca-portal
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/eoepca-portal-1.0.14/eoepca-portal-1.0.14.tgz
+    version: 1.0.14
   - apiVersion: v2
     appVersion: v1.4.1
     created: "2024-02-27T08:24:57.779406039Z"
@@ -3421,6 +3504,17 @@ entries:
   identity-gatekeeper:
   - apiVersion: v2
     appVersion: 2.8.0
+    created: "2026-03-23T10:03:54.432857472Z"
+    deprecated: true
+    description: Policy enforcement integration with Keycloak
+    digest: 97e705e09bd2a24f3ce1ee97620251e914f1e92a17ea6995fce7cba8a00e677c
+    name: identity-gatekeeper
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-gatekeeper-1.0.14/identity-gatekeeper-1.0.14.tgz
+    version: 1.0.14
+  - apiVersion: v2
+    appVersion: 2.8.0
     created: "2024-09-23T09:00:57.271294141Z"
     description: Policy enforcement integration with Keycloak
     digest: 956ffd92a62cd3359636dacadfe110188018f28c651073700c70e5750c9c9ef5
@@ -3560,6 +3654,37 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-gatekeeper-1.0.0/identity-gatekeeper-1.0.0.tgz
     version: 1.0.0
   identity-service:
+  - apiVersion: v2
+    appVersion: v1
+    created: "2026-03-23T10:03:54.610927233Z"
+    dependencies:
+    - condition: identity-keycloak.enabled
+      name: identity-keycloak
+      repository: ""
+      version: 0.15.2
+    - condition: identity-postgres.enabled
+      name: identity-postgres
+      repository: ""
+      version: 1.0.2
+    - condition: identity-api.enabled
+      name: identity-api
+      repository: ""
+      version: 1.0.6
+    - alias: identity-api-gatekeeper
+      condition: identity-gatekeeper.enabled
+      name: identity-gatekeeper
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.0.12
+    deprecated: true
+    description: A Helm chart to deploy Identity Service based on Keycloak
+    digest: 5138ffea986ec768ba4eca62822ce58852bb54cb2eaf1b7e3cc8b8e956eff674
+    maintainers:
+    - name: eoepca
+    name: identity-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/identity-service-1.0.99/identity-service-1.0.99.tgz
+    version: 1.0.99
   - apiVersion: v2
     appVersion: v1
     created: "2024-04-03T08:17:55.317177255Z"
@@ -6728,6 +6853,17 @@ entries:
   jupyter:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-23T10:03:54.739564221Z"
+    deprecated: true
+    description: Jupyter demo
+    digest: 3644a65e5e421793df46ddb2bb803f6faee3e6bec251d0018ca477fca4eb16f2
+    name: jupyter
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyter-1.0.3/jupyter-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-06-07T12:36:54.232601482Z"
     description: Jupyter demo
     digest: c9affaa0988e282fa6f9b17953cbebbd650ba74f4e2ba4dbe66c9ded13a5a33f
@@ -6902,6 +7038,30 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyterhub-2.0.0/jupyterhub-2.0.0.tgz
     version: 2.0.0
+  - apiVersion: v2
+    appVersion: 2.0.2
+    created: "2026-03-23T10:03:54.870247745Z"
+    deprecated: true
+    description: Multi-user Jupyter installation
+    digest: 131b2ab3234c22081334204ce4bc480a5f7924d03509212ef4448d08aca4c185
+    home: https://z2jh.jupyter.org
+    icon: https://jupyter.org/assets/hublogo.svg
+    keywords:
+    - jupyter
+    - jupyterhub
+    - z2jh
+    kubeVersion: '>=1.17.0-0'
+    maintainers:
+    - email: erik@sundellopensource.se
+      name: Erik Sundell
+    - name: Simon Li
+      url: https://github.com/manics/
+    name: jupyterhub
+    sources:
+    - https://github.com/jupyterhub/zero-to-jupyterhub-k8s
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/jupyterhub-1.1.13/jupyterhub-1.1.13.tgz
+    version: 1.1.13
   - apiVersion: v2
     appVersion: 2.0.2
     created: "2022-05-12T10:52:41.05031721Z"
@@ -7486,6 +7646,19 @@ entries:
   license-manager:
   - apiVersion: v1
     appVersion: "1"
+    created: "2026-03-23T10:03:54.983637376Z"
+    deprecated: true
+    description: A Helm chart for License Manager
+    digest: 6dc5ba45f5c962c8ba49bf17ae3e51a9cfdb810e4e29ed380cce89df75140337
+    maintainers:
+    - name: eoepca
+    name: license-manager
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/license-manager-0.1.1/license-manager-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1"
     created: "2021-06-08T09:10:33.104149159Z"
     description: A Helm chart for License Manager
     digest: 8098b6a21f796866280e0089a9868e7daeac8a5e8ae326fa282a3bef1e84f01e
@@ -7497,6 +7670,19 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/license-manager-0.1.0/license-manager-0.1.0.tgz
     version: 0.1.0
   login-service:
+  - apiVersion: v1
+    appVersion: v1.1.4
+    created: "2026-03-23T10:03:55.111595976Z"
+    deprecated: true
+    description: A Helm chart for Login Service
+    digest: c84f32faed761b56a7310ebd4f665a37e8f88d4062b62649dcbe9c6db336be12
+    maintainers:
+    - name: eoepca
+    name: login-service
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/login-service-1.2.9/login-service-1.2.9.tgz
+    version: 1.2.9
   - apiVersion: v1
     appVersion: v1.1.4
     created: "2023-06-30T08:48:25.659855178Z"
@@ -8484,6 +8670,19 @@ entries:
   nextcloud:
   - apiVersion: v1
     appVersion: "19"
+    created: "2026-03-23T10:03:55.222095983Z"
+    deprecated: true
+    description: A Helm chart for Nextcloud (acting as Workspace stub)
+    digest: 1b4f9006d094c9babe9b47f679aded48506f4dd537fcd038720f3308d4a90a42
+    maintainers:
+    - name: eoepca
+    name: nextcloud
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/nextcloud-0.1.1/nextcloud-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "19"
     created: "2021-05-28T14:04:21.516832465Z"
     description: A Helm chart for Nextcloud (acting as Workspace stub)
     digest: c961e9d4682a97969d0b9f55cac08c96b877f62d6bd3cedf35f1f606ae6e8ab2
@@ -8495,6 +8694,17 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/nextcloud-0.1.0/nextcloud-0.1.0.tgz
     version: 0.1.0
   nfs-provisioner:
+  - apiVersion: v2
+    appVersion: v4.0.0
+    created: "2026-03-23T10:03:55.348018538Z"
+    deprecated: true
+    description: Dynamic storage provisioner for NFS
+    digest: 37f51d8cbd85fff831a986efde1b8af86b8923e52f4f64a6d2fb8ffff468897f
+    name: nfs-provisioner
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/nfs-provisioner-1.0.1/nfs-provisioner-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     appVersion: v4.0.0
     created: "2021-12-22T12:44:55.364529012Z"
@@ -8585,6 +8795,19 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/openeo-web-editor-0.1.0/openeo-web-editor-0.1.0.tgz
     version: 0.1.0
   pdp-engine:
+  - apiVersion: v1
+    appVersion: v1.2
+    created: "2026-03-23T10:03:55.667014012Z"
+    deprecated: true
+    description: A Helm chart for PDP Engine
+    digest: f84da79797c72049a287e4e016ebb38ca340aeb3fa2bad32b597da2c2747714c
+    maintainers:
+    - name: eoepca
+    name: pdp-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pdp-engine-1.1.14/pdp-engine-1.1.14.tgz
+    version: 1.1.14
   - apiVersion: v1
     appVersion: v1.2
     created: "2023-08-03T17:13:03.438828275Z"
@@ -8910,6 +9133,19 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/pdp-engine-0.1.3/pdp-engine-0.1.3.tgz
     version: 0.1.3
   pep-engine:
+  - apiVersion: v1
+    appVersion: v1.2
+    created: "2026-03-23T10:03:55.804359937Z"
+    deprecated: true
+    description: A Helm chart for PEP Engine
+    digest: 0a5ca31576f77c99b4c24e880ec8a1011584a87b296976f2c399655774252caa
+    maintainers:
+    - name: eoepca
+    name: pep-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pep-engine-1.1.12/pep-engine-1.1.12.tgz
+    version: 1.1.12
   - apiVersion: v1
     appVersion: v1.2
     created: "2023-08-14T16:00:03.520834295Z"
@@ -9585,6 +9821,19 @@ entries:
   pricing-engine:
   - apiVersion: v1
     appVersion: "1"
+    created: "2026-03-23T10:03:55.946610998Z"
+    deprecated: true
+    description: A Helm chart for Pricing Engine
+    digest: 59063eecec3b2e7881a827fb795d1bed5d2de4466b7674f385b2d11a7dd92433
+    maintainers:
+    - name: eoepca
+    name: pricing-engine
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/pricing-engine-0.1.1/pricing-engine-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1"
     created: "2021-06-08T09:10:33.287003639Z"
     description: A Helm chart for Pricing Engine
     digest: 2b4b7d4c716a1497aac2ef3608b82a717743ab7edca9165689231530388611f5
@@ -10032,6 +10281,24 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-guard-1.4.1/resource-guard-1.4.1.tgz
     version: 1.4.1
+  - apiVersion: v2
+    appVersion: u1.2.5:p1.1.11
+    created: "2026-03-23T10:03:56.075696372Z"
+    dependencies:
+    - name: pep-engine
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.1.11
+    - name: uma-user-agent
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.2.5
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: 3a38c440da373b148f4fa4ed70fec3a50b0aa45778c113cf54ab05dc48296437
+    name: resource-guard
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-guard-1.3.3/resource-guard-1.3.3.tgz
+    version: 1.3.3
   - apiVersion: v2
     appVersion: u1.2.5:p1.1.11
     created: "2023-11-22T17:33:43.448852294Z"
@@ -11205,6 +11472,17 @@ entries:
   rm-bucket-operator:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2026-03-23T10:03:56.210335746Z"
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: fdcf39eb081c9323fd959251a788a8915b55bc2fcfc12de53863c3fcd3c8a4e7
+    name: rm-bucket-operator
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-0.9.13/rm-bucket-operator-0.9.13.tgz
+    version: 0.9.13
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2022-08-22T10:16:15.275174048Z"
     description: A Helm chart for Kubernetes
     digest: 3e78177700372cbfe5f930bdf217b00245038ed7544d796d7af2a4389a42451f
@@ -11296,6 +11574,17 @@ entries:
   rm-bucket-operator-wrapper:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-03-23T10:03:56.371762992Z"
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: 01197b6f9203b104e5c321f747ba5c5f9e88f460dfe65cef84523d0ca150cdb8
+    name: rm-bucket-operator-wrapper
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-wrapper-0.0.3/rm-bucket-operator-wrapper-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-02-24T15:05:11.663806227Z"
     description: A Helm chart for Kubernetes
     digest: 219dbc9a4b235651d66944db8658f78665c64a438956bc2436187f7b5d9d4eef
@@ -11315,6 +11604,17 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-bucket-operator-wrapper-0.0.1/rm-bucket-operator-wrapper-0.0.1.tgz
     version: 0.0.1
   rm-minio-bucket-api:
+  - apiVersion: v2
+    appVersion: 0.0.3
+    created: "2026-03-23T10:03:56.549847248Z"
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: 75803d4c34037f504fb2d7beb2386894743f66a663ad1decb6495d4b8bdbf9b9
+    name: rm-minio-bucket-api
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-minio-bucket-api-0.0.5/rm-minio-bucket-api-0.0.5.tgz
+    version: 0.0.5
   - apiVersion: v2
     appVersion: 0.0.3
     created: "2023-03-13T12:34:28.458685249Z"
@@ -11873,6 +12173,27 @@ entries:
     - https://github.com/EOEPCA/helm-charts/releases/download/rm-resource-catalogue-0.1.5/rm-resource-catalogue-0.1.5.tgz
     version: 0.1.5
   rm-user-workspace:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-23T10:03:56.731771614Z"
+    dependencies:
+    - name: vs
+      repository: https://charts-public.hub.eox.at/
+      version: 2.1.4
+    - name: rm-resource-catalogue
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.1.0
+    - name: resource-guard
+      repository: https://eoepca.github.io/helm-charts/
+      version: 1.0.6
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: 5db25e0693df0b2942a8850baf7c89f7b7ed187a65b431f62038556bc6208c94
+    name: rm-user-workspace
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/rm-user-workspace-1.1.3/rm-user-workspace-1.1.3.tgz
+    version: 1.1.3
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-05-24T08:34:21.920238537Z"
@@ -12887,6 +13208,17 @@ entries:
   storage:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-23T10:03:56.89497991Z"
+    deprecated: true
+    description: Basic EOEPCA storage provision
+    digest: b18956ff7cf587d726b0700706e69f847a5a542af1b830d65b841056fa08ea6e
+    name: storage
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/storage-1.0.2/storage-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-06-28T08:01:45.578812618Z"
     description: Basic EOEPCA storage provision
     digest: 56b8f1b0a71ba1b6d31b14875e642a2c798973e0d4b126c9949d0d1fffa64eb0
@@ -12996,6 +13328,17 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-1.3.4/uma-user-agent-1.3.4.tgz
     version: 1.3.4
+  - apiVersion: v2
+    appVersion: v1.2.3
+    created: "2026-03-23T10:03:57.038598277Z"
+    deprecated: true
+    description: A Helm chart for Kubernetes
+    digest: 325308c1196e463e6f49114cfa894e5bf9572c8602d14cf7f7f09682f23789ef
+    name: uma-user-agent
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/uma-user-agent-1.2.6/uma-user-agent-1.2.6.tgz
+    version: 1.2.6
   - apiVersion: v2
     appVersion: v1.2.3
     created: "2023-11-22T17:30:10.738390108Z"
@@ -13599,6 +13942,19 @@ entries:
   user-profile:
   - apiVersion: v1
     appVersion: v1.2
+    created: "2026-03-23T10:03:57.190922916Z"
+    deprecated: true
+    description: A Helm chart for the User Profile
+    digest: 1a610e8685678380f6758d8aef0fee3f5519881cf63875dd2f5ac991194f9b72
+    maintainers:
+    - name: eoepca
+    name: user-profile
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/user-profile-1.1.14/user-profile-1.1.14.tgz
+    version: 1.1.14
+  - apiVersion: v1
+    appVersion: v1.2
     created: "2023-08-03T17:13:03.959608116Z"
     description: A Helm chart for the User Profile
     digest: 99a64bf5833a1592ecbcaf573a20254b7f74d484503e50ced3268dd4ee19f9aa
@@ -13912,6 +14268,17 @@ entries:
   workspace-ui:
   - apiVersion: v2
     appVersion: v1.4.0
+    created: "2026-03-23T10:03:57.355234125Z"
+    deprecated: true
+    description: Helm chart for the Workspace UI incl. Storage Layer
+    digest: 86cd25bc371f45574a867c70af7da097f5860171d3a8507c686cc3281d6e8e25
+    name: workspace-ui
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.4/workspace-ui-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: v1.4.0
     created: "2024-10-29T07:53:21.075229152Z"
     description: Helm chart for the Workspace UI incl. Storage Layer
     digest: 7225737aec731ebab6be8d9b6d10adf5bd56f47724ce6fbc053db2f487f88647
@@ -13940,4 +14307,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-17T12:15:03.103954709Z"
+generated: "2026-03-23T10:03:57.357582112Z"
