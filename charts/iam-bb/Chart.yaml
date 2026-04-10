@@ -24,10 +24,10 @@ version: 2.1.0-dev5
 appVersion: "2.1.0-dev4"
 
 dependencies:
-  - name: keycloak
+  - name: keycloak-operator
     #version: "21.4.4"
-    version: "24.4.11"
-    repository: "https://charts.bitnami.com/bitnami"
+    version: "1.11.4"
+    repository: "https://charts.adfinis.com"
     condition: keycloak.enabled
   - name: opal
     version: "0.0.28"

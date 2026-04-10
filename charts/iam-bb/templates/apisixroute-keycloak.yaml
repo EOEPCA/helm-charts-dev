@@ -10,11 +10,14 @@ spec:
   ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   http:
   - backends:
-    - serviceName: {{ printf "%s-keycloak" .Release.Name }} #iam-keycloak
+    - serviceName: {{ printf "%s-keycloak-operator-service" .Release.Name }} #iam-keycloak
+#    - serviceName: {{ printf "%s-keycloak" .Release.Name }} #iam-keycloak
 {{- if .Values.keycloak.tls.enabled }}
       servicePort: 443
+      #servicePort: 8443
 {{- else }}
-      servicePort: 80
+      #servicePort: 80
+      servicePort: 8080
 {{- end }}
     match:
       hosts: {{- .Values.iam.keycloak.hosts | toYaml | nindent 6 }}
