@@ -1,4 +1,4 @@
-{{ if .Values.keycloak.enabled -}}
+{{ if .Values.iam.keycloak.enabled -}}
 {{ if .Values.iam.keycloak.createRoute -}}
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
@@ -10,11 +10,11 @@ spec:
   ingressClassName: {{ .Values.iam.apisix.ingressClassName }}
   http:
   - backends:
-    - serviceName: {{ printf "%s-keycloak-operator-service" .Release.Name }} #iam-keycloak
-#    - serviceName: {{ printf "%s-keycloak" .Release.Name }} #iam-keycloak
-{{- if .Values.keycloak.tls.enabled }}
-      servicePort: 443
-      #servicePort: 8443
+    - serviceName: {{ printf "%s-keycloak-operator-service" .Release.Name }}
+#    - serviceName: {{ printf "%s-keycloak" .Release.Name }}
+{{- if .Values.iam.keycloak.tls.enabled }}
+      #servicePort: 443
+      servicePort: 8443
 {{- else }}
       #servicePort: 80
       servicePort: 8080
@@ -23,22 +23,22 @@ spec:
       hosts: {{- .Values.iam.keycloak.hosts | toYaml | nindent 6 }}
       paths: {{- .Values.iam.keycloak.paths | toYaml | nindent 6 }}
     name: keycloak
-{{- if .Values.keycloak.cors.enabled }}
+{{- if .Values.iam.keycloak.cors.enabled }}
     plugins:
       # Allow CORS access
       - name: cors
         enable: true
         config:
-          {{- $allowOrigins := .Values.keycloak.cors.allowedOrigins -}}
+          {{- $allowOrigins := .Values.iam.keycloak.cors.allowedOrigins -}}
           {{- if kindIs "slice" $allowOrigins -}}
              {{- $allowOrigins = join "," $allowOrigins -}}
           {{- end }}
           allow_origins: {{ $allowOrigins | quote }}
-          allow_methods: {{ .Values.keycloak.cors.allowedMethods | quote }}
-          allow_headers: {{ .Values.keycloak.cors.allowedHeaders | quote }}
-          expose_headers: {{ .Values.keycloak.cors.exposedHeaders | quote }}
-          allow_credential: {{ .Values.keycloak.cors.allowCredentials }}
-          max_age: {{ .Values.keycloak.cors.maxAge }}
+          allow_methods: {{ .Values.iam.keycloak.cors.allowedMethods | quote }}
+          allow_headers: {{ .Values.iam.keycloak.cors.allowedHeaders | quote }}
+          expose_headers: {{ .Values.iam.keycloak.cors.exposedHeaders | quote }}
+          allow_credential: {{ .Values.iam.keycloak.cors.allowCredentials }}
+          max_age: {{ .Values.iam.keycloak.cors.maxAge }}
 {{- end }}
 # The following workaround has been replaced with a global rule and is not needed here any more.
 #    plugins:

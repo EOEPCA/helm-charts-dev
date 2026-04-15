@@ -1,4 +1,4 @@
-{{ if .Values.iam.keycloak.configuration.useKeycloakConfigCli -}}
+{{ if .Values.iam.keycloak.configuration.realm.create -}}
 apiVersion: k8s.keycloak.org/v2alpha1
 kind: KeycloakRealmImport
 metadata:
@@ -23,7 +23,7 @@ spec:
         type:
         enabled: true
         clientAuthenticatorType: client-secret
-        secret: $(env:client_secret)
+        secret: "${client_secret}"
         serviceAccountsEnabled: true
         #authorizationServicesEnabled: ...
         publicClient: false
@@ -41,5 +41,6 @@ spec:
             - manage-clients
             - manage-authorization
             - create-client
+            - manage-realm
 {{- end }}
 {{- end }}

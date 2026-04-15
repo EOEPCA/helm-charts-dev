@@ -22,24 +22,19 @@ spec:
               name: data
           env:
             - name: POSTGRES_USER
-              #value: testuser
               valueFrom:
                 secretKeyRef:
-                  name: postgresql
+                  name: {{ .Values.iam.keycloak.postgres.secretRef | default "postgresql" }}
                   key: username
             - name: POSTGRES_PASSWORD
-              #value: testpassword
               valueFrom:
                 secretKeyRef:
-                  name: postgresql
+                  name: {{ .Values.iam.keycloak.postgres.secretRef | default "postgresql" }}
                   key: password
             - name: PGDATA
               value: /data/pgdata
             - name: POSTGRES_DB
-              value: keycloak
-      #volumes:
-      #  - name: cache-volume
-      #    emptyDir: {}
+              value: {{ .Values.iam.keycloak.postgres.database | default "keycloak" }}
   volumeClaimTemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim

@@ -1,5 +1,5 @@
 {{ if .Values.iam.keycloak.configuration.useCrossplane -}}
-{{ if .Values.iam.keycloak.configuration.realm.create -}}
+{{ if .Values.iam.keycloak.configuration.realm.createUsingCrossplane -}}
 apiVersion: realm.keycloak.crossplane.io/v1alpha1
 kind: Realm
 metadata:
