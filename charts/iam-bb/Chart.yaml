@@ -15,32 +15,32 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 2.1.0-dev5
+version: 2.1.0-dev6
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "2.1.0-dev4"
+appVersion: "2.1.0-dev6"
 
 dependencies:
   - name: keycloak-operator
     #version: "21.4.4"
     version: "1.11.4"
     repository: "https://charts.adfinis.com"
-    condition: keycloak.enabled
+    condition: iam.keycloak.enabled
   - name: opal
     version: "0.0.28"
     repository: "https://permitio.github.io/opal-helm-chart"
-    condition: opal.enabled
+    condition: iam.opa.enabled
   - name: apisix
     version: "2.13.0"
     repository: "https://charts.apiseven.com"
-    condition: apisix.enabled
+    condition: iam.apisix.enabled
   - name: iam-bb-config
     version: "2.1.0-dev1"
     repository: "https://eoepca.github.io/helm-charts-dev"
-    condition: iam-bb-config.enabled
+    condition: iam.config.enabled
 #  - name: kubernetes-secret-generator
 #    version: "3.4.1"
 #    repository: "https://helm.mittwald.de"
