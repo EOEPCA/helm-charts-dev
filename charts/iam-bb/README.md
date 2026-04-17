@@ -1,5 +1,7 @@
 # IAM BB Helm Chart
 
+**TODO: Adapt to match EOEPCA 2.1**
+
 ## Introduction
 
 This README provides an overview of the EOEPCA Identity and Access
@@ -42,9 +44,9 @@ be deployed prior to the IAM BB, because the IAM BB relies on its CRDs.
 The optional Crossplane configuration is provided as a separate Helm chart
 (`iam-bb-config`), which can be applied separately or as part of the
 `iam-bb` Helm chart. It provides a global `ProviderConfig` that is linked
-to Keycloak and can also preconfigure aclient for OPA as a Crossplane CR.
+to Keycloak and can also preconfigure a client for OPA as a Crossplane CR.
 As an alternative to installing the `iam-bb-config` Helm chart, the
-required clients can also be configured manually. Note that  the
+required clients can also be configured manually. Note that the
 `iam-bb-config` Helm chart requires Crossplane and the Crossplane
 Keycloak Provider to be present. It does not deploy them itself.
 
@@ -61,9 +63,11 @@ The `values.yaml` file consists of the following sections:
   yaml anchors in order to minimize redundant settings in service-specific
   sections. Make sure to preserve the anchors and references to them when
   changing settings that use anchors.
-* `keycloak`: IAM-BB-specific settings for Keycloak. This section
-  configures Keycloak for the IAM BB and allows customizing settings that
-  are not covered by the `iam` section.
+* `keycloak-operator`: IAM-BB-specific settings for the Keycloak Operator
+  and Keycloak. This section configures Keycloak for the IAM BB and allows
+  customizing settings that are not covered by the `iam` section.
+* `keycloak`: Former IAM-BB-specific settings for Keycloak Bitnami Chart.
+  Not supported any more.
 * `opal`: IAM-BB-specific settings for OPAL and OPA. This section
   configures OPAL and OPA for the IAM BB and allows customizing settings
   that are not covered by the `iam` section.
@@ -80,6 +84,12 @@ well. Vice versa, references should only be removed if the settings
 they refer to are also removed in order to avoid inconsistencies.
 
 ### Realm initialization process
+
+**Note:** This section is partially outdated. Meanwhile the Keycloak
+Operator is used instead of Keycloak Config CLI to initialize the
+EOEPCA realm. The process is still similar though.
+
+**TODO: Update to Operator-based realm initialization***
 
 Realm initialization is split into two phases. The first phase (basic
 initialization) is set up by the IAM BB Helm chart using
@@ -178,18 +188,21 @@ are the following alternatives:
 
 ### Basic realm initialization
 
+**TODO: Update to Operator-based realm initialization***
+
 Basic realm initialisation is controlled by the following options:
 
-| Parameter                                                  | Default                   | Description                                                                                |
-|------------------------------------------------------------|---------------------------|--------------------------------------------------------------------------------------------|
-| `iam.keycloak.configuration.useKeycloakConfigCli`          | `false`                   | Enable or disable basic realm initialization.                                              |
-| `iam.keycloak.configuration.realm.name`                    | "eoepca"                  | Internal name (identifier) of the EOEPCA realm                                             |
-| `iam.keycloak.configuration.realm.displayName`             | "EOEPCA"                  | Display name of the EOEPCA realm                                                           |
-| `iam.keycloak.configuration.provider.createServiceAccount` | `false`                   | Enable or disable creation of client and service account for Crossplane Keycloak Provider. |
-| `iam.keycloak.configuration.provider.clientSecret`         | ""                        | Client secret for the service account                                                      |
-| `iam.keycloak.configuration.provider.clientSecretRef`      | unset                     | Reference to an existing secret that contains Keycloak location and credentials            |
-| `keycloak.keycloakConfigCli.existingConfigMap`             | "initial-keycloak-config" | Config map that contains the realm definition                                              |
-| `keycloak.keycloakConfigCli.configuration`                 | unset                     | Literal realm definition (not used by default)                                             |
+| Parameter                                                  | Default  | Description                                                                                |
+|------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------|
+| `iam.keycloak.configuration.useKeycloakConfigCli`          | unset    | Enable or disable basic realm initialization.                                              |
+| `iam.keycloak.configuration.realm.create`                  | `true`   | Enable or disable creation of realm.                                                       |
+| `iam.keycloak.configuration.realm.name`                    | "eoepca" | Internal name (identifier) of the EOEPCA realm                                             |
+| `iam.keycloak.configuration.realm.displayName`             | "EOEPCA" | Display name of the EOEPCA realm                                                           |
+| `iam.keycloak.configuration.provider.createServiceAccount` | `false`  | Enable or disable creation of client and service account for Crossplane Keycloak Provider. |
+| `iam.keycloak.configuration.provider.clientSecret`         | ""       | Client secret for the service account                                                      |
+| `iam.keycloak.configuration.provider.clientSecretRef`      | unset    | Reference to an existing secret that contains Keycloak location and credentials            |
+| `keycloak.keycloakConfigCli.existingConfigMap`             | unset    | Config map that contains the realm definition                                              |
+| `keycloak.keycloakConfigCli.configuration`                 | unset    | Literal realm definition (not used by default)                                             |
 
 For a fresh IAM BB setup, `useKeycloakConfigCli` should be set to
 `true`, and `createServiceAccount` should also be set to `true` if
@@ -221,17 +234,16 @@ by both Helm charts and must be kept consistent if the `iam-bb-config`
 is executed manually. Note that some parameters are shared with basic
 initialisation.
 
-| Parameter                                               | Default  | Description                                                              |
-|---------------------------------------------------------|----------|--------------------------------------------------------------------------|
-| `iam.keycloak.configuration.useCrossplane`              | `false`  | Enable or disable creation of Crossplane CRs. (main switch)              |
-| `iam.keycloak.configuration.createClients`              | `true`   | Enable or disable creation of clients as Crossplane CRs.                 |
-| `iam.keycloak.configuration.realm.create`               | `false`  | Enable or disable creation of realm as Crossplane CRs. (not recommended) |
-| `iam.keycloak.configuration.realm.name`                 | "eoepca" | Internal name (identifier) of the EOEPCA realm                           |
-| `iam.keycloak.configuration.realm.displayName`          | "EOEPCA" | Display name of the EOEPCA realm                                         |
-| `iam.keycloak.configuration.provider.create`            | `true`   | Enable or disable creation of the `ProviderConfig`.                      |
-| `iam.keycloak.configuration.provider.clientSecret`      | ""       | Client secret for the Crossplane provider client                         |
-| `iam.keycloak.configuration.provider.secretRef`         | unset    | Reference to a secret that contains Keycloak location and credentials    |
-| `iam.keycloak.configuration.provider.existingConfigRef` | ""       | Name of an existing `ProviderConfig` to use                              |
+| Parameter                                               | Default  | Description                                                           |
+|---------------------------------------------------------|----------|-----------------------------------------------------------------------|
+| `iam.keycloak.configuration.useCrossplane`              | `false`  | Enable or disable creation of Crossplane CRs. (main switch)           |
+| `iam.keycloak.configuration.createClients`              | `true`   | Enable or disable creation of clients as Crossplane CRs.              |
+| `iam.keycloak.configuration.realm.name`                 | "eoepca" | Internal name (identifier) of the EOEPCA realm                        |
+| `iam.keycloak.configuration.provider.create`            | `true`   | Enable or disable creation of the `ProviderConfig`.                   |
+| `iam.keycloak.configuration.provider.clientSecret`      | ""       | Client secret for the Crossplane provider client                      |
+| `iam.keycloak.configuration.provider.secretRef`         | unset    | Reference to a secret that contains Keycloak location and credentials |
+| `iam.keycloak.configuration.provider.existingConfigRef` | ""       | Name of an existing `ProviderConfig` to use                           |
+| `iam.config.targetNamespace`                            | ""       | Name of separate namespace for Crossplane resources                   |
 
 For a typical IAM BB setup, Crossplane should be leveraged. Hence
 `useCrossplane` should be set to `true`. The other settings can
@@ -239,6 +251,11 @@ safely be left at their defaults.
 The provider client secret is generated automatically in this case.
 Client names and secrets for the OPA client are shared
 with the route configuration. See the following sections for details.
+
+**Note:** The parameter `iam.config.targetNamespace` allows deploying
+Crossplane resources to a separate namespace. However, the Helm chart
+does not duplicate the `keycloak-provider` secret (yet). This must be
+done by hand or configured using External Secrets Operator.
 
 ### Routes
 
@@ -263,21 +280,20 @@ By default, secrets are generated automatically. If `clientSecretRef`
 is used to reference an existing secret, this secret may contain further
 parameters like the client ID.
 
-
 ### CORS Configuration
 
 Enable CORS for JavaScript applications from different domains to authenticate
 with Keycloak.
 
-| Parameter                        | Default | Description                                           |
-|----------------------------------|---------|-------------------------------------------------------|
-| `keycloak.cors.enabled`          | `false` | Enable CORS for Keycloak route                        |
-| `keycloak.cors.allowedOrigins`   | `*`     | Comma-separated list of allowed origins.              |
-| `keycloak.cors.allowedHeaders`   | `*`     | Comma-separated list of allowed headers.              |
-| `keycloak.cors.exposedHeaders`   | `*`     | Comma-separated list of exposed headers.              |
-| `keycloak.cors.allowedMethods`   | (all)   | Comma-separated list of allowed methods.              |
-| `keycloak.cors.allowCredentials` | `true`  | Allow credentials (cookies, auth headers) in requests |
-| `keycloak.cors.mayAge`           | 3600    | Pre-flight cache max age in seconds                   |
+| Parameter                            | Default | Description                                           |
+|--------------------------------------|---------|-------------------------------------------------------|
+| `iam.keycloak.cors.enabled`          | `false` | Enable CORS for Keycloak route                        |
+| `iam.keycloak.cors.allowedOrigins`   | `*`     | Comma-separated list of allowed origins.              |
+| `iam.keycloak.cors.allowedHeaders`   | `*`     | Comma-separated list of allowed headers.              |
+| `iam.keycloak.cors.exposedHeaders`   | `*`     | Comma-separated list of exposed headers.              |
+| `iam.keycloak.cors.allowedMethods`   | (all)   | Comma-separated list of allowed methods.              |
+| `iam.keycloak.cors.allowCredentials` | `true`  | Allow credentials (cookies, auth headers) in requests |
+| `iam.keycloak.cors.mayAge`           | 3600    | Pre-flight cache max age in seconds                   |
 
 **Note:** When credentials are enabled with specific origins, browsers
 reject wildcard `*`. List all origins and headers explicitly for multi-tenant setups.
@@ -309,8 +325,7 @@ secrets:
 3. Client secrets that are not specified explicitly can be generated by
    two means:
    1. Using Helm's `randAlphaNum` function. This is the default.
-      Note that new values are generated each time the Helm chart is
-      applied, i.e., existing values are not preserved.
+      Existing values are preserved.
    2. By generating annotations for `kubernetes-secret-generator`.
       This is the case if the parameter
       `iam.keycloak.configuration.useSecretGenerator` is set to `true`.
