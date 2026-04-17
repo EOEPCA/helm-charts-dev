@@ -2414,6 +2414,33 @@ entries:
     version: v0.0.0-latest
   iam-bb:
   - apiVersion: v2
+    appVersion: 2.1.0-dev6
+    created: "2026-04-17T13:10:28.959218811Z"
+    dependencies:
+    - condition: iam.keycloak.enabled
+      name: keycloak-operator
+      repository: https://charts.adfinis.com
+      version: 1.11.4
+    - condition: iam.opa.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: iam.apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.13.0
+    - condition: iam.config.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.1.0-dev1
+    description: EOEPCA IAM BB Helm chart
+    digest: 6460bb8c56a403cc5a5ff2c34d2ffbcddcfabee85e971deecd3da211b37f4e66
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.1.0-dev6/iam-bb-2.1.0-dev6.tgz
+    version: 2.1.0-dev6
+  - apiVersion: v2
     appVersion: 2.1.0-dev4
     created: "2026-03-17T12:15:03.101465604Z"
     dependencies:
@@ -3304,6 +3331,16 @@ entries:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-0.2.0/iam-bb-0.2.0.tgz
     version: 0.2.0
   iam-bb-config:
+  - apiVersion: v2
+    appVersion: 2.1.0-dev2
+    created: "2026-04-17T13:10:29.100964819Z"
+    description: Optional Crossplane-based Keycloak configuration for the IAM BB
+    digest: 2a40b639b63f4cb2ce69bc90eadc7fa1c77697f9ba1ef3d9d6bc8da24d50aaed
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.1.0-dev2/iam-bb-config-2.1.0-dev2.tgz
+    version: 2.1.0-dev2
   - apiVersion: v2
     appVersion: 2.1.0-dev1
     created: "2026-03-03T10:25:58.868220542Z"
@@ -14307,4 +14344,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-03-23T10:03:57.357582112Z"
+generated: "2026-04-17T13:10:29.102893987Z"
