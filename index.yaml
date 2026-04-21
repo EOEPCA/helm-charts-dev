@@ -2415,6 +2415,33 @@ entries:
   iam-bb:
   - apiVersion: v2
     appVersion: 2.1.0-dev6
+    created: "2026-04-21T12:45:32.721977435Z"
+    dependencies:
+    - condition: iam.keycloak.enabled
+      name: keycloak-operator
+      repository: https://charts.adfinis.com
+      version: 1.11.4
+    - condition: iam.opa.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: iam.apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.13.0
+    - condition: iam.config.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.1.0-dev3
+    description: EOEPCA IAM BB Helm chart
+    digest: e236ee387797f1a992f1a7d3e6423c05d588b67069e7d3c97033d44ea0aa8460
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.1.0-dev7/iam-bb-2.1.0-dev7.tgz
+    version: 2.1.0-dev7
+  - apiVersion: v2
+    appVersion: 2.1.0-dev6
     created: "2026-04-17T13:10:28.959218811Z"
     dependencies:
     - condition: iam.keycloak.enabled
@@ -2616,37 +2643,6 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2026-02-03T11:00:05.1600812Z"
-    dependencies:
-    - condition: keycloak.enabled
-      name: keycloak
-      repository: https://charts.bitnami.com/bitnami
-      version: 24.4.11
-    - condition: opal.enabled
-      name: opal
-      repository: https://permitio.github.io/opal-helm-chart
-      version: 0.0.28
-    - condition: identityApi.enabled
-      name: identity-service
-      repository: https://eoepca.github.io/helm-charts
-      version: 1.0.98
-    - condition: apisix.enabled
-      name: apisix
-      repository: https://charts.apiseven.com
-      version: 2.10.0
-    - condition: iam-bb-config.enabled
-      name: iam-bb-config
-      repository: https://eoepca.github.io/helm-charts-dev
-      version: 2.0.0
-    description: EOEPCA IAM BB Helm chart
-    digest: 39035186f7df5418e0bcedbacc5ec28a3ce51b36b4a2aa2f9cc4a9ba70172d2b
-    name: iam-bb
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc4/iam-bb-2.0.0-rc4.tgz
-    version: 2.0.0-rc4
-  - apiVersion: v2
-    appVersion: 2.0.0
     created: "2026-01-26T13:21:00.496605328Z"
     dependencies:
     - condition: keycloak.enabled
@@ -2671,6 +2667,37 @@ entries:
       version: 2.0.0
     description: EOEPCA IAM BB Helm chart
     digest: 32cf439c31d28701c756c092099134b8d32e4bbe5750b148dfaab72cc34866a2
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc4/iam-bb-2.0.0-rc4.tgz
+    version: 2.0.0-rc4
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2026-02-03T11:00:05.1600812Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 24.4.11
+    - condition: opal.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: identityApi.enabled
+      name: identity-service
+      repository: https://eoepca.github.io/helm-charts
+      version: 1.0.98
+    - condition: apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.10.0
+    - condition: iam-bb-config.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.0.0
+    description: EOEPCA IAM BB Helm chart
+    digest: 39035186f7df5418e0bcedbacc5ec28a3ce51b36b4a2aa2f9cc4a9ba70172d2b
     name: iam-bb
     type: application
     urls:
@@ -2864,37 +2891,6 @@ entries:
     version: 2.0.0-rc2
   - apiVersion: v2
     appVersion: 2.0.0-rc1
-    created: "2025-05-22T15:09:43.795342183Z"
-    dependencies:
-    - condition: keycloak.enabled
-      name: keycloak
-      repository: https://charts.bitnami.com/bitnami
-      version: 24.4.11
-    - condition: opal.enabled
-      name: opal
-      repository: https://permitio.github.io/opal-helm-chart
-      version: 0.0.28
-    - condition: identityApi.enabled
-      name: identity-service
-      repository: https://eoepca.github.io/helm-charts
-      version: 1.0.98
-    - condition: apisix.enabled
-      name: apisix
-      repository: https://charts.apiseven.com
-      version: 2.10.0
-    - condition: iamBbConfig.enabled
-      name: iam-bb-config
-      repository: https://eoepca.github.io/helm-charts-dev
-      version: 2.0.0-rc1
-    description: EOEPCA IAM BB Helm chart
-    digest: 8f793a292c0fb18316465ec1af81ac4aa510d1cee6fae3a28db0029b21851ace
-    name: iam-bb
-    type: application
-    urls:
-    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
-    version: 2.0.0-rc1
-  - apiVersion: v2
-    appVersion: 2.0.0-rc1
     created: "2025-04-07T14:13:51.088659578Z"
     dependencies:
     - condition: keycloak.enabled
@@ -2919,6 +2915,37 @@ entries:
       version: 2.0.0-rc1
     description: EOEPCA IAM BB Helm chart
     digest: b0542629969fdde91120ef173af6c10069f8e00280d90288889abd8b51f84628
+    name: iam-bb
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-2.0.0-rc1/iam-bb-2.0.0-rc1.tgz
+    version: 2.0.0-rc1
+  - apiVersion: v2
+    appVersion: 2.0.0-rc1
+    created: "2025-05-22T15:09:43.795342183Z"
+    dependencies:
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 24.4.11
+    - condition: opal.enabled
+      name: opal
+      repository: https://permitio.github.io/opal-helm-chart
+      version: 0.0.28
+    - condition: identityApi.enabled
+      name: identity-service
+      repository: https://eoepca.github.io/helm-charts
+      version: 1.0.98
+    - condition: apisix.enabled
+      name: apisix
+      repository: https://charts.apiseven.com
+      version: 2.10.0
+    - condition: iamBbConfig.enabled
+      name: iam-bb-config
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.0.0-rc1
+    description: EOEPCA IAM BB Helm chart
+    digest: 8f793a292c0fb18316465ec1af81ac4aa510d1cee6fae3a28db0029b21851ace
     name: iam-bb
     type: application
     urls:
@@ -14354,4 +14381,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-21T12:42:35.178442987Z"
+generated: "2026-04-21T12:45:32.723452115Z"
