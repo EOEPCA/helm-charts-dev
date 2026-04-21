@@ -60,6 +60,11 @@ iam:
     clientSecretRef: ""
   config:
     # Allows specifying a deviating namespace to which Crossplane resources
-    # shall be installed. This only makes sense if the iam-bb-config Helm
-    # chart is installed as a subchart of the iam-bb chart.
+    # shall be installed.
+    # Note: The namespace must already exist. It is not created by the Helm chart.
     targetNamespace: ~
+    # If a target namespace is specified and this parameter is true, the config Helm
+    # chart generates external secrets in the target namespace, which effectively
+    # creates a copy of the provider and opa-route secrets in the management namespace.
+    # Note that this requires External Secrets Operator to be installed.
+    propagateSecrets: true
