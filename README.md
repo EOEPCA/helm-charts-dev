@@ -41,6 +41,8 @@
 - [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
 - [Development process](#development-process)
+  - [Steps to develop](#steps-to-develop)
+  - [Security scanning](#security-scanning)
 - [Issues](#issues)
 - [License](#license)
 - [Contact](#contact)
@@ -67,6 +69,18 @@ When a a change is detected in one of the charts at charts/ folder it creates a 
 - Increase the version of the package
 - Merge it with *develop* branch, this will create a new package/release on https://eoepca.github.io/helm-charts-dev/ that your test enviroment can install
 - If the test is succesfull and you want to release the package/release to production merge it on the *main* branch, this will trigger and automated action and it will be released in https://eoepca.github.io/helm-charts/
+
+### Security scanning
+
+Trivy scans the Helm charts for vulnerable configuration and you can see the results at [https://github.com/EOEPCA/helm-charts-dev/security/code-scanning](https://github.com/EOEPCA/helm-charts-dev/security/code-scanning).
+
+To run scans locally use a command such as `trivy config --config trivy-config.yaml --output /dev/stdout --format table charts`. The scan will use the charts with their default config.
+
+Typically you should:
+
+* Ensure all image versions can be updated by users via config and are not hard-coded or defaulted to `latest`.
+* Add a `securityContext` for every pod with `allowPrivilegeEscalation=false`, `runAsNonRoot=true` and `readOnlyRootFilesystem=true`.
+* Use only well-known 'trusted' registries as listed in trivy-config-data.yaml. For docker.io you may need to explicitly specify it, eg `docker.io/library/alpine:tag` and not just `alpine:tag`.
 
 <!-- ISSUES -->
 ## Issues

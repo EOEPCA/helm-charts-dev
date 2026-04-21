@@ -1,0 +1,28 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/eoepca-226-security-scans
+  pull_request:
+jobs:
+  trivy-scan:
+    name: Trivy Scan
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+      - name: Download Helm dependencies
+        uses: docker://alpine/helm:4
+        with:
+          args: dependency update charts/iam-bb
+      - name: Run Trivy vulnerability scanner on the Helm Charts
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          scan-type: 'config'
+          scan-ref: 'charts'
+          trivy-config: trivy-config.yaml
+      - uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: trivy-scan.sarif

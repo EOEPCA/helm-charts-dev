@@ -1,0 +1,20 @@
+format: 'sarif'
+output: 'trivy-scan.sarif'
+severity: 'CRITICAL,HIGH,MEDIUM,UNKNOWN'
+exit-code: 0
+ignorefile: .trivyignore.yaml
+misconfiguration:
+  scanners:
+    - helm
+    - kubernetes
+  helm:
+    kube-version: '1.32.0'
+    set:
+      - config.dataBackend=https://eoapi.eoepca.local/stac/
+      - ingress.enabled=true
+      - jupyterhub.fullnameOverride=application-hub
+      - pygeoapi.secret.name=registration-api-secret
+
+rego:
+  data:
+    - trivy-config-data.yaml
