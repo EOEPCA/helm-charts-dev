@@ -46,6 +46,17 @@ iam: &iam
       useSecretGenerator: false
       # Set to true to auto-generate clients as Crossplane CRs.
       createClients: true
+      # Specifies if a secret store shall be created. The special value "auto"
+      # (default) means that a store is created automatically if needed
+      # (depending on iam.config.targetNamespace and iam.config.propagateSecrets).
+      # Set this to true if you want to force the Helm chart to create the store
+      # or to false if you want to prevent it from doing so, e.g. because
+      # ESO is not available on the cluster.
+      createSecretStore: "auto"
+      # Allows specifying the namespaces that may access the generated
+      # ClusterSecretStore as an array. Defaults to [iam.config.targetNamespace]
+      # if unset.
+      secretStoreClientNamespaces: ~
       realm:
         # Set to true to auto-generate KeycloakRealmImport resource.
         # NOTE: As of EOEPCA 2.1, this option changed its semantics.
@@ -164,10 +175,17 @@ iam: &iam
     enabled: false
     # Allows specifying a deviating namespace to which Crossplane resources
     # shall be installed.
+    # This parameter is also taken into account by the main Helm chart if
+    # iam.keycloak.configuration.createSecretStore is set to "auto".
+    # Note: The namespace must already exist. It is not created by the Helm chart.
     targetNamespace: ~
-#  secretGenerator:
-#    # Set to true to install kubernetes-secret-generator as a subchart (EXPERIMENTAL)
-#    enabled: false
+    # If a target namespace is specified and this parameter is true, the config Helm
+    # chart generates external secrets in the target namespace, which effectively
+    # creates a copy of the provider and opa-route secrets in the management namespace.
+    # This parameter is also taken into account by the main Helm chart if
+    # iam.keycloak.configuration.createSecretStore is set to "auto".
+    # Note that this requires External Secrets Operator to be installed.
+    propagateSecrets: true
 
 # ----
 
