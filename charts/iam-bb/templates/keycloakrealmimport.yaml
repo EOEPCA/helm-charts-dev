@@ -16,8 +16,9 @@ spec:
     realm: {{ .Values.iam.keycloak.configuration.realm.name }}
     displayName: {{ .Values.iam.keycloak.configuration.realm.displayName }}
     enabled: true
-{{- if .Values.iam.keycloak.configuration.provider.createServiceAccount }}
+{{- if or .Values.iam.keycloak.configuration.provider.createServiceAccount .Values.iam.keycloak.configuration.realm.customClients }}
     clients:
+{{- if .Values.iam.keycloak.configuration.provider.createServiceAccount }}
       - clientId: crossplane-keycloak-provider
         name: crossplane-keycloak-provider
         type:
@@ -28,7 +29,14 @@ spec:
         #authorizationServicesEnabled: ...
         publicClient: false
         fullScopeAllowed: true
+{{- end }}
+{{- with .Values.iam.keycloak.configuration.realm.customClients }}
+{{ . | toYaml | indent 6 }}
+{{- end }}
+{{- end }}
+{{- if or .Values.iam.keycloak.configuration.provider.createServiceAccount .Values.iam.keycloak.configuration.realm.customUsers }}
     users:
+{{- if .Values.iam.keycloak.configuration.provider.createServiceAccount }}
       - username: service-account-crossplane-keycloak-provider
         enabled: true
         totp: false
@@ -42,5 +50,12 @@ spec:
             - manage-authorization
             - create-client
             - manage-realm
+{{- end }}
+{{- with .Values.iam.keycloak.configuration.realm.customUsers }}
+{{ . | toYaml | indent 6 }}
+{{- end }}
+{{- end }}
+{{- with .Values.iam.keycloak.configuration.realm.customSettings }}
+{{ . | toYaml | indent 4 }}
 {{- end }}
 {{- end }}
