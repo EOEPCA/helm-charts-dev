@@ -21,6 +21,10 @@ eventing:
   # Enable OIDC authentication
   authenticationOidc: true
   defaultAuthorizationMode: ""
+  # Wait for Knative CRDs Job configuration (used when eventing.install=true)
+  waitForCRDs:
+    image: "bitnami/kubectl:latest"
+    timeoutSeconds: 300
   # Default Broker configuration
   defaultBroker:
     # Specifies whether a default Broker should be created
@@ -91,7 +95,6 @@ image:
 
 webhookSource:
   enabled: false
-  name: webhook-source
   replicaCount: 1
   image:
     repository: "ghcr.io/eoepca/na-webhook-source"
@@ -118,12 +121,12 @@ webhookSource:
     tls: []
   configMap:
     create: false
-    name: webhook-projects-config
+    name: ""
     key: projects.json
     projectsJson: "{}"
   secrets:
     create: false
-    name: webhook-secrets
+    name: ""
     githubKey: github-secret
     gitlabKey: gitlab-secret
     githubSecret: ""
@@ -131,7 +134,7 @@ webhookSource:
   oidcTokenPath: /var/run/secrets/kubernetes.io/serviceaccount/token
   sinkBinding:
     create: false
-    name: webhook-source-binding
+    name: ""
     subject:
       apiVersion: apps/v1
       kind: Deployment
@@ -148,7 +151,6 @@ webhookSource:
 # CloudEvents Player configuration
 cloudEventsPlayer:
   enabled: false
-  name: cloudevents-player
   replicaCount: 1
   image:
     repository: "quay.io/ruben/cloudevents-player"

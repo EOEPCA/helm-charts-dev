@@ -1,12 +1,12 @@
 {{- if .Values.webhookSource.enabled }}
-{{- $name := .Values.webhookSource.name }}
+ {{- $name := printf "%s-webhook-source" .Release.Name }}
 {{- $saName := default $name .Values.webhookSource.serviceAccount.name }}
 {{- $imageRepo := required "webhookSource.image.repository is required when webhookSource.enabled=true" .Values.webhookSource.image.repository }}
 {{- $imageTag := default "latest" .Values.webhookSource.image.tag }}
 {{- $autoSinkToDefaultBroker := .Values.eventing.defaultBroker.create }}
-{{- $cmName := .Values.webhookSource.configMap.name }}
+{{- $cmName := default (printf "%s-webhook-source" .Release.Name) .Values.webhookSource.configMap.name }}
 {{- $cmKey := .Values.webhookSource.configMap.key }}
-{{- $secretName := .Values.webhookSource.secrets.name }}
+{{- $secretName := default (printf "%s-webhook-source" .Release.Name) .Values.webhookSource.secrets.name }}
 {{- $githubKey := .Values.webhookSource.secrets.githubKey }}
 {{- $gitlabKey := .Values.webhookSource.secrets.gitlabKey }}
 
@@ -16,7 +16,9 @@ kind: ServiceAccount
 metadata:
   name: {{ $saName }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 ---
 {{- end }}
 
@@ -24,21 +26,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.webhookSource.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $name }}
+      app.kubernetes.io/name: webhook-source
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ $name }}
+        app.kubernetes.io/name: webhook-source
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ $saName }}
       containers:
-      - name: {{ $name }}
+      - name: webhook-source
         image: {{ $imageRepo }}:{{ $imageTag }}
         imagePullPolicy: {{ .Values.webhookSource.image.pullPolicy }}
         ports:
@@ -88,11 +95,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   selector:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
   - port: {{ .Values.webhookSource.service.port }}
     targetPort: {{ .Values.webhookSource.service.targetPort }}
@@ -106,8 +117,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ $cmName }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
   {{ $cmKey }}: |
 {{ .Values.webhookSource.configMap.projectsJson | nindent 4 }}
@@ -119,6 +133,11 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ $secretName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 type: Opaque
 stringData:
   {{ $githubKey }}: {{ .Values.webhookSource.secrets.githubSecret | quote }}
@@ -126,35 +145,4 @@ stringData:
 ---
 {{- end }}
 
-{{- if or .Values.webhookSource.sinkBinding.create $autoSinkToDefaultBroker }}
-apiVersion: sources.knative.dev/v1
-kind: SinkBinding
-metadata:
-  name: {{ default (printf "%s-binding" $name) .Values.webhookSource.sinkBinding.name }}
-spec:
-  subject:
-    apiVersion: {{ .Values.webhookSource.sinkBinding.subject.apiVersion }}
-    kind: {{ .Values.webhookSource.sinkBinding.subject.kind }}
-    name: {{ default $name .Values.webhookSource.sinkBinding.subject.name }}
-  sink:
-    {{- if .Values.webhookSource.sinkBinding.create }}
-    {{- if .Values.webhookSource.sinkBinding.sink.ref }}
-    ref:
-      apiVersion: {{ .Values.webhookSource.sinkBinding.sink.ref.apiVersion }}
-      kind: {{ .Values.webhookSource.sinkBinding.sink.ref.kind }}
-      name: {{ .Values.webhookSource.sinkBinding.sink.ref.name }}
-      {{- if .Values.webhookSource.sinkBinding.sink.ref.namespace }}
-      namespace: {{ .Values.webhookSource.sinkBinding.sink.ref.namespace }}
-      {{- end }}
-    {{- end }}
-    {{- if and .Values.webhookSource.sinkBinding.sink.uri (ne .Values.webhookSource.sinkBinding.sink.uri "") }}
-    uri: {{ .Values.webhookSource.sinkBinding.sink.uri | quote }}
-    {{- end }}
-    {{- else if $autoSinkToDefaultBroker }}
-    ref:
-      apiVersion: eventing.knative.dev/v1
-      kind: Broker
-      name: {{ .Values.eventing.defaultBroker.name }}
-    {{- end }}
-{{- end }}
 {{- end }}

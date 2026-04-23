@@ -1,11 +1,14 @@
 {{- if and .Values.webhookSource.enabled .Values.webhookSource.service.create .Values.webhookSource.ingress.enabled }}
-{{- $name := .Values.webhookSource.name }}
+{{- $name := printf "%s-webhook-source" .Release.Name }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: webhook-source
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- with .Values.webhookSource.ingress.annotations }}
   annotations:
 {{ toYaml . | nindent 4 }}
