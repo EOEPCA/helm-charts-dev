@@ -148,6 +148,31 @@ webhookSource:
       uri: ""
   extraEnv: []
 
+# ApiServerSource configuration
+apiServerSource:
+  enabled: false
+  # Name override (default: <release>-api-server-source)
+  name: ""
+  # Service account used by the ApiServerSource (needs RBAC to watch resources)
+  serviceAccount:
+    create: true
+    name: ""
+  # Kubernetes resources to watch
+  resources:
+    - apiVersion: v1
+      kind: Event
+  # Event mode: "Reference" sends only a reference, "Resource" sends the full resource body
+  mode: Reference
+  # Sink configuration – when left empty and eventing.defaultBroker.create is true,
+  # the source automatically targets the default broker.
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: ""
+      namespace: ""
+    uri: ""
+
 # CloudEvents Player configuration
 cloudEventsPlayer:
   enabled: false
