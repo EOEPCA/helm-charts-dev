@@ -1,5 +1,4 @@
 {{- if .Values.eventing.defaultBroker.create }}
-{{- $existingBroker := lookup "eventing.knative.dev/v1" "Broker" .Release.Namespace .Values.eventing.defaultBroker.name }}
 apiVersion: eventing.knative.dev/v1
 kind: Broker
 metadata:
@@ -7,7 +6,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     eventing.knative.dev/broker.class: MTChannelBasedBroker
-{{- if and .Values.eventing.install (not (and $existingBroker (not $existingBroker.spec.config))) }}
+{{- if .Values.eventing.install }}
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
 spec:
   config:
     apiVersion: v1
