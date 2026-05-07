@@ -41,7 +41,7 @@ serving:
   # Namespace where KnativeServing should be installed
   namespace: knative-serving
   # Domain configuration
-  domain: functions.eoepca.org
+  domain: na.eoepca.org
 
 
 
