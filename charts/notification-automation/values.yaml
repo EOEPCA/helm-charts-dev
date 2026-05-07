@@ -103,7 +103,7 @@ webhookSource:
   maxScale: "5"
   image:
     repository: "ghcr.io/eoepca/na-webhook-source"
-    tag: "sha-895c85f"
+    tag: "sha-57b7a6e"
     pullPolicy: IfNotPresent
   containerPort: 8080
   serviceAccount:
