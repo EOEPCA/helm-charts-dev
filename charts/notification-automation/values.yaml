@@ -103,7 +103,7 @@ webhookSource:
   maxScale: "5"
   image:
     repository: "ghcr.io/eoepca/na-webhook-source"
-    tag: "sha-57b7a6e"
+    tag: "sha-405af37"
     pullPolicy: IfNotPresent
   containerPort: 8080
   serviceAccount:
@@ -171,7 +171,15 @@ apiServerSource:
 # CloudEvents Player configuration
 cloudEventsPlayer:
   enabled: false
-  replicaCount: 1
+  # Override the Knative Service name (determines public URL: <name>.<namespace>.<domain>)
+  # When empty, defaults to "<release>-cloudevents-player"
+  nameOverride: ""
+  # When false (default), the ksvc is cluster-local (private).
+  # Set to true to expose it externally via Knative's ingress gateway.
+  public: false
+  # Knative autoscaling
+  minScale: "1"
+  maxScale: "1"
   image:
     repository: "quay.io/ruben/cloudevents-player"
     tag: "v1.3"
@@ -180,21 +188,11 @@ cloudEventsPlayer:
   serviceAccount:
     create: true
     name: ""
-  service:
-    create: true
-    type: ClusterIP
-    port: 80
-    targetPort: 8080
-  ingress:
-    enabled: false
-    className: ""
-    annotations: {}
-    hosts:
-      - host: cloudevents-player.local
-        paths:
-          - path: /
-            pathType: Prefix
-    tls: []
+  # Optional: custom domain mapping for the Knative Service.
+  # When set, a DomainMapping is created. When empty, the auto-generated
+  # Knative URL is used: <name>.<namespace>.<serving.domain>
+  domainMapping:
+    domain: ""
   subscribeBroker:
     enabled: true
     broker:

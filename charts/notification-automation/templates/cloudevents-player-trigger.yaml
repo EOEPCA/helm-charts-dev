@@ -1,5 +1,5 @@
 {{- if .Values.cloudEventsPlayer.enabled }}
-{{- $name := printf "%s-cloudevents-player" .Release.Name }}
+{{- $name := default (printf "%s-cloudevents-player" .Release.Name) .Values.cloudEventsPlayer.nameOverride }}
 {{- if .Values.cloudEventsPlayer.subscribeBroker.enabled }}
 {{- $brokerRef := .Values.cloudEventsPlayer.subscribeBroker.broker }}
 {{- $brokerName := $brokerRef.name }}
@@ -25,7 +25,7 @@ spec:
   broker: {{ $brokerName }}
   subscriber:
     ref:
-      apiVersion: v1
+      apiVersion: serving.knative.dev/v1
       kind: Service
       name: {{ $name }}
     uri: /
