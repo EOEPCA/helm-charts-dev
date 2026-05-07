@@ -1,6 +1,37 @@
 # Notification and Automation Helm Chart
 
-## Example installation:
+This NA Helm chart installs the core components of the Notification Automation building block. 
+The helm chart assumes that the KNative Operator is already installed in the cluster.
+
+The NA Helm chart is highly opinionated regarding the deployed messaging components and expected ways of interacting with them.
+
+EOEPCA+ operators can further add functionality according to their own needs.
+
+
+## Prerequisites
+
+The helm chart assumes that the KNative Operator is already installed in the cluster.
+
+### Installing  Knative Operator
+
+The currenly tested versions of KNative Operator are:
+- 1.17.1
+
+The operator can be installed as follows:
+
+```bash
+helm repo add knative-operator https://knative.github.io/operator
+helm repo update
+helm install knative-operator --create-namespace --namespace knative-operator knative-operator/knative-operator
+```
+
+Any other installation method is supported as long as the required CRDs are installed.
+
+## Installation
+
+## Development
+
+### Installation
 
 ```bash
 helm upgrade --install notification-automation . \

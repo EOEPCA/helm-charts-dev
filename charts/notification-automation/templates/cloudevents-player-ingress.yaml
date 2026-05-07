@@ -1,11 +1,14 @@
 {{- if and .Values.cloudEventsPlayer.enabled .Values.cloudEventsPlayer.service.create .Values.cloudEventsPlayer.ingress.enabled }}
-{{- $name := .Values.cloudEventsPlayer.name }}
+{{- $name := printf "%s-cloudevents-player" .Release.Name }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: cloudevents-player
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- with .Values.cloudEventsPlayer.ingress.annotations }}
   annotations:
 {{ toYaml . | nindent 4 }}

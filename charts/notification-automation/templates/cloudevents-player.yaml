@@ -1,5 +1,5 @@
 {{- if .Values.cloudEventsPlayer.enabled }}
-{{- $name := .Values.cloudEventsPlayer.name }}
+{{- $name := printf "%s-cloudevents-player" .Release.Name }}
 {{- $saName := default $name .Values.cloudEventsPlayer.serviceAccount.name }}
 {{- $imageRepo := required "cloudEventsPlayer.image.repository is required when cloudEventsPlayer.enabled=true" .Values.cloudEventsPlayer.image.repository }}
 {{- $imageTag := default "latest" .Values.cloudEventsPlayer.image.tag }}
@@ -10,7 +10,9 @@ kind: ServiceAccount
 metadata:
   name: {{ $saName }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: cloudevents-player
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 ---
 {{- end }}
 
@@ -18,21 +20,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: cloudevents-player
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.cloudEventsPlayer.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $name }}
+      app.kubernetes.io/name: cloudevents-player
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ $name }}
+        app.kubernetes.io/name: cloudevents-player
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ $saName }}
       containers:
-      - name: {{ $name }}
+      - name: cloudevents-player
         image: {{ $imageRepo }}:{{ $imageTag }}
         imagePullPolicy: {{ .Values.cloudEventsPlayer.image.pullPolicy }}
         ports:
@@ -62,11 +69,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ $name }}
+    app.kubernetes.io/name: cloudevents-player
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   selector:
-    app: {{ $name }}
+    app.kubernetes.io/name: cloudevents-player
+    app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
   - port: {{ .Values.cloudEventsPlayer.service.port }}
     targetPort: {{ .Values.cloudEventsPlayer.service.targetPort }}
@@ -75,28 +86,4 @@ spec:
 ---
 {{- end }}
 
-{{- if .Values.cloudEventsPlayer.subscribeBroker.enabled }}
-{{- $brokerRef := .Values.cloudEventsPlayer.subscribeBroker.broker }}
-{{- $brokerName := $brokerRef.name }}
-{{- if and (not $brokerName) .Values.eventing.defaultBroker.create }}
-{{- $brokerName = .Values.eventing.defaultBroker.name }}
-{{- end }}
-{{- if $brokerName }}
-apiVersion: eventing.knative.dev/v1
-kind: Trigger
-metadata:
-  name: {{ $name }}-trigger
-  labels:
-    app: {{ $name }}
-spec:
-  broker: {{ $brokerName }}
-  subscriber:
-    ref:
-      apiVersion: v1
-      kind: Service
-      name: {{ $name }}
-    uri: /
----
-{{- end }}
-{{- end }}
 {{- end }}
