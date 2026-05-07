@@ -152,12 +152,29 @@ apiServerSource:
   serviceAccount:
     create: true
     name: ""
-  # Kubernetes resources to watch
+  # Kubernetes resources to watch.
+  # Each entry requires apiVersion and kind.
+  # Optional: add a selector with matchLabels / matchExpressions to filter resources.
+  #   selector:
+  #     matchLabels:
+  #       key: value
+  #     matchExpressions:
+  #       - key: app
+  #         operator: In
+  #         values: [myapp, yourapp]
   resources:
-    - apiVersion: v1
-      kind: Event
+#    - apiVersion: v1
+#      kind: Event
+    - apiVersion: training.educates.dev/v1beta1
+      kind: WorkshopSession
+    - apiVersion: apps/v1
+      kind: Deployment
+    - apiVersion: apps/v1
+      kind: StatefulSet
+    - apiVersion: batch/v1
+      kind: Job
   # Event mode: "Reference" sends only a reference, "Resource" sends the full resource body
-  mode: Reference
+  mode: Resource
   # Sink configuration – when left empty and eventing.defaultBroker.create is true,
   # the source automatically targets the default broker.
   sink:

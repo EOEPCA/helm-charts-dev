@@ -76,6 +76,28 @@ spec:
   {{- range .Values.apiServerSource.resources }}
   - apiVersion: {{ .apiVersion }}
     kind: {{ .kind }}
+    {{- if .selector }}
+    selector:
+      {{- if .selector.matchLabels }}
+      matchLabels:
+        {{- range $key, $val := .selector.matchLabels }}
+        {{ $key }}: {{ $val | quote }}
+        {{- end }}
+      {{- end }}
+      {{- if .selector.matchExpressions }}
+      matchExpressions:
+        {{- range .selector.matchExpressions }}
+        - key: {{ .key }}
+          operator: {{ .operator }}
+          {{- if .values }}
+          values:
+            {{- range .values }}
+            - {{ . | quote }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
   {{- end }}
   sink:
     {{- if and .Values.apiServerSource.sink.ref.name (ne .Values.apiServerSource.sink.ref.name "") }}
