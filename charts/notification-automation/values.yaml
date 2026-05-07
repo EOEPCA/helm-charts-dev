@@ -95,7 +95,12 @@ image:
 
 webhookSource:
   enabled: false
-  replicaCount: 1
+  # Override the Knative Service name (determines public URL: <name>.<namespace>.<domain>)
+  # When empty, defaults to "<release>-webhook-source"
+  nameOverride: ""
+  # Knative autoscaling
+  minScale: "1"
+  maxScale: "5"
   image:
     repository: "ghcr.io/eoepca/na-webhook-source"
     tag: "sha-895c85f"
@@ -104,21 +109,11 @@ webhookSource:
   serviceAccount:
     create: true
     name: ""
-  service:
-    create: true
-    type: ClusterIP
-    port: 80
-    targetPort: 8080
-  ingress:
-    enabled: false
-    className: ""
-    annotations: {}
-    hosts:
-      - host: webhook-source.local
-        paths:
-          - path: /
-            pathType: Prefix
-    tls: []
+  # Optional: custom domain mapping for the Knative Service.
+  # When set, a DomainMapping is created. When empty, the auto-generated
+  # Knative URL is used: <name>.<namespace>.<serving.domain>
+  domainMapping:
+    domain: ""
   configMap:
     create: false
     name: ""
@@ -136,8 +131,8 @@ webhookSource:
     create: false
     name: ""
     subject:
-      apiVersion: apps/v1
-      kind: Deployment
+      apiVersion: serving.knative.dev/v1
+      kind: Service
       name: ""
     sink:
       ref:
