@@ -11679,6 +11679,32 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-health-2.0.0/resource-health-2.0.0.tgz
     version: 2.0.0
+  resource-health-reference-deployment:
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2026-05-28T09:17:58.298591989Z"
+    dependencies:
+    - name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.101.2
+    - name: opensearch
+      repository: https://opensearch-project.github.io/helm-charts/
+      version: 2.21.0
+    - name: opensearch-dashboards
+      repository: https://opensearch-project.github.io/helm-charts/
+      version: 2.19.1
+    - name: resource-health
+      repository: https://eoepca.github.io/helm-charts-dev
+      version: 2.0.0
+    description: A reference deployment of the resource health BB (including OpenTelemetry
+      collector and OpenSearch)
+    digest: 59378e632e3b7b90ebe1a09843cb3d16836a766822b2a85636cd171ee4a78780
+    icon: https://upload.wikimedia.org/wikipedia/commons/3/3b/PlaceholderRoss.png
+    name: resource-health-reference-deployment
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-health-reference-deployment-2.1.0/resource-health-reference-deployment-2.1.0.tgz
+    version: 2.1.0
   rm-bucket-operator:
   - apiVersion: v2
     appVersion: 1.1.0
@@ -14537,4 +14563,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-05-28T08:52:35.480215102Z"
+generated: "2026-05-28T09:17:58.299711005Z"
