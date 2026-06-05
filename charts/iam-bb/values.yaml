@@ -70,6 +70,13 @@ iam: &iam
         # Name of realm to create or of existing realm to create clients in
         name: eoepca
         displayName: EOEPCA
+        # Declaration of placeholders used in customClients, customUsers and customSettings
+        customPlaceholders: ~
+          # Example:
+          #placeholder_name:
+          #  secret:
+          #    name: secret-name
+          #    key: key-name
         # Array of custom clients to create during initial realm initialization.
         # This allows creating clients that are not managed by Crossplane.
         # Note: This is only honoured during initial realm initialization.
@@ -84,7 +91,12 @@ iam: &iam
         # attributes except those covered by the settings above.
         # Note: This is only honoured during initial realm initialization.
         # Realm updates are not supported.
-        customSettings: ~
+        customSettings:
+          loginWithEmailAllowed: false
+          # Useful sections include:
+          #identityProviders: []
+          #identityProviderMappers: []
+          #requiredActions: []
           # The following example demonstrates how to configure the SMTP server
           # for outgoing e-mails:
           #smtpServer:

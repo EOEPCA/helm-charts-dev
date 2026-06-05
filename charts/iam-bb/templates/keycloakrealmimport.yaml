@@ -11,6 +11,9 @@ spec:
       secret:
         name: keycloak-provider
         key: client_secret
+{{- with .Values.iam.keycloak.configuration.realm.placeholders }}
+{{ . | toYaml | indent 4 }}
+{{- end }}
   realm:
     id: {{ .Values.iam.keycloak.configuration.realm.name }}
     realm: {{ .Values.iam.keycloak.configuration.realm.name }}
@@ -45,11 +48,7 @@ spec:
           - default-roles-{{ .Values.iam.keycloak.configuration.realm.name }}
         clientRoles:
           realm-management:
-            - manage-users
-            - manage-clients
-            - manage-authorization
-            - create-client
-            - manage-realm
+            - realm-admin # required for creating eoepca-admin user
 {{- end }}
 {{- with .Values.iam.keycloak.configuration.realm.customUsers }}
 {{ . | toYaml | indent 6 }}
