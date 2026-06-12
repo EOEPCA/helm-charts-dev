@@ -11,7 +11,7 @@ spec:
       secret:
         name: keycloak-provider
         key: client_secret
-{{- with .Values.iam.keycloak.configuration.realm.placeholders }}
+{{- with .Values.iam.keycloak.configuration.realm.customPlaceholders }}
 {{ . | toYaml | indent 4 }}
 {{- end }}
   realm:
