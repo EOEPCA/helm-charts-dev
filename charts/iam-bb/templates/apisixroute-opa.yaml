@@ -25,5 +25,17 @@ spec:
           use_jwks: true
           discovery: {{ printf "%s/realms/%s/.well-known/openid-configuration" .Values.iam.keycloak.url .Values.iam.keycloak.configuration.realm.name | quote }}
         secretRef: {{ .Values.iam.opa.clientSecretRef | default "opa-route" | quote }}
+{{- if .Values.iam.opa.stripPaths }}
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri:
+{{- range .Values.iam.opa.stripPaths }}
+            - {{ printf "^(%s)$" . }}
+            - /
+            - {{ printf "^(%s)(/.*)" . }}
+            - $2
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}

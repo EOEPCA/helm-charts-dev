@@ -28,6 +28,8 @@ iam: &iam
       - iam-auth.develop.eoepca.org
     paths:
       - /*
+    # Array of path prefixes to strip. Useful for path-based routing.
+    stripPaths: ~
     # Additional configuration to apply to Keycloak.
     # Partially evaluated by the iam-bb-config Helm chart.
     # By default, the EOEPCA realm and a user account for Crossplane
@@ -191,6 +193,8 @@ iam: &iam
       - iam-opa.develop.eoepca.org
     paths:
       - /*
+    # Array of path prefixes to strip. Useful for path-based routing.
+    stripPaths: ~
     # Client credentials:
     # clientId is mandatory if clientSecretRef is *not* specified.
     clientId: opa
