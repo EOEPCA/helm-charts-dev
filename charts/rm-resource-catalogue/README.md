@@ -65,10 +65,14 @@ The configuration parameters in this section control the resource catalogue conf
 | pycsw.config.server.maxrecords                        | The maximum number of records to return by default.  | `10`                              |
 | pycsw.config.server.federatedcatalogues               | Comma delimited list of CSW endpoints to be used for distributed searching  |                               |
 | pycsw.config.server.profiles                       | Comma delimited list of profiles to load at runtime | `apiso`                              |
-| pycsw.config.server.workers                        | Number of worker threads for the WSGI catalogue server  | `2`                              |
+| pycsw.config.server.workers                        | Gunicorn worker processes ([connection budgeting](#database-connection-budgeting))  | `2`                              |
 | pycsw.config.manager.transactions                        | Whether to enable transactions  | `false`                              |
 | pycsw.config.manager.allowed_ips                       | Comma delimited list of IP addresses, wildcards or CIDR notations allowed to perform transactions | `127.0.0.1`                              |
 | pycsw.config.metadata                       | Metadata for the catalogue CSW GetCapabilities document and OGC API landing page  | See https://docs.pycsw.org/en/latest/configuration.html                             |
 | pycsw.config.repository.database                       | The full file path to the metadata database, in database URL format  | `postgresql://postgres:mypass@resource-catalogue-db/pycsw`                              |
 | pycsw.config.repository.table                       | The table name for metadata records  | `records`                              |
 | pycsw.config.inspire                       | INSPIRE specific metadata for the catalogue CSW GetCapabilities document and OGC API landing page  | See https://docs.pycsw.org/en/latest/configuration.html                              |
+
+## Database connection budgeting
+
+With `external_db`, set `pycsw.config.server.workers` as part of your PostgreSQL connection budget. Each worker holds a SQLAlchemy pool (up to ~15 connections). Count all pycsw releases (e.g. core and protected) and other clients against `max_connections`.

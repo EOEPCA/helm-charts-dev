@@ -110,7 +110,8 @@ pycsw:
       # domainquerytype: range
       # domaincounts: true
       # spatial_ranking: true
-      # workers: 2
+      # Gunicorn workers (image default: 2). Pin when using external_db; budget ~ replicas x workers x 15.
+      workers: 2
       timeout: 30
     logging:
       level: ERROR
