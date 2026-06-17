@@ -11733,6 +11733,17 @@ entries:
     version: 0.0.1
   resource-health:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2026-06-17T11:49:09.214657431Z"
+    description: (EOEPCA) Resource Health Building Block
+    digest: d1536d76590ba5d52ffead67207b2222f23d40666f22c8cb684ad3578ba3c550
+    icon: https://upload.wikimedia.org/wikipedia/commons/3/3b/PlaceholderRoss.png
+    name: resource-health
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/resource-health-2.0.1/resource-health-2.0.1.tgz
+    version: 2.0.1
+  - apiVersion: v2
     appVersion: 2.0.0
     created: "2026-05-28T08:52:35.478815602Z"
     description: (EOEPCA) Resource Health Building Block
@@ -14627,4 +14638,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-06-12T09:11:37.307072916Z"
+generated: "2026-06-17T11:49:09.215970345Z"
