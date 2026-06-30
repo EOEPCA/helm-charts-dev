@@ -32,6 +32,27 @@ spec:
   providerConfigRef:
     kind: ProviderConfig
     name: {{ .Values.iam.keycloak.configuration.provider.existingConfigRef | default "keycloak-provider-config" }}
+---
+apiVersion: client.keycloak.m.crossplane.io/v1alpha1
+kind: ProtocolMapper
+metadata:
+  name: {{ printf "%s-opa-client-audience" .Release.Name }}
+  namespace: {{ .Values.iam.config.targetNamespace | default .Release.Namespace }}
+spec:
+  forProvider:
+    realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
+    clientIdRef:
+      name: {{ printf "%s-opa-client" .Release.Name }}
+      namespace: {{ .Values.iam.config.targetNamespace | default .Release.Namespace }}
+    name: {{ printf "audience-%s" .Values.iam.opa.clientId | default "opa" | quote }}
+    protocol: openid-connect
+    protocolMapper: oidc-audience-mapper
+    config:
+      access.token.claim: 'true'
+      included.client.audience: {{ .Values.iam.opa.clientId | default "opa" | quote }}
+  providerConfigRef:
+    kind: ProviderConfig
+    name: {{ .Values.iam.keycloak.configuration.provider.existingConfigRef | default "keycloak-provider-config" }}
 {{- end }}
 {{- end }}
 {{- end }}
