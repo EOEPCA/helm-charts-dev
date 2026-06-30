@@ -1,7 +1,7 @@
 dependencies:
 - name: keycloak-operator
   repository: https://charts.adfinis.com
-  version: 1.11.4
+  version: 1.12.0
 - name: opal
   repository: https://permitio.github.io/opal-helm-chart
   version: 0.0.28
@@ -10,6 +10,6 @@ dependencies:
   version: 2.13.0
 - name: iam-bb-config
   repository: https://eoepca.github.io/helm-charts-dev
-  version: 2.1.0-dev3
-digest: sha256:d6691d865325f41308f7e13e1c9404443cc34e44f50e79ed489e5823a5c72223
-generated: "2026-04-21T14:43:38.338871284+02:00"
+  version: 2.1.0-dev4
+digest: sha256:25bba05251a073026e13af5c01d631093d06a228a701beadc6d543d9153129cc
+generated: "2026-06-30T13:26:16.146257539+02:00"

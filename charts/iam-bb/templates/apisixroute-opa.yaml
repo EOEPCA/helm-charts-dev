@@ -24,6 +24,10 @@ spec:
           access_token_in_authorization_header: true
           use_jwks: true
           discovery: {{ printf "%s/realms/%s/.well-known/openid-configuration" .Values.iam.keycloak.url .Values.iam.keycloak.configuration.realm.name | quote }}
+          claim_validator:
+            audience:
+              required: true
+              match_with_client_id: true
         secretRef: {{ .Values.iam.opa.clientSecretRef | default "opa-route" | quote }}
 {{- if .Values.iam.opa.stripPaths }}
       - name: proxy-rewrite
