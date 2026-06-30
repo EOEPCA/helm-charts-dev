@@ -3494,10 +3494,20 @@ entries:
     version: 0.2.0
   iam-bb-config:
   - apiVersion: v2
-    appVersion: 2.1.0-dev2
-    created: "2026-06-08T10:09:02.998571027Z"
+    appVersion: 2.1.0-dev7
+    created: "2026-06-30T11:23:43.888624893Z"
     description: Optional Crossplane-based Keycloak configuration for the IAM BB
-    digest: 4fd4f9569c8aef5c0f61945e21f2dcfa3f61f5c3b6d71892f95f0696f043a467
+    digest: 46d82a5f94066d5e1df477a8c061dbe4ad91de3cdf7732d8b533a4ff6797fac4
+    name: iam-bb-config
+    type: application
+    urls:
+    - https://github.com/EOEPCA/helm-charts-dev/releases/download/iam-bb-config-2.1.0-dev4/iam-bb-config-2.1.0-dev4.tgz
+    version: 2.1.0-dev4
+  - apiVersion: v2
+    appVersion: 2.1.0-dev2
+    created: "2026-04-21T12:42:35.177140761Z"
+    description: Optional Crossplane-based Keycloak configuration for the IAM BB
+    digest: ca923ebec2fbde46494ecc009ffd8c6997c8543590120d16624da9ba78908a77
     name: iam-bb-config
     type: application
     urls:
@@ -3505,9 +3515,9 @@ entries:
     version: 2.1.0-dev3
   - apiVersion: v2
     appVersion: 2.1.0-dev2
-    created: "2026-04-21T12:42:35.177140761Z"
+    created: "2026-06-08T10:09:02.998571027Z"
     description: Optional Crossplane-based Keycloak configuration for the IAM BB
-    digest: ca923ebec2fbde46494ecc009ffd8c6997c8543590120d16624da9ba78908a77
+    digest: 4fd4f9569c8aef5c0f61945e21f2dcfa3f61f5c3b6d71892f95f0696f043a467
     name: iam-bb-config
     type: application
     urls:
@@ -14663,4 +14673,4 @@ entries:
     urls:
     - https://github.com/EOEPCA/helm-charts-dev/releases/download/workspace-ui-0.0.1/workspace-ui-0.0.1.tgz
     version: 0.0.1
-generated: "2026-06-17T12:15:16.034794983Z"
+generated: "2026-06-30T11:23:43.889421149Z"
