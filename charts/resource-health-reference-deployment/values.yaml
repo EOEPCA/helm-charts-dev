@@ -446,6 +446,10 @@ opensearch:
           #   description: "Temporary admin user (Delete me)"
 
         roles.yml: |-
+          _meta:
+            type: "roles"
+            config_version: 2
+          
           own_trace_data_access:
             reserved: false
             hidden: false
