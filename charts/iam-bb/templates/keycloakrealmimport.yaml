@@ -24,7 +24,7 @@ spec:
 {{- if .Values.iam.keycloak.configuration.provider.createServiceAccount }}
       - clientId: crossplane-keycloak-provider
         name: crossplane-keycloak-provider
-        type:
+        type: openid-connect
         enabled: true
         clientAuthenticatorType: client-secret
         secret: "${client_secret}"
