@@ -86,8 +86,6 @@ spec:
               value: "/app/templates/"
             - name: RH_CHECK_HOOK_DIR_PATH
               value: "/app/hooks/"
-            - name: RH_CHECK_API_BASE_URL
-              value: {{ toYaml .Values.global.defaultCheckAPIBaseURL }}
           {{- range .Values.check_api.environmentSecrets }}
             - name: {{ toYaml .name | trim }}
               valueFrom:

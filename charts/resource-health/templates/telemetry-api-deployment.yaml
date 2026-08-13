@@ -76,8 +76,6 @@ spec:
               mountPath: {{ toYaml .mountPath | trim }}
             {{- end }}
           env:
-            - name: RH_TELEMETRY_API_BASE_URL
-              value: {{ toYaml .Values.global.defaultTelemetryAPIBaseURL }}
             - name: RH_TELEMETRY_HOOK_DIR_PATH
               value: "/app/hooks/"
           {{- range .Values.telemetry_api.environmentSecrets }}
