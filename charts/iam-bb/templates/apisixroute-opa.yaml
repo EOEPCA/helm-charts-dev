@@ -23,6 +23,7 @@ spec:
 {{- end }}
           access_token_in_authorization_header: true
           use_jwks: true
+          use_pkce: true
           discovery: {{ printf "%s/realms/%s/.well-known/openid-configuration" .Values.iam.keycloak.url .Values.iam.keycloak.configuration.realm.name | quote }}
           claim_validator:
             audience:

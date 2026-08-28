@@ -16,6 +16,7 @@ spec:
     realmId: {{ .Values.iam.keycloak.configuration.realm.name }}
     serviceAccountsEnabled: false
     standardFlowEnabled: true
+    pkceCodeChallengeMethod: S256
     useRefreshTokens: true
     name: {{ .Values.iam.opa.clientId | default "opa" | quote }}
 {{- if .Values.iam.opa.url }}
