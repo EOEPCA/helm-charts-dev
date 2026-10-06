@@ -9,7 +9,7 @@ dependencies:
   repository: https://opensearch-project.github.io/helm-charts/
   version: 2.19.1
 - name: resource-health
-  repository: https://eoepca.github.io/helm-charts-dev
+  repository: https://eoepca.github.io/helm-charts
   version: 2.0.2
-digest: sha256:4314aa9df9c1fb4a29cfa3e81553f5911f6549fb473ab207f6a92e3871939de1
-generated: "2026-08-13T13:23:23.595427+03:00"
+digest: sha256:86b676de832baa7f0f9ab5a8bd28ab60d2767eaeec8467da988b04c8af80b6a7
+generated: "2026-10-06T12:37:26.640201933+01:00"
