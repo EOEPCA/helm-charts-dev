@@ -2,7 +2,7 @@ image:
   repository: docker.io/eoepca/processing-editor
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: sha-b2c2441
+  tag: sha-b1014ae
 
 service:
   type: ClusterIP
